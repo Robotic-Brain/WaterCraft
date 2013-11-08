@@ -34,6 +34,7 @@ public class ConfigurationHandler {
             BlockInfo.FREEZER_ID = config.getBlock(BlockInfo.FREEZER_KEY, BlockInfo.FREEZER_ID_DEFAULT).getInt();
             BlockInfo.SMELTER_ID = config.getBlock(BlockInfo.SMELTER_KEY, BlockInfo.SMELTER_ID_DEFAULT).getInt();
             BlockInfo.DROPZONE_ID = config.getBlock(BlockInfo.DROPZONE_KEY, BlockInfo.BOUY_ID_DEFAULT).getInt();
+            BlockInfo.TOOLBOX_ID = config.getBlock(BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
             
         } catch (Exception e) {
             FMLLog.log(Level.CONFIG, ModInfo.getMODID() + " There was a problem while loading the config, Please report this.", e);
