@@ -1,0 +1,20 @@
+{
+   "pack":{
+      "pack_format":1,
+      "description":"WaterCraft default pack"
+   },
+  "language": {
+     "en_US": {
+        "name": "English",
+        "region": "United States"
+     },
+     "sv_SE": {
+        "region": "Sverige",
+        "name": "Svenska"
+     },
+     "de_DE": {
+        "region": "Deutschland",
+        "name": "Deutsch"
+     }
+  }
+}

@@ -1,0 +1,41 @@
+***************
+**** Ideas ****
+***************
+
+    - Boats
+        - Chest Boat
+        - Tank Boat
+        - (Future) Energy Storage (Batbox)
+        - EntityLiving Boat
+        - Lava Boats?
+            - Boats that are resistant to lava? So they can work in the nether.
+        - Ice Crushing Boat
+        - fishing boat
+    - Engines
+        - Coal Engine
+        - Maybe more in the future
+        - Water Wheel Generator/Electric Engines (Ties in to a power System)
+    - Power System
+        - Furnace's
+        - Engines
+        - ETC
+    - Power Gen
+        - Steam
+            - Run water though pipes that are above a heat source (fire/lava), this will turn the water into steam
+              the steam will then have to be pipes to a vent block that will release the steam. The steam will come
+              into contact with a turbine, turning it and so on.
+    - Item and Liquid transfer
+        - A cross between buildcraft pipes and RP2 (Require machine blocks, however don't have the logic) (RP2 is dead, has been since 1.4.7)
+    - Power Transfer
+        -RP2 Blue Alloy wire type (RP2 is dead, has been since 1.4.7)
+    - Guidance
+        - Bouy Controllers
+        - Boat Cranes, to raise and lower boats
+        - (alternative) Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
+    - Tug Rope
+    - Linking boats together
+        - Like carts in railcraft
+    - More Fishing
+	- fishes, better fishing rods, new enchantments
+	- automatic fishing poles that you stick next to water
+    -Pirates

@@ -1,0 +1,10 @@
+language.name=Svenska
+language.region=SE
+language.code=sv_SE
+
+itemGroup.watercraft=WaterCraft
+
+tile.bouyBlockName.name=Boj
+tile.controlUnitDock.name=Styrenhet
+
+item.wcboat.name=Wc Båt
