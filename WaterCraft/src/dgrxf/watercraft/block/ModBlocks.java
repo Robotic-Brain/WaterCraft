@@ -35,20 +35,17 @@ public class ModBlocks {
         bouy = new BuoyBlock(BlockInfo.BOUY_ID);
         controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);
         freezer = new WaterFreezerBlock(BlockInfo.FREEZER_ID);
-        //smelter = new IceSmelterBlock(BlockInfo.SMELTER_ID);
         dropZone = new DropZoneBlock();
         toolbox = new ToolBoxBlock();
         
         GameRegistry.registerBlock(bouy, ItemBlockBouy.class, BlockInfo.BOUY_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(controlUnitDock, ItemBlockControlUnit.class, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
-        //GameRegistry.registerBlock(smelter, BlockInfo.SMELTER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, "WCTileEntityBouy");
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, "WCTileEntityControlUnitDock");
         GameRegistry.registerTileEntity(WCTileEntityFreezer.class, "WCTileEntityFreezer");
-        //GameRegistry.registerTileEntity(WCTileEntitySmelter.class, "WCTileEntitySmelter");
         GameRegistry.registerTileEntity(WCTileEntityToolBox.class, "WCTileEntityToolBox");
     }
 }

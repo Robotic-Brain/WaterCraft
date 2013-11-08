@@ -46,12 +46,8 @@ public class ItemBlockBouy extends ItemBlock {
                 
                 if (world.getBlockMaterial(x, y, z) == Material.water && world.getBlockMetadata(x, y, z) == 0 && world.isAirBlock(x, y + 1, z)) {
                     world.setBlock(x, y + 1, z, ModBlocks.bouy.blockID);
-                    
-                    //int rotate = (MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D)) % 3;
-                    ((WCTileEntityBuoy) world.getBlockTileEntity(x, y + 1, z)).setBuoyDirection(RotationHelper.yawToForge(player.rotationYaw));
-                    
-                    /*int rotate = ((MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
-                    world.setBlockMetadataWithNotify(x, y + 1, z, rotate, 3);*/
+
+                    ((WCTileEntityBuoy) world.getBlockTileEntity(x, y + 1, z)).setDirection(RotationHelper.yawToForge(player.rotationYaw));
                     
                     if (!player.capabilities.isCreativeMode) {
                         --itemStack.stackSize;

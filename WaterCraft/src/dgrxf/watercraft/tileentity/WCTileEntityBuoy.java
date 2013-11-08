@@ -14,7 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class WCTileEntityBuoy extends TileEntity {
+public class WCTileEntityBuoy extends WCTileEntity {
     
     protected WCTileEntityBuoy nextBuoy;
     protected boolean hasBouy = false;
@@ -42,25 +42,6 @@ public class WCTileEntityBuoy extends TileEntity {
             }
         }
     }
-    
-    /**
-     * Sets the direction of the Buoy
-     * UP/DOWN not allowed 
-     * 
-     * @param direction
-     * @author Robotic-Brain
-     */
-    public void setBuoyDirection(ForgeDirection d) {
-        if (d == ForgeDirection.NORTH
-         || d == ForgeDirection.SOUTH
-         || d == ForgeDirection.WEST
-         || d == ForgeDirection.EAST)
-        {
-            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, d.ordinal(), 3);    // Block Update 3=On | 2=Off
-            LogHelper.debug("Buoy direction set: " + d + " at: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
-        }
-    }
-    
     /**
      * Gets the direction of the Buoy
      * 
