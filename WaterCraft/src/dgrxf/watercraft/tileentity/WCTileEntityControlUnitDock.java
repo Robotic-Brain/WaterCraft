@@ -8,9 +8,11 @@ import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
 
 /**
- * Class Created By: ??? Class Last Edited By: xandayn
+ * Class Created By: ???
+ * Class Last Edited By: xandayn
  * 
- * Class Last Edited On: 11/07/2013 MM/DD/YYYY
+ * Class Last Edited On: 11/07/2013 
+ *                       MM/DD/YYYY
  * 
  */
 
@@ -47,7 +49,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             WCEntityBoat e = (WCEntityBoat) findEntityBoat(direction, WCEntityBoat.class);
             
             if (nextBuoy == null) {
-                findNextBouy(-1, true);
+                findNextBouy(-1);
                 System.out.println("Searching");
             }
             
@@ -59,8 +61,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         
     }
     
-    /*@Override
-    protected void findNextBouy() {
+    @Override
+    protected void findNextBouy(int yAdjust) {
         
         if (!hasBouy) {
             switch (worldObj.getBlockMetadata(xCoord, yCoord, zCoord)) {
@@ -106,7 +108,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                     break;
             }
         }
-    }*/
+    }
     
     /*
      * NOTE: This needs updating, should return Entity[] of all boats in List

@@ -28,14 +28,11 @@ public class WCTileEntityBuoy extends TileEntity {
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
     
     
-    protected void findNextBouy(int yOffset, boolean oppositeDir) {
+    protected void findNextBouy(int yOffset) {
         if (!hasBouy) {
             // TODO: re-add yAdjust (whatever it is meant for) (It's used by the dock, or it was going to be but I modified the dock so its useless now.)
-        	ForgeDirection dir;
-        	if(!oppositeDir)
-        		dir = getBuoyDirection();
-        	else
-        		dir = getBuoyDirection().getOpposite();
+        	ForgeDirection dir = getBuoyDirection();
+        	
             for (int i = 1; !hasBouy && i <= searchRange; ++i) {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
                 if (te instanceof WCTileEntityBuoy) {
@@ -100,7 +97,7 @@ public class WCTileEntityBuoy extends TileEntity {
     public void updateEntity() {
         super.updateEntity();
         if (nextBuoy == null) {
-            findNextBouy(0, false);
+            findNextBouy(0);
         }
     }
     
