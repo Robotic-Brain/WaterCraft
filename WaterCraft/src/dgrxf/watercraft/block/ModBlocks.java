@@ -14,6 +14,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import dgrxf.watercraft.item.ItemBlockBouy;
 import dgrxf.watercraft.item.ItemBlockControlUnit;
+import dgrxf.watercraft.item.ItemBlockToolBox;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
@@ -42,7 +43,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(controlUnitDock, ItemBlockControlUnit.class, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         //GameRegistry.registerBlock(smelter, BlockInfo.SMELTER_UNLOCALIZED_NAME);
-        GameRegistry.registerBlock(toolbox, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, "WCTileEntityBouy");
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, "WCTileEntityControlUnitDock");
