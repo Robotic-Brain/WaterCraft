@@ -28,7 +28,6 @@ import dgrxf.watercraft.proxy.CommonProxy;
  */
 
 
-//Test 5
 @Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class)
 public class Watercraft {
