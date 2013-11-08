@@ -33,7 +33,7 @@ public class ItemToolBoxRenderer implements IItemRenderer {
         Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
         switch (type) {
             case EQUIPPED:
-                GL11.glTranslatef(0.4F, 1F, 0.6F);
+                GL11.glTranslatef(0.4F, 1.2F, 0.6F);
                 GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case EQUIPPED_FIRST_PERSON:
@@ -42,14 +42,14 @@ public class ItemToolBoxRenderer implements IItemRenderer {
                 GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case INVENTORY:
-                GL11.glTranslatef(0.0F, -0.26F, 0.0F);
+                GL11.glTranslatef(0.0F, -0.35F, 0.0F);
                 GL11.glRotatef(180, 0F, 1F, 0);
-                GL11.glScalef(1.5F, 1.5F, 1.5F);
+                GL11.glScalef(2F, 2F, 2F);
                 break;
             default:
         }
         
-        GL11.glScalef(0.5F, 0.5F, 0.5F);
+        GL11.glScalef(1F, 1F, 1F);
         
         modelBuoy.renderAll();
         
