@@ -19,6 +19,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntitySmelter;
+import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class ModBlocks {
     
@@ -27,6 +28,7 @@ public class ModBlocks {
     public static WCBlock freezer;
     //public static WCBlock smelter;
     public static WCBlock dropZone;
+    public static WCBlock toolbox;
     
     public static void init() {
         bouy = new BuoyBlock(BlockInfo.BOUY_ID);
@@ -34,15 +36,18 @@ public class ModBlocks {
         freezer = new WaterFreezerBlock(BlockInfo.FREEZER_ID);
         //smelter = new IceSmelterBlock(BlockInfo.SMELTER_ID);
         dropZone = new DropZoneBlock();
+        toolbox = new ToolBoxBlock();
         
         GameRegistry.registerBlock(bouy, ItemBlockBouy.class, BlockInfo.BOUY_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(controlUnitDock, ItemBlockControlUnit.class, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         //GameRegistry.registerBlock(smelter, BlockInfo.SMELTER_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(toolbox, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, "WCTileEntityBouy");
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, "WCTileEntityControlUnitDock");
         GameRegistry.registerTileEntity(WCTileEntityFreezer.class, "WCTileEntityFreezer");
         //GameRegistry.registerTileEntity(WCTileEntitySmelter.class, "WCTileEntitySmelter");
+        GameRegistry.registerTileEntity(WCTileEntityToolBox.class, "WCTileEntityToolBox");
     }
 }
