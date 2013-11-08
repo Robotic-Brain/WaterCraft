@@ -27,6 +27,9 @@ public class BlockInfo {
     public static final String SMELTER_UNLOCALIZED_NAME = "smelterBlockName";
     public static final String SMELTER_KEY = "Smelter";
     
+    public static final String TOOLBOX_UNLOCALIZED_NAME = "toolBoxBlockName";
+    public static final String TOOLBOX_KEY = "ToolBox";
+    
     /*************
      * Integers
      *************/
@@ -45,4 +48,7 @@ public class BlockInfo {
     
     public static final int DROPZONE_ID_DEFAULT = 705;
     public static int DROPZONE_ID;
+    
+    public static final int TOOLBOX_ID_DEFAULT = 706;
+    public static int TOOLBOX_ID;
 }
