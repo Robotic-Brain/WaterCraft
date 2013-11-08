@@ -11,6 +11,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
 import dgrxf.watercraft.creativetab.CreativeTabWaterCraft;
 import dgrxf.watercraft.entity.Entities;
@@ -27,7 +28,6 @@ import dgrxf.watercraft.proxy.CommonProxy;
  * 
  */
 
-
 @Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class)
 public class Watercraft {
@@ -43,6 +43,7 @@ public class Watercraft {
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
+        new GuiHandler();
     }
     
     @EventHandler
