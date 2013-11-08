@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import dgrxf.watercraft.client.renderer.block.BuoyRenderer;
 import dgrxf.watercraft.client.renderer.block.ControlUnitRenderer;
+import dgrxf.watercraft.client.renderer.block.ToolBoxRenderer;
 import dgrxf.watercraft.client.renderer.entity.WCBoatRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemBuoyRenderer;
 import dgrxf.watercraft.entity.WCEntityBoat;
@@ -12,6 +13,7 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 /**
  * Class Made By: Drunk Mafia
@@ -29,6 +31,7 @@ public class ClientProxy extends CommonProxy {
         RenderInfo.BUOY_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityBuoy.class, new BuoyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityToolBox.class, new ToolBoxRenderer());
         
         RenderingRegistry.registerEntityRenderingHandler(WCEntityBoat.class, new WCBoatRenderer());
         
