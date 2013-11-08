@@ -23,9 +23,9 @@ public class ToolBoxRenderer extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
         GL11.glPushMatrix();
         
-        GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
-        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.BUOY_TEXTURE_LOCATION);
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.3F, (float) z + 0.5F);
         
+        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
         modelBuoy.renderAll();
         
         GL11.glPopMatrix();
