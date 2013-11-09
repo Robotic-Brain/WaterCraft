@@ -44,9 +44,16 @@ public class WCTileEntityBuoy extends WCTileEntity {
         searchRange = DEFAULT_RANGE;
     }
     
+    /**
+     * Searches for the next buoy
+     * 
+     * @param yOffset   vertical search offset
+     */
     protected void findNextBuoy(int yOffset) {
-        if (!hasNextBuoy()) {
+        //if (!hasNextBuoy()) {
             ForgeDirection dir = getBuoyDirection();
+            
+            setNextBuoy(null);
             
             for (int i = 1; !hasNextBuoy() && i <= searchRange; ++i) {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
@@ -55,7 +62,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
                     LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
                 }
             }
-        }
+        //}
     }
      
     /**

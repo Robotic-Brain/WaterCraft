@@ -4,8 +4,10 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
+import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
 /**
@@ -19,75 +21,58 @@ import dgrxf.watercraft.util.Vector2;
 
 public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
-    private boolean firstRun, multiBlockFormed;
-    private int direction;
+    private boolean multiBlockFormed;
     private int updateTimer;
     
     public WCTileEntityControlUnitDock() {
-        firstRun = true;
+        updateTimer = 20;
     }
     
     @Override
     public void updateEntity() {
-        if (worldObj.isRemote)
+        if (worldObj.isRemote) {
             return;
-        
-        if (firstRun) {
-            direction = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-            multiBlockFormed = checkForMultiBlock();
-            System.out.println(multiBlockFormed ? "It worked" : "Damn");
         }
         
-        if (!multiBlockFormed) {
-            updateTimer++;
-            if (updateTimer >= 20) {
+        updateTimer--;
+        
+        if (updateTimer <= 0) {
+            findNextBuoy(-1);
+            
+            if (!multiBlockFormed) {
                 multiBlockFormed = checkForMultiBlock();
-                updateTimer = 0;
-                System.out.println(multiBlockFormed ? "It worked" : "Damn");
+                if (multiBlockFormed) {
+                    LogHelper.debug("Multiblock formed at: ");
+                }
+            } else {
+                WCEntityBoat e = (WCEntityBoat) findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
+                
+                if (e != null && hasNextBuoy()) {
+                    e.setTargetLocation(new Vector2(nextX, nextZ));
+                }
             }
-        } else {
-            WCEntityBoat e = (WCEntityBoat) findEntityBoat(direction, WCEntityBoat.class);
             
-            if (!hasNextBuoy()) {
-                findNextBuoy(-1);
-            }
-            
-            if (e != null && hasNextBuoy()) {
-                e.setTargetLocation(new Vector2(nextX, nextZ));
-            }
+            updateTimer = 20;
         }
-        
     }
     
     /*
      * NOTE: This needs updating, should return Entity[] of all boats in List
      * list. Haven't bothered yet though for testing purposes.
      */
-    public Entity findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
-        int tempX = xCoord, tempZ = zCoord;
-        switch (direction-2) {
-        case 0:
-            tempZ -= 3;
-            break;
-        case 1:
-            tempZ += 3;
-            break;
-        case 2:
-            tempX -= 3;
-            break;
-        case 3:
-            tempX += 3;
-            break;
-    }
+    public Entity findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoat> entC) {
+        int tempX = xCoord + d.offsetX * 3;
+        int tempY = yCoord - 1;
+        int tempZ = zCoord + d.offsetZ * 3;
         
-        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, yCoord - 2, tempZ - 1, 1 + tempX, yCoord + 2, 1 + tempZ);
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, tempY - 1, tempZ - 1, tempX + 1, tempY + 1, tempZ + 1);
         
         List list = worldObj.getEntitiesWithinAABB(entC, bounds);
         
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-            	System.out.println("Boat Get");
+                System.out.println("Boat Get");
                 return e;
             }
         }
@@ -96,7 +81,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     }
     
     public boolean checkForMultiBlock() {
-        firstRun = false;
-        return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, direction);
+        //firstRun = false;
+        //return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, direction);
+        return true;
     }
 }
