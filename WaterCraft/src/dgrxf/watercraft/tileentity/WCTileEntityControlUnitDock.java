@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
+import dgrxf.watercraft.util.Vector2;
 
 /**
  * Class Created By: ???
@@ -52,7 +53,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             }
             
             if (e != null && hasNextBuoy()) {
-                e.setTargetLocation(nextX, nextY);
+                e.setTargetLocation(new Vector2(nextX, nextZ));
             }
         }
         

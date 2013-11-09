@@ -16,6 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.util.Vector2;
 
 //import dgrxf.watercraft.tileentity.WCTileEntityDock;
 
@@ -29,7 +30,7 @@ public class WCEntityBoat extends Entity {
     
     private double speedMultiplier;
     private int boatPosRotationIncrements;
-    private int tarX, tarZ;
+    private Vector2 target;
     private WCTileEntityControlUnitDock homeDock = null;
     
     public WCEntityBoat(World world) {
@@ -51,23 +52,38 @@ public class WCEntityBoat extends Entity {
         this.prevPosZ = z;
     }
     
-    public void setTargetLocation(int x, int z) {
-        tarX = x;
-        tarZ = z;
+    public void setTargetLocation(Vector2 target) {
+        this.target = target;
     }
     
     private static final int MAX_SPEED = 10;
     
     public void moveToTarget() {
-        double dx = posX - tarX;
-        double dz = posZ - tarZ;
-        
-        dx = dgrxf.watercraft.util.MathHelper.clamp(dx, -MAX_SPEED, MAX_SPEED);
-        dz = dgrxf.watercraft.util.MathHelper.clamp(dz, -MAX_SPEED, MAX_SPEED);
-        
-        this.motionX += dx * this.speedMultiplier * 0.05000000074505806D;
-        this.motionZ += dz * this.speedMultiplier * 0.05000000074505806D;
-        
+    	float xDist, zDist;
+    	if(target == null){
+    		return;
+    	}
+    	xDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posX, target.x);
+    	zDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posZ, target.z);
+    	
+    	if(xDist > 1.5){
+    		if(posX < target.x)
+    			this.motionX = 0.1;
+    		else if (posX > target.x)
+    			this.motionX = -0.1;
+    	}
+    	else
+    		this.motionX = 0;
+    	
+    	if(zDist > 1.5){
+    		if(posZ < target.z)
+    			this.motionZ = 0.1;
+    		else if(posZ > target.z)
+    			this.motionZ = -0.1;
+    	}
+    	else
+    		this.motionZ = 0;
+    	
     }
     
     @Override
