@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,11 +28,11 @@ public class BuoyBlock extends WCBlock {
         super(id, Material.iron);
         setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
-        setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
+        setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
         setLightValue(1F);
         setCanRotate(true);
     }
-    
+        
     @Override
     public boolean hasTileEntity(int metadata) {
         return true;
