@@ -29,6 +29,7 @@ public class BuoyBlock extends WCBlock {
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
         setBlockBounds(0F, 0F, 0F, 1F, 1F, 1F);
         setLightValue(1F);
+        setCanRotate(true);
     }
     
     @Override
