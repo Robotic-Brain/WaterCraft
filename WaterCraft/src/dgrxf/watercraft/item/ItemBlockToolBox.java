@@ -20,7 +20,7 @@ public class ItemBlockToolBox extends ItemBlock {
 		this.setCreativeTab(Watercraft.creativeTab);
 		maxStackSize = 1;
 	}
-	
+	//This is a comment
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
 		if(world.isRemote) return true;
