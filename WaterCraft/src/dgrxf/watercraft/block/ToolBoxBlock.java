@@ -61,7 +61,7 @@ public class ToolBoxBlock extends WCBlock {
     private void pickUpToolBox(World world, int x, int y, int z, EntityPlayer player) {
     	WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
     	
-    	world.destroyBlock(x, y, z, false);
+    	world.setBlockToAir(x, y, z);
     	
     	int size = tile.getSizeInventory();
     	ItemStack[] tempInv = new ItemStack[size];
