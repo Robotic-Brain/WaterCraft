@@ -1,9 +1,10 @@
 package dgrxf.watercraft.tileentity;
 
-import dgrxf.watercraft.util.LogHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.lib.MiscInfo;
+import dgrxf.watercraft.util.LogHelper;
 
 /**
  * Buoy TileEntity
@@ -20,7 +21,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
     
-    private static final int    DEFAULT_RANGE   = 10;
+    private static final int    DEFAULT_RANGE   = MiscInfo.BOUY_RANGE;
     
     /**
      * Fields
