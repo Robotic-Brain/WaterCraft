@@ -1,15 +1,28 @@
 package dgrxf.watercraft.tileentity;
 
-import dgrxf.watercraft.network.PacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemBucket;
+import net.minecraft.item.ItemFishingRod;
+import net.minecraft.item.ItemFlintAndSteel;
+import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
 
 public class WCTileEntityToolBox extends TileEntity implements IInventory{
 
@@ -96,6 +109,14 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+		if(itemstack.getItem() instanceof ItemTool)	return true;
+		else if(itemstack.getItem() instanceof ItemBow) return true;
+		else if(itemstack.getItem() instanceof ItemBucket) return true;
+		else if(itemstack.getItem() instanceof ItemSword) return true;
+		else if(itemstack.getItem() instanceof ItemShears) return true;
+		else if(itemstack.getItem() instanceof ItemFlintAndSteel) return true;
+		else if(itemstack.getItem() instanceof ItemFishingRod) return true;
+		
 		return false;
 	}
 	
@@ -115,6 +136,7 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 			}
 		}
 		compound.setTag("Items", items);
+		compound.setString("playerName", playerName);
 	}
 	
 	@Override
@@ -130,6 +152,7 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
 			}
 		}
+		playerName = compound.getString("playerName");
 	}
 	
 	@Override

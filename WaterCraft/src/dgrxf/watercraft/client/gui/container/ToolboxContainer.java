@@ -5,7 +5,15 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
 
 public class ToolboxContainer extends Container {
 
@@ -16,7 +24,7 @@ public class ToolboxContainer extends Container {
 		tile = te;
 		
 		for (int x = 0; x < 9; x++) {
-			addSlotToContainer(new Slot(te, x, 8 + 18 * x, 16));
+			addSlotToContainer(new ToolBoxSlot(te, x, 8 + 18 * x, 16));
 		}
 		
 		for (int x = 0; x < 9; x++) {
@@ -30,7 +38,7 @@ public class ToolboxContainer extends Container {
 		}
 		
 	}
-	
+
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int i) {
 		Slot slot = getSlot(i);
@@ -43,7 +51,7 @@ public class ToolboxContainer extends Container {
 				if (!mergeItemStack(stack, 0, 36, false)) {
 					return null;
 				}
-			}else if(!mergeItemStack(stack, 36, 36 + tile.getSizeInventory(), false)) {
+			}else if(tile.isItemValidForSlot(0, stack) || !mergeItemStack(stack, 36, 36 + tile.getSizeInventory(), false)) {
 				return null;
 			}
 			
