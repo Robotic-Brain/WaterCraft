@@ -147,20 +147,17 @@ public class WCTileEntityBuoy extends WCTileEntity {
             return;
         }
     	
-        if (!hasNextBuoy()) {
-            findNextBuoy(0);
-        }
-        else
-        {
-        	searchTimer++;
-        }
+        searchTimer--;
         
-        if(searchTimer == 20){
-        	WCEntityBoat e = findEntityBoat(0, WCEntityBoat.class);
-        	if(e != null && hasNextBuoy()){
-        		e.setTargetLocation(new Vector2(nextX, nextZ));
-        	}
-        	searchTimer = 0;
+        if (searchTimer <= 0) {
+            findNextBuoy(0);
+            
+            WCEntityBoat e = findEntityBoat(0, WCEntityBoat.class);
+            if(e != null && hasNextBuoy()){
+                e.setTargetLocation(new Vector2(nextX, nextZ));
+            }
+            
+            searchTimer = 20;
         }
     }
     
