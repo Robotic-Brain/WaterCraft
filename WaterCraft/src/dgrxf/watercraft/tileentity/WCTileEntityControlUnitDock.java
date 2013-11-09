@@ -72,8 +72,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-                System.out.println("Boat Get");
-                return e;
+            	System.out.println("Boat Get");
+                return (WCEntityBoat)e;
             }
         }
         
