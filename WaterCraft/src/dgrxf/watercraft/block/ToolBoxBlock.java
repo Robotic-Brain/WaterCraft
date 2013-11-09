@@ -32,6 +32,12 @@ public class ToolBoxBlock extends WCBlock {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }   
+    
+    @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+    	if(world.isRemote) return;
+    	world.markBlockForUpdate(x, y, z);
     }
     
     @Override
