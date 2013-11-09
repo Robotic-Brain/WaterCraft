@@ -11,6 +11,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.item.ItemTool;
 
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
+
 public class ToolBoxSlot extends Slot{
 
 	public ToolBoxSlot(IInventory inv, int id, int x, int y) {

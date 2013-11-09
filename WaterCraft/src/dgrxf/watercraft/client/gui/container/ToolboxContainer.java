@@ -8,6 +8,13 @@ import net.minecraft.item.ItemStack;
 import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
+
 public class ToolboxContainer extends Container {
 
 	private WCTileEntityToolBox tile;

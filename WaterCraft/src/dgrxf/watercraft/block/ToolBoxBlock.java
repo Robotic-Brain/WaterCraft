@@ -16,6 +16,13 @@ import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
+
 public class ToolBoxBlock extends WCBlock {
 
 	public ToolBoxBlock() {

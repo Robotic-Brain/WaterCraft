@@ -10,6 +10,13 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.client.gui.container.ToolboxContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
+
 public class ToolBoxGUI extends GuiContainer {
 
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/toolbox.png");

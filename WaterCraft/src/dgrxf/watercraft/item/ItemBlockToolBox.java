@@ -13,6 +13,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 
+/**
+ * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
+ * 
+ * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * 
+ */
+
 public class ItemBlockToolBox extends ItemBlock {
 
 	public ItemBlockToolBox(int id) {
@@ -20,7 +27,7 @@ public class ItemBlockToolBox extends ItemBlock {
 		this.setCreativeTab(Watercraft.creativeTab);
 		maxStackSize = 1;
 	}
-	//This is a comment
+	
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
 		if(world.isRemote) return true;
