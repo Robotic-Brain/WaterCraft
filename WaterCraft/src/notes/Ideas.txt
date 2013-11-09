@@ -39,3 +39,9 @@
 	- fishes, better fishing rods, new enchantments
 	- automatic fishing poles that you stick next to water
     -Pirates
+    
+    -Dumb boats!
+        - these boats just follow the direction of the buoys
+    -Smart Boats
+        - these boats are smart and follow a path set by the controller, these boats ignore the buoy direction and just use them as waypoints, when it reaches a buoy
+          it checks a list given to it from the dock and determines its path from that.
