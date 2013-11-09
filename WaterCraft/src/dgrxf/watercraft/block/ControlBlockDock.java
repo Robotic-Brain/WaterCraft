@@ -18,6 +18,7 @@ public class ControlBlockDock extends WCBlock implements ITileEntityProvider {
         super(id, Material.iron);
         setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
+        setCanRotate(true);
     }
     
     @Override
