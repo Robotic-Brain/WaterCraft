@@ -38,7 +38,7 @@ public class ItemBlockToolBox extends ItemBlock {
 				}
 			}
 		}
-		PacketHandler.toolboxSendPlayerName(tile.xCoord, tile.yCoord, tile.zCoord, player);
+		if(stack.getTagCompound().getString("playerName") != null) tile.setPlayerName(player.username); else tile.setPlayerName(stack.getTagCompound().getString("playerName"));
 		player.inventory.mainInventory[player.inventory.currentItem] = null;
 		return true;
 	}
