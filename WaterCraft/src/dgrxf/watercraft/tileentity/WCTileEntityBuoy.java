@@ -1,10 +1,16 @@
 package dgrxf.watercraft.tileentity;
 
+import java.util.List;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
+import dgrxf.watercraft.util.Vector2;
 
 /**
  * Buoy TileEntity
@@ -34,6 +40,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
     protected int               nextY;                       // needed for readFromNBT
     protected int               nextZ;                       // needed for readFromNBT
     protected int               searchRange;
+    private int					searchTimer; 			     //do not save this value to nbt, there's no need
     
     /**
      * Default Constructor
@@ -103,6 +110,24 @@ public class WCTileEntityBuoy extends WCTileEntity {
         return null;
     }
     
+    public WCEntityBoat findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
+        int tempX = xCoord, tempZ = zCoord;
+        
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, yCoord - 2, tempZ - 1, 1 + tempX, yCoord + 2, 1 + tempZ);
+        
+        List list = worldObj.getEntitiesWithinAABB(entC, bounds);
+        
+        for (int a = 0; a < list.size(); a++) {
+            Entity e = (Entity) list.get(a);
+            if (e instanceof WCEntityBoat) {
+            	System.out.println("Boat Get");
+                return (WCEntityBoat)e;
+            }
+        }
+        
+        return null;
+    }
+    
     /**
      * Has Next Buoy
      * 
@@ -117,6 +142,18 @@ public class WCTileEntityBuoy extends WCTileEntity {
         super.updateEntity();
         if (!hasNextBuoy()) {
             findNextBuoy(0);
+        }
+        else
+        {
+        	searchTimer++;
+        }
+        
+        if(searchTimer == 20){
+        	WCEntityBoat e = findEntityBoat(0, WCEntityBoat.class);
+        	if(e != null && hasNextBuoy()){
+        		e.setTargetLocation(new Vector2(nextX, nextZ));
+        	}
+        	searchTimer = 0;
         }
     }
     

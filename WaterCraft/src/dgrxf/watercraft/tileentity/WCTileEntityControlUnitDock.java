@@ -46,7 +46,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 System.out.println(multiBlockFormed ? "It worked" : "Damn");
             }
         } else {
-            WCEntityBoat e = (WCEntityBoat) findEntityBoat(direction, WCEntityBoat.class);
+            WCEntityBoat e = findEntityBoat(direction, WCEntityBoat.class);
             
             if (!hasNextBuoy()) {
                 findNextBuoy(-1);
@@ -63,7 +63,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
      * NOTE: This needs updating, should return Entity[] of all boats in List
      * list. Haven't bothered yet though for testing purposes.
      */
-    public Entity findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
+    @Override
+    public WCEntityBoat findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
         int tempX = xCoord, tempZ = zCoord;
         switch (direction-2) {
         case 0:
@@ -88,7 +89,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
             	System.out.println("Boat Get");
-                return e;
+                return (WCEntityBoat)e;
             }
         }
         
