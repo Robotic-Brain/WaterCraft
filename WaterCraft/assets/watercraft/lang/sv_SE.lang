@@ -1,5 +1,4 @@
-
-itemGroup.watercraft=WaterCraft
+﻿itemGroup.watercraft=WaterCraft
 
 tile.bouyBlockName.name=Boj
 tile.controlUnitDock.name=Styrenhet
