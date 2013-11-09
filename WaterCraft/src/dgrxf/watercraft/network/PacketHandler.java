@@ -27,23 +27,17 @@ public class PacketHandler implements IPacketHandler {
     	ByteArrayDataInput reader = ByteStreams.newDataInput(packet.data);
 		
 		EntityPlayer entityPlayer = (EntityPlayer)player;
-		World world = entityPlayer.worldObj;
 		
 		byte packetId = reader.readByte();
 		
 		switch (packetId) {
-			case 0:
-				WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(reader.readInt(), reader.readInt(), reader.readInt());
-				String name = reader.readUTF().toString();
-				Watercraft.printToPlayer(name);
-				if(tile != null) tile.setPlayerName(name); else System.out.println("Tile does not exist?!");
-				break;
 			default:
 				System.out.println(ModInfo.getMODID() + " Invalid packet recived!");
 		}
     }
     
-    public static void toolboxSendPlayerName(int x, int y, int z, EntityPlayer player){
+    /*
+    public static void skeletonPacket(int x, int y, int z, String player){
     	ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
 		DataOutputStream dataStream = new DataOutputStream(byteStream);
 
@@ -52,7 +46,7 @@ public class PacketHandler implements IPacketHandler {
 			dataStream.writeInt(x);
 			dataStream.writeInt(y);
 			dataStream.writeInt(z);
-			dataStream.writeUTF(player.username);
+			dataStream.writeUTF(player);
 			
 			PacketDispatcher.sendPacketToAllPlayers(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
 		}catch(IOException e) {
@@ -60,4 +54,5 @@ public class PacketHandler implements IPacketHandler {
 			e.printStackTrace();
 		}
     }
+    */
 }
