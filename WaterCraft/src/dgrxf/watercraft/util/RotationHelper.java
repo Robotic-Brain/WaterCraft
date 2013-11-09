@@ -4,17 +4,10 @@ import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.ForgeDirection;
 
 /**
- * 
- * @author Robotic-Brain
+ * Rotation Helper Class
  *
  */
 public class RotationHelper {
-    
-	/*
-	 * 
-	 * This is a very nice class, very good idea Robotic -xandayn
-	 * 
-	 */
 	
     /**
      * Converts player Yaw to 4 way ForgeDirection
@@ -23,7 +16,6 @@ public class RotationHelper {
      */
     static public ForgeDirection yawToForge(float yaw) {
         ForgeDirection result = ForgeDirection.getOrientation(yToFlookup[MathHelper.floor_double((double)(yaw * 4.0F / 360.0F) + 0.5D) & 3]);
-        //LogHelper.debug("Converter: " + yaw + " -> " + result);
         return result;
     }
     
