@@ -163,7 +163,9 @@ public class WCEntityBoat extends Entity {
     public void onEntityUpdate() {
         super.onEntityUpdate();
         
-        moveToTarget();
+        if (!worldObj.isRemote) {
+            moveToTarget();
+        }
         
         if (this.getTimeSinceHit() > 0) {
             this.setTimeSinceHit(this.getTimeSinceHit() - 1);
