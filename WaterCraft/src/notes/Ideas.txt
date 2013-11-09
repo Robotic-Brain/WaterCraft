@@ -5,12 +5,17 @@
     - Boats
         - Chest Boat
         - Tank Boat
-        - (Future) Energy Storage (Batbox)
+        - (Future Integration) Energy Storage Boat (Batbox/MFE/MFSU ect.)
         - EntityLiving Boat
         - Lava Boats?
             - Boats that are resistant to lava? So they can work in the nether.
         - Ice Crushing Boat
-        - fishing boat
+        - fishing boat 
+        - Dumb boats!
+            - these boats just follow the direction of the buoys
+        - Smart Boats
+            - these boats are smart and follow a path set by the controller, these boats ignore the buoy direction and just use them as waypoints,
+              when it reaches a buoy it checks a list given to it from the dock and determines its path from that.  
     - Engines
         - Coal Engine
         - Maybe more in the future
@@ -29,19 +34,12 @@
     - Power Transfer
         -RP2 Blue Alloy wire type (RP2 is dead, has been since 1.4.7)
     - Guidance
-        - Buoy Controllers
         - Boat Cranes, to raise and lower boats
-        - (alternative) Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
-    - Tug Rope
-    - Linking boats together
+        - Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
+    - Tug Rope/Linking boats together
         - Like carts in railcraft
     - More Fishing
-	- fishes, better fishing rods, new enchantments
-	- automatic fishing poles that you stick next to water
-    -Pirates
-    
-    -Dumb boats!
-        - these boats just follow the direction of the buoys
-    -Smart Boats
-        - these boats are smart and follow a path set by the controller, these boats ignore the buoy direction and just use them as waypoints, when it reaches a buoy
-          it checks a list given to it from the dock and determines its path from that.
+	   - fish, better fishing rods, new enchantments
+	   - automatic fishing poles that you stick next to water
+    - Pirates (Can someone elaborate on this one?)
+
