@@ -1,7 +1,7 @@
 package dgrxf.watercraft.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import dgrxf.watercraft.item.ItemBlockBouy;
+import dgrxf.watercraft.item.ItemBlockBuoy;
 import dgrxf.watercraft.item.ItemBlockToolBox;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
@@ -17,7 +17,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  */
 public class ModBlocks {
     
-    public static WCBlock bouy;
+    public static WCBlock buoy;
     public static WCBlock controlUnitDock;
     public static WCBlock freezer;
     //public static WCBlock smelter;
@@ -25,13 +25,13 @@ public class ModBlocks {
     public static WCBlock toolbox;
     
     public static void init() {
-        bouy = new BuoyBlock(BlockInfo.BOUY_ID);
+        buoy = new BuoyBlock(BlockInfo.BUOY_ID);
         controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);
         freezer = new WaterFreezerBlock(BlockInfo.FREEZER_ID);
         dropZone = new DropZoneBlock();
         toolbox = new ToolBoxBlock();
         
-        GameRegistry.registerBlock(bouy, ItemBlockBouy.class, BlockInfo.BOUY_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(controlUnitDock, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);

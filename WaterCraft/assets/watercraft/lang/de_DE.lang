@@ -1,6 +1,6 @@
 ﻿itemGroup.watercraft=WaterCraft
 
-tile.bouyBlockName.name=Boje
+tile.buoyBlockName.name=Boje
 tile.controlUnitDock.name=Needs Localization
 
 item.wcboat.name=Wc Boot

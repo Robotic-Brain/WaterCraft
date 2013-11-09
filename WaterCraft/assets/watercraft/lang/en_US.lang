@@ -1,6 +1,6 @@
 ﻿itemGroup.watercraft=WaterCraft
 
-tile.bouyBlockName.name=Buoy
+tile.buoyBlockName.name=Buoy
 tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
 tile.smelterBlockName.name=Ice Smelter

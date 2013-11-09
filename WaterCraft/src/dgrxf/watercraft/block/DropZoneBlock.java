@@ -14,6 +14,6 @@ import dgrxf.watercraft.lib.BlockInfo;
 public class DropZoneBlock extends WCBlock{
 	public DropZoneBlock() {
 		super(BlockInfo.DROPZONE_ID, Material.rock);
-		setUnlocalizedName(BlockInfo.BOUY_UNLOCALIZED_NAME);
+		setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
 	}
 }

@@ -49,7 +49,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             WCEntityBoat e = (WCEntityBoat) findEntityBoat(direction, WCEntityBoat.class);
             
             if (nextBuoy == null) {
-                findNextBouy(-1);
+                findNextBuoy(-1);
             }
             
             if (e != null && nextBuoy != null) {

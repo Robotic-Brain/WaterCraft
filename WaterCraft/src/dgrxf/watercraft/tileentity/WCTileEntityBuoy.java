@@ -26,7 +26,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      * Fields
      */
     protected WCTileEntityBuoy nextBuoy;
-    protected boolean hasBouy;
+    protected boolean hasBuoy;
     protected int searchRange;
     
     /**
@@ -34,19 +34,21 @@ public class WCTileEntityBuoy extends WCTileEntity {
      * 
      */
     public WCTileEntityBuoy() {
-        hasBouy = false;
+        hasBuoy = false;
         searchRange = DEFAULT_RANGE;
     }
     
-    protected void findNextBouy(int yOffset) {
-        if (!hasBouy) {
+    protected void findNextBuoy(int yOffset) {
+        if (!hasBuoy) {
         	ForgeDirection dir = getBuoyDirection();
         	
-            for (int i = 1; !hasBouy && i <= searchRange; ++i) {
+            for (int i = 1; !hasBuoy && i <= searchRange; ++i) {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
                 if (te instanceof WCTileEntityBuoy) {
                     setNextBuoy((WCTileEntityBuoy) te);
-                    LogHelper.debug("Buoy get on " + dir + " at pos: {x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "}");
+                    LogHelper.debug("Buoy get on " + dir
+                                + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]"
+                                + " next: [x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "]");
                 }
             }
         }
@@ -70,7 +72,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     public void setNextBuoy(WCTileEntityBuoy next) {
         this.nextBuoy = next;
-        this.hasBouy = true;
+        this.hasBuoy = true;
     }
     
     /**
@@ -88,7 +90,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
     public void updateEntity() {
         super.updateEntity();
         if (nextBuoy == null) {
-            findNextBouy(0);
+            findNextBuoy(0);
         }
     }
     

@@ -29,7 +29,7 @@
     - Power Transfer
         -RP2 Blue Alloy wire type (RP2 is dead, has been since 1.4.7)
     - Guidance
-        - Bouy Controllers
+        - Buoy Controllers
         - Boat Cranes, to raise and lower boats
         - (alternative) Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
     - Tug Rope

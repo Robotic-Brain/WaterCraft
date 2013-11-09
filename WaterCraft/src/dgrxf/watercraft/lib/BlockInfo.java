@@ -5,8 +5,8 @@ public class BlockInfo {
     /*************
      * Strings
      *************/
-    public static final String BOUY_UNLOCALIZED_NAME              = "bouyBlockName";
-    public static final String BOUY_KEY                           = "Bouy";
+    public static final String BUOY_UNLOCALIZED_NAME              = "buoyBlockName";
+    public static final String BUOY_KEY                           = "Buoy";
     public static final String BUOY_TE_KEY                        = "WCTileEntityBuoy";
     
     public static final String DROPZONE_UNLOCALIZED_NAME          = "dropZoneBlockName";
@@ -31,8 +31,8 @@ public class BlockInfo {
      * Integers
      *************/
     
-    public static final int    BOUY_ID_DEFAULT                    = 701;
-    public static int          BOUY_ID;
+    public static final int    BUOY_ID_DEFAULT                    = 701;
+    public static int          BUOY_ID;
     
     public static final int    CONTROL_UNIT_DOCK_ID_DEFAULT       = 702;
     public static int          CONTROL_UNIT_DOCK_ID;

@@ -2,7 +2,7 @@
 
 itemGroup.watercraft=WaterCraft(水工艺)
 
-tile.bouyBlockName.name=浮标
+tile.buoyBlockName.name=浮标
 tile.controlUnitDock.name=控制系统
 tile.freezerBlockName.name=冻水机
 tile.smelterBlockName.name=熔冰机

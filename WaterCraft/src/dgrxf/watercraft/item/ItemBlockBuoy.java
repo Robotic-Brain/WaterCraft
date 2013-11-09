@@ -20,9 +20,9 @@ import dgrxf.watercraft.util.RotationHelper;
  * 
  */
 
-public class ItemBlockBouy extends ItemBlock {
+public class ItemBlockBuoy extends ItemBlock {
     
-    public ItemBlockBouy(int id) {
+    public ItemBlockBuoy(int id) {
         super(id);
     }
     
@@ -45,7 +45,7 @@ public class ItemBlockBouy extends ItemBlock {
                     return itemStack;
                 
                 if (world.getBlockMaterial(x, y, z) == Material.water && world.getBlockMetadata(x, y, z) == 0 && world.isAirBlock(x, y + 1, z)) {
-                    world.setBlock(x, y + 1, z, ModBlocks.bouy.blockID);
+                    world.setBlock(x, y + 1, z, ModBlocks.buoy.blockID);
 
                     ((WCTileEntityBuoy) world.getBlockTileEntity(x, y + 1, z)).setDirection(RotationHelper.yawToForge(player.rotationYaw));
                     

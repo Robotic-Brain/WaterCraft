@@ -29,7 +29,7 @@ public class CreativeTabWaterCraft extends CreativeTabs {
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {
         
-        return ModBlocks.bouy.blockID;
+        return ModBlocks.buoy.blockID;
     }
     
 }
