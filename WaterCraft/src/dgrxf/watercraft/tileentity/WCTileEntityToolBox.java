@@ -131,4 +131,17 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 			}
 		}
 	}
+	
+	@Override
+	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+		NBTTagCompound tag = pkt.data;
+		playerName = tag.getString("playerName");
+	}
+	
+	@Override
+	public Packet getDescriptionPacket() {
+		NBTTagCompound tag = new NBTTagCompound();
+		if(playerName != null)	tag.setString("playerName", playerName);
+		return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
+	}
 }
