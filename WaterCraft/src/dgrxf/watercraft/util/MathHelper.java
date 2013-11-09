@@ -1,5 +1,9 @@
 package dgrxf.watercraft.util;
 
+/**
+ * Math Helper Class
+ *
+ */
 public class MathHelper {
 	
 	public static Vector2 calculateVector2Distance(Vector2 positionOne, Vector2 positionTwo){
@@ -21,5 +25,17 @@ public class MathHelper {
 		}
 		
 		return distance;
+	}
+	
+	/**
+	 * Clamps a value within range
+	 * 
+	 * @param value
+	 * @param min
+	 * @param max
+	 * @return clamped value
+	 */
+	public static double clamp(double val, double min, double max) {
+	    return Math.min(max, Math.max(min, val));
 	}
 }

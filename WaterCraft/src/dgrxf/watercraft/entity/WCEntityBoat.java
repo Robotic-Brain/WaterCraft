@@ -29,7 +29,6 @@ public class WCEntityBoat extends Entity {
     
     private double speedMultiplier;
     private int boatPosRotationIncrements;
-    private float xDist, zDist;
     private int tarX, tarZ;
     private WCTileEntityControlUnitDock homeDock = null;
     
@@ -55,40 +54,20 @@ public class WCEntityBoat extends Entity {
     public void setTargetLocation(int x, int z) {
         tarX = x;
         tarZ = z;
-        // These are part of the problem below
-        xDist = (float) posX - (float) tarX;
-        zDist = (float) posZ - (float) tarZ;
     }
     
-    // Need to fix this, does not work as intended.
+    private static final int MAX_SPEED = 10;
+    
     public void moveToTarget() {
-        if (xDist > 2) {
-            if (tarX > posX) {
-                this.motionX = 0.05f;
-            } else if (tarX < posX) {
-                this.motionX = -0.05f;
-            } else {
-                this.motionX = 0;
-            }
-        } else {
-            xDist = 0;
-        }
+        double dx = posX - tarX;
+        double dz = posZ - tarZ;
         
-        if (zDist > 2) {
-            if (tarZ > posZ) {
-                this.motionZ = 0.05f;
-            } else if (tarZ < posZ) {
-                this.motionZ = -0.05f;
-            } else {
-                this.motionZ = 0;
-            }
-        } else {
-            zDist = 0;
-        }
+        dx = dgrxf.watercraft.util.MathHelper.clamp(dx, -MAX_SPEED, MAX_SPEED);
+        dz = dgrxf.watercraft.util.MathHelper.clamp(dz, -MAX_SPEED, MAX_SPEED);
         
-        xDist = (float) posX - (float) tarX;
-        zDist = (float) posZ - (float) tarZ;
-        //System.out.println(xDist + " " + zDist);
+        this.motionX += dx * this.speedMultiplier * 0.05000000074505806D;
+        this.motionZ += dz * this.speedMultiplier * 0.05000000074505806D;
+        
     }
     
     @Override
@@ -216,34 +195,38 @@ public class WCEntityBoat extends Entity {
         double d10;
         double d11;
         
-        if (this.worldObj.isRemote && false) {
+        if (this.worldObj.isRemote) {
             if (this.boatPosRotationIncrements > 0) {
-                /*
-                 * d4 = this.posX + (this.boatX - this.posX) /
-                 * (double)this.boatPosRotationIncrements; d5 = this.posY +
-                 * (this.boatY - this.posY) /
-                 * (double)this.boatPosRotationIncrements; d11 = this.posZ +
-                 * (this.boatZ - this.posZ) /
-                 * (double)this.boatPosRotationIncrements; d10 =
-                 * MathHelper.wrapAngleTo180_double(this.boatYaw -
-                 * (double)this.rotationYaw); this.rotationYaw =
-                 * (float)((double)this.rotationYaw + d10 /
-                 * (double)this.boatPosRotationIncrements); this.rotationPitch =
-                 * (float)((double)this.rotationPitch + (this.boatPitch -
-                 * (double)this.rotationPitch) /
-                 * (double)this.boatPosRotationIncrements);
-                 * --this.boatPosRotationIncrements; this.setPosition(d4, d5,
-                 * d11); this.setRotation(this.rotationYaw, this.rotationPitch);
-                 * } else { d4 = this.posX + this.motionX; d5 = this.posY +
-                 * this.motionY; d11 = this.posZ + this.motionZ;
-                 * this.setPosition(d4, d5, d11);
-                 * 
-                 * if (this.onGround) { this.motionX *= 0.5D; this.motionY *=
-                 * 0.5D; this.motionZ *= 0.5D; }
-                 * 
-                 * this.motionX *= 0.9900000095367432D; this.motionY *=
-                 * 0.949999988079071D; this.motionZ *= 0.9900000095367432D;
-                 */
+                
+                d4 = this.posX;
+                d5 = this.posY;
+                d11 = this.posZ;
+                /*d4 = this.posX + (this.boatX - this.posX) / (double) this.boatPosRotationIncrements;
+                d5 = this.posY + (this.boatY - this.posY) / (double) this.boatPosRotationIncrements;
+                d11 = this.posZ + (this.boatZ - this.posZ) / (double) this.boatPosRotationIncrements;*/
+                //d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double) this.rotationYaw);
+                d10 = MathHelper.wrapAngleTo180_double(this.rotationYaw);
+                this.rotationYaw = (float) ((double) this.rotationYaw + d10 / (double) this.boatPosRotationIncrements);
+                //this.rotationPitch = (float) ((double) this.rotationPitch + (this.boatPitch - (double) this.rotationPitch) / (double) this.boatPosRotationIncrements);
+                --this.boatPosRotationIncrements;
+                this.setPosition(d4, d5, d11);
+                this.setRotation(this.rotationYaw, this.rotationPitch);
+            } else {
+                d4 = this.posX + this.motionX;
+                d5 = this.posY + this.motionY;
+                d11 = this.posZ + this.motionZ;
+                this.setPosition(d4, d5, d11);
+                
+                if (this.onGround) {
+                    this.motionX *= 0.5D;
+                    this.motionY *= 0.5D;
+                    this.motionZ *= 0.5D;
+                }
+                
+                this.motionX *= 0.9900000095367432D;
+                this.motionY *= 0.949999988079071D;
+                this.motionZ *= 0.9900000095367432D;
+                
             }
         } else {
             if (d0 < 1.0D) {
@@ -256,20 +239,6 @@ public class WCEntityBoat extends Entity {
                 
                 this.motionY += 0.007000000216066837D;
             }
-            
-            /*
-             * if (this.riddenByEntity != null && this.riddenByEntity instanceof
-             * EntityLivingBase) { d4 =
-             * (double)((EntityLivingBase)this.riddenByEntity).moveForward;
-             * 
-             * if (d4 > 0.0D) { d5 =
-             * -Math.sin((double)(this.riddenByEntity.rotationYaw *
-             * (float)Math.PI / 180.0F)); d11 =
-             * Math.cos((double)(this.riddenByEntity.rotationYaw *
-             * (float)Math.PI / 180.0F)); this.motionX += d5 *
-             * this.speedMultiplier * 0.05000000074505806D; this.motionZ += d11
-             * * this.speedMultiplier * 0.05000000074505806D; } }
-             */
             
             d4 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             
