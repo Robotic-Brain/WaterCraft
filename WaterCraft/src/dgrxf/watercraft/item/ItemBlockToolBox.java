@@ -38,7 +38,7 @@ public class ItemBlockToolBox extends ItemBlock {
 				}
 			}
 		}
-		if(stack.getTagCompound().getString("playerName") != null) tile.setPlayerName(player.username); else tile.setPlayerName(stack.getTagCompound().getString("playerName"));
+		tile.setPlayerName(player.username);
 		player.inventory.mainInventory[player.inventory.currentItem] = null;
 		return true;
 	}
