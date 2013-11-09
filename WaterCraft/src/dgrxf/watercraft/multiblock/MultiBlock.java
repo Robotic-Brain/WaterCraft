@@ -1,5 +1,6 @@
 package dgrxf.watercraft.multiblock;
 
+import net.minecraft.world.World;
 import dgrxf.watercraft.util.LogHelper;
 
 public class MultiBlock {
@@ -60,5 +61,47 @@ public class MultiBlock {
             }
         }
         return val == size ? true : false;
+    }
+    
+    public boolean getMultiBlock(World worldObj, int xCoord, int yCoord, int zCoord, int direction){
+    	int[][][] blocks;
+    	int tempX = xCoord;
+        int tempY = yCoord - 1;
+        int tempZ = zCoord;
+        int val = 0;
+        switch (direction-2) {
+            case 0:
+                tempZ -= 3;
+                break;
+            case 1:
+                tempZ += 3;
+                break;
+            case 2:
+                tempX -= 3;
+                break;
+            case 3:
+                tempX += 3;
+                break;
+        }
+        blocks = new int[2][5][5];
+        int yL = 0;
+        int inc = 0;
+        for (int y = -1; y < 1; y++) {
+            int xL = 0, zL = 0;
+            for (int i = tempX - 2; i <= tempX + 2; i++) {
+                zL = 0;
+                for (int j = tempZ - 2; j <= tempZ + 2; j++) {
+                    inc++;
+                    if (worldObj.blockExists(i, tempY + y, j)) {
+                        blocks[yL][xL][zL] = worldObj.getBlockId(i, tempY + y, j);
+                        int temp = tempY + y;
+                    }
+                    zL++;
+                }
+                xL++;
+            }
+            yL++;
+        }
+        return isPatternCorrect(direction, blocks);
     }
 }
