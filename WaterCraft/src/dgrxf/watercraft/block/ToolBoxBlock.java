@@ -47,7 +47,7 @@ public class ToolBoxBlock extends WCBlock {
     
     @Override
     public int getRenderType() {
-        return RenderInfo.BUOY_RENDER_ID;
+        return RenderInfo.TOOLBOX_RENDER_ID;
     }
     
     @Override

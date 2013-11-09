@@ -35,7 +35,7 @@ public class ControlBlockDock extends WCBlock implements ITileEntityProvider {
     
     @Override
     public int getRenderType() {
-        return RenderInfo.BUOY_RENDER_ID;
+        return RenderInfo.CONTROL_UNIT_RENDER_ID;
     }
     
     @Override

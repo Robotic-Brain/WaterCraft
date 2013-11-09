@@ -16,6 +16,8 @@ public class RenderInfo {
     public static int BUOY_RENDER_ID;
     
     public static final ResourceLocation CONTROL_UNIT_TEXTURE_LOCATION = new ResourceLocation(ModInfo.MODID, "textures/models/ControlUnit2.png");
-    public static final ResourceLocation TOOLBOX_TEXTURE_LOCATION = new ResourceLocation(ModInfo.MODID, "textures/models/Toolbox.png");
+    public static int CONTROL_UNIT_RENDER_ID;
     
+    public static final ResourceLocation TOOLBOX_TEXTURE_LOCATION = new ResourceLocation(ModInfo.MODID, "textures/models/Toolbox.png");
+    public static int TOOLBOX_RENDER_ID;
 }
