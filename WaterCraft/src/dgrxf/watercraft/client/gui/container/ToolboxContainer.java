@@ -11,12 +11,16 @@ public class ToolboxContainer extends Container {
 	public ToolboxContainer(InventoryPlayer invPlayer, WCTileEntityToolBox te) {
 		
 		for (int x = 0; x < 9; x++) {
+			addSlotToContainer(new Slot(te, x, 8 + 18 * x, 16));
+		}
+		
+		for (int x = 0; x < 9; x++) {
 			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 99));
 		}
 		
 		for (int y = 0; y < 3; y++) {
 			for (int x = 0; x < 9; x++) {
-				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 40 + y * 19));
+				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
 			}
 		}
 		
