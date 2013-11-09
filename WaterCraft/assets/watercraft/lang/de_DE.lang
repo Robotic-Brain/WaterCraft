@@ -1,6 +1,8 @@
 ﻿itemGroup.watercraft=WaterCraft
 
 tile.buoyBlockName.name=Boje
-tile.controlUnitDock.name=Needs Localization
+tile.controlUnitDock.name=Steuereinheit
+tile.freezerBlockName.name=Wasserkühler
+tile.smelterBlockName.name=Eisschmelze
 
 item.wcboat.name=Wc Boot
