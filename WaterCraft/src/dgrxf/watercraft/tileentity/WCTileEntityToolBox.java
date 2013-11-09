@@ -38,7 +38,8 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 	@Override
 	public void updateEntity() {
 		for(int i = 0; i < inventory.length; i++){
-			if(inventory[i].getItem().itemID == BlockInfo.TOOLBOX_ID){
+			
+			if(inventory[i] != null && inventory[i].getItem().itemID == BlockInfo.TOOLBOX_ID){
 				worldObj.createExplosion(null, xCoord, yCoord, zCoord, 10, true);
 				Minecraft.getMinecraft().thePlayer.sendChatMessage("Tut tut tut, do not create a minecraft inception");
 			}
