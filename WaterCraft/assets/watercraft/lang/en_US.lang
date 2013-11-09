@@ -4,5 +4,6 @@ tile.buoyBlockName.name=Buoy
 tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
 tile.smelterBlockName.name=Ice Smelter
+tile.toolBoxBlockName.name=Tool Box
 
 item.wcboat.name=Wc Boat
