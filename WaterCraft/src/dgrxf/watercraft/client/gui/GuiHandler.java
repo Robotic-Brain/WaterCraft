@@ -12,16 +12,19 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class GuiHandler implements IGuiHandler {
     
+    public static final int TOOLBOX_GUI_ID = 0;
+    
     public GuiHandler() {
         NetworkRegistry.instance().registerGuiHandler(Watercraft.instance, this);
+        // NOTE: Shouldn't we better move this to Watercraft.java?
     }
     
     @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        switch(ID){
-        	case 0:
+    public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+        switch(id){
+        	case TOOLBOX_GUI_ID:
         		TileEntity te = world.getBlockTileEntity(x, y, z);
-        		if(te != null && te instanceof WCTileEntityToolBox){
+        		if(te instanceof WCTileEntityToolBox){
         			return new ToolboxContainer(player.inventory, (WCTileEntityToolBox)te);
         		}
         		break;
@@ -30,11 +33,11 @@ public class GuiHandler implements IGuiHandler {
     }
     
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-    	switch(ID){
-    		case 0:
+    public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
+    	switch(id){
+    		case TOOLBOX_GUI_ID:
     			TileEntity te = world.getBlockTileEntity(x, y, z);
-        		if(te != null && te instanceof WCTileEntityToolBox){
+        		if(te instanceof WCTileEntityToolBox){
         			return new ToolBoxGUI(player.inventory, (WCTileEntityToolBox)te);
         		}
         		break;

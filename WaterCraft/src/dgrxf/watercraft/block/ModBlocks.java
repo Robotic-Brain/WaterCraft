@@ -1,27 +1,20 @@
 package dgrxf.watercraft.block;
 
-/**
- * Class Made By: Drunk Mafia
- * 
- * Class Last Edited By: Drunk Mafia
- * Class Last Edited On: 08/11/2013
- * 						 DD/MM/YYYY
- * 
- */
-
-import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import dgrxf.watercraft.item.ItemBlockBouy;
-import dgrxf.watercraft.item.ItemBlockControlUnit;
 import dgrxf.watercraft.item.ItemBlockToolBox;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
-import dgrxf.watercraft.tileentity.WCTileEntitySmelter;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * Mod Blocks
+ * 
+ * @author Drunk Mafia
+ *
+ */
 public class ModBlocks {
     
     public static WCBlock bouy;
@@ -43,9 +36,9 @@ public class ModBlocks {
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         
-        GameRegistry.registerTileEntity(WCTileEntityBuoy.class, "WCTileEntityBouy");
-        GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, "WCTileEntityControlUnitDock");
-        GameRegistry.registerTileEntity(WCTileEntityFreezer.class, "WCTileEntityFreezer");
-        GameRegistry.registerTileEntity(WCTileEntityToolBox.class, "WCTileEntityToolBox");
+        GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
+        GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
+        GameRegistry.registerTileEntity(WCTileEntityFreezer.class, BlockInfo.FREEZER_TE_KEY);
+        GameRegistry.registerTileEntity(WCTileEntityToolBox.class, BlockInfo.TOOLBOX_TE_KEY);
     }
 }

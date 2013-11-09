@@ -17,12 +17,11 @@ import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 /**
- * Class Made By: Drunk Mafia
+ * Client Proxy
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:11/06/2013 MM/DD/YYYYY
- * 
- **/
-
+ * @author Drunk Mafia
+ *
+ */
 public class ClientProxy extends CommonProxy {
     public void initSounds() {
         
@@ -32,6 +31,7 @@ public class ClientProxy extends CommonProxy {
         RenderInfo.BUOY_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         RenderInfo.CONTROL_UNIT_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         RenderInfo.TOOLBOX_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
+        
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityBuoy.class, new BuoyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityToolBox.class, new ToolBoxRenderer());

@@ -23,7 +23,7 @@ public class WaterFreezerBlock extends WCBlock {
     
     public WaterFreezerBlock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.tab);
+        setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.FREEZER_UNLOCALIZED_NAME);
     }
     

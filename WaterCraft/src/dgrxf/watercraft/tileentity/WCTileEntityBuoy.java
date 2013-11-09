@@ -1,24 +1,17 @@
 package dgrxf.watercraft.tileentity;
 
-/**
- * Class Made By: xandayn
- * 
- * Class Last Edited By: xandayn
- * Class Last Edited By: Robotic-Brain
- * Class Last Edited On: 11/08/2013
- * 						 MM/DD/YYYY
- */
-
 import dgrxf.watercraft.util.LogHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
+/**
+ * Buoy TileEntity
+ * 
+ * @author xandayn
+ *
+ */
 public class WCTileEntityBuoy extends WCTileEntity {
-    
-    protected WCTileEntityBuoy nextBuoy;
-    protected boolean hasBouy = false;
-    protected int searchRange = 10;
     
     /**
      * NBT-Tags
@@ -27,6 +20,23 @@ public class WCTileEntityBuoy extends WCTileEntity {
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
     
+    private static final int DEFAULT_RANGE = 10;
+    
+    /**
+     * Fields
+     */
+    protected WCTileEntityBuoy nextBuoy;
+    protected boolean hasBouy;
+    protected int searchRange;
+    
+    /**
+     * Default Constructor
+     * 
+     */
+    public WCTileEntityBuoy() {
+        hasBouy = false;
+        searchRange = DEFAULT_RANGE;
+    }
     
     protected void findNextBouy(int yOffset) {
         if (!hasBouy) {
@@ -41,6 +51,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
             }
         }
     }
+    
     /**
      * Gets the direction of the Buoy
      * 
@@ -94,7 +105,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        //If the compound has one of the keys it will have all the keys, thats why I only checked for one, still getting a null pointed or loading though, not sure why.
+        // If the compound has one of the keys it will have all the keys, thats why I only checked for one, still getting a null pointed or loading though, not sure why.
+        // It won't have all keys if the save is corrupted ;)
         if (nextBuoy == null) {
             if (compound.hasKey(NBT_NEXT_BUOY_X)
             && compound.hasKey(NBT_NEXT_BUOY_Y)

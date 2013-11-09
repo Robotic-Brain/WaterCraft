@@ -1,6 +1,5 @@
 package dgrxf.watercraft.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
@@ -10,16 +9,14 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
-import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
-import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.RotationHelper;
 
 public class ControlBlockDock extends WCBlock implements ITileEntityProvider {
     
     public ControlBlockDock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.tab);
+        setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
     }
     

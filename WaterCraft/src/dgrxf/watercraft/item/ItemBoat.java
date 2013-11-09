@@ -23,7 +23,7 @@ public class ItemBoat extends Item {
     public ItemBoat() {
         super(ItemInfo.BOAT_ID);
         setUnlocalizedName(ItemInfo.BOAT_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.tab);
+        setCreativeTab(Watercraft.creativeTab);
     }
     
     @Override

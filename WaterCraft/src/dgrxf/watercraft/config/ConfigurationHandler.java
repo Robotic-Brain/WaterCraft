@@ -10,13 +10,11 @@ package dgrxf.watercraft.config;
  */
 
 import java.io.File;
-import java.util.logging.Level;
 
 import net.minecraftforge.common.Configuration;
-import cpw.mods.fml.common.FMLLog;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.lib.ModInfo;
+import dgrxf.watercraft.util.LogHelper;
 
 public class ConfigurationHandler {
     public static void init(File file) {
@@ -37,11 +35,12 @@ public class ConfigurationHandler {
             BlockInfo.TOOLBOX_ID = config.getBlock(BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
             
         } catch (Exception e) {
-            FMLLog.log(Level.CONFIG, ModInfo.getMODID() + " There was a problem while loading the config, Please report this.", e);
+            LogHelper.config("There was a problem while loading the config, Please report this.");
             e.printStackTrace();
         } finally {
             if (config.hasChanged()) {
                 config.save();
+                LogHelper.info("Config saved!");
             }
         }
     }

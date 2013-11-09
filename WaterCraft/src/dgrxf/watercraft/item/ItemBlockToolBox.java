@@ -7,6 +7,6 @@ public class ItemBlockToolBox extends ItemBlock {
 
 	public ItemBlockToolBox(int id) {
 		super(id);
-		this.setCreativeTab(Watercraft.tab);
+		this.setCreativeTab(Watercraft.creativeTab);
 	}
 }

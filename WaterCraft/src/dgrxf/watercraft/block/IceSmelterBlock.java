@@ -29,7 +29,7 @@ public class IceSmelterBlock extends WCBlock {
 	
     public IceSmelterBlock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.tab);
+        setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.SMELTER_UNLOCALIZED_NAME);
     }
     

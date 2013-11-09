@@ -7,12 +7,10 @@ import cpw.mods.fml.common.FMLLog;
 import dgrxf.watercraft.lib.ModInfo;
 
 
-/*
- * Lol nice job copying the class right out of EE3, you could at least change the header xD
+/**
+ * LogHelper
  * 
- * No, at least the LGPL License has to stay! -Robotic
- * 
- * We're in skype if you'd like to join us -xandayn
+ * (Original from EE3)
  * 
  * @license Lesser GNU Public License v3 (http://www.gnu.org/licenses/lgpl.html)
  */

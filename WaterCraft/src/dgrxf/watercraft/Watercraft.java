@@ -38,8 +38,9 @@ public class Watercraft {
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
     public static CommonProxy proxy;
     
-    public static CreativeTabWaterCraft tab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
+    public static CreativeTabWaterCraft creativeTab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
     
+    @SuppressWarnings("unused")
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
