@@ -30,7 +30,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
     
     protected void findNextBouy(int yOffset) {
         if (!hasBouy) {
-            // TODO: re-add yAdjust (whatever it is meant for) (It's used by the dock, or it was going to be but I modified the dock so its useless now.)
         	ForgeDirection dir = getBuoyDirection();
         	
             for (int i = 1; !hasBouy && i <= searchRange; ++i) {

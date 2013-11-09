@@ -39,7 +39,7 @@ public class ModBlocks {
         toolbox = new ToolBoxBlock();
         
         GameRegistry.registerBlock(bouy, ItemBlockBouy.class, BlockInfo.BOUY_UNLOCALIZED_NAME);
-        GameRegistry.registerBlock(controlUnitDock, ItemBlockControlUnit.class, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(controlUnitDock, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         

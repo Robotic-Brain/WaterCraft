@@ -23,7 +23,7 @@ public class RotationHelper {
      */
     static public ForgeDirection yawToForge(float yaw) {
         ForgeDirection result = ForgeDirection.getOrientation(yToFlookup[MathHelper.floor_double((double)(yaw * 4.0F / 360.0F) + 0.5D) & 3]);
-        LogHelper.debug("Converter: " + yaw + " -> " + result);
+        //LogHelper.debug("Converter: " + yaw + " -> " + result);
         return result;
     }
     

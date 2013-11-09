@@ -10,7 +10,10 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
+import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.util.LogHelper;
+import dgrxf.watercraft.util.RotationHelper;
 
 public class ControlBlockDock extends WCBlock implements ITileEntityProvider {
     
@@ -42,11 +45,8 @@ public class ControlBlockDock extends WCBlock implements ITileEntityProvider {
         if (world.isRemote)
             return;
         
-        WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
-        
-        // int rotate = ((MathHelper.floor_double((double)(player.rotationYaw *
-        // 4.0F / 360.0F) + 0.5D) & 3) + 2) % 4;
-        // world.setBlockMetadataWithNotify(x, y, z, rotate, 3);
+        ((WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z)).setDirection(RotationHelper.yawToForge(player.rotationYaw));
+        //LogHelper.debug(RotationHelper.yawToForge(player.rotationYaw));
     }
     
     @Override

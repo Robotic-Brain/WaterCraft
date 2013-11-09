@@ -50,64 +50,13 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             
             if (nextBuoy == null) {
                 findNextBouy(-1);
-                System.out.println("Searching");
             }
             
             if (e != null && nextBuoy != null) {
-                System.out.println("Yup");
                 e.setTargetLocation(nextBuoy.xCoord, nextBuoy.yCoord);
             }
         }
         
-    }
-    
-    @Override
-    protected void findNextBouy(int yAdjust) {
-        
-        if (!hasBouy) {
-            switch (worldObj.getBlockMetadata(xCoord, yCoord, zCoord)) {
-                case 0:
-                    // North
-                    for (int x = 1; !hasBouy && x < searchRange; x++) {
-                        if (worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord - x) instanceof WCTileEntityBuoy) {
-                            nextBuoy = (WCTileEntityBuoy) worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord - x);
-                            hasBouy = true;
-                            System.out.println("Buoy get on North at pos: {x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "}");
-                        }
-                    }
-                    break;
-                case 1:
-                    // East
-                    for (int x = 1; !hasBouy && x < searchRange; x++) {
-                        if (worldObj.getBlockTileEntity(xCoord + x, yCoord-1, zCoord) instanceof WCTileEntityBuoy) {
-                            nextBuoy = (WCTileEntityBuoy) worldObj.getBlockTileEntity(xCoord + x, yCoord-1, zCoord);
-                            hasBouy = true;
-                            System.out.println("Buoy get on East at pos: {x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "}");
-                        }
-                    }
-                    break;
-                case 2:
-                    // South
-                    for (int x = 1; !hasBouy && x < searchRange; x++) {
-                        if (worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord + x) instanceof WCTileEntityBuoy) {
-                            nextBuoy = (WCTileEntityBuoy) worldObj.getBlockTileEntity(xCoord, yCoord-1, zCoord + x);
-                            hasBouy = true;
-                            System.out.println("Buoy get on South at pos: {x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "}");
-                        }
-                    }
-                    break;
-                case 3:
-                    // West
-                    for (int x = 1; !hasBouy && x < searchRange; x++) {
-                        if (worldObj.getBlockTileEntity(xCoord - x, yCoord-1, zCoord) instanceof WCTileEntityBuoy) {
-                            nextBuoy = (WCTileEntityBuoy) worldObj.getBlockTileEntity(xCoord - x, yCoord-1, zCoord);
-                            hasBouy = true;
-                            System.out.println("Buoy get on West at pos: {x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "}");
-                        }
-                    }
-                    break;
-            }
-        }
     }
     
     /*
@@ -115,30 +64,30 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
      * list. Haven't bothered yet though for testing purposes.
      */
     public Entity findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
-        int tempX = 0, tempZ = 0;
-        switch (direction) {
-            case 0:
-                tempZ -= 3;
-                break;
-            case 1:
-                tempX += 3;
-                break;
-            case 2:
-                tempZ += 3;
-                break;
-            case 3:
-                tempX -= 3;
-                break;
-        }
+        int tempX = xCoord, tempZ = zCoord;
+        switch (direction-2) {
+        case 0:
+            tempZ -= 3;
+            break;
+        case 1:
+            tempZ += 3;
+            break;
+        case 2:
+            tempX -= 3;
+            break;
+        case 3:
+            tempX += 3;
+            break;
+    }
         
-        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(xCoord - 1 + tempX, yCoord - 2, zCoord - 1 + tempZ, xCoord + 1 + tempX, yCoord + 2, zCoord + 1 + tempZ);
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, yCoord - 2, tempZ - 1, 1 + tempX, yCoord + 2, 1 + tempZ);
         
         List list = worldObj.getEntitiesWithinAABB(entC, bounds);
         
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-                // System.out.println("boat");
+            	System.out.println("Boat Get");
                 return e;
             }
         }
@@ -151,18 +100,18 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         int tempY = yCoord - 1;
         int tempZ = zCoord;
         int val = 0;
-        switch (direction) {
+        switch (direction-2) {
             case 0:
                 tempZ -= 3;
                 break;
             case 1:
-                tempX += 3;
-                break;
-            case 2:
                 tempZ += 3;
                 break;
-            case 3:
+            case 2:
                 tempX -= 3;
+                break;
+            case 3:
+                tempX += 3;
                 break;
         }
         blocks = new int[2][5][5];
