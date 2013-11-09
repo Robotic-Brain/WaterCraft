@@ -1,7 +1,4 @@
-language.name=English
-language.region=US
-language.code=en_US
-
+﻿
 itemGroup.watercraft=WaterCraft
 
 tile.bouyBlockName.name=Buoy
