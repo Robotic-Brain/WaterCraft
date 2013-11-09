@@ -9,7 +9,7 @@ import net.minecraftforge.common.ForgeDirection;
  * Buoy TileEntity
  * 
  * @author xandayn
- *
+ * 
  */
 public class WCTileEntityBuoy extends WCTileEntity {
     
@@ -20,14 +20,16 @@ public class WCTileEntityBuoy extends WCTileEntity {
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
     
-    private static final int DEFAULT_RANGE = 10;
+    private static final int    DEFAULT_RANGE   = 10;
     
     /**
      * Fields
      */
-    protected WCTileEntityBuoy nextBuoy;
-    protected boolean hasBuoy;
-    protected int searchRange;
+    protected boolean           hasBuoy;
+    protected int               nextX;                       // needed for readFromNBT
+    protected int               nextY;                       // needed for readFromNBT
+    protected int               nextZ;                       // needed for readFromNBT
+    protected int               searchRange;
     
     /**
      * Default Constructor
@@ -39,18 +41,31 @@ public class WCTileEntityBuoy extends WCTileEntity {
     }
     
     protected void findNextBuoy(int yOffset) {
-        if (!hasBuoy) {
-        	ForgeDirection dir = getBuoyDirection();
-        	
-            for (int i = 1; !hasBuoy && i <= searchRange; ++i) {
+        if (!hasNextBuoy()) {
+            ForgeDirection dir = getBuoyDirection();
+            
+            for (int i = 1; !hasNextBuoy() && i <= searchRange; ++i) {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
                 if (te instanceof WCTileEntityBuoy) {
                     setNextBuoy((WCTileEntityBuoy) te);
-                    LogHelper.debug("Buoy get on " + dir
-                                + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]"
-                                + " next: [x: " + nextBuoy.xCoord + ", y: " + nextBuoy.yCoord + ", z: " + nextBuoy.zCoord + "]");
+                    LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
                 }
             }
+        }
+    }
+    
+    /**
+     * Sets the direction of the Buoy UP/DOWN not allowed
+     * 
+     * @param direction
+     * @author Robotic-Brain
+     * @editor xandayn
+     */
+    public void setDirection(ForgeDirection d) {
+        // This is Buoy specific code, I don't think this belongs in the Baseclass?
+        if (d == ForgeDirection.NORTH || d == ForgeDirection.SOUTH || d == ForgeDirection.WEST || d == ForgeDirection.EAST) {
+            worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, d.ordinal(), 3); // Block Update 3=On | 2=Off
+            LogHelper.debug("Buoy direction set: " + d + " at: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
         }
     }
     
@@ -67,12 +82,19 @@ public class WCTileEntityBuoy extends WCTileEntity {
     /**
      * Sets the next Buoy in line
      * 
-     * @param next Next BuoyTileEntity
+     * @param next
+     *            Next BuoyTileEntity
      * @author Robotic-Brain
      */
     public void setNextBuoy(WCTileEntityBuoy next) {
-        this.nextBuoy = next;
-        this.hasBuoy = true;
+        if (next != null) {
+            this.nextX = next.xCoord;
+            this.nextY = next.yCoord;
+            this.nextZ = next.zCoord;
+            this.hasBuoy = true;
+        } else {
+            this.hasBuoy = false;
+        }
     }
     
     /**
@@ -82,14 +104,29 @@ public class WCTileEntityBuoy extends WCTileEntity {
      * @author Robotic-Brain
      */
     public WCTileEntityBuoy getNextBuoy() {
-        return nextBuoy;
+        if (hasNextBuoy()) {
+            TileEntity te = worldObj.getBlockTileEntity(nextX, nextY, nextZ);
+            if (te instanceof WCTileEntityBuoy) {
+                return (WCTileEntityBuoy) te;
+            }
+        }
+        
+        return null;
     }
     
+    /**
+     * Has Next Buoy
+     * 
+     * @return true if has next buoy
+     */
+    public boolean hasNextBuoy() {
+        return hasBuoy;
+    }
     
     @Override
     public void updateEntity() {
         super.updateEntity();
-        if (nextBuoy == null) {
+        if (!hasNextBuoy()) {
             findNextBuoy(0);
         }
     }
@@ -97,32 +134,31 @@ public class WCTileEntityBuoy extends WCTileEntity {
     @Override
     public void writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        if (nextBuoy != null) {
-            compound.setInteger(NBT_NEXT_BUOY_X, nextBuoy.xCoord);
-            compound.setInteger(NBT_NEXT_BUOY_Y, nextBuoy.yCoord);
-            compound.setInteger(NBT_NEXT_BUOY_Z, nextBuoy.zCoord);
+        if (hasNextBuoy()) {
+            compound.setInteger(NBT_NEXT_BUOY_X, nextX);
+            compound.setInteger(NBT_NEXT_BUOY_Y, nextY);
+            compound.setInteger(NBT_NEXT_BUOY_Z, nextZ);
         }
     }
     
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        // If the compound has one of the keys it will have all the keys, thats why I only checked for one, still getting a null pointed or loading though, not sure why.
-        // It won't have all keys if the save is corrupted ;)
-        if (nextBuoy == null) {
-            if (compound.hasKey(NBT_NEXT_BUOY_X)
-            && compound.hasKey(NBT_NEXT_BUOY_Y)
-            && compound.hasKey(NBT_NEXT_BUOY_Z))
-            {
-                int x = compound.getInteger(NBT_NEXT_BUOY_X);
-                int y = compound.getInteger(NBT_NEXT_BUOY_Y);
-                int z = compound.getInteger(NBT_NEXT_BUOY_Z);
-                TileEntity te = worldObj.getBlockTileEntity(x, y, z);
-                
-                if (te instanceof WCTileEntityBuoy) {
-                    setNextBuoy((WCTileEntityBuoy) te);
-                }
-            }
+        if (compound.hasKey(NBT_NEXT_BUOY_X) && compound.hasKey(NBT_NEXT_BUOY_Y) && compound.hasKey(NBT_NEXT_BUOY_Z)) {
+            nextX = compound.getInteger(NBT_NEXT_BUOY_X);
+            nextY = compound.getInteger(NBT_NEXT_BUOY_Y);
+            nextZ = compound.getInteger(NBT_NEXT_BUOY_Z);
+            hasBuoy = true;
+        } else {
+            hasBuoy = false;
         }
+        
+        LogHelper.debug("Loaded " + this);
+    }
+    
+    @Override
+    public String toString() {
+        return "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] "
+             + "Next at: " + "[" + nextX + ", " + nextY + ", " + nextZ + "]";
     }
 }
