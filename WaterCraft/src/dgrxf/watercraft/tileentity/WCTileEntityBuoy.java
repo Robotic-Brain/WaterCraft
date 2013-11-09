@@ -21,6 +21,9 @@ public class WCTileEntityBuoy extends WCTileEntity {
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
     
+    /**
+     * Now configurable inside the Config
+     */
     private static final int    DEFAULT_RANGE   = MiscInfo.BOUY_RANGE;
     
     /**
