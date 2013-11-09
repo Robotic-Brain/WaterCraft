@@ -1,5 +1,7 @@
 package dgrxf.watercraft.tileentity;
 
+import dgrxf.watercraft.lib.BlockInfo;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBow;
@@ -31,6 +33,16 @@ public class WCTileEntityToolBox extends TileEntity implements IInventory{
 	
 	public WCTileEntityToolBox() {
 		inventory = new ItemStack[getSizeInventory()];
+	}
+	
+	@Override
+	public void updateEntity() {
+		for(int i = 0; i < inventory.length; i++){
+			if(inventory[i].getItem().itemID == BlockInfo.TOOLBOX_ID){
+				worldObj.createExplosion(null, xCoord, yCoord, zCoord, 10, true);
+				Minecraft.getMinecraft().thePlayer.sendChatMessage("Tut tut tut, do not create a minecraft inception");
+			}
+		}
 	}
 	
 	public void setPlayerName(String playerName) {
