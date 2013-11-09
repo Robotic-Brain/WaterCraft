@@ -23,7 +23,6 @@ public class ItemToolBoxRenderer implements IItemRenderer {
     
     @Override
     public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
-        
         return true;
     }
     
@@ -38,13 +37,13 @@ public class ItemToolBoxRenderer implements IItemRenderer {
                 break;
             case EQUIPPED_FIRST_PERSON:
                 GL11.glTranslatef(0F, 0.7F, 0.5F);
-                GL11.glRotatef(180, 0F, 1F, 0);
+                GL11.glRotatef(180, 0F, 0.5F, 0);
                 GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case INVENTORY:
-                GL11.glTranslatef(0.0F, -0.35F, 0.0F);
+                GL11.glTranslatef(0.0F, 0.3F, 0.0F);
                 GL11.glRotatef(180, 0F, 1F, 0);
-                GL11.glScalef(2F, 2F, 2F);
+                GL11.glScalef(1.8F, 1.8F, 1.8F);
                 break;
             default:
         }
