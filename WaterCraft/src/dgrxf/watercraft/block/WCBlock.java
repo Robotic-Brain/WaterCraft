@@ -11,7 +11,17 @@ import net.minecraft.block.material.Material;
  */
 public class WCBlock extends Block{
 
+	private boolean canRotate;
+	
 	public WCBlock(int id, Material material) {
 		super(id, material);
+	}
+	
+	public void setCanRotate(boolean val){
+		canRotate = val;
+	}
+	
+	public boolean getCanRotate(){
+		return canRotate;
 	}
 }
