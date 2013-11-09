@@ -45,7 +45,7 @@ public class ItemBlockToolBox extends ItemBlock {
 				}
 			}
 		}
-		tile.setPlayerName(player.username);
+		if(stack.getTagCompound() != null && stack.getTagCompound().hasKey("playerName")) tile.setPlayerName(stack.getTagCompound().getString("playerName")); else  tile.setPlayerName(player.username);
 		player.inventory.mainInventory[player.inventory.currentItem] = null;
 		return true;
 	}
@@ -65,13 +65,14 @@ public class ItemBlockToolBox extends ItemBlock {
 					inv[slot] = ItemStack.loadItemStackFromNBT(item);
 				}
 			}
-			
-			list.add("This Toolbox contains: ");
-			int index = 0;
-			for(int i = 0; i < inv.length; i++){
-				if(inv[i] != null){
-					index++;
-					list.add(index + "| " + inv[i].getDisplayName());
+			if(inv != null){
+				list.add(stack.getTagCompound().getString("playerName") + "'s Toolbox contains: ");
+				int index = 0;
+				for(int i = 0; i < inv.length; i++){
+					if(inv[i] != null){
+						index++;
+						list.add(index + "| " + inv[i].getDisplayName());
+					}
 				}
 			}
 		}else{
