@@ -1,0 +1,14 @@
+Traslations done by Noob
+
+language.name=简体中文
+language.region=中国
+language.code=zh_CN
+
+itemGroup.watercraft=WaterCraft(水工艺)
+
+tile.bouyBlockName.name=浮标
+tile.controlUnitDock.name=控制系统
+tile.freezerBlockName.name=冻水机
+tile.smelterBlockName.name=熔冰机
+
+item.wcboat.name=船
