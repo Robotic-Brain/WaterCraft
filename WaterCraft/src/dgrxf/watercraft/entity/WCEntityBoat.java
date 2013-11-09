@@ -60,7 +60,7 @@ public class WCEntityBoat extends Entity {
     
     public void moveToTarget() {
     	float xDist, zDist;
-    	if(target == null){
+    	if(target == null || worldObj.isRemote){
     		return;
     	}
     	xDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posX, target.x);
