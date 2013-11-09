@@ -57,7 +57,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
      * @param yOffset   vertical search offset
      */
     protected void findNextBuoy(int yOffset) {
-        //if (!hasNextBuoy()) {
             ForgeDirection dir = getBuoyDirection();
             
             setNextBuoy(null);
@@ -66,10 +65,9 @@ public class WCTileEntityBuoy extends WCTileEntity {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
                 if (te instanceof WCTileEntityBuoy) {
                     setNextBuoy((WCTileEntityBuoy) te);
-                    LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
+                    //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
                 }
             }
-        //}
     }
      
     /**
@@ -118,9 +116,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
     }
     
     public WCEntityBoat findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
-        int tempX = xCoord, tempZ = zCoord;
         
-        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, yCoord - 2, tempZ - 1, 1 + tempX, yCoord + 2, 1 + tempZ);
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord - 2, zCoord - 1, xCoord + 1, yCoord + 2, zCoord + 1);
         
         List list = worldObj.getEntitiesWithinAABB(entC, bounds);
         
@@ -146,7 +143,10 @@ public class WCTileEntityBuoy extends WCTileEntity {
     
     @Override
     public void updateEntity() {
-        super.updateEntity();
+        if (worldObj.isRemote) {
+            return;
+        }
+    	
         if (!hasNextBuoy()) {
             findNextBuoy(0);
         }
