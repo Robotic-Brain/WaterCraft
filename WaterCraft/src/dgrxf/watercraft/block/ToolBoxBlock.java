@@ -127,10 +127,6 @@ public class ToolBoxBlock extends WCBlock {
                 }
             }
         }
-        float spawnX = x + world.rand.nextFloat();
-        float spawnY = y + world.rand.nextFloat();
-        float spawnZ = z + world.rand.nextFloat();
-        world.spawnEntityInWorld(new EntityItem(world, spawnX, spawnY, spawnZ, new ItemStack(this)));
         super.breakBlock(world, x, y, z, id, meta);
     }
     
@@ -147,6 +143,14 @@ public class ToolBoxBlock extends WCBlock {
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
         return new WCTileEntityToolBox();
+    }
+    
+    @Override
+    public void onBlockHarvested(World world, int x, int y, int z, int par5, EntityPlayer player) {
+        float spawnX = x + world.rand.nextFloat();
+        float spawnY = y + world.rand.nextFloat();
+        float spawnZ = z + world.rand.nextFloat();
+        world.spawnEntityInWorld(new EntityItem(world, spawnX, spawnY, spawnZ, new ItemStack(this)));
     }
     
 }
