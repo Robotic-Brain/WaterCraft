@@ -4,7 +4,8 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.util.LogHelper;
 
 /**
- * Class Created By: ??? Class Last Edited By: Drunk Mafia (TDM)
+ * Class Created By: ???
+ * Class Last Edited By: xandayn
  * 
  * Class Last Edited On: 11/09/2013 MM/DD/YYYY
  * 
