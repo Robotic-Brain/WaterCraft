@@ -14,8 +14,12 @@ import net.minecraft.item.Item;
 public class ModItems {
     
     public static Item boat;
+    public static Item tapeMeasure;
+    public static Item telescope;
     
     public static void init() {
         boat = new ItemBoat();
+        tapeMeasure = new ItemTapeMeasure();
+        telescope = new ItemTelescope();
     }
 }
