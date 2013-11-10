@@ -26,7 +26,7 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case TOOLBOX_GUI_ID:
                 TileEntity te = world.getBlockTileEntity(x, y, z);
-                if (te instanceof WCTileEntityToolBox) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     return new ToolboxContainer(player.inventory, (WCTileEntityToolBox) te);
                 }
                 break;
@@ -39,7 +39,7 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case TOOLBOX_GUI_ID:
                 TileEntity te = world.getBlockTileEntity(x, y, z);
-                if (te instanceof WCTileEntityToolBox) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     return new ToolBoxGUI(player.inventory, (WCTileEntityToolBox) te);
                 }
                 break;
