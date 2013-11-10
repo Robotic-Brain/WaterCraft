@@ -31,6 +31,7 @@ public class ToolboxContainer extends Container {
 				addSlotToContainer(new ToolBoxSlot(te, x, 8 + 18 * x, 16));
 			}
 			tile.isOpen = true;
+			tile.openChest();
 		}else{
 			WCTileEntityToolBox temp = new WCTileEntityToolBox();
 			tile = temp;
@@ -72,7 +73,6 @@ public class ToolboxContainer extends Container {
 				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
 			}
 		}
-		tile.openChest();
 	}
 	
 	@Override
@@ -101,8 +101,9 @@ public class ToolboxContainer extends Container {
 			tag.setTag("Items", items);
 			toolbox.setTagCompound(tag);
 			player.inventory.mainInventory[player.inventory.currentItem] = toolbox;
+		}else{
+			tile.closeChest();
 		}
-		tile.closeChest();
 	}
 	
 	@Override
