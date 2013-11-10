@@ -13,10 +13,13 @@ import dgrxf.watercraft.util.LogHelper;
 public class MultiBlock {
     
     /*
-     * MultiBlock orientation
-     * 
-     * WEST {1,1,1,1,1}, {1,0,0,0,1}, NORTH {1,0,0,0,1}, SOUTH {1,0,0,0,1},
-     * {1,1,1,1,1} EAST
+     *           WEST
+     *        {1,1,1,1,1},
+     *        {1,0,0,0,1}, 
+     *  NORTH {1,0,0,0,1}, SOUTH
+     *        {1,0,0,0,1},
+     *        {1,1,1,1,1}
+     *           EAST
      */
     
     private int[][][][] pattern;
@@ -49,7 +52,6 @@ public class MultiBlock {
         int val = 0;
         int size = 0;
         int dirToUse = direction - 2;
-        LogHelper.debug(dirToUse);
         for (int l = 0; l < this.layers; l++) {
             int[][] temp = this.pattern[l][dirToUse];
             

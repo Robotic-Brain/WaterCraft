@@ -5,10 +5,13 @@ import net.minecraft.block.Block;
 public class DockMultiBlock extends MultiBlock {
     
     /*
-     * The orientation
-     * 
-     * WEST {1,1,1,1,1}, {1,0,0,0,1}, NORTH {1,0,0,0,1}, SOUTH {1,0,0,0,1},
-     * {1,1,1,1,1} EAST
+     *           WEST
+     *        {1,1,1,1,1},
+     *        {1,0,0,0,1}, 
+     *  NORTH {1,0,0,0,1}, SOUTH
+     *        {1,0,0,0,1},
+     *        {1,1,1,1,1}
+     *           EAST
      */
     
     private static int[][][][] multiBlockArray = { {// Layer 1

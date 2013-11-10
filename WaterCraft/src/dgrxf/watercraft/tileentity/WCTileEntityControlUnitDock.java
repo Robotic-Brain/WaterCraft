@@ -42,13 +42,6 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             if (!multiBlockFormed || secondTimer >= 3) {
                 secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
-                /*
-                 * if (multiBlockFormed) {
-                 * LogHelper.debug("Multiblock formed at: "); }else{
-                 * LogHelper.debug
-                 * ("MultiBlock is incorrectly formed, or no multiblock exists."
-                 * ); }
-                 */
             } else {
                 WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
                 
@@ -78,7 +71,6 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-                System.out.println("Boat Get");
                 return (WCEntityBoat) e;
             }
         }
