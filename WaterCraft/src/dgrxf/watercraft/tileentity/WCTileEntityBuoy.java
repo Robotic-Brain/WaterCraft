@@ -36,12 +36,12 @@ public class WCTileEntityBuoy extends WCTileEntity {
      * Fields
      */
     protected boolean           hasBuoy;
-    protected int               nextX;                       // needed for readFromNBT
-    protected int               nextY;                       // needed for readFromNBT
-    protected int               nextZ;                       // needed for readFromNBT
+    protected int               nextX;                                // needed for readFromNBT
+    protected int               nextY;                                // needed for readFromNBT
+    protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
-    private int					searchTimer; 			     //do not save this value to nbt, there's no need
-    
+    private int                 searchTimer;                          //do not save this value to nbt, there's no need
+                                                                       
     /**
      * Default Constructor
      * 
@@ -54,22 +54,23 @@ public class WCTileEntityBuoy extends WCTileEntity {
     /**
      * Searches for the next buoy
      * 
-     * @param yOffset   vertical search offset
+     * @param yOffset
+     *            vertical search offset
      */
     protected void findNextBuoy(int yOffset) {
-            ForgeDirection dir = getBuoyDirection();
-            
-            setNextBuoy(null);
-            
-            for (int i = 1; !hasNextBuoy() && i <= searchRange; ++i) {
-                TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
-                if (te instanceof WCTileEntityBuoy) {
-                    setNextBuoy((WCTileEntityBuoy) te);
-                    //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
-                }
+        ForgeDirection dir = getBuoyDirection();
+        
+        setNextBuoy(null);
+        
+        for (int i = 1; !hasNextBuoy() && i <= searchRange; ++i) {
+            TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
+            if (te instanceof WCTileEntityBuoy) {
+                setNextBuoy((WCTileEntityBuoy) te);
+                //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
             }
+        }
     }
-     
+    
     /**
      * Gets the direction of the Buoy
      * 
@@ -124,8 +125,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-            	System.out.println("Boat Get");
-                return (WCEntityBoat)e;
+                System.out.println("Boat Get");
+                return (WCEntityBoat) e;
             }
         }
         
@@ -146,14 +147,14 @@ public class WCTileEntityBuoy extends WCTileEntity {
         if (worldObj.isRemote) {
             return;
         }
-    	
+        
         searchTimer--;
         
         if (searchTimer <= 0) {
             findNextBuoy(0);
             
             WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
-            if(e != null && hasNextBuoy()){
+            if (e != null && hasNextBuoy()) {
                 e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
@@ -188,7 +189,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
     
     @Override
     public String toString() {
-        return "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] "
-             + "Next at: " + "[" + nextX + ", " + nextY + ", " + nextZ + "]";
+        return "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] " + "Next at: " + "[" + nextX + ", " + nextY + ", " + nextZ + "]";
     }
 }

@@ -18,7 +18,7 @@ public class ControlUnitRenderer extends TileEntitySpecialRenderer {
         GL11.glPushMatrix();
         
         float rotation = 0;
-        switch (tileentity.worldObj.getBlockMetadata(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord)-2) {
+        switch (tileentity.worldObj.getBlockMetadata(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord) - 2) {
             case 0:
                 rotation = 0;
                 break;

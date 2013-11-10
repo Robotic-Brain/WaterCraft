@@ -17,16 +17,16 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * 
  * THIS CLASS IS NO LONGER USED
- *
+ * 
  */
 
-public class WCTileEntitySmelter extends TileEntity /*implements IInventory*/ {
+public class WCTileEntitySmelter extends TileEntity /* implements IInventory */{
     
-    private final int SMELTER_RANGE = 15;
-    private final int FREEZER_RANGE = 15;
+    private final int SMELTER_RANGE    = 15;
+    private final int FREEZER_RANGE    = 15;
     private final int FREEZER_COOLDOWN = 50;
     private final int SMELTER_COOLDOWN = 50;
-    private int cooldown;
+    private int       cooldown;
     
     public WCTileEntitySmelter() {
         cooldown = SMELTER_COOLDOWN;
@@ -38,9 +38,9 @@ public class WCTileEntitySmelter extends TileEntity /*implements IInventory*/ {
         
         if (!worldObj.isRemote) {
             if (cooldown == 0) {
-            	//temp code
-            	worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) + 1) % 2, 3);
-            	
+                //temp code
+                worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, (worldObj.getBlockMetadata(xCoord, yCoord, zCoord) + 1) % 2, 3);
+                
                 smeltIce();
                 cooldown = FREEZER_COOLDOWN;
             } else {
@@ -97,75 +97,44 @@ public class WCTileEntitySmelter extends TileEntity /*implements IInventory*/ {
     }
     
     /*
-    @Override
-    public int getSizeInventory() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
-    @Override
-    public ItemStack getStackInSlot(int i) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    @Override
-    public ItemStack decrStackSize(int i, int j) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    @Override
-    public ItemStack getStackInSlotOnClosing(int i) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    @Override
-    public void setInventorySlotContents(int i, ItemStack itemstack) {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public String getInvName() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-    
-    @Override
-    public boolean isInvNameLocalized() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    
-    @Override
-    public int getInventoryStackLimit() {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-    
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-    
-    @Override
-    public void openChest() {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public void closeChest() {
-        // TODO Auto-generated method stub
-        
-    }
-    
-    @Override
-    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        // TODO Auto-generated method stub
-        return false;
-    }*/
+     * @Override public int getSizeInventory() { // TODO Auto-generated method
+     * stub return 0; }
+     * 
+     * @Override public ItemStack getStackInSlot(int i) { // TODO Auto-generated
+     * method stub return null; }
+     * 
+     * @Override public ItemStack decrStackSize(int i, int j) { // TODO
+     * Auto-generated method stub return null; }
+     * 
+     * @Override public ItemStack getStackInSlotOnClosing(int i) { // TODO
+     * Auto-generated method stub return null; }
+     * 
+     * @Override public void setInventorySlotContents(int i, ItemStack
+     * itemstack) { // TODO Auto-generated method stub
+     * 
+     * }
+     * 
+     * @Override public String getInvName() { // TODO Auto-generated method stub
+     * return null; }
+     * 
+     * @Override public boolean isInvNameLocalized() { // TODO Auto-generated
+     * method stub return false; }
+     * 
+     * @Override public int getInventoryStackLimit() { // TODO Auto-generated
+     * method stub return 0; }
+     * 
+     * @Override public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+     * // TODO Auto-generated method stub return false; }
+     * 
+     * @Override public void openChest() { // TODO Auto-generated method stub
+     * 
+     * }
+     * 
+     * @Override public void closeChest() { // TODO Auto-generated method stub
+     * 
+     * }
+     * 
+     * @Override public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+     * // TODO Auto-generated method stub return false; }
+     */
 }

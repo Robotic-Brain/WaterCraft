@@ -21,27 +21,27 @@ public class GuiHandler implements IGuiHandler {
     
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        switch(id){
-        	case TOOLBOX_GUI_ID:
-        		TileEntity te = world.getBlockTileEntity(x, y, z);
-        		if(te instanceof WCTileEntityToolBox){
-        			return new ToolboxContainer(player.inventory, (WCTileEntityToolBox)te);
-        		}
-        		break;
+        switch (id) {
+            case TOOLBOX_GUI_ID:
+                TileEntity te = world.getBlockTileEntity(x, y, z);
+                if (te instanceof WCTileEntityToolBox) {
+                    return new ToolboxContainer(player.inventory, (WCTileEntityToolBox) te);
+                }
+                break;
         }
         return null;
     }
     
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-    	switch(id){
-    		case TOOLBOX_GUI_ID:
-    			TileEntity te = world.getBlockTileEntity(x, y, z);
-        		if(te instanceof WCTileEntityToolBox){
-        			return new ToolBoxGUI(player.inventory, (WCTileEntityToolBox)te);
-        		}
-        		break;
-    	}
-    	return null;
+        switch (id) {
+            case TOOLBOX_GUI_ID:
+                TileEntity te = world.getBlockTileEntity(x, y, z);
+                if (te instanceof WCTileEntityToolBox) {
+                    return new ToolBoxGUI(player.inventory, (WCTileEntityToolBox) te);
+                }
+                break;
+        }
+        return null;
     }
 }

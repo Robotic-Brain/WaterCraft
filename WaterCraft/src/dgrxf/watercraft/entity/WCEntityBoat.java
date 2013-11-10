@@ -28,9 +28,9 @@ import dgrxf.watercraft.util.Vector2;
  */
 public class WCEntityBoat extends Entity {
     
-    private double speedMultiplier;
-    private int boatPosRotationIncrements;
-    private Vector2 target;
+    private double                      speedMultiplier;
+    private int                         boatPosRotationIncrements;
+    private Vector2                     target;
     private WCTileEntityControlUnitDock homeDock = null;
     
     public WCEntityBoat(World world) {
@@ -59,38 +59,36 @@ public class WCEntityBoat extends Entity {
     private static final int MAX_SPEED = 10;
     
     public void moveToTarget() {
-    	float xDist, zDist;
-    	if(target == null || worldObj.isRemote){
-    		return;
-    	}
-    	xDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posX, target.x);
-    	zDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posZ, target.z);
-    	if(xDist > 1.0F){
-    		if(posX < target.x)
-    			this.motionX = 0.1;
-    		else if (posX > target.x)
-    			this.motionX = -0.1;
-    	}
-    	else{
-    		this.motionX = 0;
-    		xDist = 0;
-    	}
-    	
-    	if(zDist > 1.0F){
-    		if(posZ < target.z)
-    			this.motionZ = 0.1;
-    		else if(posZ > target.z)
-    			this.motionZ = -0.1;
-    	}
-    	else{
-    		this.motionZ = 0;
-    		zDist = 0;
-    	}
-    	
-    	if(zDist == 0 && xDist == 0){
-    		target = null;
-    	}
-    	
+        float xDist, zDist;
+        if (target == null || worldObj.isRemote) {
+            return;
+        }
+        xDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posX, target.x);
+        zDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posZ, target.z);
+        if (xDist > 1.0F) {
+            if (posX < target.x)
+                this.motionX = 0.1;
+            else if (posX > target.x)
+                this.motionX = -0.1;
+        } else {
+            this.motionX = 0;
+            xDist = 0;
+        }
+        
+        if (zDist > 1.0F) {
+            if (posZ < target.z)
+                this.motionZ = 0.1;
+            else if (posZ > target.z)
+                this.motionZ = -0.1;
+        } else {
+            this.motionZ = 0;
+            zDist = 0;
+        }
+        
+        if (zDist == 0 && xDist == 0) {
+            target = null;
+        }
+        
     }
     
     @Override
@@ -226,9 +224,13 @@ public class WCEntityBoat extends Entity {
                 d4 = this.posX;
                 d5 = this.posY;
                 d11 = this.posZ;
-                /*d4 = this.posX + (this.boatX - this.posX) / (double) this.boatPosRotationIncrements;
-                d5 = this.posY + (this.boatY - this.posY) / (double) this.boatPosRotationIncrements;
-                d11 = this.posZ + (this.boatZ - this.posZ) / (double) this.boatPosRotationIncrements;*/
+                /*
+                 * d4 = this.posX + (this.boatX - this.posX) / (double)
+                 * this.boatPosRotationIncrements; d5 = this.posY + (this.boatY
+                 * - this.posY) / (double) this.boatPosRotationIncrements; d11 =
+                 * this.posZ + (this.boatZ - this.posZ) / (double)
+                 * this.boatPosRotationIncrements;
+                 */
                 //d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double) this.rotationYaw);
                 d10 = MathHelper.wrapAngleTo180_double(this.rotationYaw);
                 this.rotationYaw = (float) ((double) this.rotationYaw + d10 / (double) this.boatPosRotationIncrements);

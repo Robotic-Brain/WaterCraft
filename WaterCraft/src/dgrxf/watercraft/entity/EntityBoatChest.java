@@ -12,7 +12,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     
     private ItemStack[] items;
     
-    private boolean dropContentsWhenDead = true;
+    private boolean     dropContentsWhenDead = true;
     
     public EntityBoatChest(World par1World) {
         super(par1World);

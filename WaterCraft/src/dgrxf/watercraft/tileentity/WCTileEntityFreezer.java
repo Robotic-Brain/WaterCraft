@@ -13,12 +13,12 @@ import net.minecraft.tileentity.TileEntity;
 
 public class WCTileEntityFreezer extends TileEntity {
     
-	private final int SMELTER_RANGE = 15;
-    private final int FREEZER_RANGE = 5;
+    private final int SMELTER_RANGE    = 15;
+    private final int FREEZER_RANGE    = 5;
     private final int FREEZER_COOLDOWN = 50;
     private final int SMELTER_COOLDOWN = 50;
-    private int cooldown;
-    private int type;
+    private int       cooldown;
+    private int       type;
     
     public WCTileEntityFreezer() {
         setCooldown();
@@ -51,48 +51,48 @@ public class WCTileEntityFreezer extends TileEntity {
                 return;
             }
         }
-    }    
+    }
     
     private void setCooldown() {
-    	switch (type) {
-    	case 1:
-    		cooldown = FREEZER_COOLDOWN;
-    		break;
-    	case 2:
-    		cooldown = SMELTER_COOLDOWN;
-    		break;
-    	}
+        switch (type) {
+            case 1:
+                cooldown = FREEZER_COOLDOWN;
+                break;
+            case 2:
+                cooldown = SMELTER_COOLDOWN;
+                break;
+        }
     }
     
     private int getRange() {
-    	switch (type) {
-    	case 1:
-    		return FREEZER_RANGE;
-    	case 2:
-    		return SMELTER_RANGE;
-    	}
-    	
-    	return 0;
+        switch (type) {
+            case 1:
+                return FREEZER_RANGE;
+            case 2:
+                return SMELTER_RANGE;
+        }
+        
+        return 0;
     }
     
     private boolean changeBlock(int x, int y, int z) {
-    	switch (type) {
-    	case 1:
-    		if ((worldObj.getBlockId(x, y, z) == Block.waterStill.blockID) || (worldObj.getBlockId(x, y, z) == Block.waterMoving.blockID)) {
-                worldObj.setBlock(x, y, z, Block.ice.blockID);
-                return true;
-    		}
-    		
-    		return false;
-    	case 2:
-    		if (worldObj.getBlockId(x, y, z) == Block.ice.blockID) {
-                worldObj.setBlock(x, y, z, Block.waterStill.blockID);
-                return true;
-    		}
-    		return false;
-    	}
-    	
-    	return false;
+        switch (type) {
+            case 1:
+                if ((worldObj.getBlockId(x, y, z) == Block.waterStill.blockID) || (worldObj.getBlockId(x, y, z) == Block.waterMoving.blockID)) {
+                    worldObj.setBlock(x, y, z, Block.ice.blockID);
+                    return true;
+                }
+                
+                return false;
+            case 2:
+                if (worldObj.getBlockId(x, y, z) == Block.ice.blockID) {
+                    worldObj.setBlock(x, y, z, Block.waterStill.blockID);
+                    return true;
+                }
+                return false;
+        }
+        
+        return false;
     }
     
     @Override

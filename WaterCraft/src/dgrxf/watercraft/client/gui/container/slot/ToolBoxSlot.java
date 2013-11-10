@@ -18,23 +18,30 @@ import net.minecraft.item.ItemTool;
  * 
  */
 
-public class ToolBoxSlot extends Slot{
-
-	public ToolBoxSlot(IInventory inv, int id, int x, int y) {
-		super(inv, id, x, y);
-	}
-	
-	@Override
-	public boolean isItemValid(ItemStack itemstack) {
-		if(itemstack.getItem() instanceof ItemTool){	return true;
-		}else if(itemstack.getItem() instanceof ItemBow){ return true;
-		}else if(itemstack.getItem() instanceof ItemBucket){ return true;
-		}else if(itemstack.getItem() instanceof ItemSword){ return true;
-		}else if(itemstack.getItem() instanceof ItemShears){ return true;
-		}else if(itemstack.getItem() instanceof ItemFlintAndSteel){ return true;
-		}else if(itemstack.getItem() instanceof ItemFishingRod){ return true;
-		}
-		return false;
-	}
-
+public class ToolBoxSlot extends Slot {
+    
+    public ToolBoxSlot(IInventory inv, int id, int x, int y) {
+        super(inv, id, x, y);
+    }
+    
+    @Override
+    public boolean isItemValid(ItemStack itemstack) {
+        if (itemstack.getItem() instanceof ItemTool) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemBow) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemBucket) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemSword) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemShears) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemFlintAndSteel) {
+            return true;
+        } else if (itemstack.getItem() instanceof ItemFishingRod) {
+            return true;
+        }
+        return false;
+    }
+    
 }

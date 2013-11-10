@@ -20,10 +20,10 @@ import dgrxf.watercraft.lib.RenderInfo;
 public class BuoyRenderer extends TileEntitySpecialRenderer {
     
     private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/buoy.obj");
-    private int tick = 0;
-    private int tickTick = 0;
-    private float yLevel = 0;
-    private boolean up = true;
+    private int          tick      = 0;
+    private int          tickTick  = 0;
+    private float        yLevel    = 0;
+    private boolean      up        = true;
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {

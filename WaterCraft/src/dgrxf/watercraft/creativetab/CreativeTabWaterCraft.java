@@ -10,9 +10,8 @@ import dgrxf.watercraft.block.ModBlocks;
 /**
  * Class Made By: Robotic-Brain
  * 
- * Class Last Edited By: Robotic-Brain
- * Class Last Edited On: 08/11/2013
- *                       DD/MM/YYYY
+ * Class Last Edited By: Robotic-Brain Class Last Edited On: 08/11/2013
+ * DD/MM/YYYY
  * 
  */
 

@@ -6,10 +6,10 @@ import net.minecraftforge.common.ForgeDirection;
 
 /**
  * Watercraft TileEntity Baseclass
- *
+ * 
  */
-public class WCTileEntity extends TileEntity{
-	
+public class WCTileEntity extends TileEntity {
+    
     /**
      * Sets the direction of the Buoy UP/DOWN not allowed
      * 
@@ -23,5 +23,5 @@ public class WCTileEntity extends TileEntity{
             LogHelper.debug("Buoy direction set: " + d + " at: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
         }
     }
-	
+    
 }

@@ -20,7 +20,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  * Client Proxy
  * 
  * @author Drunk Mafia
- *
+ * 
  */
 public class ClientProxy extends CommonProxy {
     public void initSounds() {

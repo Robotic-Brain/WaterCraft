@@ -1,8 +1,8 @@
 package dgrxf.watercraft.util;
 
-public class Vector3{
+public class Vector3 {
     
-    public float x, y, z;
+    public float          x, y, z;
     
     public static Vector3 ZERO = new Vector3(0, 0, 0);
     

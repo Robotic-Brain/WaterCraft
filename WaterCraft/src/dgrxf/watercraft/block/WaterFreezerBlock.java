@@ -27,45 +27,42 @@ public class WaterFreezerBlock extends WCBlock {
         setUnlocalizedName(BlockInfo.FREEZER_UNLOCALIZED_NAME);
     }
     
-    
     @Override
     public boolean hasTileEntity(int metadata) {
-    	return true;
+        return true;
     }
     
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-    	return new WCTileEntityFreezer();
-    }     
+        return new WCTileEntityFreezer();
+    }
     
     @SideOnly(Side.CLIENT)
-   	private Icon[] icons;			
-   	
-   	@SideOnly(Side.CLIENT)
-   	@Override
-   	public void registerIcons(IconRegister register) {	
-   		icons = new Icon[3];
-   		icons[0] = register.registerIcon("watercraft:freezer_off");	
-   		icons[1] = register.registerIcon("watercraft:freezer");	
-   		icons[2] = register.registerIcon("watercraft:smelter");
+    private Icon[] icons;
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register) {
+        icons = new Icon[3];
+        icons[0] = register.registerIcon("watercraft:freezer_off");
+        icons[1] = register.registerIcon("watercraft:freezer");
+        icons[2] = register.registerIcon("watercraft:smelter");
     }
-   	
-   	@SideOnly(Side.CLIENT)
-   	@Override
-   	public Icon getIcon(int side, int meta) {
-   		return meta < icons.length? icons[meta]: icons[0];
-   	}
-   	
-   	//temp
-   	@Override
-   	public boolean onBlockActivated(World w, int x, int y,
-   			int z, EntityPlayer par5EntityPlayer, int par6, float par7,
-   			float par8, float par9) {
-   		
-   		if (!w.isRemote) {
-   			w.setBlockMetadataWithNotify(x, y, z, (w.getBlockMetadata(x, y, z) + 1) % icons.length, 3);
-   		}
-   		
-   		return true;
-   	}
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta) {
+        return meta < icons.length ? icons[meta] : icons[0];
+    }
+    
+    //temp
+    @Override
+    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+        
+        if (!w.isRemote) {
+            w.setBlockMetadataWithNotify(x, y, z, (w.getBlockMetadata(x, y, z) + 1) % icons.length, 3);
+        }
+        
+        return true;
+    }
 }

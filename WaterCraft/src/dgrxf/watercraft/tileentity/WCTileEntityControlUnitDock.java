@@ -11,20 +11,18 @@ import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
 /**
- * Class Created By: ???
- * Class Last Edited By: xandayn
+ * Class Created By: ??? Class Last Edited By: xandayn
  * 
- * Class Last Edited On: 11/07/2013 
- *                       MM/DD/YYYY
+ * Class Last Edited On: 11/07/2013 MM/DD/YYYY
  * 
  */
 
 public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
     private boolean multiBlockFormed;
-    private int updateTimer;
-    private int secondTimer; //This fixes bug report #1 and #2
-    
+    private int     updateTimer;
+    private int     secondTimer;     //This fixes bug report #1 and #2
+                                      
     public WCTileEntityControlUnitDock() {
         updateTimer = 20;
     }
@@ -38,17 +36,19 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         updateTimer--;
         
         if (updateTimer <= 0) {
-        	secondTimer++;
+            secondTimer++;
             findNextBuoy(-1);
             
             if (!multiBlockFormed || secondTimer >= 3) {
-            	secondTimer = 0;
+                secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
-                /*if (multiBlockFormed) {
-                    LogHelper.debug("Multiblock formed at: ");
-                }else{
-                	LogHelper.debug("MultiBlock is incorrectly formed, or no multiblock exists.");
-                }*/
+                /*
+                 * if (multiBlockFormed) {
+                 * LogHelper.debug("Multiblock formed at: "); }else{
+                 * LogHelper.debug
+                 * ("MultiBlock is incorrectly formed, or no multiblock exists."
+                 * ); }
+                 */
             } else {
                 WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
                 
@@ -78,8 +78,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-            	System.out.println("Boat Get");
-                return (WCEntityBoat)e;
+                System.out.println("Boat Get");
+                return (WCEntityBoat) e;
             }
         }
         

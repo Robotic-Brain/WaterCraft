@@ -17,7 +17,7 @@ import net.minecraftforge.client.model.IModelCustom;
  */
 
 public class ToolBoxRenderer extends TileEntitySpecialRenderer {
-	private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
+    private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {

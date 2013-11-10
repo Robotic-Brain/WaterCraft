@@ -5,17 +5,17 @@ import net.minecraftforge.common.ForgeDirection;
 
 /**
  * Rotation Helper Class
- *
+ * 
  */
 public class RotationHelper {
-	
+    
     /**
      * Converts player Yaw to 4 way ForgeDirection
      * 
      * @param yaw
      */
     static public ForgeDirection yawToForge(float yaw) {
-        ForgeDirection result = ForgeDirection.getOrientation(yToFlookup[MathHelper.floor_double((double)(yaw * 4.0F / 360.0F) + 0.5D) & 3]);
+        ForgeDirection result = ForgeDirection.getOrientation(yToFlookup[MathHelper.floor_double((double) (yaw * 4.0F / 360.0F) + 0.5D) & 3]);
         return result;
     }
     
@@ -25,13 +25,13 @@ public class RotationHelper {
      * @param yaw
      * @return
      */
-    public static ForgeDirection yawToOppositeForge(float yaw){
-    	ForgeDirection result = yawToForge(yaw);
-    	return result.getOpposite();
+    public static ForgeDirection yawToOppositeForge(float yaw) {
+        ForgeDirection result = yawToForge(yaw);
+        return result.getOpposite();
     }
     
     /**
      * Converts Yaw To ForgeDirection
      */
-    private static final int[] yToFlookup = {3, 4, 2, 5};
+    private static final int[] yToFlookup = { 3, 4, 2, 5 };
 }

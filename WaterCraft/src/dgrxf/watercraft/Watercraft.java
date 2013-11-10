@@ -33,10 +33,10 @@ import dgrxf.watercraft.proxy.CommonProxy;
 public class Watercraft {
     
     @Instance(ModInfo.MODID)
-    public static Watercraft instance;
+    public static Watercraft            instance;
     
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
-    public static CommonProxy proxy;
+    public static CommonProxy           proxy;
     
     public static CreativeTabWaterCraft creativeTab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
     

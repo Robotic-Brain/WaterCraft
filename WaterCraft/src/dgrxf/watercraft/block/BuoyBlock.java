@@ -13,14 +13,13 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 
-
 /**
  * Buoy Block
  * 
  * @author Robotic-Brain
- * @author xandayn  (re-created)
+ * @author xandayn (re-created)
  * @author Drunk Mafia (modified)
- *
+ * 
  */
 public class BuoyBlock extends WCBlock {
     
@@ -32,7 +31,7 @@ public class BuoyBlock extends WCBlock {
         setLightValue(1F);
         setCanRotate(true);
     }
-        
+    
     @Override
     public boolean hasTileEntity(int metadata) {
         return true;

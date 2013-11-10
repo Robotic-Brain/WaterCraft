@@ -14,7 +14,7 @@ import dgrxf.watercraft.entity.WCEntityBoat;
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
     
-    ModelBase model;
+    ModelBase                             model;
     
     public WCBoatRenderer() {
         model = new ModelBoat();

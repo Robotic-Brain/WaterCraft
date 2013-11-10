@@ -4,33 +4,25 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.util.LogHelper;
 
 /**
- * Class Created By: ???
- * Class Last Edited By: Drunk Mafia (TDM)
+ * Class Created By: ??? Class Last Edited By: Drunk Mafia (TDM)
  * 
- * Class Last Edited On: 11/09/2013 
- *                       MM/DD/YYYY
+ * Class Last Edited On: 11/09/2013 MM/DD/YYYY
  * 
  */
 
 public class MultiBlock {
     
     /*
-     *   MultiBlock orientation
+     * MultiBlock orientation
      * 
-     * 		      WEST
-     * 	      {1,1,1,1,1},
-     *        {1,0,0,0,1}, 
-     *  NORTH {1,0,0,0,1}, SOUTH
-     *        {1,0,0,0,1},
-     * 		  {1,1,1,1,1}
-     * 			  EAST
-     * 
+     * WEST {1,1,1,1,1}, {1,0,0,0,1}, NORTH {1,0,0,0,1}, SOUTH {1,0,0,0,1},
+     * {1,1,1,1,1} EAST
      */
-	
-    private int[][][][] pattern;
-    public int layers;
     
-    private int[] blocks;
+    private int[][][][] pattern;
+    public int          layers;
+    
+    private int[]       blocks;
     
     public MultiBlock(int[][][][] blockPattern, int[] blocks) {
         pattern = blockPattern;
@@ -42,11 +34,13 @@ public class MultiBlock {
      * <h2>Pattern:</h2> &nbsp;&nbsp;Index 1: Layer<br>
      * &nbsp;&nbsp;Index 2: x-Direction<br>
      * &nbsp;&nbsp;Index 3: z-Direction<br>
-     * &nbsp;&nbsp;I needed to change this to fit the new direction system. - xandayn<br>
+     * &nbsp;&nbsp;I needed to change this to fit the new direction system. -
+     * xandayn<br>
      * 
      * 
      * @param direction
-     *            The direction of the check: 0 = North, 1 = South, 2 = West, 3 = East
+     *            The direction of the check: 0 = North, 1 = South, 2 = West, 3
+     *            = East
      * @param pattern
      *            The pattern of blocks to check against
      * @return If the pattern is matching returns true
@@ -54,7 +48,7 @@ public class MultiBlock {
     public boolean isPatternCorrect(int direction, int[][][] pattern) {
         int val = 0;
         int size = 0;
-        int dirToUse = direction-2;
+        int dirToUse = direction - 2;
         LogHelper.debug(dirToUse);
         for (int l = 0; l < this.layers; l++) {
             int[][] temp = this.pattern[l][dirToUse];
@@ -72,13 +66,13 @@ public class MultiBlock {
         return val == size ? true : false;
     }
     
-    public boolean getMultiBlock(World worldObj, int xCoord, int yCoord, int zCoord, int direction){
-    	int[][][] blocks;
-    	int tempX = xCoord;
+    public boolean getMultiBlock(World worldObj, int xCoord, int yCoord, int zCoord, int direction) {
+        int[][][] blocks;
+        int tempX = xCoord;
         int tempY = yCoord - 1;
         int tempZ = zCoord;
         int val = 0;
-        switch (direction-2) {
+        switch (direction - 2) {
             case 0:
                 tempZ -= 3;
                 break;

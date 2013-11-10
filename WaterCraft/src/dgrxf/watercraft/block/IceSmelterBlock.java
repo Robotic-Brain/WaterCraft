@@ -22,43 +22,42 @@ import dgrxf.watercraft.tileentity.WCTileEntitySmelter;
 /**
  * 
  * THIS CLASS IS NOT USED
- *
+ * 
  */
 
 public class IceSmelterBlock extends WCBlock {
-	
+    
     public IceSmelterBlock(int id) {
         super(id, Material.iron);
         setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.SMELTER_UNLOCALIZED_NAME);
     }
     
-    
     @Override
     public boolean hasTileEntity(int metadata) {
-    	return true;
+        return true;
     }
     
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-    	return new WCTileEntitySmelter();
-    }    
+        return new WCTileEntitySmelter();
+    }
     
     @SideOnly(Side.CLIENT)
-	private Icon[] icons;			
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IconRegister register) {	
-		icons = new Icon[2];
-		icons[0] = register.registerIcon("watercraft:freezer_off");	
-		icons[1] = register.registerIcon("watercraft:smelter");	
- 	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public Icon getIcon(int side, int meta) {
-		return meta < 2? icons[meta]: icons[0];
-	}
-
+    private Icon[] icons;
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons(IconRegister register) {
+        icons = new Icon[2];
+        icons[0] = register.registerIcon("watercraft:freezer_off");
+        icons[1] = register.registerIcon("watercraft:smelter");
+    }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public Icon getIcon(int side, int meta) {
+        return meta < 2 ? icons[meta] : icons[0];
+    }
+    
 }
