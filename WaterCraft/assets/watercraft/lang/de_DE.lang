@@ -4,5 +4,8 @@ tile.buoyBlockName.name=Boje
 tile.controlUnitDock.name=Steuereinheit
 tile.freezerBlockName.name=Wasserkühler
 tile.smelterBlockName.name=Eisschmelze
+tile.toolBoxBlockName.name=Werkzeugbox
 
+item.TelescopeName.name=Teleskop
+item.TapeItemName.name=Maßband
 item.wcboat.name=Wc Boot
