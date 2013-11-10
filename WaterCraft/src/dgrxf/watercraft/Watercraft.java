@@ -50,6 +50,7 @@ public class Watercraft {
     @EventHandler
     public void load(FMLInitializationEvent e) {
         proxy.initRendering();
+        proxy.initSounds();
         ModBlocks.init();
         ModItems.init();
         MultiBlockInfo.init();
