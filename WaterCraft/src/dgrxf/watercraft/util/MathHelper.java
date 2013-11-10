@@ -35,6 +35,11 @@ public class MathHelper {
      * 
      * -xandayn
      * 
+     * - 700 - 700 = - 1400
+     * Math.abs(-700 - 700) = 1400
+     * 
+     * - Frod
+     * 
      */
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
