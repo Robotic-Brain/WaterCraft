@@ -22,12 +22,17 @@ import dgrxf.watercraft.util.Vector3;
  */
 public class WCTileEntityBuoy extends WCTileEntity {
     
-    /**ww
+    /**
      * NBT-Tags
      */
     private static final String NBT_NEXT_BUOY_X = "BuoyTarX";
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
     private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";
+    
+    /**
+     * Constants
+     */
+    private static final int SEARCH_COUNT_DOWN = 25;
     
     /**
      * Now configurable inside the Config
@@ -167,7 +172,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
             	e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
-            searchTimer = 30;
+            searchTimer = SEARCH_COUNT_DOWN;
         }
     }
     
@@ -196,19 +201,15 @@ public class WCTileEntityBuoy extends WCTileEntity {
         LogHelper.debug("Loaded " + this);
     }
     
-    public int getNextX() {
-		return nextX;
-	}
+    /**
+     * Returns the position of next buoy
+     * 
+     * @return position
+     */
+    public Vector3 getNextBuoyPos() {
+        return new Vector3(nextX, nextY, nextZ);
+    }
 
-	public int getNextY() {
-		return nextY;
-	}
-
-	public int getNextZ() {
-		return nextZ;
-	}
-
-    
     @Override
     public String toString() {
         return "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] " + "Next at: " + "[" + nextX + ", " + nextY + ", " + nextZ + "]";

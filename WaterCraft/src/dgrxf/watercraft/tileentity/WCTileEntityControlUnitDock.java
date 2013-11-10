@@ -19,15 +19,20 @@ import dgrxf.watercraft.util.Vector2;
 
 public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
+    /**
+     * Constants
+     */
+    private static final int UPDATE_COUNT_DOWN = 20;
+    private static final int SECOND_TIMER = 3;
+    
     private boolean multiBlockFormed;
     private int     updateTimer;
     private int     secondTimer;
     //this was for testing private Vector2[] list  = {new Vector2(-366, -996), new Vector2(-366, -1012), new Vector2(-378, -1012), new Vector2(-378, -1024), new Vector2(-366, -1024), new Vector2(-366, -1020), new Vector2(-361, -1020), new Vector2(-361, -1016), new Vector2(-361, -1007), new Vector2(-361, -996)};
     private ForgeDirection[] directions = {ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST};
     
-    
     public WCTileEntityControlUnitDock() {
-        updateTimer = 20;
+        updateTimer = UPDATE_COUNT_DOWN;
     }
     
     @Override
@@ -42,7 +47,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             secondTimer++;
             findNextBuoy(-1);
             
-            if (!multiBlockFormed || secondTimer >= 3) {
+            if (!multiBlockFormed || secondTimer >= SECOND_TIMER) {
                 secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
             } else {
@@ -63,7 +68,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 }
             }
             
-            updateTimer = 20;
+            updateTimer = UPDATE_COUNT_DOWN;
         }
     }
     
