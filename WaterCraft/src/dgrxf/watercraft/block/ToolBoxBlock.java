@@ -74,8 +74,6 @@ public class ToolBoxBlock extends WCBlock {
 		if (world.isRemote) return true;
 		
 		if(!player.isSneaking()){
-			WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-			tile.playersInInv++;
 			FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
 			world.markBlockForUpdate(x, y, z);
 		}else{
