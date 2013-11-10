@@ -64,7 +64,7 @@ public class WCEntityBoat extends Entity {
             return;
         }
         xDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posX, target.x);
-        zDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posZ, target.z);
+        zDist = dgrxf.watercraft.util.MathHelper.calculatePointDistance((float) posZ, target.y);
         if (xDist > 1.0F) {
             if (posX < target.x)
                 this.motionX = 0.1;
@@ -76,9 +76,9 @@ public class WCEntityBoat extends Entity {
         }
         
         if (zDist > 1.0F) {
-            if (posZ < target.z)
+            if (posZ < target.y)
                 this.motionZ = 0.1;
-            else if (posZ > target.z)
+            else if (posZ > target.y)
                 this.motionZ = -0.1;
         } else {
             this.motionZ = 0;

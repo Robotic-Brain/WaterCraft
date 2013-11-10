@@ -49,8 +49,8 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 	public void moveToTarget(){
 		if(target == null || worldObj.isRemote) return;
 			motionX = target.x;
-			motionZ = target.z;
-			System.out.println(target.x + "," + target.z);
+			motionZ = target.y;
+			System.out.println(target.x + "," + target.y);
 	}
 	
 	@Override
