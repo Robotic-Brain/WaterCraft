@@ -42,21 +42,16 @@ public class WCTileEntityFreezer extends TileEntity {
     }
     
     private void setIce() {
-        boolean set = false;
-        Watercraft.printToPlayer("----------------------");
+        boolean set;
         int range = getRange();
+        
         for (int i = 0; i < range; i++) {
+        	set = false;
+        	
             for (int x = 0; x <= i; x++) {
                 int z = i - x;
-                boolean a = changeBlock(xCoord + x, yCoord - 1, zCoord + z);
-                boolean b = changeBlock(xCoord - x, yCoord - 1, zCoord + z);
-                boolean c = changeBlock(xCoord + x, yCoord - 1, zCoord - z);
-                boolean d = changeBlock(xCoord - x, yCoord - 1, zCoord - z);
-                set = a || b || c || d;
-                //set = changeBlock(xCoord + x, yCoord - 1, zCoord + z) | changeBlock(xCoord - x, yCoord - 1, zCoord + z) | changeBlock(xCoord + x, yCoord - 1, zCoord - z) | changeBlock(xCoord - x, yCoord - 1, zCoord - z);
+                set |= changeBlock(xCoord + x, yCoord - 1, zCoord + z) | changeBlock(xCoord - x, yCoord - 1, zCoord + z) | changeBlock(xCoord + x, yCoord - 1, zCoord - z) | changeBlock(xCoord - x, yCoord - 1, zCoord - z);
             }
-            
-            Watercraft.printToPlayer("i = " + Integer.toString(i) + " set = " + Boolean.toString(set));
             
             if (set) {
                 return;
@@ -91,14 +86,12 @@ public class WCTileEntityFreezer extends TileEntity {
             case 1:
                 if ((worldObj.getBlockId(x, y, z) == Block.waterStill.blockID) || (worldObj.getBlockId(x, y, z) == Block.waterMoving.blockID)) {
                     worldObj.setBlock(x, y, z, Block.ice.blockID);
-                    Watercraft.printToPlayer("found water at " + (new Vector3(x, y, z)).toString());
                     return true;
                 }
                 break;
             case 2:
                 if (worldObj.getBlockId(x, y, z) == Block.ice.blockID) {
                     worldObj.setBlock(x, y, z, Block.waterStill.blockID);
-                    Watercraft.printToPlayer("found ice at " + (new Vector3(x, y, z)).toString());
                     return true;
                 }
                 break;
