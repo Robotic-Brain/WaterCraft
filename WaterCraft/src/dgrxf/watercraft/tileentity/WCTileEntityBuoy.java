@@ -115,7 +115,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
         return null;
     }
     
-    public WCEntityBoat findEntityBoat(int direction, Class<? extends WCEntityBoat> entC) {
+    public WCEntityBoat findEntityBoat(ForgeDirection direction, Class<? extends WCEntityBoat> entC) {
         
         AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord - 2, zCoord - 1, xCoord + 2, yCoord + 2, zCoord + 2);
         
@@ -152,7 +152,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
         if (searchTimer <= 0) {
             findNextBuoy(0);
             
-            WCEntityBoat e = findEntityBoat(0, WCEntityBoat.class);
+            WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
             if(e != null && hasNextBuoy()){
                 e.setTargetLocation(new Vector2(nextX, nextZ));
             }
