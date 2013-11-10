@@ -14,6 +14,7 @@ public class Entities {
     
     public static void init() {
         EntityRegistry.registerModEntity(WCEntityBoat.class, "WCEntityBoat", 0, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 1, Watercraft.instance, 80, 3, true);
     }
     
 }

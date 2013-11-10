@@ -6,8 +6,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
+import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
-import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
 /**
@@ -22,6 +22,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     private boolean multiBlockFormed;
     private int     updateTimer;
     private int     secondTimer;     //This fixes bug report #1 and #2
+    private Vector2[] list  = {new Vector2(-366, -996), new Vector2(-366, -1012), new Vector2(-378, -1012), new Vector2(-378, -1024), new Vector2(-366, -1024), new Vector2(-366, -1020), new Vector2(-361, -1020), new Vector2(-361, -1016), new Vector2(-361, -1007), new Vector2(-361, -996)};
                                       
     public WCTileEntityControlUnitDock() {
         updateTimer = 20;
@@ -46,7 +47,10 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
                 
                 if (e != null && hasNextBuoy()) {
-                    e.setTargetLocation(new Vector2(nextX, nextZ));
+                	if(e instanceof WCEntitySmartBoat)
+                		((WCEntitySmartBoat)e).setList(list);
+                	else
+                		e.setTargetLocation(new Vector2(nextX, nextZ));
                 }
             }
             
