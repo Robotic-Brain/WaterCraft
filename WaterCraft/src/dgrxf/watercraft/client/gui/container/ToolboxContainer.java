@@ -24,10 +24,6 @@ public class ToolboxContainer extends Container {
         tile = te;
         
         for (int x = 0; x < 9; x++) {
-            addSlotToContainer(new ToolBoxSlot(te, x, 8 + 18 * x, 16));
-        }
-        
-        for (int x = 0; x < 9; x++) {
             addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 99));
         }
         
@@ -35,6 +31,10 @@ public class ToolboxContainer extends Container {
             for (int x = 0; x < 9; x++) {
                 addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
             }
+        }
+        
+        for (int x = 0; x < 9; x++) {
+            addSlotToContainer(new ToolBoxSlot(te, x, 8 + 18 * x, 16));
         }
         
     }
@@ -51,7 +51,7 @@ public class ToolboxContainer extends Container {
                 if (!mergeItemStack(stack, 0, 36, false)) {
                     return null;
                 }
-            } else if (tile.isItemValidForSlot(0, stack) || !mergeItemStack(stack, 36, 36 + tile.getSizeInventory(), false)) {
+            } else if (!tile.isItemValidForSlot(0, stack) || !mergeItemStack(stack, 36, 36 + tile.getSizeInventory(), false)) {
                 return null;
             }
             

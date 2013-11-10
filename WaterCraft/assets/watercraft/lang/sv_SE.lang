@@ -2,5 +2,8 @@
 
 tile.buoyBlockName.name=Boj
 tile.controlUnitDock.name=Styrenhet
+tile.freezerBlockName.name=Vatten Frysare
+tile.smelterBlockName.name=Is Smältare
+tile.toolBoxBlockName.name=Verktygslåda
 
 item.wcboat.name=Wc Båt
