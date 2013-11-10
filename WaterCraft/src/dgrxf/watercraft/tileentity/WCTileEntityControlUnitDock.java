@@ -23,7 +23,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
     private boolean multiBlockFormed;
     private int updateTimer;
-    private int secondTimer;
+    private int secondTimer; //This fixes bug report #1 and #2
     
     public WCTileEntityControlUnitDock() {
         updateTimer = 20;
