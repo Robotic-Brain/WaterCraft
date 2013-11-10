@@ -10,14 +10,13 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.particles.CustomParticles;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
-import dgrxf.watercraft.util.RotationHelper;
 import dgrxf.watercraft.util.Vector3;
 
 public class ItemTelescope extends Item{
 
 	private int tick;
 	private boolean showParticles;
-	private float v = 5.0F;
+	private float particleSpeed = 5.0F;
 	
 	public ItemTelescope() {
 		super(ItemInfo.TELESCOPE_ID);
@@ -30,13 +29,14 @@ public class ItemTelescope extends Item{
 		if (!world.isRemote) {
 			Watercraft.printToPlayer("click");
 			Watercraft.printToPlayer(Integer.toString(world.getBlockId(x, y, z)));
+			
 			if (world.getBlockId(x, y, z) == ModBlocks.buoy.blockID) {
 				Watercraft.printToPlayer("found buoy");
 				TileEntity te = world.getBlockTileEntity(x, y, z);
-				if (te != null && te instanceof WCTileEntityBuoy) {
+				if (te instanceof WCTileEntityBuoy) {
 					Watercraft.printToPlayer("found working buoy");
 					WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;
-					Vector3 velocity = Vector3.scalarMult(RotationHelper.getDirection( world.getBlockMetadata(x, y, z)), v);
+					Vector3 velocity = (new Vector3(buoy.getBuoyDirection())).scalarMult(particleSpeed);
 					CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, 0.5, velocity.z);
 					
 					if (buoy.hasNextBuoy()) {

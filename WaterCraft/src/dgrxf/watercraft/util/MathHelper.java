@@ -6,7 +6,7 @@ package dgrxf.watercraft.util;
  */
 public class MathHelper {
     
-    public static float calculateVector3SquareDistance(Vector3 positionOne, Vector3 positionTwo) {
+    /*public static float calculateVector3SquareDistance(Vector3 positionOne, Vector3 positionTwo) {
         return Vector3.squareLength(Vector3.subtract(positionOne, positionTwo));
     }
     
@@ -20,7 +20,7 @@ public class MathHelper {
     
     public static float calculateVector2Distance(Vector2 positionOne, Vector2 positionTwo) {
         return (float) Math.sqrt(calculateVector2SquareDistance(positionOne, positionTwo));
-    }
+    }*/
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
     	return Math.abs(positionOne - positionTwo);
