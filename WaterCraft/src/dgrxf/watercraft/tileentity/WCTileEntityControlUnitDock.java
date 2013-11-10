@@ -23,6 +23,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
     private boolean multiBlockFormed;
     private int updateTimer;
+    private int secondTimer;
     
     public WCTileEntityControlUnitDock() {
         updateTimer = 20;
@@ -37,12 +38,16 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
         updateTimer--;
         
         if (updateTimer <= 0) {
+        	secondTimer++;
             findNextBuoy(-1);
             
-            if (!multiBlockFormed) {
+            if (!multiBlockFormed || secondTimer >= 3) {
+            	secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
                 if (multiBlockFormed) {
                     LogHelper.debug("Multiblock formed at: ");
+                }else{
+                	LogHelper.debug("MultiBlock is incorrectly formed, or no multiblock exists.");
                 }
             } else {
                 WCEntityBoat e = (WCEntityBoat) findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
@@ -81,8 +86,6 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     }
     
     public boolean checkForMultiBlock() {
-        //firstRun = false;
-        //return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, direction);
-        return true;
+        return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getWorldObj().getBlockMetadata(xCoord, yCoord, zCoord));
     }
 }
