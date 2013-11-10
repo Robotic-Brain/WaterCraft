@@ -50,7 +50,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     public WCTileEntityBuoy() {
         hasBuoy = false;
-        blockBounds = false;
+        blockBounds = true;
         searchRange = DEFAULT_RANGE;
     }
     
