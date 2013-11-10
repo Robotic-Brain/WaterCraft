@@ -101,10 +101,7 @@ public class ToolboxContainer extends Container {
 			tag.setTag("Items", items);
 			toolbox.setTagCompound(tag);
 			player.inventory.mainInventory[player.inventory.currentItem] = toolbox;
-		}else{
-			player.worldObj.markBlockForUpdate(tile.xCoord, tile.yCoord, tile.zCoord);
 		}
-		tile.isOpen = false;
 	}
 	
 	@Override
