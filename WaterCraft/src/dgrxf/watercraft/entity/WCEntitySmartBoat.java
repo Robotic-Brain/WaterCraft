@@ -22,8 +22,10 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 	
 	public void iterateList(){
 		iterator++;
-		if(iterator > list.length-1){
-			iterator = 0;
+		if(list != null){
+			if(iterator > list.length-1){
+				iterator = 0;
+			}
 		}
 	}
 	
