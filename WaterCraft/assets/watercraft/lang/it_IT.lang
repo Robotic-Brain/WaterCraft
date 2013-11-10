@@ -6,3 +6,7 @@ tile.freezerBlockName.name=Congelatore
 tile.smelterBlockName.name=Ice Smelter
 tile.toolBoxBlockName.name=Cassetta degli Attrezzi
 item.wcboat.name=Wc Boat
+
+item.TelescopeName.name=Telescopio
+item.TapeItemName.name=Metro
+item.wcboat.name=Wc Boat

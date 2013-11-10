@@ -28,6 +28,12 @@ public class ItemInfo {
     
     public static final String ENGINE_UNLOCALIZED_NAME = "EngineName";
     public static final String ENGINE_KEY = "Engine";
+
+	public static final String BOATCHEST_UNLOCALIZED_NAME = "boatChest";
+	public static final String BOATCHEST_KEY = "Chest Boat";
+	
+	public static final String LAVABOAT_UNLOCALIZED_NAME = "lavaBoat";
+	public static final String LAVABOAT_KEY = "Lava Boat";
     
     /*************
      * Integers
@@ -45,5 +51,11 @@ public class ItemInfo {
     
     public static final int ENGINE_ID_DEFAULT = 709;
     public static int ENGINE_ID;
+
+	public static final int BOATCHEST_ID_DEFAULT = 710;
+	public static int BOATCHEST_ID;
+
+	public static final int LAVABOAT_ID_DEFAULT = 711;
+	public static int LAVABOAT_ID;
 
 }

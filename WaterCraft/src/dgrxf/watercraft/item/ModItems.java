@@ -16,10 +16,14 @@ public class ModItems {
     public static Item boat;
     public static Item tapeMeasure;
     public static Item telescope;
+    public static Item boatChest;
+    public static Item lavaBoat;
     
     public static void init() {
         boat = new ItemBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();
+        boatChest = new ItemBoatChest();
+        lavaBoat = new ItemLavaBoat();
     }
 }

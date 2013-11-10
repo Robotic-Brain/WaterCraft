@@ -38,10 +38,11 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     protected boolean           hasBuoy;
     protected int               nextX;                                // needed for readFromNBT
-    protected int               nextY;                                // needed for readFromNBT
+	protected int               nextY;                                // needed for readFromNBT
     protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
+    public  boolean             blockBounds;
                                                                        
     /**
      * Default Constructor
@@ -49,6 +50,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     public WCTileEntityBuoy() {
         hasBuoy = false;
+        blockBounds = false;
         searchRange = DEFAULT_RANGE;
     }
     
@@ -158,6 +160,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
             
             if (eS != null) {
             	eS.iterateList();
+            }else{
+            	blockBounds = true;
             }
             
             if (e != null && hasNextBuoy()) {
@@ -165,7 +169,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
             	e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
-            searchTimer = 40;
+            searchTimer = 30;
         }
     }
     
@@ -193,6 +197,19 @@ public class WCTileEntityBuoy extends WCTileEntity {
         
         LogHelper.debug("Loaded " + this);
     }
+    
+    public int getNextX() {
+		return nextX;
+	}
+
+	public int getNextY() {
+		return nextY;
+	}
+
+	public int getNextZ() {
+		return nextZ;
+	}
+
     
     @Override
     public String toString() {

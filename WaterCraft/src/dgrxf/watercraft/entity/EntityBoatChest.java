@@ -1,5 +1,8 @@
+
 package dgrxf.watercraft.entity;
 
+import dgrxf.watercraft.item.ModItems;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -10,45 +13,86 @@ import net.minecraft.world.World;
 
 public class EntityBoatChest extends WCEntityBoat implements IInventory {
     
-    private ItemStack[] items;
+    public ItemStack[] items;
     
-    private boolean     dropContentsWhenDead = true;
+    private boolean dropContentsWhenDead = true;
     
     public EntityBoatChest(World par1World) {
         super(par1World);
-        items = new ItemStack[3];
+        items = new ItemStack[27];
+    }
+    
+    public EntityBoatChest(World world, double x, double y, double z) {
+        this(world);
+        this.setPosition(x, y + (double) this.yOffset, z);
+        this.motionX = 0.0D;
+        this.motionY = 0.0D;
+        this.motionZ = 0.0D;
+        this.prevPosX = x;
+        this.prevPosY = y;
+        this.prevPosZ = z;
     }
     
     public int getSizeInventory() {
         return items.length;
     }
     
-    public void killBoat(DamageSource par1DamageSource) {
-        /*
-         * super.killMinecart(par1DamageSource);
-         * 
-         * for (int i = 0; i < this.getSizeInventory(); ++i) { ItemStack
-         * itemstack = this.getStackInSlot(i);
-         * 
-         * if (itemstack != null) { float f = this.rand.nextFloat() * 0.8F +
-         * 0.1F; float f1 = this.rand.nextFloat() * 0.8F + 0.1F; float f2 =
-         * this.rand.nextFloat() * 0.8F + 0.1F;
-         * 
-         * while (itemstack.stackSize > 0) { int j = this.rand.nextInt(21) + 10;
-         * 
-         * if (j > itemstack.stackSize) { j = itemstack.stackSize; }
-         * 
-         * itemstack.stackSize -= j; EntityItem entityitem = new
-         * EntityItem(this.worldObj, this.posX + (double)f, this.posY +
-         * (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.itemID,
-         * j, itemstack.getItemDamage())); float f3 = 0.05F; entityitem.motionX
-         * = (double)((float)this.rand.nextGaussian() * f3); entityitem.motionY
-         * = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
-         * entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
-         * this.worldObj.spawnEntityInWorld(entityitem); } } }
-         */
+    @Override
+    public boolean interactFirst(EntityPlayer player) {
+        if (!this.worldObj.isRemote)
+        {
+            player.displayGUIChest(this);
+        }
+
+        return true;
     }
     
+    @Override
+    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
+        if (this.isEntityInvulnerable()) {
+            return false;
+        } else if (!this.worldObj.isRemote && !this.isDead) {
+            this.setForwardDirection(-this.getForwardDirection());
+            this.setTimeSinceHit(10);
+            this.setDamageTaken(this.getDamageTaken() + par2 * 10.0F);
+            this.setBeenAttacked();
+            boolean flag = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode;
+            
+            if (flag || this.getDamageTaken() > 40.0F) {
+                
+                if (!flag) {
+                    this.dropItemWithOffset(ModItems.boatChest.itemID, 1, 0.0F);
+
+                    for (int i = 0; i < this.getSizeInventory(); ++i) { ItemStack
+                    itemstack = this.getStackInSlot(i);
+                    
+                    if (itemstack != null) { float f = this.rand.nextFloat() * 0.8F +
+                    0.1F; float f1 = this.rand.nextFloat() * 0.8F + 0.1F; float f2 =
+                    this.rand.nextFloat() * 0.8F + 0.1F;
+                    
+                    while (itemstack.stackSize > 0) { int j = this.rand.nextInt(21) + 10;
+                    
+                    if (j > itemstack.stackSize) { j = itemstack.stackSize; }
+                    
+                    itemstack.stackSize -= j; EntityItem entityitem = new
+                    EntityItem(this.worldObj, this.posX + (double)f, this.posY +
+                    (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.itemID,
+                    j, itemstack.getItemDamage())); float f3 = 0.05F; entityitem.motionX
+                    = (double)((float)this.rand.nextGaussian() * f3); entityitem.motionY
+                    = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
+                    entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
+                    this.worldObj.spawnEntityInWorld(entityitem); } } }
+                }
+                
+                this.setDead();
+            }
+            
+            return true;
+        } else {
+            return true;
+        }
+    }
+       
     @Override
     public ItemStack getStackInSlot(int i) {
         return items[i];
@@ -86,8 +130,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     
     @Override
     public String getInvName() {
-        // TODO Auto-generated method stub
-        return null;
+        return "Boat Chest";
     }
     
     @Override
@@ -113,16 +156,10 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     }
     
     @Override
-    public void openChest() {
-        // TODO Auto-generated method stub
-        
-    }
+    public void openChest() {}
     
     @Override
-    public void closeChest() {
-        // TODO Auto-generated method stub
-        
-    }
+    public void closeChest() {}
     
     @Override
     public void writeToNBT(NBTTagCompound compound) {

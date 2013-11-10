@@ -114,7 +114,7 @@ public class ToolboxContainer extends Container {
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
             
-            if (i >= 36) {
+            if (i >= 36 && tile.isItemValidForSlot(0, stack)) {
                 if (!mergeItemStack(stack, 0, 36, false)) {
                     return null;
                 }
