@@ -14,13 +14,11 @@ public class ItemInfo {
      *************/
     
     public static final String BOAT_UNLOCALIZED_NAME = "wcboat";
-<<<<<<< HEAD
+
     // public static final String boat_LocalizedName = "WC Boat"; Don't need
     // localized names, this is done in the .lang files
     public static final String BOAT_KEY              = "wc boat";
-=======
-    public static final String BOAT_KEY = "wc boat";
->>>>>>> Commit
+
     
     public static final String TAPE_MEASURE_UNLOCALIZED_NAME = "TapeItemName";
     public static final String TAPE_MEASURE_KEY = "Tape Measure";
@@ -32,17 +30,14 @@ public class ItemInfo {
      * Integers
      *************/
     
-<<<<<<< HEAD
     public static final int    BOAT_ID_DEFAULT       = 700;
     public static int          BOAT_ID;
-=======
-    public static final int BOAT_ID_DEFAULT = 700;
-    public static int BOAT_ID;
+
     
     public static final int TAPE_MEASURE_ID_DEFAULT = 707;
     public static int TAPE_MEASURE_ID;
     
     public static final int TELESCOPE_ID_DEFAULT = 708;
     public static int TELESCOPE_ID;
->>>>>>> Commit
+
 }

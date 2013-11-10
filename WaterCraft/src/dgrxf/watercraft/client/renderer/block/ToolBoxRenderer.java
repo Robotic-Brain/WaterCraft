@@ -19,12 +19,9 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  */
 
 public class ToolBoxRenderer extends TileEntitySpecialRenderer {
-<<<<<<< HEAD
-    private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
-=======
+
 	private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
 	private IModelCustom modelToolBox_open = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
->>>>>>> Commit
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {

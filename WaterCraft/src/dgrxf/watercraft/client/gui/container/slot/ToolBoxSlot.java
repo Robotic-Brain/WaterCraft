@@ -18,7 +18,6 @@ import net.minecraft.item.ItemTool;
  * 
  */
 
-<<<<<<< HEAD
 public class ToolBoxSlot extends Slot {
     
     public ToolBoxSlot(IInventory inv, int id, int x, int y) {
@@ -44,12 +43,4 @@ public class ToolBoxSlot extends Slot {
         }
         return false;
     }
-    
-=======
-public class ToolBoxSlot extends Slot{
-
-	public ToolBoxSlot(IInventory inv, int id, int x, int y) {
-		super(inv, id, x, y);
-	}
->>>>>>> Commit
 }
