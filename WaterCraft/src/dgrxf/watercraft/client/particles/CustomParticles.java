@@ -5,7 +5,7 @@ import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 
 public enum CustomParticles {
-	EXAMPLE;
+	BUOY;
 	
 	public void spawnParticle(World world, double x, double y, double z, double vx, double vy, double vz) {
 		Minecraft mc = Minecraft.getMinecraft();
@@ -27,8 +27,8 @@ public enum CustomParticles {
 			
 			EntityFX particleEffect = null;
 			switch(this) {
-				case EXAMPLE:
-					//particleEffect = new ExampleParticle(world, x, y, z, vx, vy, vz);
+				case BUOY:
+					particleEffect = new BuoyParticle(world, x, y, z, vx, vy, vz);
 					break;
 			}
 			
