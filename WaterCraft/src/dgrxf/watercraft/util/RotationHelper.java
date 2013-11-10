@@ -30,6 +30,26 @@ public class RotationHelper {
         return result.getOpposite();
     }
     
+    public static Vector3 getDirection(int i) {
+    	switch (i) {
+    		case 0:
+    			return new Vector3(0, -1, 0);
+    		case 1:
+    			return new Vector3(0, 1, 0);
+    		case 2:
+    			return new Vector3(0, 0, -1);
+    		case 3:
+    			return new Vector3(0, 0, 1);
+    		case 4:
+    			return new Vector3(-1, 0, 0);
+    		case 5:
+    			return new Vector3(1, 0, 0);    		
+    	}
+    	
+    	return Vector3.ZERO;
+    }
+    
+    
     /**
      * Converts Yaw To ForgeDirection
      */
