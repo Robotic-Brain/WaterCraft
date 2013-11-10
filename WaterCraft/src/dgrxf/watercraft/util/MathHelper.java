@@ -14,16 +14,12 @@ public class MathHelper {
         return (float) Math.sqrt(calculateVector3SquareDistance(positionOne, positionTwo));
     }
     
+    public static float calculateVector2SquareDistance(Vector2 positionOne, Vector2 positionTwo) {
+        return Vector2.squareLength(Vector2.subtract(positionOne, positionTwo));
+    }
+    
     public static float calculateVector2Distance(Vector2 positionOne, Vector2 positionTwo) {
-        float tempX, tempZ, distance;
-        tempX = positionTwo.x - positionOne.x;
-        tempZ = positionTwo.z - positionOne.z;
-        tempX *= tempX;
-        tempZ *= tempZ;
-        
-        distance = (float) Math.sqrt(tempX + tempZ);
-        
-        return distance;
+        return (float) Math.sqrt(calculateVector2SquareDistance(positionOne, positionTwo));
     }
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
