@@ -72,7 +72,7 @@ public class ToolboxContainer extends Container {
 				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
 			}
 		}
-		
+		tile.openChest();
 	}
 	
 	@Override
@@ -102,6 +102,7 @@ public class ToolboxContainer extends Container {
 			toolbox.setTagCompound(tag);
 			player.inventory.mainInventory[player.inventory.currentItem] = toolbox;
 		}
+		tile.closeChest();
 	}
 	
 	@Override
