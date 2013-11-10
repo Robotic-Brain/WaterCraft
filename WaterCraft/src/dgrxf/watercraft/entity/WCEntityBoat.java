@@ -28,10 +28,10 @@ import dgrxf.watercraft.util.Vector2;
  */
 public class WCEntityBoat extends Entity {
     
-    private double                      speedMultiplier;
-    private int                         boatPosRotationIncrements;
-    private Vector2                     target;
-    private WCTileEntityControlUnitDock homeDock = null;
+    protected double                      speedMultiplier;
+    protected int                         boatPosRotationIncrements;
+    protected Vector2                     target;
+    protected WCTileEntityControlUnitDock homeDock = null;
     
     public WCEntityBoat(World world) {
         super(world);
