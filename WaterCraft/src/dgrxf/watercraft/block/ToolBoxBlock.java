@@ -75,6 +75,7 @@ public class ToolBoxBlock extends WCBlock {
 		
 		if(!player.isSneaking()){
 			FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
+			world.markBlockForUpdate(x, y, z);
 		}else{
 			if(player.getCurrentEquippedItem() == null) pickUpToolBox(world, x, y, z, player);
 		}

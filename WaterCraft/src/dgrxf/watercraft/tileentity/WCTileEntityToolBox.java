@@ -186,6 +186,7 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         NBTTagCompound tag = pkt.data;
         playerName = tag.getString("playerName");
+        isOpen = tag.getBoolean("isOpen");
     }
     
     @Override
@@ -193,6 +194,7 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
         NBTTagCompound tag = new NBTTagCompound();
         if (playerName != null)
             tag.setString("playerName", playerName);
+        tag.setBoolean("isOpen", isOpen);
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
 }
