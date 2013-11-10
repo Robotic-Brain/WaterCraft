@@ -6,18 +6,12 @@ package dgrxf.watercraft.util;
  */
 public class MathHelper {
     
+    public static float calculateVector3SquareDistance(Vector3 positionOne, Vector3 positionTwo) {
+        return Vector3.squareLength(Vector3.subtract(positionOne, positionTwo));
+    }
+    
     public static float calculateVector3Distance(Vector3 positionOne, Vector3 positionTwo) {
-        float tempX, tempY, tempZ, distance;
-        tempX = positionTwo.x - positionOne.x;
-        tempY = positionTwo.y - positionOne.y;
-        tempZ = positionTwo.z - positionOne.z;
-        tempX *= tempX;
-        tempY *= tempY;
-        tempZ *= tempZ;
-        
-        distance = (float) Math.sqrt(tempX + tempY + tempZ);
-        
-        return distance;
+        return (float) Math.sqrt(calculateVector3SquareDistance(positionOne, positionTwo));
     }
     
     public static float calculateVector2Distance(Vector2 positionOne, Vector2 positionTwo) {
