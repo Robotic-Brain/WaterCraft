@@ -28,6 +28,7 @@ public class ConfigurationHandler {
             ItemInfo.BOAT_ID = config.getItem(ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt() - 256;
             ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt() - 256;
             ItemInfo.TELESCOPE_ID = config.getItem(ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt() - 256;
+            ItemInfo.ENGINE_ID = config.getItem(ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt() - 256;
             
             // Blocks
             BlockInfo.BUOY_ID = config.getBlock(BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();

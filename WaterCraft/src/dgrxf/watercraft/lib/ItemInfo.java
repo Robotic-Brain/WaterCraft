@@ -26,6 +26,9 @@ public class ItemInfo {
     public static final String TELESCOPE_UNLOCALIZED_NAME = "TelescopeName";
     public static final String TELESCOPE_KEY = "Telescope";
     
+    public static final String ENGINE_UNLOCALIZED_NAME = "EngineName";
+    public static final String ENGINE_KEY = "Engine";
+    
     /*************
      * Integers
      *************/
@@ -39,5 +42,8 @@ public class ItemInfo {
     
     public static final int TELESCOPE_ID_DEFAULT = 708;
     public static int TELESCOPE_ID;
+    
+    public static final int ENGINE_ID_DEFAULT = 709;
+    public static int ENGINE_ID;
 
 }
