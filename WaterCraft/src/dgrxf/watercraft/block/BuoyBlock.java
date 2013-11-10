@@ -2,13 +2,14 @@ package dgrxf.watercraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
@@ -30,6 +31,15 @@ public class BuoyBlock extends WCBlock {
         setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
         setLightValue(1F);
         setCanRotate(true);
+    }
+    
+    @Override
+    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+    	if(world.isRemote) return;
+    	WCTileEntityBuoy tile = (WCTileEntityBuoy) world.getBlockTileEntity(x, y, z);
+    	if(tile != null && entity instanceof WCEntityBoat){
+    		tile.blockBounds = false;
+    	}
     }
     
     @Override
