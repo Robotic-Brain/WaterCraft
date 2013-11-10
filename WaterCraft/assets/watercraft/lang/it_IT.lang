@@ -1,0 +1,8 @@
+﻿itemGroup.watercraft=WaterCraft
+
+tile.buoyBlockName.name=Boa
+tile.controlUnitDock.name=Unità di Controllo
+tile.freezerBlockName.name=Congelatore
+tile.smelterBlockName.name=Ice Smelter
+tile.toolBoxBlockName.name=Cassetta degli Attrezzi
+item.wcboat.name=Wc Boat
