@@ -29,6 +29,12 @@ public class MathHelper {
      * }
      * 
      * - Frod
+     * 
+     * No, because if Im going from -700 to 700 Math.abs(-700 - 700) = 0 because the absolute value of -700 is 700, so I'm shifting both values by the smaller so
+     * I get 0 and 1400 so then 1400 - 0 = 0, which is the corrent distance.
+     * 
+     * -xandayn
+     * 
      */
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
