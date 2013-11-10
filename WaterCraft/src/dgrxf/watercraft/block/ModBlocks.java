@@ -20,7 +20,6 @@ public class ModBlocks {
     public static WCBlock buoy;
     public static WCBlock controlUnitDock;
     public static WCBlock freezer;
-    //public static WCBlock smelter;
     public static WCBlock dropZone;
     public static WCBlock toolbox;
     
