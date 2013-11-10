@@ -6,6 +6,7 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemFlintAndSteel;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -40,6 +41,8 @@ public class ToolBoxSlot extends Slot {
             return true;
         } else if (itemstack.getItem() instanceof ItemFishingRod) {
             return true;
+        } else if (itemstack.getItem() instanceof ItemHoe) {
+        	return true;
         }
         return false;
     }
