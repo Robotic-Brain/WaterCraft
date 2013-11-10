@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
+import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
@@ -155,7 +156,10 @@ public class WCTileEntityBuoy extends WCTileEntity {
             
             WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
             if (e != null && hasNextBuoy()) {
-                e.setTargetLocation(new Vector2(nextX, nextZ));
+            	if(e instanceof WCEntitySmartBoat)
+            		((WCEntitySmartBoat)e).iterateList();
+            	else
+            		e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
             searchTimer = 20;

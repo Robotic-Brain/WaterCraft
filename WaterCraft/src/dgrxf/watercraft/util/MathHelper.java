@@ -40,6 +40,8 @@ public class MathHelper {
      * 
      * - Frod
      * 
+     * Yeah you're right LOL I totally derped that up xD Shhhh no one needs to know! I like overcomplicating things >.>
+     * 
      */
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
