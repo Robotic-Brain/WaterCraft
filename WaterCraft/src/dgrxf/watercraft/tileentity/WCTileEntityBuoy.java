@@ -160,6 +160,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
             
             if (eS != null) {
             	eS.iterateList();
+            }else{
+            	blockBounds = true;
             }
             
             if (e != null && hasNextBuoy()) {

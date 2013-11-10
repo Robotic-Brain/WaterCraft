@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -31,6 +32,16 @@ public class BuoyBlock extends WCBlock {
         setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
         setLightValue(1F);
         setCanRotate(true);
+    }
+    
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+    	WCTileEntityBuoy tile = (WCTileEntityBuoy) world.getBlockTileEntity(x, y, z);
+    	if(tile.blockBounds){
+    		setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
+    	}else{
+    		setBlockBounds(0F, 0F, 0F, 0F, 0F, 0F);
+    	}
     }
     
     @Override
