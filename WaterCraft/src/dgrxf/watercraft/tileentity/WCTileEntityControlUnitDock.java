@@ -45,12 +45,19 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 multiBlockFormed = checkForMultiBlock();
             } else {
                 WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
+                WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
+                
+                if(eS != null){
+                	if(list != null){
+                		if(eS instanceof WCEntitySmartBoat){
+                			eS.setList(list);
+                		}
+                	}
+                }
                 
                 if (e != null && hasNextBuoy()) {
-                	if(e instanceof WCEntitySmartBoat)
-                		((WCEntitySmartBoat)e).setList(list);
-                	else
-                		e.setTargetLocation(new Vector2(nextX, nextZ));
+                	if(!(e instanceof WCEntitySmartBoat))
+                	e.setTargetLocation(new Vector2(nextX, nextZ));
                 }
             }
             

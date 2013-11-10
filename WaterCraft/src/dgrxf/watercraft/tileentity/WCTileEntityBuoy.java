@@ -126,7 +126,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-                System.out.println("Boat Get");
                 return (WCEntityBoat) e;
             }
         }
@@ -155,14 +154,17 @@ public class WCTileEntityBuoy extends WCTileEntity {
             findNextBuoy(0);
             
             WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
-            if (e != null && hasNextBuoy()) {
-            	if(e instanceof WCEntitySmartBoat)
-            		((WCEntitySmartBoat)e).iterateList();
-            	else
-            		e.setTargetLocation(new Vector2(nextX, nextZ));
+            WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
+            
+            if (eS != null) {
+            	eS.iterateList();
             }
             
-            searchTimer = 20;
+            if (e != null && hasNextBuoy()) {
+            	e.setTargetLocation(new Vector2(nextX, nextZ));
+            }
+            
+            searchTimer = 40;
         }
     }
     
