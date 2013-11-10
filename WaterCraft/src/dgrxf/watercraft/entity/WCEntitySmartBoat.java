@@ -1,12 +1,13 @@
 package dgrxf.watercraft.entity;
 
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.util.Vector2;
 
 public class WCEntitySmartBoat extends WCEntityBoat {
 
 	private int iterator = 0;
-	private Vector2[] list = null;
+	private ForgeDirection[] list;
 	
 	public WCEntitySmartBoat(World world){
 		super(world);
@@ -16,7 +17,12 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 		super(world, x, y, z);
 	}
 
-	public void setList(Vector2[] list){
+	@Override
+	public void setTargetLocation(Vector2 target) {
+		this.target = target;
+	}
+	
+	public void setList(ForgeDirection[] list){
 		this.list = list;
 	}
 	
@@ -27,6 +33,17 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 				iterator = 0;
 			}
 		}
+		else{
+			target = null;
+		}
+	}
+	
+	@Override
+	public void moveToTarget(){
+		if(target != null){
+			motionX = target.x;
+			motionZ = target.z;
+		}
 	}
 	
 	@Override
@@ -34,7 +51,8 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 		super.onEntityUpdate();
 		
 		if(list != null){
-			super.setTargetLocation(list[iterator]);
+			//super.setTargetLocation(list[iterator]);
+			setTargetLocation(new Vector2(list[iterator].offsetX/10, list[iterator].offsetZ/10));
 		}
 		
 	}

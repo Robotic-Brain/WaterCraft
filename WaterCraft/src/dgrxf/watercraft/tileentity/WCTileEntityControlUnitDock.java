@@ -21,9 +21,11 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     
     private boolean multiBlockFormed;
     private int     updateTimer;
-    private int     secondTimer;     //This fixes bug report #1 and #2
-    private Vector2[] list  = {new Vector2(-366, -996), new Vector2(-366, -1012), new Vector2(-378, -1012), new Vector2(-378, -1024), new Vector2(-366, -1024), new Vector2(-366, -1020), new Vector2(-361, -1020), new Vector2(-361, -1016), new Vector2(-361, -1007), new Vector2(-361, -996)};
-                                      
+    private int     secondTimer;
+    //this was for testing private Vector2[] list  = {new Vector2(-366, -996), new Vector2(-366, -1012), new Vector2(-378, -1012), new Vector2(-378, -1024), new Vector2(-366, -1024), new Vector2(-366, -1020), new Vector2(-361, -1020), new Vector2(-361, -1016), new Vector2(-361, -1007), new Vector2(-361, -996)};
+    private ForgeDirection[] directions = {ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.WEST};
+    
+    
     public WCTileEntityControlUnitDock() {
         updateTimer = 20;
     }
@@ -48,9 +50,9 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
                 
                 if(eS != null){
-                	if(list != null){
+                	if(directions != null){
                 		if(eS instanceof WCEntitySmartBoat){
-                			eS.setList(list);
+                			eS.setList(directions);
                 		}
                 	}
                 }

@@ -5,6 +5,7 @@ tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
 tile.smelterBlockName.name=Ice Smelter
 tile.toolBoxBlockName.name=Tool Box
-tile.TapeItemName.name=Tape Measure
 
+item.TelescopeName.name=Telescope
+item.TapeItemName.name=Tape Measure
 item.wcboat.name=Wc Boat
