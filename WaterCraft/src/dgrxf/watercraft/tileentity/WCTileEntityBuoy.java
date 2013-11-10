@@ -12,6 +12,7 @@ import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
+import dgrxf.watercraft.util.Vector3;
 
 /**
  * Buoy TileEntity
@@ -21,8 +22,8 @@ import dgrxf.watercraft.util.Vector2;
  */
 public class WCTileEntityBuoy extends WCTileEntity {
     
-    /**ww
-     * NBT-Tags
+    /**
+     * ww NBT-Tags
      */
     private static final String NBT_NEXT_BUOY_X = "BuoyTarX";
     private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
@@ -38,12 +39,12 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     protected boolean           hasBuoy;
     protected int               nextX;                                // needed for readFromNBT
-	protected int               nextY;                                // needed for readFromNBT
+    protected int               nextY;                                // needed for readFromNBT
     protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
-    public  boolean             blockBounds;
-                                                                       
+    public boolean              blockBounds;
+    
     /**
      * Default Constructor
      * 
@@ -57,8 +58,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
     /**
      * Searches for the next buoy
      * 
-     * @param yOffset
-     *            vertical search offset
+     * @param yOffset vertical search offset
      */
     protected void findNextBuoy(int yOffset) {
         ForgeDirection dir = getBuoyDirection();
@@ -87,8 +87,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
     /**
      * Sets the next Buoy in line
      * 
-     * @param next
-     *            Next BuoyTileEntity
+     * @param next Next BuoyTileEntity
      * @author Robotic-Brain
      */
     public void setNextBuoy(WCTileEntityBuoy next) {
@@ -156,19 +155,19 @@ public class WCTileEntityBuoy extends WCTileEntity {
             findNextBuoy(0);
             
             WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
-            WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
+            WCEntitySmartBoat eS = (WCEntitySmartBoat) findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
             
             if (eS != null) {
-            	eS.iterateList();
-            }else{
-            	blockBounds = true;
+                eS.iterateList();
+            } else {
+                blockBounds = true;
             }
             
             if (e != null && hasNextBuoy()) {
-            	if(!(e instanceof WCEntitySmartBoat))
-            	e.setTargetLocation(new Vector2(nextX, nextZ));
-            }else{
-            	blockBounds = true;
+                if (!(e instanceof WCEntitySmartBoat))
+                    e.setTargetLocation(new Vector2(nextX, nextZ));
+            } else {
+                blockBounds = true;
             }
             
             searchTimer = 30;
@@ -200,18 +199,9 @@ public class WCTileEntityBuoy extends WCTileEntity {
         LogHelper.debug("Loaded " + this);
     }
     
-    public int getNextX() {
-		return nextX;
-	}
-
-	public int getNextY() {
-		return nextY;
-	}
-
-	public int getNextZ() {
-		return nextZ;
-	}
-
+    public Vector3 getNextBuoyPos() {
+        return new Vector3(nextX, nextY, nextZ);
+    }
     
     @Override
     public String toString() {
