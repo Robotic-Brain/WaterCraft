@@ -12,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 /**
  * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
@@ -32,6 +33,8 @@ public class ItemBlockToolBox extends ItemBlock {
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
         if (world.isRemote)
             return true;
+        if(!world.isBlockSolidOnSide(x, y-1, z, ForgeDirection.UP)) return false;
+        
         world.setBlock(x, y, z, ModBlocks.toolbox.blockID);
         WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
         if (stack.getTagCompound() != null) {
