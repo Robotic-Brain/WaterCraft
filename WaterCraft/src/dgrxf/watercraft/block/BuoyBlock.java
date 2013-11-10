@@ -29,7 +29,7 @@ public class BuoyBlock extends WCBlock {
         super(id, Material.iron);
         setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
-        setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
+        setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
         setLightValue(1F);
         setCanRotate(true);
     }
@@ -38,20 +38,22 @@ public class BuoyBlock extends WCBlock {
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
     	WCTileEntityBuoy tile = (WCTileEntityBuoy) world.getBlockTileEntity(x, y, z);
     	if(tile.blockBounds){
-    		setBlockBounds(0F, -1.3F, 0F, 1F, 1F, 1F);
+    		setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
+        	System.out.println("set bounds");
     	}else{
     		setBlockBounds(0F, 0F, 0F, 0F, 0F, 0F);
+        	System.out.println("set bounds off");
     	}
     }
     
-    @Override
+    /*@Override
     public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
     	if(world.isRemote) return;
     	WCTileEntityBuoy tile = (WCTileEntityBuoy) world.getBlockTileEntity(x, y, z);
     	if(tile != null && entity instanceof WCEntityBoat){
     		tile.blockBounds = false;
     	}
-    }
+    }*/
     
     @Override
     public boolean hasTileEntity(int metadata) {
