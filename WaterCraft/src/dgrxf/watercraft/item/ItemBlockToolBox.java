@@ -36,7 +36,7 @@ public class ItemBlockToolBox extends ItemBlock {
 	
 	@Override
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-		if(world.isRemote || !player.isSneaking()) return true;
+		if(world.isRemote || !player.isSneaking()) return false;
 		world.setBlock(x, y, z, ModBlocks.toolbox.blockID);
 		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
 		if(stack.getTagCompound() != null){
