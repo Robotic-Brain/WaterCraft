@@ -21,7 +21,7 @@ import dgrxf.watercraft.util.Vector2;
  */
 public class WCTileEntityBuoy extends WCTileEntity {
     
-    /**
+    /**ww
      * NBT-Tags
      */
     private static final String NBT_NEXT_BUOY_X = "BuoyTarX";
@@ -161,6 +161,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
             }
             
             if (e != null && hasNextBuoy()) {
+            	if(!(e instanceof WCEntitySmartBoat))
             	e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
