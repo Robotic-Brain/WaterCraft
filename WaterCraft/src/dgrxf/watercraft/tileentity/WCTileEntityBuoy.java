@@ -165,7 +165,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
             	e.setTargetLocation(new Vector2(nextX, nextZ));
             }
             
-            searchTimer = 40;
+            searchTimer = 30;
         }
     }
     
