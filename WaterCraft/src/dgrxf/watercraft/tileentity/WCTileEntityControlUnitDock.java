@@ -44,13 +44,13 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
             if (!multiBlockFormed || secondTimer >= 3) {
             	secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
-                if (multiBlockFormed) {
+                /*if (multiBlockFormed) {
                     LogHelper.debug("Multiblock formed at: ");
                 }else{
                 	LogHelper.debug("MultiBlock is incorrectly formed, or no multiblock exists.");
-                }
+                }*/
             } else {
-                WCEntityBoat e = (WCEntityBoat) findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
+                WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
                 
                 if (e != null && hasNextBuoy()) {
                     e.setTargetLocation(new Vector2(nextX, nextZ));
@@ -65,7 +65,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
      * NOTE: This needs updating, should return Entity[] of all boats in List
      * list. Haven't bothered yet though for testing purposes.
      */
-    public Entity findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoat> entC) {
+    @Override
+    public WCEntityBoat findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoat> entC) {
         int tempX = xCoord + d.offsetX * 3;
         int tempY = yCoord - 1;
         int tempZ = zCoord + d.offsetZ * 3;
