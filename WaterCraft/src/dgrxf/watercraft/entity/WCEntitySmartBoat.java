@@ -20,5 +20,13 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 		iterator++;
 	}
 	
-	
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		
+		if(list != null){
+			super.setTargetLocation(list[iterator]);
+		}
+		
+	}
 }
