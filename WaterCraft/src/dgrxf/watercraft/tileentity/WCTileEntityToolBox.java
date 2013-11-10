@@ -17,6 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
+import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.BlockInfo;
 
 /**
@@ -121,10 +122,16 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     
     @Override
     public void openChest() {
+    	if(worldObj.isRemote)
+    		return;
+    	playersInInv++;
+    	System.out.println(playersInInv);
     }
     
     @Override
     public void closeChest() {
+    	if(worldObj.isRemote)
+    		return;
     	playersInInv--;
     	if(playersInInv == 0){
 	    	isOpen = false;
