@@ -130,11 +130,9 @@ public class WCTileEntityBuoy extends WCTileEntity {
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof WCEntityBoat) {
-            	this.blockBounds = false;
                 return (WCEntityBoat) e;
             }
         }
-        this.blockBounds = true;
         return null;
     }
     
