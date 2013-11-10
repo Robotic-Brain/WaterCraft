@@ -38,7 +38,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     protected boolean           hasBuoy;
     protected int               nextX;                                // needed for readFromNBT
-    protected int               nextY;                                // needed for readFromNBT
+	protected int               nextY;                                // needed for readFromNBT
     protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
@@ -193,6 +193,19 @@ public class WCTileEntityBuoy extends WCTileEntity {
         
         LogHelper.debug("Loaded " + this);
     }
+    
+    public int getNextX() {
+		return nextX;
+	}
+
+	public int getNextY() {
+		return nextY;
+	}
+
+	public int getNextZ() {
+		return nextZ;
+	}
+
     
     @Override
     public String toString() {

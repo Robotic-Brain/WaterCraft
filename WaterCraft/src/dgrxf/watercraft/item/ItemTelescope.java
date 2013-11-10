@@ -10,14 +10,16 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.particles.CustomParticles;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
+import dgrxf.watercraft.util.MathHelper;
 import dgrxf.watercraft.util.RotationHelper;
+import dgrxf.watercraft.util.Vector2;
 import dgrxf.watercraft.util.Vector3;
 
 public class ItemTelescope extends Item{
 
 	private int tick;
 	private boolean showParticles;
-	private float v = 5.0F;
+	private float v = 2.0F;
 	
 	public ItemTelescope() {
 		super(ItemInfo.TELESCOPE_ID);
@@ -40,7 +42,7 @@ public class ItemTelescope extends Item{
 					CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, 0.5, velocity.z);
 					
 					if (buoy.hasNextBuoy()) {
-						//TODO spawn particle going to the next buoy
+						float distance = MathHelper.calculateVector2Distance(new Vector2(x, z), new Vector2(buoy.getNextX(), buoy.getNextZ()));
 						CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, 0.5, velocity.z);
 						Watercraft.printToPlayer("found");
 					}
