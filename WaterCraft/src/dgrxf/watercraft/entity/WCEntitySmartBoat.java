@@ -31,19 +31,26 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 		if(list != null){
 			if(iterator > list.length-1){
 				iterator = 0;
+				ForgeDirection[] reverseList = new ForgeDirection[list.length];
+				int j = 0;
+				for(int i = list.length - 1; i > 0; --i){
+					reverseList[j] = list[i];
+					++j;
+				}
+				list = reverseList;
 			}
 		}
 		else{
-			target = null;
+			//target = null;
 		}
 	}
 	
 	@Override
 	public void moveToTarget(){
-		if(target != null){
+		if(target == null || worldObj.isRemote) return;
 			motionX = target.x;
 			motionZ = target.z;
-		}
+			System.out.println(target.x + "," + target.z);
 	}
 	
 	@Override
@@ -52,7 +59,7 @@ public class WCEntitySmartBoat extends WCEntityBoat {
 		
 		if(list != null){
 			//super.setTargetLocation(list[iterator]);
-			setTargetLocation(new Vector2(list[iterator].offsetX/10, list[iterator].offsetZ/10));
+			setTargetLocation(new Vector2((float)list[iterator].offsetX/10, (float)list[iterator].offsetZ/10));
 		}
 		
 	}
