@@ -22,6 +22,15 @@ public class MathHelper {
         return (float) Math.sqrt(calculateVector2SquareDistance(positionOne, positionTwo));
     }
     
+    /*
+     * can't you just do this? 
+     * public static float calculatePointDistance(float positionOne, float positionTwo) {
+     * 	  return Math.abs(positionOne - positionTwo);
+     * }
+     * 
+     * - Frod
+     */
+    
     public static float calculatePointDistance(float positionOne, float positionTwo) {
         float tempDistOne, tempDistTwo, distance = 0;
         if (positionOne > positionTwo) {
