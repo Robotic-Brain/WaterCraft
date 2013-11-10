@@ -74,7 +74,6 @@ public class ToolBoxBlock extends WCBlock {
 		if (world.isRemote) return true;
 		
 		if(!player.isSneaking()){
-			Sounds.TOOLBOX_OPENING.play(x, y, z, 2, 1);
 			FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
 		}else{
 			if(player.getCurrentEquippedItem() == null) pickUpToolBox(world, x, y, z, player);

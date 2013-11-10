@@ -77,7 +77,6 @@ public class ToolboxContainer extends Container {
 	
 	@Override
 	public void onContainerClosed(EntityPlayer player) {
-		Sounds.TOOLBOX_CLOSING.play(player.posX, player.posY, player.posZ, 1, 1);
 		if(isInInv){
 			ItemStack toolbox = player.getCurrentEquippedItem();
 			NBTTagCompound tag;
