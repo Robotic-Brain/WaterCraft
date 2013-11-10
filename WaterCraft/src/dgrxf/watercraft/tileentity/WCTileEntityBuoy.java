@@ -167,6 +167,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
             if (e != null && hasNextBuoy()) {
             	if(!(e instanceof WCEntitySmartBoat))
             	e.setTargetLocation(new Vector2(nextX, nextZ));
+            }else{
+            	blockBounds = true;
             }
             
             searchTimer = 30;
