@@ -1,6 +1,5 @@
 package dgrxf.watercraft.tileentity;
 
-import dgrxf.watercraft.lib.BlockInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -8,6 +7,7 @@ import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFishingRod;
 import net.minecraft.item.ItemFlintAndSteel;
+import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemShears;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
@@ -17,8 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.lib.BlockInfo;
 
 /**
  * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
@@ -130,6 +129,8 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         if (itemstack.getItem() instanceof ItemTool)
             return true;
+        else if (itemstack.getItem() instanceof ItemHoe)
+        	return true;
         else if (itemstack.getItem() instanceof ItemBow)
             return true;
         else if (itemstack.getItem() instanceof ItemBucket)
