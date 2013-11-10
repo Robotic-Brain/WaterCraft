@@ -7,7 +7,9 @@ public class BuoyParticle extends EntityFX {
 
 	public BuoyParticle(World world, double x, double y, double z, double vx, double vy, double vz) {
 		super(world, x, y, z, vx, vy, vz);
+		particleAge = 100000;
 		
+		//TODO particle age
 		//func_110125_a(NEEDS AN ICON);
 
 	}
