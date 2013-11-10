@@ -30,11 +30,13 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     
     private ItemStack[] inventory;
     private String      playerName;
+    public  int         playersInInv;
     public  boolean     isOpen;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
         isOpen = false;
+        playersInInv = 0;
     }
     
     @Override
@@ -123,6 +125,11 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     
     @Override
     public void closeChest() {
+    	playersInInv--;
+    	if(playersInInv == 0){
+	    	isOpen = false;
+	    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    	}
     }
     
     @Override
