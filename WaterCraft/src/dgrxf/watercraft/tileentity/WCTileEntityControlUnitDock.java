@@ -9,7 +9,9 @@ import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
+import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.util.Vector2;
+import dgrxf.watercraft.util.Vector3;
 
 /**
  * Class Created By: ??? Class Last Edited By: xandayn
@@ -97,7 +99,10 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     }
     
     public boolean checkForMultiBlock() {
-        return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getWorldObj().getBlockMetadata(xCoord, yCoord, zCoord));
+        //return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getBlockDirection());
+        return NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord, zCoord), getBlockDirection());
+        
+        //return true;
     }
 
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
