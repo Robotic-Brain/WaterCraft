@@ -2,6 +2,8 @@ package dgrxf.watercraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.ShapedRecipes;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -55,6 +57,8 @@ public class Watercraft {
         ModItems.init();
         MultiBlockInfo.init();
         Entities.init();
+        
+        CraftingManager.getInstance().getRecipeList().remove(217);
     }
     
     @EventHandler
