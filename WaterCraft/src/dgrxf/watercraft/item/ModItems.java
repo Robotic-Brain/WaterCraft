@@ -20,6 +20,7 @@ public class ModItems {
     public static Item boatChest;
     public static Item lavaBoat;
     public static Item vanillaBoat;
+    public static Item flag;
     
     public static void init() {
     	vanillaBoat = new ItemBoat();
@@ -28,5 +29,6 @@ public class ModItems {
         telescope = new ItemTelescope();
         boatChest = new ItemBoatChest();
         lavaBoat = new ItemLavaBoat();
+        flag = new ItemFlag();
     }
 }
