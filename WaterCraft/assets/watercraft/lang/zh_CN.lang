@@ -7,4 +7,12 @@ tile.controlUnitDock.name=控制系统
 tile.freezerBlockName.name=冻水机
 tile.smelterBlockName.name=熔冰机
 
+item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
+item.boatChest.name=Chest Boat NEEDS LOCALIZATION
+item.TelescopeName.name=Telescope NEEDS LOCALIZATION
+item.TapeItemName.name=Tape Measure NEEDS LOCALIZATION
 item.wcboat.name=船
+
+strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s] NEEDS LOCALIZATION
+strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s] NEEDS LOCALIZATION
+strings.watercraft:tape_measure_distance=Distance: %s NEEDS LOCALIZATION

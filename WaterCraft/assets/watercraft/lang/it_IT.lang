@@ -4,10 +4,14 @@ itemGroup.watercraft=WaterCraft
 tile.buoyBlockName.name=Boa
 tile.controlUnitDock.name=Unità di Controllo
 tile.freezerBlockName.name=Congelatore
-tile.smelterBlockName.name=Ice Smelter
 tile.toolBoxBlockName.name=Cassetta degli Attrezzi
-item.wcboat.name=Wc Boat
 
+item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
+item.boatChest.name=Chest Boat NEEDS LOCALIZATION
 item.TelescopeName.name=Telescopio
 item.TapeItemName.name=Metro
-item.wcboat.name=Wc Boat
+item.wcboat.name=Boat NEEDS LOCALIZATION
+
+strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s] NEEDS LOCALIZATION
+strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s] NEEDS LOCALIZATION
+strings.watercraft:tape_measure_distance=Distance: %s NEEDS LOCALIZATION
