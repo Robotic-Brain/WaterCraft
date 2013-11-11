@@ -20,7 +20,7 @@ import dgrxf.watercraft.util.Vector3;
  * @author xandayn
  * 
  */
-public class WCTileEntityBuoy extends WCTileEntity {
+public class WCTileEntityBuoy extends DirectionalTileEntity {
     
     /**
      * NBT-Tags
@@ -65,7 +65,7 @@ public class WCTileEntityBuoy extends WCTileEntity {
      *            vertical search offset
      */
     protected void findNextBuoy(int yOffset) {
-        ForgeDirection dir = getBuoyDirection();
+        ForgeDirection dir = getBlockDirection();
         
         setNextBuoy(null);
         
@@ -76,16 +76,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
                 //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
             }
         }
-    }
-    
-    /**
-     * Gets the direction of the Buoy
-     * 
-     * @return direction
-     * @author Robotic-Brain
-     */
-    public ForgeDirection getBuoyDirection() {
-        return ForgeDirection.getOrientation(worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
     }
     
     /**
@@ -159,8 +149,8 @@ public class WCTileEntityBuoy extends WCTileEntity {
         if (searchTimer <= 0) {
             findNextBuoy(0);
             
-            WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
-            WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
+            WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+            WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBlockDirection(), WCEntitySmartBoat.class);
             
             if (eS != null) {
             	eS.iterateList();

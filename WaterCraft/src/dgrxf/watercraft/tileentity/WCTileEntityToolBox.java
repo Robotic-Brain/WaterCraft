@@ -27,7 +27,7 @@ import dgrxf.watercraft.lib.BlockInfo;
  * 
  */
 
-public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
+public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory {
     
     private ItemStack[] inventory;
     private String      playerName;

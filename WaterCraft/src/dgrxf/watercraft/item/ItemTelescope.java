@@ -36,7 +36,7 @@ public class ItemTelescope extends Item{
                 if (te instanceof WCTileEntityBuoy) {
                     Watercraft.printToPlayer("found working buoy");
                     WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;
-                    Vector3 velocity = (new Vector3(buoy.getBuoyDirection())).scalarMult(particleSpeed);
+                    Vector3 velocity = (new Vector3(buoy.getBlockDirection())).scalarMult(particleSpeed);
                     CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, 0.5, velocity.z);
                     
                     if (buoy.hasNextBuoy()) {

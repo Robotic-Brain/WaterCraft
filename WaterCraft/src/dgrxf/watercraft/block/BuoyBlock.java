@@ -26,7 +26,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
  * @author Drunk Mafia (modified)
  * 
  */
-public class BuoyBlock extends WCBlock {
+public class BuoyBlock extends DirectionalBlock {
     
     public BuoyBlock(int id) {
         super(id, Material.iron);
@@ -34,7 +34,6 @@ public class BuoyBlock extends WCBlock {
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
         setLightValue(1F);
-        setCanRotate(true);
     }
     
     @Override
@@ -69,9 +68,9 @@ public class BuoyBlock extends WCBlock {
     }
     
     @Override
-    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity) {
-        if (!(par7Entity instanceof WCEntityBoat)) {
-            super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+        if (!(entity instanceof WCEntityBoat)) {
+            super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
         }
     }
     

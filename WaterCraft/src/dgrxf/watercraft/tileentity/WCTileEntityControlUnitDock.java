@@ -51,8 +51,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
                 secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
             } else {
-                WCEntityBoat e = findEntityBoat(getBuoyDirection(), WCEntityBoat.class);
-                WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBuoyDirection(), WCEntitySmartBoat.class);
+                WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+                WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBlockDirection(), WCEntitySmartBoat.class);
                 
                 if(eS != null){
                 	if(directions != null){

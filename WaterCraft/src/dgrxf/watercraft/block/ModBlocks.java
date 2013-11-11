@@ -1,5 +1,6 @@
 package dgrxf.watercraft.block;
 
+import net.minecraft.block.Block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.item.ItemBlockBuoy;
 import dgrxf.watercraft.item.ItemBlockToolBox;
@@ -17,11 +18,11 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  */
 public class ModBlocks {
     
-    public static WCBlock buoy;
-    public static WCBlock controlUnitDock;
-    public static WCBlock freezer;
-    public static WCBlock dropZone;
-    public static WCBlock toolbox;
+    public static Block buoy;
+    public static Block controlUnitDock;
+    public static Block freezer;
+    public static Block dropZone;
+    public static Block toolbox;
     
     public static void init() {
         buoy = new BuoyBlock(BlockInfo.BUOY_ID);
