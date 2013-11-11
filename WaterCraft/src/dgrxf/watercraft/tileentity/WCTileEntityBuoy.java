@@ -48,7 +48,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
     protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
-    public  boolean             blockBounds;
                                                                        
     /**
      * Default Constructor
@@ -56,7 +55,6 @@ public class WCTileEntityBuoy extends WCTileEntity {
      */
     public WCTileEntityBuoy() {
         hasBuoy = false;
-        blockBounds = true;
         searchRange = DEFAULT_RANGE;
     }
     

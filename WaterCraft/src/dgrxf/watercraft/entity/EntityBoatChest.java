@@ -2,6 +2,7 @@
 package dgrxf.watercraft.entity;
 
 import dgrxf.watercraft.item.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -137,6 +138,11 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     public boolean isInvNameLocalized() {
         // TODO Auto-generated method stub
         return false;
+    }
+    
+    @Override
+    public Block getDisplayTile() {
+    	return Block.chest;
     }
     
     @Override

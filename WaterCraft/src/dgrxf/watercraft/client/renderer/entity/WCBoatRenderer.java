@@ -1,9 +1,14 @@
 package dgrxf.watercraft.client.renderer.entity;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -15,10 +20,12 @@ public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
     
     ModelBase                             model;
+    protected final RenderBlocks renderBlock;
     
     public WCBoatRenderer() {
         model = new ModelBoat();
         shadowSize = 0.5F;
+        renderBlock = new RenderBlocks();
     }
     
     public void renderBoat(WCEntityBoat boat, double par2, double par4, double par6, float par8, float par9) {
@@ -37,6 +44,20 @@ public class WCBoatRenderer extends Render {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
         
+        Block block = boat.getDisplayTile();
+        
+        if (block != null)
+        {
+            GL11.glPushMatrix();
+            this.bindTexture(TextureMap.locationBlocksTexture);
+            float f8 = 1F;
+            GL11.glScalef(f8, f8, f8);
+            GL11.glTranslatef(0.0F, (float)6 / 16.0F, 0.0F);
+            this.renderBlockInBoat(boat, par9, Block.chest, 0);
+            GL11.glPopMatrix();
+            GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        }
+        
         float f4 = 0.75F;
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
@@ -48,7 +69,15 @@ public class WCBoatRenderer extends Render {
         GL11.glPopMatrix();
     }
     
-    @Override
+    protected void renderBlockInBoat(WCEntityBoat boat, float par2, Block par3Block, int par4)
+    {
+        float f1 = boat.getBrightness(par2);
+        GL11.glPushMatrix();
+        this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        GL11.glPopMatrix();
+    }
+
+	@Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
         renderBoat((WCEntityBoat) entity, x, y, z, yaw, partialTickTime);
     }
