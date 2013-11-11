@@ -1,9 +1,12 @@
 package dgrxf.watercraft.block;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -63,6 +66,13 @@ public class BuoyBlock extends WCBlock {
     @Override
     public Icon getIcon(int side, int meta) {
         return Block.cloth.getIcon(0, 1);
+    }
+    
+    @Override
+    public void addCollisionBoxesToList(World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity) {
+        if (!(par7Entity instanceof WCEntityBoat)) {
+            super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
+        }
     }
     
 }

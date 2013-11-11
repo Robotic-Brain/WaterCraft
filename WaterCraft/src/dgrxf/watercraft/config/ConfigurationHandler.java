@@ -46,7 +46,7 @@ public class ConfigurationHandler {
             MiscInfo.TICKING_RATE = config.get(MiscInfo.CATEGORY, MiscInfo.TICKING_KEY, MiscInfo.TICKING_DEFAULT_RATE).getInt();
             
         } catch (Exception e) {
-            LogHelper.config("There was a problem while loading the config, Please report this.");
+            LogHelper.severe("There was a problem while loading the config, Please report this.");
             e.printStackTrace();
         } finally {
             if (config.hasChanged()) {
