@@ -20,4 +20,7 @@ public class RenderInfo {
     
     public static final ResourceLocation TOOLBOX_TEXTURE_LOCATION      = new ResourceLocation(ModInfo.MODID, "textures/models/Toolbox.png");
     public static int                    TOOLBOX_RENDER_ID;
+    
+    public static final ResourceLocation FLAG_TEXTURE_LOCATION      = new ResourceLocation(ModInfo.MODID, "textures/models/ModelBuoy.png");
+    public static int                    FLAG_RENDER_ID;
 }
