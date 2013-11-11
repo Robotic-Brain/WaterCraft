@@ -1,14 +1,20 @@
 package dgrxf.watercraft.enumeration;
 
 public enum Colours {
-	black,
 	white,
-	blue,
-	green,
-	red,
+	orange,
+	magenta,
+	light_blue,
+	yellow,
+	light_green,
+	pink,
+	grey,
+	light_grey,
 	cyan,
 	purple,
-	pink,
-	yellow,
-	orange;
+	blue,
+	brown,
+	green,
+	red,
+	black;	
 }
