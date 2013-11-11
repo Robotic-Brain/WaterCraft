@@ -219,6 +219,8 @@ public class WCEntityBoatBase extends Entity
     {
         super.onUpdate();
 
+        if(worldObj.isRemote) return;
+        
         if(!this.ridable){
         	this.riddenByEntity = null;
         }
