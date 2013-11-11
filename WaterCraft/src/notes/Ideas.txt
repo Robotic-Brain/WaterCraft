@@ -2,6 +2,10 @@
 **** Ideas ****
 ***************
 
+Just needed to place this for future ref:
+# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
+# File Created: 07.11.2013 15:29:34
+
     - Boats
         - Chest Boat
         - Tank Boat
