@@ -31,6 +31,7 @@ public class ConfigurationHandler {
             ItemInfo.ENGINE_ID = config.getItem(ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt() - 256;
             ItemInfo.BOATCHEST_ID = config.getItem(ItemInfo.BOATCHEST_KEY, ItemInfo.BOATCHEST_ID_DEFAULT).getInt() - 256;
             ItemInfo.LAVABOAT_ID = config.getItem(ItemInfo.LAVABOAT_KEY, ItemInfo.LAVABOAT_ID_DEFAULT).getInt() - 256;
+            ItemInfo.FLAG_ID = config.getItem(ItemInfo.LAVABOAT_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt() - 256;
             
             // Blocks
             BlockInfo.BUOY_ID = config.getBlock(BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
