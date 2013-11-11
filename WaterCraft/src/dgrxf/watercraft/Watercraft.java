@@ -40,7 +40,7 @@ public class Watercraft {
     
     public static CreativeTabWaterCraft creativeTab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
     
-    //@SuppressWarnings("unused") Why is this here?
+    @SuppressWarnings("unused")
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
