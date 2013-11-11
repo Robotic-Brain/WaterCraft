@@ -10,7 +10,7 @@ item.lavaBoat.name=Lava Boat
 item.boatChest.name=Chest Boat
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
-item.wcboat.name=Wc Boat
+item.wcboat.name=Boat
 
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
