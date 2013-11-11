@@ -94,8 +94,11 @@ public class WCBoatRenderer extends Render {
     
     private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
 		GL11.glPushMatrix();
-		
-		float f2 = (float) boat.getTimeSinceHit() - yaw;
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.flag.ordinal() + 1) + ".png"));
+		GL11.glTranslatef((float)x + 0.5F,(float)y + 0.2F,(float)z + 0.5F);
+		GL11.glRotatef(180.0F - yaw, 0.0F, 1.0F, 0.0F);
+        
+        float f2 = (float) boat.getTimeSinceHit() - yaw;
         float f3 = boat.getDamageTaken() - yaw;
         
         if (f3 < 0.0F) {
@@ -105,10 +108,6 @@ public class WCBoatRenderer extends Render {
         if (f2 > 0.0F) {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
-		
-		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.flag.ordinal() + 1) + ".png"));
-       
-		GL11.glTranslatef((float)x + 0.5F,(float)y + 0.2F,(float)z + 0.5F);
 		flagModel.renderAll();
 		
 		GL11.glPopMatrix();		
