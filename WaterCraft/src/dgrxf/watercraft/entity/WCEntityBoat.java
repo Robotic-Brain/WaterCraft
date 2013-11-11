@@ -120,12 +120,14 @@ public class WCEntityBoat extends WCEntityBoatBase {
     
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
+    	super.readEntityFromNBT(compound);
     	if(compound.hasKey("flag"))
     		flag = getColour(compound.getInteger("flag"));
     }
     
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
+    	super.writeEntityToNBT(compound);
         compound.setInteger("flag", flag.ordinal());
     }
     
