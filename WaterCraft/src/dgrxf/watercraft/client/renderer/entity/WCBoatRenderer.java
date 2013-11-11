@@ -84,17 +84,21 @@ public class WCBoatRenderer extends Render {
 	@Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
         renderBoat((WCEntityBoatBase) entity, x, y, z, yaw, partialTickTime);
-        if(entity instanceof WCEntityBoatBase && ((WCEntityBoat)entity).flag != null){
-        	renderFlag(((WCEntityBoat)entity).flag, x, y, z);
+        if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).flag != null){
+        	renderFlag(((WCEntityBoat)entity), x, y, z, partialTickTime);
         }
     }
 	
 	private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
     
-    private void renderFlag(Colours flag, double x, double y, double z) {
+    private void renderFlag(WCEntityBoat boat, double x, double y, double z, float partialTickTime) {
 		GL11.glPushMatrix();
 		
+        float f2 = (float) boat.getTimeSinceHit() - partialTickTime;
+        float f3 = boat.getDamageTaken() - partialTickTime;
+		
 		Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.FLAG_TEXTURE_LOCATION);
+        GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
 		GL11.glTranslatef((float)x + 0.5F,(float)y + 0.2F,(float)z + 0.5F);
 		flagModel.renderAll();
 		
