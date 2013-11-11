@@ -2,10 +2,12 @@ package dgrxf.watercraft.client.renderer.item;
 
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
@@ -28,7 +30,7 @@ public class ItemFlagRenderer implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		GL11.glPushMatrix();
         
-        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.FLAG_TEXTURE_LOCATION);
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (item.getItemDamage() + 1) + ".png"));
         switch (type) {
             case EQUIPPED:
                 GL11.glTranslatef(0.4F, 1.2F, 0.6F);
@@ -46,6 +48,8 @@ public class ItemFlagRenderer implements IItemRenderer {
                 break;
             default:
         }
+        
+        System.out.println("SPAM");
         
         flag.renderAll();
         
