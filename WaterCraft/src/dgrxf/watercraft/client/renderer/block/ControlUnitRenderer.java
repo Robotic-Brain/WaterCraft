@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.lib.RenderInfo;
 
 public class ControlUnitRenderer extends TileEntitySpecialRenderer {
-    private IModelCustom modelUnit = AdvancedModelLoader.loadModel("/assets/watercraft/models/controlunit2.obj");
+    private IModelCustom modelUnit = AdvancedModelLoader.loadModel("/assets/watercraft/models/controlunit.obj");
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
