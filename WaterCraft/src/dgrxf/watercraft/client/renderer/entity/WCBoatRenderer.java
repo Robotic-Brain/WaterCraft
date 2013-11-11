@@ -1,6 +1,7 @@
 package dgrxf.watercraft.client.renderer.entity;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -9,11 +10,15 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.AdvancedModelLoader;
+import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.enumeration.Colours;
+import dgrxf.watercraft.lib.RenderInfo;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
@@ -79,9 +84,24 @@ public class WCBoatRenderer extends Render {
 	@Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
         renderBoat((WCEntityBoatBase) entity, x, y, z, yaw, partialTickTime);
+        if(entity instanceof WCEntityBoatBase && ((WCEntityBoat)entity).flag != null){
+        	renderFlag(((WCEntityBoat)entity).flag, x, y, z);
+        }
     }
+	
+	private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
     
-    @Override
+    private void renderFlag(Colours flag, double x, double y, double z) {
+		GL11.glPushMatrix();
+		
+		Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.FLAG_TEXTURE_LOCATION);
+		GL11.glTranslatef((float)x + 0.5F,(float)y + 0.2F,(float)z + 0.5F);
+		flagModel.renderAll();
+		
+		GL11.glPopMatrix();		
+	}
+
+	@Override
     protected ResourceLocation getEntityTexture(Entity entity) {
         return boatTextures;
     }
