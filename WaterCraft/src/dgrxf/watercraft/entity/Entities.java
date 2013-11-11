@@ -13,10 +13,11 @@ import dgrxf.watercraft.Watercraft;
 public class Entities {
     
     public static void init() {
-        EntityRegistry.registerModEntity(WCEntityBoat.class, "WCEntityBoat", 0, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 1, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityBoatChest.class, "EntityBoatChest", 2, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityLavaBoat.class, "EntityLavaBoat", 3, Watercraft.instance, 80, 3, true);
+    	EntityRegistry.registerModEntity(WCEntityBoatBase.class, "WCEntityBoatBase", 0, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(WCEntityBoat.class, "WCEntityBoat", 1, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityBoatChest.class, "EntityBoatChest", 3, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityLavaBoat.class, "EntityLavaBoat", 4, Watercraft.instance, 80, 3, true);
     }
     
 }

@@ -14,11 +14,10 @@ public class ItemInfo {
      *************/
     
     public static final String BOAT_UNLOCALIZED_NAME = "wcboat";
-
-    // public static final String boat_LocalizedName = "WC Boat"; Don't need
-    // localized names, this is done in the .lang files
     public static final String BOAT_KEY              = "wc boat";
 
+	public static final String DUMB_BOAT_UNLOCALIZED_NAME = "dumbBoat";
+	public static final String DUMB_BOAT_KEY = "Dumb Boat";
     
     public static final String TAPE_MEASURE_UNLOCALIZED_NAME = "TapeItemName";
     public static final String TAPE_MEASURE_KEY = "Tape Measure";
@@ -57,5 +56,8 @@ public class ItemInfo {
 
 	public static final int LAVABOAT_ID_DEFAULT = 711;
 	public static int LAVABOAT_ID;
+    
+    public static final int DUMB_BOAT_ID_DEFAULT = 712;
+    public static int DUMB_BOAT_ID;
 
 }
