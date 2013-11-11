@@ -40,18 +40,6 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         playersInInv = 0;
     }
     
-    @Override
-    public void updateEntity() {
-        for (int i = 0; i < inventory.length; i++) {
-            
-            if (inventory[i] != null && inventory[i].getItem().itemID == BlockInfo.TOOLBOX_ID) {
-                worldObj.createExplosion(null, xCoord, yCoord, zCoord, 10, true);
-                // TODO: Translation
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("Tut tut tut, do not create a minecraft inception");
-            }
-        }
-    }
-    
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
