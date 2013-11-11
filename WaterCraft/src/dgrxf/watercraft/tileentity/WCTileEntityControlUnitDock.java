@@ -29,8 +29,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     private boolean multiBlockFormed;
     private int     updateTimer;
     private int     secondTimer;
-    //this was for testing private Vector2[] list  = {new Vector2(-366, -996), new Vector2(-366, -1012), new Vector2(-378, -1012), new Vector2(-378, -1024), new Vector2(-366, -1024), new Vector2(-366, -1020), new Vector2(-361, -1020), new Vector2(-361, -1016), new Vector2(-361, -1007), new Vector2(-361, -996)};
-    private ForgeDirection[] directions = {ForgeDirection.EAST, ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST};
+    private ForgeDirection[] directions = {ForgeDirection.NORTH, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH};
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;

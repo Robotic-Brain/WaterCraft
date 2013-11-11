@@ -9,7 +9,7 @@ import net.minecraft.item.crafting.IRecipe;
 public class RecipeHelper {
 	public static void removeCraftingRecipe(ItemStack toRemove){
 		List recipes = CraftingManager.getInstance().getRecipeList();
-			for(int i = 0; i < recipes.size() - 1; i++){
+			for(int i = 0; i < recipes.size(); i++){
 				ItemStack stack;
 				if((stack = ((IRecipe) recipes.get(i)).getRecipeOutput()) == null) continue;
 				

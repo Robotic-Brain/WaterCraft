@@ -32,7 +32,7 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
     /**
      * Constants
      */
-    private static final int SEARCH_COUNT_DOWN = 25;
+    private static final int SEARCH_COUNT_DOWN = 10;
     
     /**
      * Now configurable inside the Config
@@ -48,6 +48,7 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
     protected int               nextZ;                                // needed for readFromNBT
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
+    private int 				lastEntityId;
                                                                        
     /**
      * Default Constructor
@@ -152,8 +153,13 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
             WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
             WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBlockDirection(), WCEntitySmartBoat.class);
             
-            if (eS != null) {
+            if (eS != null && lastEntityId != eS.entityId) {
+            	lastEntityId = eS.entityId;
             	eS.iterateList();
+            }
+            else if(eS == null)
+            {
+            	lastEntityId = 0;
             }
             if (e != null && hasNextBuoy()) {
             	if(!(e instanceof WCEntitySmartBoat))
