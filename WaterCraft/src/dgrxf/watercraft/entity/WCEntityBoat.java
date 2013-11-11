@@ -1,19 +1,11 @@
 package dgrxf.watercraft.entity;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.util.Vector2;
@@ -32,6 +24,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     protected int                         boatPosRotationIncrements;
     protected Vector2                     target;
     protected WCTileEntityControlUnitDock homeDock = null;
+    public Colours flag;
     
     public WCEntityBoat(World world) {
         super(world);
@@ -40,7 +33,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
     }
-    
+
     public WCEntityBoat(World world, double x, double y, double z) {
         this(world);
         this.setPosition(x, y + (double) this.yOffset, z);
@@ -52,6 +45,8 @@ public class WCEntityBoat extends WCEntityBoatBase {
         this.prevPosZ = z;
         this.ridable = false;
     }
+    
+    
     
     public void setTargetLocation(Vector2 target) {
         this.target = target;
@@ -102,7 +97,11 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
     
     @Override
-    public boolean interactFirst(EntityPlayer par1EntityPlayer) {
+    public boolean interactFirst(EntityPlayer player) {
+    	ItemStack stack = player.getCurrentEquippedItem();
+    	if(stack != null && stack.getItem().itemID == ModItems.flag.itemID){
+    		
+    	}
         double d5 = -Math.sin((double) (this.rotationYaw * (float) Math.PI / 180.0F));
         double d11 = Math.cos((double) (this.rotationYaw * (float) Math.PI / 180.0F));
         this.motionX += d5 * this.speedMultiplier * 0.05000000074505806D;
