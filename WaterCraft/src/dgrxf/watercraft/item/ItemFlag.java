@@ -13,6 +13,4 @@ public class ItemFlag extends Item{
 		hasSubtypes = true;
 		maxStackSize = 1;
 	}	
-	
-	
 }
