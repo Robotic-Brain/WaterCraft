@@ -8,16 +8,14 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import dgrxf.watercraft.item.ModItems;
 
-public class EntityLavaBoat extends WCEntityBoat{
+public class EntityLavaBoat extends WCEntityBoatBase{
 	
 	protected boolean isImmuneToFire = true;
 	private boolean field_70279_a;
@@ -45,24 +43,33 @@ public class EntityLavaBoat extends WCEntityBoat{
         this.yOffset = this.height / 2.0F;
 	}
 	
-	 @Override
-	 public void writeToNBT(NBTTagCompound compound) {
-	        super.writeToNBT(compound);
-	        System.out.println("Yes");
-	    }
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+	}
 	    
-	    @Override
-	    public void readFromNBT(NBTTagCompound compound) {
-	        super.readFromNBT(compound);
-	        System.out.println("Yes again");
-	    }
-	    
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+	}
+	
+	@Override
+	 public void updateRiderPosition()
+    {
+        if (this.riddenByEntity != null)
+        {
+        	this.riddenByEntity.extinguish();
+            double d0 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+            double d1 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+            this.riddenByEntity.setPosition(this.posX + d0, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + d1);
+        }
+    }
 	
 	@Override
 	public void onUpdate()
     {
 		this.onEntityUpdate();
-
+		
         if (this.getTimeSinceHit() > 0)
         {
             this.setTimeSinceHit(this.getTimeSinceHit() - 1);
@@ -178,7 +185,6 @@ public class EntityLavaBoat extends WCEntityBoat{
             if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
             {
                 d4 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
-
                 if (d4 > 0.0D)
                 {
                     d5 = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
