@@ -33,7 +33,10 @@ public class ItemInfo {
 	
 	public static final String LAVABOAT_UNLOCALIZED_NAME = "lavaBoat";
 	public static final String LAVABOAT_KEY = "Lava Boat";
-    
+	
+    public static final String FLAG_UNLOCALIZED_NAME = "flag";
+	public static final String FLAG_KEY = "Flag";
+	
     /*************
      * Integers
      *************/
@@ -59,5 +62,7 @@ public class ItemInfo {
     
     public static final int DUMB_BOAT_ID_DEFAULT = 712;
     public static int DUMB_BOAT_ID;
-
+    
+    public static final int FLAG_ID_DEFAULT = 713;
+    public static int FLAG_ID;
 }
