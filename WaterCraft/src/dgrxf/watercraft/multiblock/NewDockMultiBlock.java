@@ -28,13 +28,7 @@ public class NewDockMultiBlock {
         start = start.add(new Vector3(d));
         
         LogHelper.debug("Hayo!!");
-        /*LogHelper.debug(d);
-        LogHelper.debug(d.getRotation(ForgeDirection.UP));*/
         LogHelper.debug(checkBlock(world, start));
-        
-        /*if (!checkBlock(world, start.add(new Vector3(d)))) {
-            return false;
-        }*/
         
         int leftExtend = 0;
         int rightExtend = 0;
@@ -60,48 +54,6 @@ public class NewDockMultiBlock {
         if (frontExtend < MIN_FRONT_EXTEND) {
             return false;
         }
-        
-        /*// search right ---------------------------------------------------------------------------------
-        ForgeDirection inc = d.getRotation(ForgeDirection.UP);    // Set increment direction
-        Vector3 sPos = start;       // Start searching in front of controller
-        int i;
-        for (i = 1; i <= MAX_SIZE && checkBlock(world, sPos); ++i) {
-            //LogHelper.debug("Search at: " + sPos);
-            sPos = start.add((new Vector3(inc)).scalarMult(i));
-        }
-        rightExtend = i-2;
-        LogHelper.debug("Right Extend: " + rightExtend);
-        if (rightExtend < MIN_SIDE_EXTEND) {
-            return false;
-        }
-        
-        // search left ---------------------------------------------------------------------------------
-        inc = inc.getOpposite();     // reverse increment direction
-        sPos = start;           // Start searching in front of controller
-        for (i = 1; i <= MAX_SIZE && checkBlock(world, sPos); ++i) {
-            //LogHelper.debug("Search at: " + sPos);
-            sPos = start.add((new Vector3(inc)).scalarMult(i));
-        }
-        leftExtend = i-2;
-        LogHelper.debug("Left Extend: " + leftExtend);
-        if (leftExtend < MIN_SIDE_EXTEND) {
-            return false;
-        }
-        
-        // search front ---------------------------------------------------------------------------------
-        inc = inc.getRotation(ForgeDirection.UP);     // rotate increment direction clockwise
-        // Start searching at end of right extend
-        Vector3 fsStart = start.add((new Vector3(d.getRotation(ForgeDirection.UP))).scalarMult(rightExtend));
-        sPos = fsStart;
-        for (i = 1; i <= MAX_SIZE && checkBlock(world, sPos); ++i) {
-            //LogHelper.debug("Search at: " + sPos);
-            sPos = fsStart.add((new Vector3(inc)).scalarMult(i));
-        }
-        frontExtend = i-2;
-        LogHelper.debug("Front Extend: " + frontExtend);
-        if (frontExtend < MIN_FRONT_EXTEND) {
-            return false;
-        }*/
         
         LogHelper.debug("Total Size: " + leftExtend + " " + rightExtend + " " + frontExtend);
         
