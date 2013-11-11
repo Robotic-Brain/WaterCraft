@@ -36,6 +36,15 @@
     - Guidance
         - Boat Cranes, to raise and lower boats
         - Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
+    	- Normal Bouy, sends simple ships in the direction they are facing and smart ships in the direction
+`	  that they are progammed to take.
+	- The Filter Buoy, the filter buoy will send a simple ship in either 3 directions depending on it's colour.
+		- It's colour will be defined via a Flag.
+			- The flag will have multiple different colours, all the colours that are in MC
+			- Depending on what flag you put on the ship (by right clicking on the entity) will then send
+			  the ship in that direction
+			- The ship will not try to go in the direction it came from and if it can't find a root it can take,
+			  it will stop and stay there
     - Tug Rope/Linking boats together
         - Like carts in railcraft
     - More Fishing
