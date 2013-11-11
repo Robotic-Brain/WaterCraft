@@ -29,7 +29,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  * 
  */
 
-public class ToolBoxBlock extends WCBlock {
+public class ToolBoxBlock extends DirectionalBlock {
    
     public ToolBoxBlock() {
         super(BlockInfo.TOOLBOX_ID, Material.iron);
