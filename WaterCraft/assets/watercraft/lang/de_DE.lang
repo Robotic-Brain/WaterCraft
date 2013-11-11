@@ -8,9 +8,11 @@ tile.freezerBlockName.name=Wasserkühler
 tile.smelterBlockName.name=Eisschmelze
 tile.toolBoxBlockName.name=Werkzeugbox
 
+item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
+item.boatChest.name=Chest Boat NEEDS LOCALIZATION
 item.TelescopeName.name=Teleskop
 item.TapeItemName.name=Maßband
-item.wcboat.name=Wc Boot
+item.wcboat.name=Boot
 
 strings.watercraft:tape_measure_start=Starte Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Beende Messung: [%s, %s, %s]
