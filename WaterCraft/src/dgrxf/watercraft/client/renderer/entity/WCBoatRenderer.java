@@ -106,7 +106,7 @@ public class WCBoatRenderer extends Render {
         }
         
         if (f2 > 0.0F) {
-            GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 0.0F, 1.0F, 0.0F);
         }
 		flagModel.renderAll();
 		
