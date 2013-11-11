@@ -409,4 +409,9 @@ public class WCEntityBoat extends Entity {
     public int getForwardDirection() {
         return this.dataWatcher.getWatchableObjectInt(18);
     }
+
+	public Block getDisplayTile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
