@@ -6,12 +6,12 @@ tile.controlUnitDock.name=Styrenhet
 tile.freezerBlockName.name=Vatten Frysare
 tile.toolBoxBlockName.name=Verktygslåda
 
-item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
-item.boatChest.name=Chest Boat NEEDS LOCALIZATION
-item.TelescopeName.name=Telescope NEEDS LOCALIZATION
-item.TapeItemName.name=Tape Measure NEEDS LOCALIZATION
+item.lavaBoat.name=Lava Båt
+item.boatChest.name=Kist Båt
+item.TelescopeName.name=Teleskop
+item.TapeItemName.name=Måttband
 item.wcboat.name=Båt
 
-strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_distance=Distance: %s NEEDS LOCALIZATION
+strings.watercraft:tape_measure_start=Startad mätning vid: [%s, %s, %s]
+strings.watercraft:tape_measure_end=Avslutad mätning vid: [%s, %s, %s]
+strings.watercraft:tape_measure_distance=Avstånd: %s
