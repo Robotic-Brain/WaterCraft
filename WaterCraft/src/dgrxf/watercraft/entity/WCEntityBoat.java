@@ -113,14 +113,20 @@ public class WCEntityBoat extends WCEntityBoatBase {
         homeDock = dock;
     }
     
+    public Colours getColour(int id){
+    	Colours[] temp = Colours.values();
+    	return temp[id];
+    }
+    
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
-        
+    	if(compound.hasKey("flag"))
+    		flag = getColour(compound.getInteger("flag"));
     }
     
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
-        
+        compound.setInteger("flag", flag.ordinal());
     }
     
     public void setDamageTaken(float par1) {
