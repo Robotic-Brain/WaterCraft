@@ -117,7 +117,7 @@ public class WCTileEntityToolBox extends WCTileEntity implements IInventory {
     
     @Override
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-        return true;
+        return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
     }
     
     @Override

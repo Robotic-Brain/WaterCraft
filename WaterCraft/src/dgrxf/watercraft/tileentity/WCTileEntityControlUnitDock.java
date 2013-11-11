@@ -3,6 +3,7 @@ package dgrxf.watercraft.tileentity;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
@@ -99,4 +100,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
     public boolean checkForMultiBlock() {
         return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getWorldObj().getBlockMetadata(xCoord, yCoord, zCoord));
     }
+
+	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
+	}
 }

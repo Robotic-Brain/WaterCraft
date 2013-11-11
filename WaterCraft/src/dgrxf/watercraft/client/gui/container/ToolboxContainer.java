@@ -24,6 +24,17 @@ public class ToolboxContainer extends Container {
 	private boolean isInInv;
 	
 	public ToolboxContainer(InventoryPlayer invPlayer, WCTileEntityToolBox te) {
+		
+		for (int x = 0; x < 9; x++) {
+			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 99));
+		}
+		
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 9; x++) {
+				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
+			}
+		}
+		
 		if(te != null){
 			tile = te;
 			isInInv = false;
@@ -61,16 +72,6 @@ public class ToolboxContainer extends Container {
 			}
 			for (int x = 0; x < 9; x++) {
 				addSlotToContainer(new ToolBoxSlot(temp, x, 8 + 18 * x, 16));
-			}
-		}
-		
-		for (int x = 0; x < 9; x++) {
-			addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 99));
-		}
-		
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 9; x++) {
-				addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
 			}
 		}
 	}
