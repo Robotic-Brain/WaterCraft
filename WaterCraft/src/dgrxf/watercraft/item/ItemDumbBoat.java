@@ -25,6 +25,7 @@ public class ItemDumbBoat extends Item {
         super(ItemInfo.DUMB_BOAT_ID);
         setUnlocalizedName(ItemInfo.DUMB_BOAT_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.creativeTab);
+        setTextureName("boat");
     }
     
     @Override

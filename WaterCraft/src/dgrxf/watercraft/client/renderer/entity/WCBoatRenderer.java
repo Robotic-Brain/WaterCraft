@@ -18,6 +18,7 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.enumeration.Colours;
+import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 
 public class WCBoatRenderer extends Render {
@@ -85,20 +86,28 @@ public class WCBoatRenderer extends Render {
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
         renderBoat((WCEntityBoatBase) entity, x, y, z, yaw, partialTickTime);
         if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).flag != null){
-        	renderFlag(((WCEntityBoat)entity), x, y, z, partialTickTime);
+        	renderFlag(((WCEntityBoat)entity), x, y, z, yaw, partialTickTime);
         }
     }
 	
 	private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
     
-    private void renderFlag(WCEntityBoat boat, double x, double y, double z, float partialTickTime) {
+    private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
 		GL11.glPushMatrix();
 		
-        float f2 = (float) boat.getTimeSinceHit() - partialTickTime;
-        float f3 = boat.getDamageTaken() - partialTickTime;
+		float f2 = (float) boat.getTimeSinceHit() - yaw;
+        float f3 = boat.getDamageTaken() - yaw;
+        
+        if (f3 < 0.0F) {
+            f3 = 0.0F;
+        }
+        
+        if (f2 > 0.0F) {
+            GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
+        }
 		
-		Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.FLAG_TEXTURE_LOCATION);
-        GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * (float) boat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
+		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.flag.ordinal() + 1) + ".png"));
+       
 		GL11.glTranslatef((float)x + 0.5F,(float)y + 0.2F,(float)z + 0.5F);
 		flagModel.renderAll();
 		

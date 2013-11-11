@@ -9,6 +9,8 @@ package dgrxf.watercraft.item;
  * 
  */
 
+import cpw.mods.fml.common.registry.GameRegistry;
+import dgrxf.watercraft.lib.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -30,5 +32,7 @@ public class ModItems {
         boatChest = new ItemBoatChest();
         lavaBoat = new ItemLavaBoat();
         flag = new ItemFlag();
+        
+        GameRegistry.registerItem(flag, ItemInfo.FLAG_UNLOCALIZED_NAME);
     }
 }
