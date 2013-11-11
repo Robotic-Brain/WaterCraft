@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.util.TranslationHelper;
 import dgrxf.watercraft.util.Vector3;
 
 public class ItemTapeMeasure extends Item {
@@ -38,10 +39,13 @@ public class ItemTapeMeasure extends Item {
                 setFirstFlag(stack, true);
                 
                 // TODO: Needs Localization
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("Start Measurement| X: " + x + " Y: " + y + " Z: " + z);
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_START, x, y, z));
+                //Minecraft.getMinecraft().thePlayer.sendChatMessage("Start Measurement| X: " + x + " Y: " + y + " Z: " + z);
             } else {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("End Measurement| X: " + x + " Y: " + y + " Z: " + z);
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("Distance: " + getPos(stack).sub(new Vector3(x, y, z)).length());
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_END, x, y, z));
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
+                /*Minecraft.getMinecraft().thePlayer.sendChatMessage("End Measurement| X: " + x + " Y: " + y + " Z: " + z);
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("Distance: " + getPos(stack).sub(new Vector3(x, y, z)).length());*/
                 setFirstFlag(stack, false);
             }
         }

@@ -9,3 +9,7 @@ tile.toolBoxBlockName.name=Tool Box
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Wc Boat
+
+strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
+strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
+strings.watercraft:tape_measure_distance=Distance: %s
