@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
@@ -40,11 +41,10 @@ public class Watercraft {
     
     public static CreativeTabWaterCraft creativeTab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
     
-    @SuppressWarnings("unused")
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
-        new GuiHandler();
+        NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
     }
     
     @EventHandler

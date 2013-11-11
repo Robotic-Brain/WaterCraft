@@ -17,8 +17,6 @@ public class GuiHandler implements IGuiHandler {
     public static final int TOOLBOX_GUI_ID = 0;
     
     public GuiHandler() {
-        NetworkRegistry.instance().registerGuiHandler(Watercraft.instance, this);
-        // NOTE: Shouldn't we better move this to Watercraft.java?
     }
     
     @Override
