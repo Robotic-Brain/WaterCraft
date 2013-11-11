@@ -46,8 +46,6 @@ public class WCEntityBoat extends WCEntityBoatBase {
         this.ridable = false;
     }
     
-    
-    
     public void setTargetLocation(Vector2 target) {
         this.target = target;
     }
@@ -89,7 +87,6 @@ public class WCEntityBoat extends WCEntityBoatBase {
     
     @Override
     public void onEntityUpdate() {
-        
         if (!worldObj.isRemote) {
             moveToTarget();
         }
@@ -100,8 +97,10 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public boolean interactFirst(EntityPlayer player) {
     	ItemStack stack = player.getCurrentEquippedItem();
     	if(stack != null && stack.getItem().itemID == ModItems.flag.itemID){
-    		
+    		Colours[] temp = Colours.values();
+    		flag = temp[stack.getItemDamage()];
     	}
+    	
         double d5 = -Math.sin((double) (this.rotationYaw * (float) Math.PI / 180.0F));
         double d11 = Math.cos((double) (this.rotationYaw * (float) Math.PI / 180.0F));
         this.motionX += d5 * this.speedMultiplier * 0.05000000074505806D;
