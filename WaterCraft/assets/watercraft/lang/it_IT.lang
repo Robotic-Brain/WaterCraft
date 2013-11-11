@@ -1,4 +1,5 @@
-﻿itemGroup.watercraft=WaterCraft
+﻿
+itemGroup.watercraft=WaterCraft
 
 tile.buoyBlockName.name=Boa
 tile.controlUnitDock.name=Unità di Controllo
