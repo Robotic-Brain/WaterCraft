@@ -46,6 +46,7 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
             
             if (inventory[i] != null && inventory[i].getItem().itemID == BlockInfo.TOOLBOX_ID) {
                 worldObj.createExplosion(null, xCoord, yCoord, zCoord, 10, true);
+                // TODO: Translation
                 Minecraft.getMinecraft().thePlayer.sendChatMessage("Tut tut tut, do not create a minecraft inception");
             }
         }

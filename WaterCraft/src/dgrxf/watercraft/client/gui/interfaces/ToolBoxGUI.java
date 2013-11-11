@@ -40,6 +40,7 @@ public class ToolBoxGUI extends GuiContainer {
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		
+		// TODO: Translate
 		fontRenderer.drawString(tile != null ? tile.getPlayerName() + "'s ToolBox" : stack.getTagCompound().getString("playerName") + "'s ToolBox", guiLeft + 7, guiTop + 5, 0x404040);
 		
 	}

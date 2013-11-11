@@ -90,6 +90,7 @@ public class ItemBlockToolBox extends ItemBlock {
                     }
                 }
                 if (inv != null) {
+                    // TODO: Translate
                     list.add("This Toolbox currently contains: ");
                     int index = 0;
                     for (int i = 0; i < inv.length; i++) {
@@ -99,16 +100,20 @@ public class ItemBlockToolBox extends ItemBlock {
                         }
                     }
                     if (index == 0) {
+                     // TODO: Translate
                         list.add("Nothing");
                     }
                 }
             } else {
+                // TODO: Translate
                 list.add("An empty Toolbox");
             }
         } else {
             if (stack.getTagCompound() != null && stack.getTagCompound().hasKey("playerName")) {
+                // TODO: Translate
                 list.add("This Toolbox belongs to: " + stack.getTagCompound().getString("playerName"));
             } else {
+                // TODO: Translate
                 list.add("A unowned Toolbox");
             }
         }
