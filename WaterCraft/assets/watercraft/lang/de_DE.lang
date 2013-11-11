@@ -1,4 +1,5 @@
-﻿
+﻿Deutsche Übersetung von Robotic-Brain
+
 itemGroup.watercraft=WaterCraft
 
 tile.buoyBlockName.name=Boje
@@ -10,3 +11,7 @@ tile.toolBoxBlockName.name=Werkzeugbox
 item.TelescopeName.name=Teleskop
 item.TapeItemName.name=Maßband
 item.wcboat.name=Wc Boot
+
+strings.watercraft:tape_measure_start=Starte Messung: [%s, %s, %s]
+strings.watercraft:tape_measure_end=Beende Messung: [%s, %s, %s]
+strings.watercraft:tape_measure_distance=Abstand: %s
