@@ -20,7 +20,7 @@ public class WCTileEntity extends TileEntity {
     public void setDirection(ForgeDirection d) {
         if (d == ForgeDirection.NORTH || d == ForgeDirection.SOUTH || d == ForgeDirection.WEST || d == ForgeDirection.EAST) {
             worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, d.ordinal(), 3); // Block Update 3=On | 2=Off
-            LogHelper.debug("Buoy direction set: " + d + " at: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
+            LogHelper.debug("TileEntity direction set: " + d + " at: [" + xCoord + ", " + yCoord + ", " + zCoord + "]");
         }
     }
     
