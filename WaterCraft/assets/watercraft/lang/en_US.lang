@@ -1,11 +1,13 @@
-﻿itemGroup.watercraft=WaterCraft
+﻿
+itemGroup.watercraft=WaterCraft
 
 tile.buoyBlockName.name=Buoy
 tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
-tile.smelterBlockName.name=Ice Smelter
 tile.toolBoxBlockName.name=Tool Box
 
+item.lavaBoat.name=Lava Boat
+item.boatChest.name=Chest Boat
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
-item.wcboat.name=Wc Boat
+item.wcboat.name=Boat
