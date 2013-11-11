@@ -74,7 +74,6 @@ public class MultiBlock {
         int tempX = xCoord;
         int tempY = yCoord - 1;
         int tempZ = zCoord;
-        int val = 0;
         switch (direction - 2) {
             case 0:
                 tempZ -= 3;
@@ -91,16 +90,15 @@ public class MultiBlock {
         }
         blocks = new int[2][5][5];
         int yL = 0;
-        int inc = 0;
         for (int y = -1; y < 1; y++) {
-            int xL = 0, zL = 0;
+            
+            int xL = 0;
             for (int i = tempX - 2; i <= tempX + 2; i++) {
-                zL = 0;
+                
+                int zL = 0;
                 for (int j = tempZ - 2; j <= tempZ + 2; j++) {
-                    inc++;
                     if (worldObj.blockExists(i, tempY + y, j)) {
                         blocks[yL][xL][zL] = worldObj.getBlockId(i, tempY + y, j);
-                        int temp = tempY + y;
                     }
                     zL++;
                 }

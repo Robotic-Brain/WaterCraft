@@ -30,28 +30,50 @@ public class NewDockMultiBlock {
         LogHelper.debug("Hayo!!");
         LogHelper.debug(checkBlock(world, start));
         
+        /**
+         * these will hold the final dimensions
+         */
         int leftExtend = 0;
         int rightExtend = 0;
         int frontExtend = 0;
         
-        // Set increment direction to right
-        ForgeDirection searchDir = d.getRotation(ForgeDirection.UP);
-        rightExtend = searchLine(world, start, new Vector3(searchDir));
+        /**
+         * these are the directions to search in
+         */
+        ForgeDirection rightDir = d.getRotation(ForgeDirection.UP);      // Set direction to right
+        ForgeDirection leftDir = rightDir.getOpposite();                 // reverse rightDir (now left)
+        ForgeDirection frontDir = leftDir.getRotation(ForgeDirection.UP);// rotate leftDir clockwise (now front)
+        
+        /********************** Search right **********************/
+        rightExtend = searchLine(world, start, new Vector3(rightDir));
         if (rightExtend < MIN_SIDE_EXTEND) {
             return false;
         }
         
-        // reverse increment direction (now left)
-        searchDir = searchDir.getOpposite();
-        leftExtend = searchLine(world, start, new Vector3(searchDir));
+        /********************** Search left **********************/
+        leftExtend = searchLine(world, start, new Vector3(leftDir));
         if (leftExtend < MIN_SIDE_EXTEND) {
             return false;
         }
         
-        // rotate increment direction clockwise (now front)
-        searchDir = searchDir.getRotation(ForgeDirection.UP);
-        frontExtend = searchLine(world, start.add((new Vector3(d.getRotation(ForgeDirection.UP))).scalarMult(rightExtend)), new Vector3(searchDir));
+        // check if max size exceeded
+        if ((leftExtend + rightExtend + 1) > MAX_SIZE) {
+            return false;
+        }
+        
+        /********************** Search front **********************/
+        // right front search start
+        Vector3 fsStart = start.add((new Vector3(rightDir)).scalarMult(rightExtend));
+        frontExtend = searchLine(world, fsStart, new Vector3(frontDir));
         if (frontExtend < MIN_FRONT_EXTEND) {
+            return false;
+        }
+        
+        /******************* Search front again *******************/
+        // check if other (left) arm matches
+        fsStart = start.add((new Vector3(leftDir)).scalarMult(leftExtend));
+        int leftFrontExtend = searchLine(world, fsStart, new Vector3(frontDir));
+        if (leftFrontExtend < frontExtend) {
             return false;
         }
         
@@ -80,6 +102,7 @@ public class NewDockMultiBlock {
             sPos = s.add(inc.scalarMult(i));
         }
         int result = i-2;
+        result = ((result > 0) ? result : 0);
         LogHelper.debug("Result Extend: " + result);
         return result;
     }
