@@ -3,6 +3,7 @@ package dgrxf.watercraft.client.gui.interfaces.controlunit;
 import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
 
 @SideOnly(Side.CLIENT)
@@ -11,8 +12,8 @@ public abstract class GuiTab extends GuiRectangle {
 	private String name;
 	private int id;
 	
-	public GuiTab(String name, int id) {
-		super(8  + id * 45, 18, 45, 12);
+	public GuiTab(String name, int id, GuiBase gui) {
+		super(8  + id * 45, 18, 45, 12, gui);
 		this.id = id;
 		this.name = name;
 	}

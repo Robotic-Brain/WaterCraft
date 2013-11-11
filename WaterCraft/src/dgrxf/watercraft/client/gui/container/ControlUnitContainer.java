@@ -5,9 +5,11 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
-public class ControlUnitContainer extends Container {
+public class ControlUnitContainer extends Container implements ITeContainer{
 
 	private WCTileEntityControlUnitDock unit;
 	
@@ -31,4 +33,37 @@ public class ControlUnitContainer extends Container {
 		return unit.isUseableByPlayer(entityplayer);
 	}
 
+	@Override
+	public TileEntity getTileEntity() {
+		return unit;
+	}
+	
+	@Override
+	public void addCraftingToCrafters(ICrafting player) {
+		super.addCraftingToCrafters(player);
+		player.sendProgressBarUpdate(this, 0, unit.activeTabIndex);
+	}
+	
+	@Override
+	public void updateProgressBar(int id, int data) {
+		if (id == 0) {
+			unit.activeTabIndex = data;
+		}
+	}
+	
+	private int oldTabIndex;
+	
+	@Override
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		
+		for (Object player: crafters) {
+			if (unit.activeTabIndex != oldTabIndex) {
+				((ICrafting)player).sendProgressBarUpdate(this, 0, unit.activeTabIndex);
+			}
+		}
+		
+		oldTabIndex = unit.activeTabIndex;
+	}
+	
 }

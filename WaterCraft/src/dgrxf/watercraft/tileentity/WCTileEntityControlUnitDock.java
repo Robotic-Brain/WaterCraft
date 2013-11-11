@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
@@ -20,13 +21,15 @@ import dgrxf.watercraft.util.Vector3;
  * 
  */
 
-public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
+public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITileEntityInterfaceEvent{
     
     /**
      * Constants
      */
     private static final int UPDATE_COUNT_DOWN = 20;
     private static final int SECOND_TIMER = 3;
+    
+    public int activeTabIndex;
     
     private boolean multiBlockFormed;
     private int     updateTimer;
@@ -108,4 +111,27 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy {
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
 		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
 	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) {
+		super.readFromNBT(compound);
+		activeTabIndex = compound.getInteger("activeTab");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound compound) {
+		super.writeToNBT(compound);
+		compound.setInteger("activeTab", activeTabIndex);
+	}
+
+	@Override
+	public void receiveInterfaceEvent(byte id, byte[] extraInfo) {
+		switch(id) {
+			case 0:
+				activeTabIndex = (int)extraInfo[0];
+				break;
+			default:
+		}
+	}
+	
 }

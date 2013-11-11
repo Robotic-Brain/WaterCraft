@@ -5,8 +5,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import com.google.common.io.ByteArrayDataInput;
@@ -17,7 +19,9 @@ import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.container.ITeContainer;
 import dgrxf.watercraft.lib.ModInfo;
+import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class PacketHandler implements IPacketHandler {
@@ -27,14 +31,47 @@ public class PacketHandler implements IPacketHandler {
         ByteArrayDataInput reader = ByteStreams.newDataInput(packet.data);
         
         EntityPlayer entityPlayer = (EntityPlayer) player;
+        Container container = entityPlayer.openContainer;
         
         byte packetId = reader.readByte();
         
         switch (packetId) {
+        	case 0:
+        		byte type = reader.readByte();
+				byte lenght = reader.readByte();
+				byte[] val = new byte[lenght];
+				for (int i = 0; i < val.length; i++)
+					val[i] = reader.readByte();
+				
+				if(container != null && container instanceof ITeContainer) {
+					TileEntity te = ((ITeContainer)container).getTileEntity();
+					if(te != null && te instanceof ITileEntityInterfaceEvent) {
+						((ITileEntityInterfaceEvent)te).receiveInterfaceEvent(type, val);
+					}
+				}
+        		break;
             default:
                 System.out.println(ModInfo.getMODID() + " Invalid packet recived!");
         }
     }
+    
+    public static void sendInterfacePacket(byte type, byte[] val) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+		
+		try {
+			
+			dataStream.writeByte((byte)0);
+			dataStream.writeByte(type);
+			dataStream.writeByte((byte)val.length);
+			dataStream.write(val);
+			
+			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
+		} catch (IOException e) {
+			System.err.append("Failed to send interface packet");
+		}
+		
+	}
     
     /*
      * public static void skeletonPacket(int x, int y, int z, String player){

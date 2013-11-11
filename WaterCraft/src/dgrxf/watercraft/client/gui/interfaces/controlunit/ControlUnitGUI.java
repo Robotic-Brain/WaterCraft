@@ -2,6 +2,7 @@ package dgrxf.watercraft.client.gui.interfaces.controlunit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.lwjgl.opengl.GL11;
 
@@ -9,7 +10,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.container.ControlUnitContainer;
 import dgrxf.watercraft.client.gui.interfaces.GuiBase;
+import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.util.LogHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -26,6 +29,7 @@ public class ControlUnitGUI extends GuiBase {
 	private final GuiTab[] tabs;
 	private GuiTab activeTab;
 	private GuiButton addButton;
+	protected GuiButton removeButton;
 	
 	public ControlUnitGUI(InventoryPlayer inventory, WCTileEntityControlUnitDock te) {
 		super(new ControlUnitContainer(inventory, te));
@@ -35,13 +39,14 @@ public class ControlUnitGUI extends GuiBase {
 		ySize = 218;
 		
 		tabs = new GuiTab[] {
-				new GuiTabRoute("First", 0),
-				new GuiTabRoute("Second", 1),
-				new GuiTabRoute("Third", 2),
-				new GuiTabRoute("Fourth", 3)
+				new GuiTabRoute("First", 0, this),
+				new GuiTabRoute("Second", 1, this),
+				new GuiTabRoute("Third", 2, this),
+				new GuiTabRoute("Fourth", 3, this)
 		};
-		
-		activeTab = tabs[0];
+		LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
+		activeTab = tabs[unit.activeTabIndex];
+		((GuiTabRoute)activeTab).isActive = true;
 	}
 
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/controllunit.png");
@@ -87,10 +92,11 @@ public class ControlUnitGUI extends GuiBase {
 		for(GuiTab  tab: tabs) {
 			tab.drawTabTitle(this, x, y);
 		}
+		
 		activeTab.drawForeground(this, x, y);
 		
 		for(GuiTab tab: tabs) {
-			tab.drawString(this, x, y, tab.getName());
+			tab.drawHoverString(this, x, y, tab.getName());
 		}
 	}
 	
@@ -99,8 +105,10 @@ public class ControlUnitGUI extends GuiBase {
 		super.initGui();
 		buttonList.clear();
 		addButton = new GuiButton(0, guiLeft + 93, guiTop + 38, 80, 20, "Add Direction");
+		removeButton = new GuiButton(1, guiLeft + 120, guiTop + 74, 42, 20, "Remove");
+		removeButton.enabled = false;
 		buttonList.add(addButton);
-		
+		buttonList.add(removeButton);
 	}
 	
 	@Override
@@ -113,14 +121,19 @@ public class ControlUnitGUI extends GuiBase {
 		super.mouseClicked(x, y, button);
 		
 		activeTab.mouseClick(this, x, y, button);
-		
+		int i = 0;
 		for(GuiTab tab: tabs) {
 			if(activeTab != tab) {
 				if(tab.inRect(this, x, y)) {
+					((GuiTabRoute)activeTab).isActive = false;
+					unit.activeTabIndex = i;
+					PacketHandler.sendInterfacePacket((byte)0, new byte[] {(byte)i});
 					activeTab = tab;
+					((GuiTabRoute)activeTab).isActive = true;
 					break;
 				}
 			}
+			i++;
 		}
 	}
 	

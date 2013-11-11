@@ -12,7 +12,7 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 
-public class ControlBlockDock extends DirectionalBlock implements ITileEntityProvider {
+public class ControlBlockDock extends DirectionalBlock {
     
     public ControlBlockDock(int id) {
         super(id, Material.iron);
@@ -23,6 +23,11 @@ public class ControlBlockDock extends DirectionalBlock implements ITileEntityPro
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+    
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
     
     @Override
@@ -44,7 +49,7 @@ public class ControlBlockDock extends DirectionalBlock implements ITileEntityPro
     }
     
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createTileEntity(World world, int metadata) {
         return new WCTileEntityControlUnitDock();
     }
 }

@@ -3,8 +3,8 @@ package dgrxf.watercraft.client.gui.interfaces;
 
 public abstract class GuiExtra extends GuiRectangle {
 
-	public GuiExtra(int x, int y, int w, int h) {
-		super(x, y, w, h);
+	public GuiExtra(int x, int y, int w, int h, GuiBase gui) {
+		super(x, y, w, h, gui);
 	}
 
 	public abstract void drawBackground(GuiBase gui, int x, int y);
