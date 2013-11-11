@@ -6,13 +6,15 @@ tile.buoyBlockName.name=浮标
 tile.controlUnitDock.name=控制系统
 tile.freezerBlockName.name=冻水机
 tile.smelterBlockName.name=熔冰机
+tile.toolBoxBlockName.name=工具箱
 
-item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
-item.boatChest.name=Chest Boat NEEDS LOCALIZATION
-item.TelescopeName.name=Telescope NEEDS LOCALIZATION
-item.TapeItemName.name=Tape Measure NEEDS LOCALIZATION
+item.dumbBoat.name=糊涂船
+item.lavaBoat.name=岩浆船
+item.boatChest.name=箱子船
+item.TelescopeName.name=望远镜
+item.TapeItemName.name=卷尺
 item.wcboat.name=船
 
-strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_distance=Distance: %s NEEDS LOCALIZATION
+strings.watercraft:tape_measure_start=开始测量: [%s, %s, %s]
+strings.watercraft:tape_measure_end=结束测量: [%s, %s, %s]
+strings.watercraft:tape_measure_distance=距离: %s
