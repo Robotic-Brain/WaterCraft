@@ -38,14 +38,10 @@ public class ItemTapeMeasure extends Item {
                 setPos(stack, new Vector3(x, y, z));
                 setFirstFlag(stack, true);
                 
-                // TODO: Needs Localization
                 Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_START, x, y, z));
-                //Minecraft.getMinecraft().thePlayer.sendChatMessage("Start Measurement| X: " + x + " Y: " + y + " Z: " + z);
             } else {
                 Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_END, x, y, z));
                 Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
-                /*Minecraft.getMinecraft().thePlayer.sendChatMessage("End Measurement| X: " + x + " Y: " + y + " Z: " + z);
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("Distance: " + getPos(stack).sub(new Vector3(x, y, z)).length());*/
                 setFirstFlag(stack, false);
             }
         }
@@ -59,13 +55,14 @@ public class ItemTapeMeasure extends Item {
      * (only Integers!)
      * 
      * @param stack
-     * @param v position
+     * @param v
+     *            position
      */
     private void setPos(ItemStack stack, Vector3 v) {
         NBTTagCompound tag = getTagCompound(stack);
-        tag.setInteger(NBT_TAG_X, (int)v.x);
-        tag.setInteger(NBT_TAG_Y, (int)v.y);
-        tag.setInteger(NBT_TAG_Z, (int)v.z);
+        tag.setInteger(NBT_TAG_X, (int) v.x);
+        tag.setInteger(NBT_TAG_Y, (int) v.y);
+        tag.setInteger(NBT_TAG_Z, (int) v.z);
         stack.setTagCompound(tag);
     }
     
