@@ -8,6 +8,7 @@ import dgrxf.watercraft.client.renderer.block.ControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.block.ToolBoxRenderer;
 import dgrxf.watercraft.client.renderer.entity.WCBoatRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemBuoyRenderer;
+import dgrxf.watercraft.client.renderer.item.ItemControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemToolBoxRenderer;
 import dgrxf.watercraft.client.sound.SoundHandler;
 import dgrxf.watercraft.entity.WCEntityBoat;
@@ -45,5 +46,6 @@ public class ClientProxy extends CommonProxy {
         
         MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_ID, new ItemBuoyRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.TOOLBOX_ID, new ItemToolBoxRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
     }
 }
