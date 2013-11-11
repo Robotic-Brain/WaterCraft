@@ -58,7 +58,6 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
             this.setDamageTaken(this.getDamageTaken() + par2 * 10.0F);
             this.setBeenAttacked();
             boolean flag = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode;
-            
             if (flag || this.getDamageTaken() > 40.0F) {
                 
                 if (!flag) {
@@ -83,6 +82,26 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
                     = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
                     entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
                     this.worldObj.spawnEntityInWorld(entityitem); } } }
+                }else if (((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode) {
+                	for (int i = 0; i < this.getSizeInventory(); ++i) { ItemStack
+                        itemstack = this.getStackInSlot(i);
+                        
+                        if (itemstack != null) { float f = this.rand.nextFloat() * 0.8F +
+                        0.1F; float f1 = this.rand.nextFloat() * 0.8F + 0.1F; float f2 =
+                        this.rand.nextFloat() * 0.8F + 0.1F;
+                        
+                        while (itemstack.stackSize > 0) { int j = this.rand.nextInt(21) + 10;
+                        
+                        if (j > itemstack.stackSize) { j = itemstack.stackSize; }
+                        
+                        itemstack.stackSize -= j; EntityItem entityitem = new
+                        EntityItem(this.worldObj, this.posX + (double)f, this.posY +
+                        (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.itemID,
+                        j, itemstack.getItemDamage())); float f3 = 0.05F; entityitem.motionX
+                        = (double)((float)this.rand.nextGaussian() * f3); entityitem.motionY
+                        = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
+                        this.worldObj.spawnEntityInWorld(entityitem); } } }
                 }
                 
                 this.setDead();
