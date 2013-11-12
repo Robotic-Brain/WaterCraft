@@ -48,7 +48,7 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
     	GL11.glPushMatrix();
     	GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
     	GL11.glRotatef((90 * direction), 0f, 1f, 0f);   // Directional rotation
-    	GL11.glTranslatef(-0.5f, 0f, 0f);
+    	GL11.glTranslatef(-0.2f, 0f, 0f);
     	GL11.glRotatef(30f, 0f, 0f, 1f);   // Flag rotation
    			
 	    Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (tile.directions[direction].ordinal() + 1) + ".png"));
