@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
@@ -27,6 +28,7 @@ public class ItemTelescope extends Item{
         super(ItemInfo.TELESCOPE_ID);
         setUnlocalizedName(ItemInfo.TELESCOPE_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.creativeTab);
+        itemIcon = ModBlocks.buoy.getParticleIcon();
     }
     
     @Override
@@ -44,10 +46,10 @@ public class ItemTelescope extends Item{
         return false;
     }
     
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
     	itemIcon = register.registerIcon("Watercraft:telescope");
-    }
-
+    }*/
+    
 }

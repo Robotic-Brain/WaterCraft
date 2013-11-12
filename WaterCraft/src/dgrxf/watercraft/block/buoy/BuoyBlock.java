@@ -75,7 +75,7 @@ public class BuoyBlock extends DirectionalBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
-    	register.registerIcon("Watercraft:buoyParticle");
+    	particleIcon = register.registerIcon("Watercraft:buoyParticle");
     }
     
     @SideOnly(Side.CLIENT)
