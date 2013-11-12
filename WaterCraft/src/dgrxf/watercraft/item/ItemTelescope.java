@@ -38,15 +38,11 @@ public class ItemTelescope extends Item{
                     WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;
                     
                     if (buoy.hasNextBuoy()) {
-                    	Watercraft.printToPlayer("Found next buoy at " + buoy.getNextBuoyPos().toString());
                        	float distance = (new Vector3(x, y, z)).sub(buoy.getNextBuoyPos()).length();
-                       	Watercraft.printToPlayer("Distance :" + Float.toString(distance));
                        	float horizontalSpeed = distance / BuoyParticle.getFlyTime();
                     	float verticalSpeed = BuoyParticle.getGravity() * BuoyParticle.getFlyTime() / 2.0F;
                        	
-                       	
                        	Vector3 velocity = (new Vector3(buoy.getBlockDirection())).scalarMult(horizontalSpeed).add(new Vector3(0, verticalSpeed, 0));
-                       	System.out.println(velocity.toString());
                         CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, velocity.y, velocity.z);
                     }
                 }
