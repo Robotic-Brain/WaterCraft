@@ -29,7 +29,11 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F, (float) z + 0.5F);
         Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.BUOY_TEXTURE_LOCATION);
         
+        //GL11.glColor4f(1f, 1f, 1f, 0.2f);
+        
         modelBuoy.renderAll();
+        
+        //GL11.glColor4f(1f, 1f, 1f, 1f);
         
         GL11.glPopMatrix();
     }
@@ -39,7 +43,11 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
     public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z){
     	GL11.glPushMatrix();
     	
-    	GL11.glTranslatef((float) x + 0.5F, (float) y - 2F, (float) z + 0.5F);
+    	GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
+    	GL11.glRotatef(00f, 0f, 1f, 0f);   // Directional rotation
+    	GL11.glTranslatef(-0.5f, 0f, 0f);
+    	GL11.glRotatef(30f, 0f, 0f, 1f);   // Flag rotation
+    	
     	
     	for(int i = 0; i < 4; i++){
     		if(tile.directions[i] != null){
