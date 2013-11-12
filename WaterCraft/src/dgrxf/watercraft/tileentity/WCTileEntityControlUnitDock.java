@@ -11,6 +11,7 @@ import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MultiBlockInfo;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.Vector2;
 import dgrxf.watercraft.util.Vector3;
 
