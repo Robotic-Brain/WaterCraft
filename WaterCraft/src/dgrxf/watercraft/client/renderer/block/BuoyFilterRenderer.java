@@ -20,7 +20,11 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
     	renderBouy(x, y, z);
-    	renderFlags((WCTileEntityFilterBuoy) tileentity, x, y, z);
+    	for(int i = 0; i < 4; i++){
+    		if(((WCTileEntityFilterBuoy) tileentity).directions[i] != null){
+    			renderFlags((WCTileEntityFilterBuoy) tileentity, x, y, z, i);
+    		}
+    	}
     }
     
     public void renderBouy(double x, double y, double z){
@@ -40,20 +44,15 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
     
     private IModelCustom flag = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
     
-    public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z){
+    public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z, int direction){
     	GL11.glPushMatrix();
+    	GL11.glRotatef((90 * direction), 0f, 1f, 0f);   // Directional rotation
     	GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
     	GL11.glTranslatef(-0.5f, 0f, 0f);
     	GL11.glRotatef(30f, 0f, 0f, 1f);   // Flag rotation
-    	
-    	
-    	for(int i = 0; i < 4; i++){
-    		if(tile.directions[i] != null){
-    			GL11.glRotatef((90 * i), 0f, 1f, 0f);   // Directional rotation
-	    		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (tile.directions[i].ordinal() + 1) + ".png"));
-	    		flag.renderAll();
-    		}
-    	}
+   			
+	    Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (tile.directions[direction].ordinal() + 1) + ".png"));
+	    flag.renderAll();
     	
     	GL11.glPopMatrix();
     }
