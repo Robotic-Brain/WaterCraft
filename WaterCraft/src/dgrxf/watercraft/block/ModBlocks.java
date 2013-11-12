@@ -6,6 +6,7 @@ import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.block.buoy.BuoyFilterBlock;
 import dgrxf.watercraft.item.ItemBlockToolBox;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
+import dgrxf.watercraft.item.buoy.ItemBlockBuoyFilter;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
@@ -38,7 +39,7 @@ public class ModBlocks {
         toolbox = new ToolBoxBlock();
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
-        GameRegistry.registerBlock(filter, ItemBlockBuoy.class, BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(filter, ItemBlockBuoyFilter.class, BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
         
         GameRegistry.registerBlock(controlUnitDock, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
