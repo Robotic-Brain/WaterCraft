@@ -40,6 +40,7 @@ public class ClientProxy extends CommonProxy {
         RenderInfo.BUOY_FILTER_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityBuoy.class, new BuoyRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityFilterBuoy.class, new BuoyFilterRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityToolBox.class, new ToolBoxRenderer());
 
