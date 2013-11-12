@@ -16,5 +16,6 @@ public enum Colours {
 	brown,
 	green,
 	red,
-	black;	
+	black,
+	none;
 }

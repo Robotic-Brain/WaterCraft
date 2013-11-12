@@ -51,6 +51,8 @@ public class WCEntityBoatBase extends Entity
         return false;
     }
 
+    
+    @Override
     protected void entityInit()
     {
         this.dataWatcher.addObject(17, new Integer(0));

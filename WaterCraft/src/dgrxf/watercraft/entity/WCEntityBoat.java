@@ -47,6 +47,13 @@ public class WCEntityBoat extends WCEntityBoatBase {
         this.ridable = false;
     }
     
+    @Override
+    protected void entityInit()
+    {
+    	super.entityInit();
+    	dataWatcher.addObject(20, new Integer(Colours.none.ordinal()));
+    }
+    
     public void setTargetLocation(Vector2 target) {
         this.target = target;
     }
@@ -123,7 +130,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     	ItemStack stack = player.getCurrentEquippedItem();
     	if(stack != null && stack.getItem().itemID == ModItems.flag.itemID){
     		Colours[] temp = Colours.values();
-    		flag = temp[stack.getItemDamage()];
+    		setFlagColor(temp[stack.getItemDamage()]);
     	}
     	
         double d5 = -Math.sin((double) (this.rotationYaw * (float) Math.PI / 180.0F));
@@ -143,18 +150,26 @@ public class WCEntityBoat extends WCEntityBoatBase {
     	return temp[id];
     }
     
-    @Override
+    /*@Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
     	super.readEntityFromNBT(compound);
     	if(compound.hasKey("flag"))
     		flag = getColour(compound.getInteger("flag"));
-    }
+    }*/
     
-    @Override
+    /*@Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
     	super.writeEntityToNBT(compound);
     	if(flag != null)
     		compound.setInteger("flag", flag.ordinal());
+    }*/
+    
+    public void setFlagColor(Colours col){
+    	this.dataWatcher.updateObject(20, Integer.valueOf(col.ordinal()));
+    }
+    
+    public Colours getFlagColor(){
+    	return this.getColour(dataWatcher.getWatchableObjectInt(20));
     }
     
     public void setDamageTaken(float par1) {
