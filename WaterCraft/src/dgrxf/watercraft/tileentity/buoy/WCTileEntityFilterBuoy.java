@@ -4,6 +4,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.enumeration.Colours;
 
 
@@ -14,6 +16,17 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 	public WCTileEntityFilterBuoy() {
 		directions = new Colours[4];
 	}	
+	
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		
+		  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+		  
+		  if(e != null){
+			  System.out.println(e.flag);
+		  }
+	}
 	
 	public void setColour(int direction, Colours colour){
 		int index = direction - 2;
@@ -28,7 +41,6 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 			directions[index] = null;
 		}
 	}
-	
 	
 	@Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
