@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
 //import dgrxf.watercraft.tileentity.WCTileEntityDock;
@@ -26,6 +27,14 @@ public class WCEntityBoat extends WCEntityBoatBase {
     protected Vector2                     target;
     protected WCTileEntityControlUnitDock homeDock = null;
     public Colours flag;
+    
+    /**
+     * Constants
+     */
+    private static final int HIT_TIME_WATCHER = 17;
+    private static final int FORWARD_WATCHER = 18;
+    private static final int DAMAGE_TAKEN_WATCHER = 19;
+    private static final int FLAG_COLOR_WATCHER = 20;
     
     public WCEntityBoat(World world) {
         super(world);
@@ -51,14 +60,12 @@ public class WCEntityBoat extends WCEntityBoatBase {
     protected void entityInit()
     {
     	super.entityInit();
-    	dataWatcher.addObject(20, new Integer(Colours.none.ordinal()));
+    	dataWatcher.addObject(FLAG_COLOR_WATCHER, new Integer(Colours.none.ordinal()));
     }
     
     public void setTargetLocation(Vector2 target) {
         this.target = target;
     }
-    
-    private static final int MAX_SPEED = 10;
     
     public void moveToTarget() {
         float xDist, zDist;
@@ -97,6 +104,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public void onEntityUpdate() {
         if (!worldObj.isRemote) {
             moveToTarget();
+            LogHelper.debug("SV Flag color: " + getFlagColor());
         }else{
             this.rotationPitch = 0.0F;
             double d5 = (double)this.rotationYaw;
@@ -122,6 +130,8 @@ public class WCEntityBoat extends WCEntityBoatBase {
 
             this.rotationYaw = (float)((double)this.rotationYaw + d12);
             this.setRotation(this.rotationYaw, this.rotationPitch);
+            
+            LogHelper.debug("CL Flag color: " + getFlagColor());
         }
     }
     
@@ -165,35 +175,35 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
     
     public void setFlagColor(Colours col){
-    	this.dataWatcher.updateObject(20, Integer.valueOf(col.ordinal()));
+    	this.dataWatcher.updateObject(FLAG_COLOR_WATCHER, Integer.valueOf(col.ordinal()));
     }
     
     public Colours getFlagColor(){
-    	return this.getColour(dataWatcher.getWatchableObjectInt(20));
+    	return this.getColour(dataWatcher.getWatchableObjectInt(FLAG_COLOR_WATCHER));
     }
     
     public void setDamageTaken(float par1) {
-        this.dataWatcher.updateObject(19, Float.valueOf(par1));
+        this.dataWatcher.updateObject(DAMAGE_TAKEN_WATCHER, Float.valueOf(par1));
     }
     
     public float getDamageTaken() {
-        return this.dataWatcher.getWatchableObjectFloat(19);
+        return this.dataWatcher.getWatchableObjectFloat(DAMAGE_TAKEN_WATCHER);
     }
     
     public void setTimeSinceHit(int par1) {
-        this.dataWatcher.updateObject(17, Integer.valueOf(par1));
+        this.dataWatcher.updateObject(HIT_TIME_WATCHER, Integer.valueOf(par1));
     }
     
     public int getTimeSinceHit() {
-        return this.dataWatcher.getWatchableObjectInt(17);
+        return this.dataWatcher.getWatchableObjectInt(HIT_TIME_WATCHER);
     }
     
     public void setForwardDirection(int par1) {
-        this.dataWatcher.updateObject(18, Integer.valueOf(par1));
+        this.dataWatcher.updateObject(FORWARD_WATCHER, Integer.valueOf(par1));
     }
     
     public int getForwardDirection() {
-        return this.dataWatcher.getWatchableObjectInt(18);
+        return this.dataWatcher.getWatchableObjectInt(FORWARD_WATCHER);
     }
 
 	public Block getDisplayTile() {
