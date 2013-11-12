@@ -26,7 +26,15 @@ public class BuoyFilterBlock extends BuoyBlock {
     
     public BuoyFilterBlock(int id) {
         super(id);
+        setCreativeTab(Watercraft.creativeTab);
         setUnlocalizedName(BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
+        setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
+        setLightValue(1F);
+    }
+    
+    @Override
+    public int getRenderType() {
+    	return RenderInfo.BUOY_FILTER_RENDER_ID;
     }
     
     @Override
