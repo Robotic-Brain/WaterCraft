@@ -3,11 +3,13 @@ package dgrxf.watercraft.client.renderer.block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityFilterBuoy;
 
@@ -36,7 +38,16 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
     }
     
+    private IModelCustom flag = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
+    
     public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z){
-    	System.out.println("This is a filter");
+    	GL11.glPushMatrix();
+    	
+    	for(int i = 0; i < 4; i++){
+    		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (tile.directions[i].ordinal() + 1) + ".png"));
+    		flag.renderAll();
+    	}
+    	
+    	GL11.glPopMatrix();
     }
 }
