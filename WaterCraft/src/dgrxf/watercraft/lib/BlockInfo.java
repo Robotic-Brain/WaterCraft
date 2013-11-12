@@ -19,10 +19,7 @@ public class BlockInfo {
     public static final String FREEZER_UNLOCALIZED_NAME           = "freezerBlockName";
     public static final String FREEZER_KEY                        = "Freezer";
     public static final String FREEZER_TE_KEY                     = "WCTileEntityFreezer";
-    
-    public static final String SMELTER_UNLOCALIZED_NAME           = "smelterBlockName";
-    public static final String SMELTER_KEY                        = "Smelter";
-    
+
     public static final String TOOLBOX_UNLOCALIZED_NAME           = "toolBoxBlockName";
     public static final String TOOLBOX_KEY                        = "ToolBox";
     public static final String TOOLBOX_TE_KEY                     = "WCTileEntityToolBox";
@@ -39,9 +36,6 @@ public class BlockInfo {
     
     public static final int    FREEZER_ID_DEFAULT                 = 703;
     public static int          FREEZER_ID;
-    
-    public static final int    SMELTER_ID_DEFAULT                 = 704;
-    public static int          SMELTER_ID;
     
     public static final int    DROPZONE_ID_DEFAULT                = 705;
     public static int          DROPZONE_ID;
