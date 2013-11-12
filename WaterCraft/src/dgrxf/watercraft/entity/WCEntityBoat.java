@@ -128,7 +128,8 @@ public class WCEntityBoat extends WCEntityBoatBase {
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
     	super.writeEntityToNBT(compound);
-        compound.setInteger("flag", flag.ordinal());
+    	if(flag != null)
+    		compound.setInteger("flag", flag.ordinal());
     }
     
     public void setDamageTaken(float par1) {
