@@ -9,7 +9,8 @@ import net.minecraft.client.Minecraft;
 
 public enum Sounds {
 	TOOLBOX_OPENING("Toolbox_opening"),
-	TOOLBOX_CLOSING("Toolbox_closing");
+	TOOLBOX_CLOSING("Toolbox_closing"),
+	INCEPTION("Inception");
 	
 	public static final String SOUNDS_LOCATION = ModInfo.MODID;
 	private String name;
