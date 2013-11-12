@@ -7,9 +7,9 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import dgrxf.watercraft.enumeration.Colours;
 
 
-public class WCTileEntityFilterBuoy extends WCTileEntityBuoy {
+public class WCTileEntityFilterBuoy extends WCBouyLogic {
 	
-	private Colours[] directions;
+	public Colours[] directions;
 	
 	public WCTileEntityFilterBuoy() {
 		directions = new Colours[4];
@@ -22,6 +22,8 @@ public class WCTileEntityFilterBuoy extends WCTileEntityBuoy {
 		}else
 			return false;
 	}
+	
+	
 	
 	@Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
