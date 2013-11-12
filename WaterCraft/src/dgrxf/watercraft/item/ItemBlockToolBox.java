@@ -16,6 +16,7 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.RotationHelper;
+import dgrxf.watercraft.util.TranslationHelper;
 
 /**
  * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
@@ -94,8 +95,7 @@ public class ItemBlockToolBox extends ItemBlock {
                     }
                 }
                 if (inv != null) {
-                    // TODO: Translate
-                    list.add("This Toolbox currently contains: ");
+                    list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_CONTAINS));
                     int index = 0;
                     for (int i = 0; i < inv.length; i++) {
                         if (inv[i] != null) {
@@ -104,21 +104,17 @@ public class ItemBlockToolBox extends ItemBlock {
                         }
                     }
                     if (index == 0) {
-                     // TODO: Translate
-                        list.add("Nothing");
+                        list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_CONTAINS_NOTING));
                     }
                 }
             } else {
-                // TODO: Translate
-                list.add("An empty Toolbox");
+                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_EMPTY));
             }
         } else {
             if (stack.getTagCompound() != null && stack.getTagCompound().hasKey("playerName")) {
-                // TODO: Translate
-                list.add("This Toolbox belongs to: " + stack.getTagCompound().getString("playerName"));
+                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_OWNER, stack.getTagCompound().getString("playerName")));
             } else {
-                // TODO: Translate
-                list.add("A unowned Toolbox");
+                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_NO_OWNER));
             }
         }
     }

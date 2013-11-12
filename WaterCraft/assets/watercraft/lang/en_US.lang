@@ -16,4 +16,10 @@ strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Distance: %s
 
+strings.watercraft:toolbox_contains=This Toolbox currently contains: 
+strings.watercraft:toolbox_contains_nothing=Nothing
+strings.watercraft:toolbox_empty=An empty Toolbox
+strings.watercraft:toolbox_owner=This Toolbox belongs to: %s
+strings.watercraft:toolbox_no_owner=A unowned Toolbox
+
 death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox.

@@ -38,10 +38,10 @@ public class ItemTapeMeasure extends Item {
                 setPos(stack, new Vector3(x, y, z));
                 setFirstFlag(stack, true);
                 
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_START, x, y, z));
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z));
             } else {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_END, x, y, z));
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TABLE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z));
+                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
                 setFirstFlag(stack, false);
             }
         }
