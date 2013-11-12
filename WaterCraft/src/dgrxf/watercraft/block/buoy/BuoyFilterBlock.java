@@ -17,6 +17,7 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.DirectionalBlock;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.enumeration.Colours;
+import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.RenderInfo;
@@ -40,14 +41,16 @@ public class BuoyFilterBlock extends BuoyBlock {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
     	if(world.isRemote)
-    		return false;
+    		return true;
     	
     	ItemStack stack = player.getCurrentEquippedItem();
     	WCTileEntityFilterBuoy tile = (WCTileEntityFilterBuoy) world.getBlockTileEntity(x, y, z);
     	
-    	if(tile != null && stack != null && stack.getItem().itemID == ItemInfo.FLAG_ID){
+    	if(tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
+    		System.out.println("Adding colour");
     		Colours[] temp = Colours.values();
     		tile.setColour(side, temp[stack.getItemDamage()]);
+    		world.markBlockForUpdate(x, y, z);
     		return true;
     	}
     	return false;
