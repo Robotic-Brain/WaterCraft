@@ -18,3 +18,5 @@ item.wcboat.name=船
 strings.watercraft:tape_measure_start=开始测量: [%s, %s, %s]
 strings.watercraft:tape_measure_end=结束测量: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=距离: %s
+
+death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox. NEEDS LOCALIZATION
