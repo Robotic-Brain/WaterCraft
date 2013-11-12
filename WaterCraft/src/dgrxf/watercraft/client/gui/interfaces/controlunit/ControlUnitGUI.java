@@ -27,7 +27,7 @@ public class ControlUnitGUI extends GuiBase {
 
 	private WCTileEntityControlUnitDock unit;
 	private final GuiTab[] tabs;
-	private GuiTab activeTab;
+	public GuiTab activeTab;
 	private GuiButton addButton;
 	protected GuiButton removeButton;
 	

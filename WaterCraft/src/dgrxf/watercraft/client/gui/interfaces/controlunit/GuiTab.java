@@ -27,7 +27,10 @@ public abstract class GuiTab extends GuiRectangle {
 	}
 	
 	public void drawTabTitle(ControlUnitGUI gui, int x, int y) {
-		gui.getFontRenderer().drawString(name, getX() + 2,  getY() + 2, 0);
+		if(gui.activeTab == this)
+			gui.getFontRenderer().drawString(name, getX() + 2,  getY() + 2, 0xFFFFFF);
+		else
+			gui.getFontRenderer().drawString(name, getX() + 2,  getY() + 2, 0);
 	}
 
 	public abstract void drawBackground(ControlUnitGUI gui, int x, int y);

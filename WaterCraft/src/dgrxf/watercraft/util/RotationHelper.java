@@ -9,6 +9,34 @@ import net.minecraftforge.common.ForgeDirection;
  */
 public class RotationHelper {
     
+	
+	/**
+	 * Converts a four way forge direction to a yaw rotation
+	 * 
+	 * 
+	 * @param dir
+	 * : The four way direction to yaw, will always return 0 if UP or DOWN is given
+	 */
+	public static int forgeToIntYaw(ForgeDirection dir){
+		int yaw = 0;
+		
+		switch(dir){
+		case NORTH:
+			yaw = 180;
+			break;
+		case EAST:
+			yaw = -90;
+			break;
+		case WEST:
+			yaw = 90;
+			break;
+		default:
+			yaw = 0;
+			break;
+		}
+		return yaw;
+	}
+	
     /**
      * Converts player Yaw to 4 way ForgeDirection
      * 

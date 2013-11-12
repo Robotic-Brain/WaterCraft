@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -20,6 +21,7 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
 import dgrxf.watercraft.creativetab.CreativeTabWaterCraft;
 import dgrxf.watercraft.entity.Entities;
+import dgrxf.watercraft.event.WCEventHandler;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
@@ -48,6 +50,7 @@ public class Watercraft {
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
+    	MinecraftForge.EVENT_BUS.register(new WCEventHandler());
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         RecipeHelper.removeCraftingRecipe(new ItemStack(Item.boat));

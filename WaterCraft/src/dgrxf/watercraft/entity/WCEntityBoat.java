@@ -90,7 +90,6 @@ public class WCEntityBoat extends WCEntityBoatBase {
         if (!worldObj.isRemote) {
             moveToTarget();
         }
-        super.onEntityUpdate();
     }
     
     @Override
@@ -157,7 +156,6 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
 
 	public Block getDisplayTile() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -80,6 +80,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     /*
      * NOTE: This needs updating, should return Entity[] of all boats in List
      * list. Haven't bothered yet though for testing purposes.
+     * TODO: Update this to work with the new dock code
      */
     @Override
     public WCEntityBoat findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoat> entC) {
