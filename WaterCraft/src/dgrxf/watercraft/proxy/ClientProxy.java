@@ -18,9 +18,9 @@ import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.RenderInfo;
-import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
 /**
  * Client Proxy
