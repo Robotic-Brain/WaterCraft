@@ -39,6 +39,7 @@ public class ConfigurationHandler {
             BlockInfo.FREEZER_ID = config.getBlock(BlockInfo.FREEZER_KEY, BlockInfo.FREEZER_ID_DEFAULT).getInt();
             BlockInfo.DROPZONE_ID = config.getBlock(BlockInfo.DROPZONE_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
             BlockInfo.TOOLBOX_ID = config.getBlock(BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
+            BlockInfo.BUOY_FILTER_ID = config.getBlock(BlockInfo.BUOY_FILTER_KEY, BlockInfo.BUOY_FILTER_ID_DEFAULT).getInt();
             
             // Misc
             
