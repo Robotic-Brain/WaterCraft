@@ -9,6 +9,7 @@ public class BuoyParticle extends EntityFX {
 	
 	private static final float gravity = 0.1F;
 	private static final int FLY_TIME = 30;
+	
 	private Vector3 startingVelocity;
 
 	public BuoyParticle(World world, double x, double y, double z, double vx, double vy, double vz) {
@@ -20,7 +21,6 @@ public class BuoyParticle extends EntityFX {
 		setParticleIcon(ModBlocks.buoy.getParticleIcon());
 	}
 	
-	// Overriding to remove friction
 	@Override
 	public void onUpdate() {
 	    motionX = startingVelocity.x;
