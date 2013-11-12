@@ -46,8 +46,8 @@ public class BuoyFilterRenderer extends TileEntitySpecialRenderer {
     
     public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z, int direction){
     	GL11.glPushMatrix();
-    	GL11.glRotatef((90 * direction), 0f, 1f, 0f);   // Directional rotation
     	GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
+    	GL11.glRotatef((90 * direction), 0f, 1f, 0f);   // Directional rotation
     	GL11.glTranslatef(-0.5f, 0f, 0f);
     	GL11.glRotatef(30f, 0f, 0f, 1f);   // Flag rotation
    			
