@@ -12,16 +12,24 @@ import dgrxf.watercraft.enumeration.Colours;
 public class WCTileEntityFilterBuoy extends WCBouyLogic {
 	
 	public Colours[] directions;
+	public int tick;
 	
 	public WCTileEntityFilterBuoy() {
 		directions = new Colours[4];
+		tick = 30;
 	}	
 	
 	@Override
 	public void updateEntity() {		
 		  if(worldObj.isRemote) return;
-		
-		  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+		  
+		  tick--;
+		  if(tick <= 0){
+			  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+			  if(e != null){
+				  
+			  }
+		  }
 	}
 	
 	public void setColour(int direction, Colours colour){

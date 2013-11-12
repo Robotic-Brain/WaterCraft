@@ -37,6 +37,9 @@ public class ItemInfo {
     public static final String FLAG_UNLOCALIZED_NAME = "flag";
 	public static final String FLAG_KEY = "Flag";
 	
+	public static final String ICEBOAT_UNLOCALIZED_NAME = "iceBoat";
+	public static final String ICEBOAT_KEY = "Ice Boat";
+	
     /*************
      * Integers
      *************/
@@ -65,4 +68,7 @@ public class ItemInfo {
     
     public static final int FLAG_ID_DEFAULT = 713;
     public static int FLAG_ID;
+    
+    public static final int ICEBOAT_ID_DEFAULT = 714;
+    public static int ICEBOAT_ID;
 }
