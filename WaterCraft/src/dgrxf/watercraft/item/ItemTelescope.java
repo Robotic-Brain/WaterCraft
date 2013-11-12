@@ -13,7 +13,7 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.particles.BuoyParticle;
 import dgrxf.watercraft.client.particles.CustomParticles;
 import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.MathHelper;
 import dgrxf.watercraft.util.Vector3;
 
