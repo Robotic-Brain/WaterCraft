@@ -48,6 +48,14 @@ public class GuiRectangle {
         return y;
     }
     
+    public int getWidth() {
+        return w;
+    }
+    
+    public int getHeight() {
+        return h;
+    }
+    
     public void draw(GuiBase gui, int srcX, int srcY) {
         gui.drawTexturedModalRect(gui.getLeft() + x, gui.getTop() + y, srcX, srcY, w, h);
     }

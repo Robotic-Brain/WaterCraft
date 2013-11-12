@@ -2,21 +2,32 @@ package dgrxf.watercraft.client.gui.interfaces;
 
 import java.util.ArrayList;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-public class GuiScrollList extends GuiExtra {
-    
+import net.minecraft.client.Minecraft;
+import net.minecraft.util.ResourceLocation;
+import dgrxf.watercraft.client.gui.GuiColor;
+import dgrxf.watercraft.util.Vector2;
+
+public abstract class GuiScrollList extends GuiExtra{
+
     private ArrayList<String> list;
     private int               scrollPos;
     private int               selectedIndex;
     private boolean           isScrolling;
+    private int               itemHeight;
+    private int               maxItemDisplayed;
+    private GuiColor          textColor = GuiColor.LIGHTGRAY;
     
-    public GuiScrollList(int x, int y, int w, int h) {
+    public GuiScrollList(int x, int y, int w, int h, int itemHeight, ArrayList<String> list) {
         super(x, y, w, h);
-        list = new ArrayList<String>();
+        this.itemHeight = itemHeight;
+        this.list = list;
+        maxItemDisplayed = (h / itemHeight) + 1;
+    }
+    
+    public GuiScrollList(int x, int y, int w, int h, int itemHeight) {
+        this(x, y, w, h, itemHeight, new ArrayList<String>());
     }
     
     public void clearList() {
@@ -32,6 +43,10 @@ public class GuiScrollList extends GuiExtra {
         return true;
     }
     
+    public boolean isFocused() {
+        return true;
+    }
+    
     public int getSize() {
         return list.size();
     }
@@ -41,22 +56,19 @@ public class GuiScrollList extends GuiExtra {
     }
     
     public void remove(int index) {
-        if (index < 0) {
-            return;
-        }
+        if (index < 0) return;
         list.remove(index);
-        if (index == selectedIndex && list.size() > 0) {
-            selectedIndex = 0;
-        } else if (index == selectedIndex) {
-            selectedIndex = -1;
-        }
-        if (list.size() < 6) {
-            scrollPos = 0;
-        }
+        if (index == selectedIndex && list.size() > 0) selectedIndex = 0;
+        else if(index == selectedIndex) selectedIndex = -1;
+        if (list.size() < maxItemDisplayed) scrollPos = 0;
     }
     
     public ArrayList<String> getList() {
         return list;
+    }
+    
+    public void setList(ArrayList<String> list) {
+        this.list = list;
     }
     
     public int getSelectedIndex() {
@@ -64,139 +76,119 @@ public class GuiScrollList extends GuiExtra {
     }
     
     private void doScroll(int y) {
-        scrollPos = (y - (scrollArea[1] - getY()) - 16);
-        if (scrollPos < 0) {
-            scrollPos = 0;
-        } else if (scrollPos > 47) {
-            scrollPos = 47;
-        }
+        scrollPos = (y - (getScrollBar()[1]) - (int) (getScrollBarSize().y * 2));
+        int maxScroll = getScrollBar()[3] - (int) getScrollBarSize().y;
+        if (scrollPos < 0) scrollPos = 0;
+        else if (scrollPos > maxScroll) scrollPos = maxScroll;
     }
     
     private int getScroll() {
-        float total = list.size() * 11;
-        float avalible = 55;
+        float total = list.size() * itemHeight;
+        float avalible = getHeight();
         float overflow = total - avalible;
-        float lenght = scrollArea[3] - 8;
+        float lenght = getScrollBar()[3] - getScrollBarSize().y;
         return (int) (overflow * (scrollPos / lenght));
     }
     
     private int[] getItemButtonRect(int id) {
-        int offsetY = 11 * id - getScroll();
-        //System.out.println("Id: " + id + " OffsetY: " + getScroll());
-        int height = 11;
+        int offsetY = itemHeight * id - getScroll();
+        int height = itemHeight;
         int y = getY() + offsetY;
         
         if (offsetY < 0) {
             height += offsetY;
             y -= offsetY;
-        } else if (offsetY + height >= 55) {
-            height = 55 - offsetY;
+        }else if (offsetY + height >= getHeight()) {
+            height = getHeight() - offsetY;
         }
-        return new int[] { getX(), y, 84, height, offsetY };
+        return new int[] {getX(), y, getWidth(), height, offsetY};
     }
     
     @Override
     public void drawBackground(GuiBase gui, int x, int y) {
-        if (!isActive()) {
-            return;
-        }
+        if (!isActive()) return;
         
         for (int i = 0; i < list.size(); i++) {
             int[] rect = getItemButtonRect(i);
             
             if (rect[3] > 0) {
                 
-                int srcY = 223;
-                int hoverSrcY = srcY + (inRect(gui, x, y, rect) ? 11
-                        : list.get(i) == null ? 33 : 0);
-                int selectedSrcY = 234;
+                int srcY = (int) getScrollItemBackgroundPos().y;
+                int hoverSrcY = (int) (inRect(gui, x, y, rect) ? getScrollItemHoverBackgroundPos().y : -itemHeight);
+                int selectedSrcY = (int) getScrollItemSelectedBackgroundPos().y;
                 
                 if (rect[4] < 0) {
                     srcY -= rect[4];
                     selectedSrcY -= rect[4];
                     hoverSrcY -= rect[4];
                 }
-                draw(gui, rect, 172, srcY);
-                draw(gui, rect, 172, hoverSrcY);
-                if (i == selectedIndex) {
-                    draw(gui, rect, 172, selectedSrcY);
-                }
                 
+                if (i == selectedIndex) 
+                    draw(gui, rect, (int) getScrollItemSelectedBackgroundPos().x, selectedSrcY);
+                else
+                    draw(gui, rect, (int) getScrollItemBackgroundPos().x, srcY);
+                if (hoverSrcY > 0 && isFocused()) draw(gui, rect, (int) getScrollItemHoverBackgroundPos().x, hoverSrcY);
+                    
             }
         }
-        int[] pos = { scrollArea[0] - getX(),
-                scrollArea[1] - getY() + scrollPos, 9, 8 };
-        draw(gui, pos, 157, 218 + (list.size() >= 6 ? 0 : 8));
+        
+        int[] pos = {getScrollBar()[0], getScrollBar()[1] + scrollPos, (int) getScrollBarSize().x, (int) getScrollBarSize().y};
+        draw(gui, pos, 
+                (list.size() >= maxItemDisplayed ? (int) getScrollBarTexturePos().x: (int) getScrollBarTextureDisabledPos().x),
+                (list.size() >= maxItemDisplayed ? (int) getScrollBarTexturePos().y: (int) getScrollBarTextureDisabledPos().y));
     }
     
     @Override
     public void drawForeground(GuiBase gui, int x, int y) {
-        if (!isActive()) {
-            return;
-        }
+        if (!isActive()) return;
         
         for (int i = 0; i < list.size(); i++) {
             int[] rect = getItemButtonRect(i);
             
             int x1 = rect[0] + 3;
-            int y1 = rect[1] + 2;
-            if (rect[4] < 0) {
+            int textY = (int) Math.ceil((float)itemHeight / 2F - 4F);
+            int y1 = rect[1] + (textY < 0 ? 0: textY);
+            if (rect[4] < 0) 
                 y1 += rect[4];
-            }
             
-            if ((rect[4] >= -8) && (rect[4] <= 52)) {
-                gui.getFontRenderer().drawString(list.get(i) == null ? ""
-                        : list.get(i), x1, y1, 4210752);
-            }
-            Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation("watercraft", "textures/gui/controllunit.png"));
-            GL11.glColor4f(1F, 1F, 1F, 1F);
-            gui.drawTexturedModalRect(getX(), getY() - 8, 19, 57, 50, 8);
-            gui.drawTexturedModalRect(getX(), getY() + 55, 19, 120, 50, 8);
+            int maxScroll = getScrollBar()[3] - (int) getScrollBarSize().y;
+            if ((rect[4] >= -textY) && (rect[4] <= maxScroll))
+                gui.getFontRenderer().drawString(list.get(i) == null ? "" : list.get(i), x1, y1, textColor.toRGB());
         }
     }
     
-    public void onClick(int id) {
-    }
-    
+    public void onClick(int id) {}
+     
     @Override
     public void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked) {
-        if (!isActive()) {
-            return;
-        }
+        if (!isActive()) return;
         
         if (isScrolling) {
-            if (button == -1) {
+            if (button == -1)
                 this.isScrolling = false;
-            } else {
+            else
                 doScroll(y);
-            }
         }
     }
     
     @Override
     public void mouseClick(GuiBase gui, int x, int y, int button) {
-        if (!isActive()) {
-            return;
-        }
+        if (!isActive()) return;
         
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) != null) {
                 int[] rect = getItemButtonRect(i);
                 
                 if ((rect[3] > 0) && (inRect(gui, x, y, rect))) {
-                    if (selectedIndex == i) {
-                        selectedIndex = -1;
-                    } else {
-                        selectedIndex = i;
-                    }
+                    if (selectedIndex == i) selectedIndex = -1;
+                    else selectedIndex = i;
                     onClick(i);
                     break;
                 }
             }
         }
-        int[] pos = { scrollArea[0] - getX(), scrollArea[1] - getY(), 9,
-                scrollArea[3] };
-        if ((list.size() >= 6) && (inRect(gui, x, y, pos))) {
+        int[] pos = {getScrollBar()[0], getScrollBar()[1], getScrollBar()[2], getScrollBar()[3]};
+        if ((list.size() >= maxItemDisplayed) && (inRect(gui, x, y, pos))) {
             doScroll(y);
             isScrolling = true;
         }
@@ -210,6 +202,21 @@ public class GuiScrollList extends GuiExtra {
         }
     }
     
-    private int[] scrollArea = { 105 + getX(), 65 + getY(), 9, 55 };
+    private int[] getScrollBar() {
+        GuiRectangle scroll = getScrollBarArea();
+        return new int[]{scroll.getX(), scroll.getY(), scroll.getWidth(), scroll.getHeight()};
+    }
+    
+    public void setTextColor(GuiColor color) {
+        textColor = color;
+    }
+    
+    public abstract Vector2 getScrollItemBackgroundPos();
+    public abstract Vector2 getScrollItemHoverBackgroundPos();
+    public abstract Vector2 getScrollItemSelectedBackgroundPos();
+    public abstract GuiRectangle getScrollBarArea();
+    public abstract Vector2 getScrollBarSize();
+    public abstract Vector2 getScrollBarTexturePos();
+    public abstract Vector2 getScrollBarTextureDisabledPos();
     
 }

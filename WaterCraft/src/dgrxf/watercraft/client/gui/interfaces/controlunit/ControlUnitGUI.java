@@ -1,12 +1,8 @@
 package dgrxf.watercraft.client.gui.interfaces.controlunit;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
-
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -17,6 +13,14 @@ import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.util.LogHelper;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
 public class ControlUnitGUI extends GuiBase {
@@ -34,10 +38,12 @@ public class ControlUnitGUI extends GuiBase {
         xSize = 196;
         ySize = 218;
         
-        tabs = new GuiTab[] { new GuiTabRoute("First", 0, this),
-                new GuiTabRoute("Second", 1, this),
-                new GuiTabRoute("Third", 2, this),
-                new GuiTabRoute("Fourth", 3, this) };
+        tabs = new GuiTab[] {
+                new GuiTabRoute("First", 0),
+                new GuiTabRoute("Second", 1),
+                new GuiTabRoute("Third", 2),
+                new GuiTabRoute("Fourth", 3)
+        };
         LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
         activeTab = tabs[unit.activeTabIndex];
         ((GuiTabRoute) activeTab).isActive = true;
