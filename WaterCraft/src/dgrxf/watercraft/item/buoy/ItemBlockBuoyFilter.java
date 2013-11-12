@@ -9,6 +9,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityFilterBuoy;
 import dgrxf.watercraft.util.RotationHelper;
 
 public class ItemBlockBuoyFilter extends ItemBlock {
@@ -38,7 +39,7 @@ public class ItemBlockBuoyFilter extends ItemBlock {
                 if (world.getBlockMaterial(x, y, z) == Material.water && world.getBlockMetadata(x, y, z) == 0 && world.isAirBlock(x, y + 1, z)) {
                     world.setBlock(x, y + 1, z, ModBlocks.filter.blockID);
                     
-                    ((WCTileEntityBuoy) world.getBlockTileEntity(x, y + 1, z)).setBlockDirection(RotationHelper.yawToForge(player.rotationYaw));
+                    ((WCTileEntityFilterBuoy) world.getBlockTileEntity(x, y + 1, z)).setBlockDirection(RotationHelper.yawToForge(player.rotationYaw));
                     
                     if (!player.capabilities.isCreativeMode) {
                         --itemStack.stackSize;
