@@ -9,7 +9,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
-import dgrxf.watercraft.tileentity.WCTileEntityBuoy;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.RotationHelper;
 
 /**
