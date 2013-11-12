@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.item.ModItems;
@@ -89,6 +90,31 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public void onEntityUpdate() {
         if (!worldObj.isRemote) {
             moveToTarget();
+        }else{
+            this.rotationPitch = 0.0F;
+            double d5 = (double)this.rotationYaw;
+            double d11 = this.prevPosX - this.posX;
+            double d10 = this.prevPosZ - this.posZ;
+
+            if (d11 * d11 + d10 * d10 > 0.001D)
+            {
+                d5 = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
+            }
+
+            double d12 = MathHelper.wrapAngleTo180_double(d5 - (double)this.rotationYaw);
+
+            if (d12 > 20.0D)
+            {
+                d12 = 20.0D;
+            }
+
+            if (d12 < -20.0D)
+            {
+                d12 = -20.0D;
+            }
+
+            this.rotationYaw = (float)((double)this.rotationYaw + d12);
+            this.setRotation(this.rotationYaw, this.rotationPitch);
         }
     }
     
