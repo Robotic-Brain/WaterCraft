@@ -91,7 +91,7 @@ public class EntityIceBoat extends WCEntityBoatBase {
             double d2 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (double)(i + 1) / (double)b0 - 0.125D;
             AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB(this.boundingBox.minX, d1, this.boundingBox.minZ, this.boundingBox.maxX, d2, this.boundingBox.maxZ);
 
-            if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water) || this.worldObj.isAABBInMaterial(axisalignedbb, Material.lava))
+            if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water))
             {
                 d0 += 1.0D / (double)b0;
             }
@@ -236,7 +236,7 @@ public class EntityIceBoat extends WCEntityBoatBase {
                 if (!this.worldObj.isRemote && !this.isDead)
                 {
                     this.setDead();
-                    this.dropItemWithOffset(ModItems.lavaBoat.itemID, 1, 0.0F);
+                    this.dropItemWithOffset(ModItems.iceBoat.itemID, 1, 0.0F);
                     
                 }
             }
@@ -308,10 +308,8 @@ public class EntityIceBoat extends WCEntityBoatBase {
                         {
                             this.worldObj.destroyBlock(i1, l1, j1, true);
                         }
-                        else if (i2 == Block.ice.blockID) 
-                        {
-                        	this.worldObj.destroyBlock(i1, l1, j1, false);                        	
-                        }
+
+                        //TODO add ice collision detection
                     }
                 }
 
