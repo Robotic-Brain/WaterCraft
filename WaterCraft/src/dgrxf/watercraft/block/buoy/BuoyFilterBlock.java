@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
@@ -46,8 +47,9 @@ public class BuoyFilterBlock extends BuoyBlock {
     	ItemStack stack = player.getCurrentEquippedItem();
     	WCTileEntityFilterBuoy tile = (WCTileEntityFilterBuoy) world.getBlockTileEntity(x, y, z);
     	
-    	if(tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
-    		System.out.println("Adding colour");
+    	ForgeDirection direction = (ForgeDirection.getOrientation(side));
+    	
+    	if(direction != ForgeDirection.UP && tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
     		Colours[] temp = Colours.values();
     		tile.setColour(side, temp[stack.getItemDamage()]);
     		world.markBlockForUpdate(x, y, z);
