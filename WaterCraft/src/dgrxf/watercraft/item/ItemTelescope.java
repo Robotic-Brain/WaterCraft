@@ -22,7 +22,6 @@ public class ItemTelescope extends Item{
 		
     private int tick;
     private boolean showParticles;
-    //private float particleSpeed = 1.0F;
     
     public ItemTelescope() {
         super(ItemInfo.TELESCOPE_ID);

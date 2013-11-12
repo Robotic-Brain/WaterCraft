@@ -18,13 +18,14 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 	}	
 	
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
+	public void updateEntity() {		
+		  if(worldObj.isRemote) return;
 		
 		  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
 		  
 		  if(e != null){
-			  System.out.println(e.flag);
+			  if(e.flag != null)
+				  System.out.println(e.flag.name);
 		  }
 	}
 	

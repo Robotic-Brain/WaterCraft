@@ -136,7 +136,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
     
     @Override
-    public boolean interactFirst(EntityPlayer player) {
+    public boolean interactFirst(EntityPlayer player) {    	
     	ItemStack stack = player.getCurrentEquippedItem();
     	if(stack != null && stack.getItem().itemID == ModItems.flag.itemID){
     		Colours[] temp = Colours.values();
