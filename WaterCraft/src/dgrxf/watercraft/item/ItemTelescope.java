@@ -42,9 +42,8 @@ public class ItemTelescope extends Item{
                        	float distance = (new Vector3(x, y, z)).sub(buoy.getNextBuoyPos()).length();
                        	Watercraft.printToPlayer("Distance :" + Float.toString(distance));
                        	float horizontalSpeed = distance / BuoyParticle.getFlyTime();
-                    	float verticalSpeed = (float) Math.sqrt(BuoyParticle.getMaxHeight() * BuoyParticle.getGravity() / 2);
-                    	//temp
-                    	verticalSpeed = 0;
+                    	float verticalSpeed = BuoyParticle.getGravity() * BuoyParticle.getFlyTime() / 2.0F;
+                       	
                        	
                        	Vector3 velocity = (new Vector3(buoy.getBlockDirection())).scalarMult(horizontalSpeed).add(new Vector3(0, verticalSpeed, 0));
                        	System.out.println(velocity.toString());
