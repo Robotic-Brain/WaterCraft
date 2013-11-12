@@ -28,7 +28,6 @@ public class ItemTelescope extends Item{
         super(ItemInfo.TELESCOPE_ID);
         setUnlocalizedName(ItemInfo.TELESCOPE_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.creativeTab);
-        itemIcon = ModBlocks.buoy.getParticleIcon();
     }
     
     @Override
@@ -46,10 +45,10 @@ public class ItemTelescope extends Item{
         return false;
     }
     
-    /*@Override
+    @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
     	itemIcon = register.registerIcon("Watercraft:telescope");
-    }*/
+    }
     
 }
