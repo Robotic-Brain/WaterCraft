@@ -23,6 +23,16 @@ public class Vector2 {
     }
     
     /**
+     * Creates new Vector with equal x and y component
+     * 
+     * @param a
+     */
+    public Vector2(float a) {
+        this.x = a;
+        this.y = a;
+    }
+    
+    /**
      * Returns a normalized vector
      * 
      * @return this/|this|

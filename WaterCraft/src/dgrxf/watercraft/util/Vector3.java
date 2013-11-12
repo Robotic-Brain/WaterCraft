@@ -141,6 +141,36 @@ public class Vector3 {
         return new Vector3(this.y * v.z - this.z * v.y, this.z * v.x - this.x * v.z, this.x * v.y - this.y * v.x);
     }
     
+    /**
+     * Swizzle x and y
+     * (See GLSL swizzle)
+     * 
+     * @return [x, y]
+     */
+    public Vector2 xy() {
+        return new Vector2(x, y);
+    }
+    
+    /**
+     * Swizzle x and z
+     * (See GLSL swizzle)
+     * 
+     * @return [x, z]
+     */
+    public Vector2 xz() {
+        return new Vector2(x, z);
+    }
+    
+    /**
+     * Swizzle y and z
+     * (See GLSL swizzle)
+     * 
+     * @return [y, z]
+     */
+    public Vector2 yz() {
+        return new Vector2(y, z);
+    }
+    
     @Override
     public String toString() {
         return "[ " + x + ", " + y + ", " + z + " ]";

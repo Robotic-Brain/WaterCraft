@@ -103,7 +103,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     
     public boolean checkForMultiBlock() {
         //return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getBlockDirection());
-        return NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord, zCoord), getBlockDirection());
+        return null != NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord, zCoord), getBlockDirection());
         
         //return true;
     }
