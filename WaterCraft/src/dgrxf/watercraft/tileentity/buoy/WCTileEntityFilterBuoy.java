@@ -15,14 +15,19 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 		directions = new Colours[4];
 	}	
 	
-	public boolean setColour(int direction, Colours colour){
-		if(directions[direction] == null){
-			directions[direction] = colour;
-			return true;
-		}else
-			return false;
+	public void setColour(int direction, Colours colour){
+		int index = direction - 2;
+		if(directions[index] == null){
+			directions[index] = colour;
+		}
 	}
 	
+	public void removeColour(int direction){
+		int index = direction - 2;
+		if(directions[index] != null){
+			directions[index] = null;
+		}
+	}
 	
 	
 	@Override
