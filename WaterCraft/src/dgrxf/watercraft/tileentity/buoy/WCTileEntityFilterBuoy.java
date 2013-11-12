@@ -32,8 +32,8 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 		  }
 	}
 	
-	public void setColour(int direction, Colours colour){
-		int index = direction - 2;
+	public void setColour(ForgeDirection direction, Colours colour){
+		int index = direction.ordinal() - 2;
 		if(directions[index] == null){
 			directions[index] = colour;
 		}

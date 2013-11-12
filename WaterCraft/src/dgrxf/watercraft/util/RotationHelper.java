@@ -10,6 +10,33 @@ import net.minecraftforge.common.ForgeDirection;
 public class RotationHelper {
     
 	
+	public static ForgeDirection minecraftSidesToForgeDirection(int side){
+		ForgeDirection dir = ForgeDirection.UNKNOWN;
+		System.out.println(side);
+		switch(side){
+		case 0:
+			dir = ForgeDirection.DOWN;
+			break;
+		case 1:
+			dir = ForgeDirection.UP;
+			break;
+		case 2:
+			dir = ForgeDirection.EAST;
+			break;
+		case 3:
+			dir = ForgeDirection.SOUTH;
+			break;
+		case 4:
+			dir = ForgeDirection.NORTH;
+			break;
+		case 5:
+			dir = ForgeDirection.WEST;
+			break;
+		}
+		
+		return dir;
+	}
+	
 	/**
 	 * Converts a four way forge direction to a yaw rotation
 	 * 

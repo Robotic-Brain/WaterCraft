@@ -23,6 +23,7 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityFilterBuoy;
+import dgrxf.watercraft.util.RotationHelper;
 
 public class BuoyFilterBlock extends BuoyBlock {
     
@@ -51,7 +52,7 @@ public class BuoyFilterBlock extends BuoyBlock {
     	
     	if(direction != ForgeDirection.UP && tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
     		Colours[] temp = Colours.values();
-    		tile.setColour(side, temp[stack.getItemDamage()]);
+    		tile.setColour(RotationHelper.minecraftSidesToForgeDirection(side), temp[stack.getItemDamage()]);
     		world.markBlockForUpdate(x, y, z);
     		return true;
     	}
