@@ -17,7 +17,7 @@ import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 import dgrxf.watercraft.util.Vector3;
 
-public class WCBouyLogic extends DirectionalTileEntity {
+public abstract class WCBouyLogic extends DirectionalTileEntity {
     
     /**
      * NBT-Tags

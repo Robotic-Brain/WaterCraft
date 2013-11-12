@@ -12,8 +12,8 @@ public abstract class GuiTab extends GuiRectangle {
 	private String name;
 	private int id;
 	
-	public GuiTab(String name, int id, GuiBase gui) {
-		super(8  + id * 45, 18, 45, 12, gui);
+	public GuiTab(String name, int id) {
+		super(8  + id * 45, 18, 45, 12);
 		this.id = id;
 		this.name = name;
 	}

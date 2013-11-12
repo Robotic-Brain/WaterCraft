@@ -10,7 +10,7 @@ import net.minecraftforge.common.ForgeDirection;
  * Watercraft TileEntity Baseclass
  * 
  */
-public class DirectionalTileEntity extends TileEntity {
+public abstract class DirectionalTileEntity extends TileEntity {
     
     /**
      * Sets the direction of the Block

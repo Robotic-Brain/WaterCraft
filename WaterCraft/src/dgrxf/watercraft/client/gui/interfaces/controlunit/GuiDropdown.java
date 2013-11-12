@@ -9,7 +9,7 @@ public class GuiDropdown extends GuiExtra {
 	private GuiTabRoute route;
 	
 	public GuiDropdown(int x, int y, String dir, GuiTabRoute route) {
-		super(x, y, 58, 14, route.gui);
+		super(x, y, 58, 14);
 		this.dir = dir;
 		this.route = route;
 	}

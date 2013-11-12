@@ -95,7 +95,7 @@ public class WCBoatRenderer extends Render {
     private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
 		GL11.glPushMatrix();
 		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.getFlagColor().ordinal() + 1) + ".png"));
-		GL11.glTranslatef(0.75F, -0.2F, -0.55F);
+		GL11.glTranslatef(0.7F, -0.2F, -0.55F);
 		GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
 		GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
 		flagModel.renderAll();

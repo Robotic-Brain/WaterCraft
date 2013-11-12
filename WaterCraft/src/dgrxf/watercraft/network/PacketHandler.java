@@ -26,6 +26,8 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class PacketHandler implements IPacketHandler {
     
+	public static final int INTERFACE_PACKET_ID = 0;
+	
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
         ByteArrayDataInput reader = ByteStreams.newDataInput(packet.data);
@@ -36,7 +38,7 @@ public class PacketHandler implements IPacketHandler {
         byte packetId = reader.readByte();
         
         switch (packetId) {
-        	case 0:
+        	case INTERFACE_PACKET_ID:
         		byte type = reader.readByte();
 				byte lenght = reader.readByte();
 				byte[] val = new byte[lenght];
@@ -61,7 +63,7 @@ public class PacketHandler implements IPacketHandler {
 		
 		try {
 			
-			dataStream.writeByte((byte)0);
+			dataStream.writeByte((byte)INTERFACE_PACKET_ID);
 			dataStream.writeByte(type);
 			dataStream.writeByte((byte)val.length);
 			dataStream.write(val);

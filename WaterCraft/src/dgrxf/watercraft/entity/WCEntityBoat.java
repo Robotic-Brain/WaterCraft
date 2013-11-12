@@ -150,19 +150,19 @@ public class WCEntityBoat extends WCEntityBoatBase {
     	return temp[id];
     }
     
-    /*@Override
+    @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
     	super.readEntityFromNBT(compound);
     	if(compound.hasKey("flag"))
     		flag = getColour(compound.getInteger("flag"));
-    }*/
+    }
     
-    /*@Override
+    @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
     	super.writeEntityToNBT(compound);
     	if(flag != null)
     		compound.setInteger("flag", flag.ordinal());
-    }*/
+    }
     
     public void setFlagColor(Colours col){
     	this.dataWatcher.updateObject(20, Integer.valueOf(col.ordinal()));

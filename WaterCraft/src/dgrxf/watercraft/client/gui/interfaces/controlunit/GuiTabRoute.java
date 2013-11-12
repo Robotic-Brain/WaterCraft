@@ -15,8 +15,8 @@ public class GuiTabRoute extends GuiTab {
 
 	private ArrayList<String> directions = new ArrayList<String>() {{ add("SOUTH"); add("EAST"); add("WEST"); }};
 	private String selectedString = "NORTH";
-	private GuiRectangle dropDownButton = new GuiRectangle(75, 40, 11, 14, gui);
-	private GuiRectangle dropDownFirst = new GuiRectangle(18, 40, 57, 14, gui);
+	private GuiRectangle dropDownButton = new GuiRectangle(75, 40, 11, 14);
+	private GuiRectangle dropDownFirst = new GuiRectangle(18, 40, 57, 14);
 	private GuiScrollList scrollList;
 	private boolean itemSelected;
 	public boolean isActive;
@@ -25,9 +25,9 @@ public class GuiTabRoute extends GuiTab {
 	private GuiExtra[] menu = new GuiExtra[4];
 	
 	public GuiTabRoute(String name, int id, GuiBase gui) {
-		super(name, id, gui);	
+		super(name, id);	
 		
-		scrollList = new GuiScrollList(19, 65, 84, 55, gui) {
+		scrollList = new GuiScrollList(19, 65, 84, 55) {
 			@Override
 			public boolean isActive() {
 				return isActive;

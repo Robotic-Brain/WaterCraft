@@ -13,6 +13,7 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
+import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.RotationHelper;
 
@@ -70,6 +71,7 @@ public class ItemBlockToolBox extends ItemBlock {
                 tag.setString("playerName", player.username);
                 stack.setTagCompound(tag);
             }
+		    Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
             FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return stack;
