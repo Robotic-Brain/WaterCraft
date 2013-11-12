@@ -24,6 +24,10 @@ public class BlockInfo {
     public static final String TOOLBOX_KEY                        = "ToolBox";
     public static final String TOOLBOX_TE_KEY                     = "WCTileEntityToolBox";
     
+    public static final String BUOY_FILTER_UNLOCALIZED_NAME              = "buoyFilterBlockName";
+    public static final String BUOY_FILTER_KEY                           = "Buoy Filter";
+    public static final String BUOY_FILTER_TE_KEY                        = "WCTileEntityFilterBuoy";
+    
     /*************
      * Integers
      *************/
@@ -42,4 +46,7 @@ public class BlockInfo {
     
     public static final int    TOOLBOX_ID_DEFAULT                 = 706;
     public static int          TOOLBOX_ID;
+    
+    public static final int    BUOY_FILTER_ID_DEFAULT                    = 707;
+    public static int          BUOY_FILTER_ID;
 }
