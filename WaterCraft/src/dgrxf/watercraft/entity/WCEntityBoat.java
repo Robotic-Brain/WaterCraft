@@ -97,6 +97,8 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public void onEntityUpdate() {
         if (!worldObj.isRemote) {
             moveToTarget();
+            if(flag != null)
+            	System.out.println(flag.name);
         }else{
             this.rotationPitch = 0.0F;
             double d5 = (double)this.rotationYaw;
@@ -126,7 +128,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
     
     @Override
-    public boolean interactFirst(EntityPlayer player) {
+    public boolean interactFirst(EntityPlayer player) {    	
     	ItemStack stack = player.getCurrentEquippedItem();
     	if(stack != null && stack.getItem().itemID == ModItems.flag.itemID){
     		Colours[] temp = Colours.values();
