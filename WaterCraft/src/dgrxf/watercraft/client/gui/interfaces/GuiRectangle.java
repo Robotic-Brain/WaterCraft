@@ -8,14 +8,12 @@ public class GuiRectangle {
 	private int y;
 	private int w;
 	private int h;
-	public GuiBase gui;
 
-	public GuiRectangle(int x, int y, int w, int h, GuiBase gui) {
+	public GuiRectangle(int x, int y, int w, int h) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
-		this.gui = gui;
 	}
 
 	public boolean inRect(GuiBase gui, int mouseX, int mouseY) {
@@ -25,7 +23,7 @@ public class GuiRectangle {
 		return x <= mouseX && mouseX <= x + w && y <= mouseY && mouseY <= y + h;
 	}
 	
-	public boolean inRect(int x, int y, int[] rect) {
+	public boolean inRect(GuiBase gui, int x, int y, int[] rect) {
 		if (rect.length < 4)
 		      return false;
 		x -= gui.getLeft();

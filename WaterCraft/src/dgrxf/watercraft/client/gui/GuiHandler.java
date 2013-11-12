@@ -28,12 +28,12 @@ public class GuiHandler implements IGuiHandler {
 
         switch (id) {
             case TOOLBOX_GUI_ID:
-                if (te != null && te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     return new ToolboxContainer(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te : null);
                 }
                 break;
             case CONTROLUNIT_GUI_ID:
-            	if (te != null && te instanceof WCTileEntityControlUnitDock) {
+            	if (te instanceof WCTileEntityControlUnitDock) {
             		return new ControlUnitContainer(player.inventory, (WCTileEntityControlUnitDock)te);
             	}
             	break;
@@ -48,12 +48,12 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case TOOLBOX_GUI_ID:
                 
-                if (te != null && te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     return new ToolBoxGUI(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te : null);
                 }
                 break;
             case CONTROLUNIT_GUI_ID:
-            	if (te != null && te instanceof WCTileEntityControlUnitDock) {
+            	if (te instanceof WCTileEntityControlUnitDock) {
             		return new ControlUnitGUI(player.inventory, (WCTileEntityControlUnitDock)te);
             	}
             	break;

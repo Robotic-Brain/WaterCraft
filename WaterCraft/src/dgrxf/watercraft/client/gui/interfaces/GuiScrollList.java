@@ -15,8 +15,8 @@ public class GuiScrollList extends GuiExtra{
 	private int selectedIndex;
 	private boolean isScrolling;
 	
-	public GuiScrollList(int x, int y, int w, int h, GuiBase gui) {
-		super(x, y, w, h, gui);
+	public GuiScrollList(int x, int y, int w, int h) {
+		super(x, y, w, h);
 		list = new ArrayList<String>();
 	}
 	
@@ -96,7 +96,7 @@ public class GuiScrollList extends GuiExtra{
 			if(rect[3] > 0) {
 				
 				int srcY = 223;
-				int hoverSrcY = srcY + (inRect(x, y, rect) ? 11 : list.get(i) == null ? 33 : 0);
+				int hoverSrcY = srcY + (inRect(gui, x, y, rect) ? 11 : list.get(i) == null ? 33 : 0);
 				int selectedSrcY = 234;
 				
 				if(rect[4] < 0) {
@@ -158,7 +158,7 @@ public class GuiScrollList extends GuiExtra{
 			if (list.get(i) != null) {
 				int[] rect = getItemButtonRect(i);
 				
-				if ((rect[3] > 0) && (inRect(x, y, rect))) {
+				if ((rect[3] > 0) && (inRect(gui, x, y, rect))) {
 					if (selectedIndex == i) selectedIndex = -1;
 					else selectedIndex = i;
 					onClick(i);
@@ -167,7 +167,7 @@ public class GuiScrollList extends GuiExtra{
 			}
 		}
 		int[] pos = {scrollArea[0] - getX(), scrollArea[1] - getY(), 9, scrollArea[3]};
-		if ((list.size() >= 6) && (inRect(x, y, pos))) {
+		if ((list.size() >= 6) && (inRect(gui, x, y, pos))) {
 			doScroll(y);
 			isScrolling = true;
 		}
