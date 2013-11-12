@@ -6,14 +6,20 @@ tile.controlUnitDock.name=Unità di Controllo
 tile.freezerBlockName.name=Congelatore
 tile.toolBoxBlockName.name=Cassetta degli Attrezzi
 
-item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
-item.boatChest.name=Chest Boat NEEDS LOCALIZATION
+item.lavaBoat.name=Barca per Lava NEEDS LOCALIZATION
+item.boatChest.name=Barca con Baule NEEDS LOCALIZATION
 item.TelescopeName.name=Telescopio
 item.TapeItemName.name=Metro
-item.wcboat.name=Boat NEEDS LOCALIZATION
+item.wcboat.name=Barca
 
-strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s] NEEDS LOCALIZATION
-strings.watercraft:tape_measure_distance=Distance: %s NEEDS LOCALIZATION
+strings.watercraft:tape_measure_start=Inizio Misura: [%s, %s, %s] 
+strings.watercraft:tape_measure_end=Fine Misura: [%s, %s, %s] 
+strings.watercraft:tape_measure_distance=Distanza: %s 
 
-death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox. NEEDS LOCALIZATION
+strings.watercraft:toolbox_contains=Questa Cassetta degli Attrezzi contiene: 
+strings.watercraft:toolbox_contains_nothing=niente
+strings.watercraft:toolbox_empty=Cassetta degli Attrezzi vuota
+strings.watercraft:toolbox_owner=Questa Cassetta degli Attrezzi appartiene a: %s
+strings.watercraft:toolbox_no_owner=Cassetta degli Attrezzi senza proprietario
+
+death.attack.inception=%s intrappolato nel Limbo mentre cercava di mettere una Cassetta degli Attrezzi in una Cassetta degli Attrezzi
