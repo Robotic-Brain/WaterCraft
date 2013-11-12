@@ -26,7 +26,6 @@ public class WCEntityBoat extends WCEntityBoatBase {
     protected int                         boatPosRotationIncrements;
     protected Vector2                     target;
     protected WCTileEntityControlUnitDock homeDock = null;
-    public Colours flag;
     
     /**
      * Constants
@@ -155,7 +154,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
         homeDock = dock;
     }
     
-    public Colours getColour(int id){
+    private Colours getColour(int id){
     	Colours[] temp = Colours.values();
     	return temp[id];
     }
@@ -163,15 +162,15 @@ public class WCEntityBoat extends WCEntityBoatBase {
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound) {
     	super.readEntityFromNBT(compound);
-    	if(compound.hasKey("flag"))
-    		flag = getColour(compound.getInteger("flag"));
+    	if(compound.hasKey("flag")) {
+    		setFlagColor(getColour(compound.getInteger("flag")));
+    	}
     }
     
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound) {
     	super.writeEntityToNBT(compound);
-    	if(flag != null)
-    		compound.setInteger("flag", flag.ordinal());
+    	compound.setInteger("flag", getFlagColor().ordinal());
     }
     
     public void setFlagColor(Colours col){

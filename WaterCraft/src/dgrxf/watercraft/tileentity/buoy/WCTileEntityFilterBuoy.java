@@ -22,11 +22,6 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 		  if(worldObj.isRemote) return;
 		
 		  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
-		  
-		  if(e != null){
-			  if(e.flag != null)
-				  System.out.println(e.flag.name);
-		  }
 	}
 	
 	public void setColour(int direction, Colours colour){
