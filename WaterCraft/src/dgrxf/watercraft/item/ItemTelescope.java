@@ -35,16 +35,8 @@ public class ItemTelescope extends Item{
             if (world.getBlockId(x, y, z) == ModBlocks.buoy.blockID) {;
                 TileEntity te = world.getBlockTileEntity(x, y, z);
                 if (te instanceof WCTileEntityBuoy) {
-                    WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;
-                    
-                    if (buoy.hasNextBuoy()) {
-                       	float distance = (new Vector3(x, y, z)).sub(buoy.getNextBuoyPos()).length();
-                       	float horizontalSpeed = distance / BuoyParticle.getFlyTime();
-                    	float verticalSpeed = BuoyParticle.getGravity() * BuoyParticle.getFlyTime() / 2.0F;
-                       	
-                       	Vector3 velocity = (new Vector3(buoy.getBlockDirection())).scalarMult(horizontalSpeed).add(new Vector3(0, verticalSpeed, 0));
-                        CustomParticles.BUOY.spawnParticle(world, x + 0.5F, y + 1, z + 0.5F, velocity.x, velocity.y, velocity.z);
-                    }
+                    WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;  
+                    buoy.enableSpawning();
                 }
             }
         }

@@ -7,6 +7,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.client.particles.BuoyParticle;
+import dgrxf.watercraft.client.particles.CustomParticles;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.MiscInfo;
@@ -34,6 +36,7 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
      * Constants
      */
     private static final int SEARCH_COUNT_DOWN = 10;
+    private static final int PARTICLES_SPAWNING_TIME = 10;
     
     /**
      * Now configurable inside the Config
@@ -50,6 +53,8 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
     protected int               searchRange;
     private int                 searchTimer;                          //do not save this value to nbt, there's no need
     private int 				lastEntityId;
+    private boolean				spawnParticles;
+    private int					particlesTimer;
                                                                        
     /**
      * Default Constructor
@@ -58,6 +63,8 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
     public WCTileEntityBuoy() {
         hasBuoy = false;
         searchRange = DEFAULT_RANGE;
+        particlesTimer = PARTICLES_SPAWNING_TIME;
+        spawnParticles = false;
     }
     
     /**
@@ -169,6 +176,11 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
             
             searchTimer = SEARCH_COUNT_DOWN;
         }
+        
+        if (spawnParticles && particlesTimer-- <= 0) {
+        	particlesTimer = PARTICLES_SPAWNING_TIME;
+        	spawnParticle();
+        }
     }
     
     @Override
@@ -194,6 +206,21 @@ public class WCTileEntityBuoy extends DirectionalTileEntity {
         }
         
         LogHelper.debug("Loaded " + this);
+    }
+    
+    private void spawnParticle() {
+    	if (hasNextBuoy()) {
+           	float distance = (new Vector3(xCoord, yCoord, zCoord)).sub(getNextBuoyPos()).length();
+           	float horizontalSpeed = distance / BuoyParticle.getFlyTime();
+        	float verticalSpeed = BuoyParticle.getGravity() * BuoyParticle.getFlyTime() / 2.0F;
+           	
+           	Vector3 velocity = (new Vector3(getBlockDirection())).scalarMult(horizontalSpeed).add(new Vector3(0, verticalSpeed, 0));
+            CustomParticles.BUOY.spawnParticle(worldObj, xCoord + 0.5F, yCoord + 1, zCoord + 0.5F, velocity.x, velocity.y, velocity.z);
+        }
+    }
+    
+    public void enableSpawning() {
+    	spawnParticles = !spawnParticles;
     }
     
     /**
