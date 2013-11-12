@@ -11,7 +11,6 @@ public class WCEventHandler {
 	public void onEntityDeath(LivingDeathEvent event){
 		if (event.source instanceof InceptionSource && event.entity != null) {
 		    Sounds.INCEPTION.play(event.entity.posX, event.entity.posY, event.entity.posZ, 1.0f, 1.0f);
-		    //Sounds.TOOLBOX_OPENING.play(event.entity.posX, event.entity.posY, event.entity.posZ, 1.0f, 1.0f);
 		}
 	}
 	

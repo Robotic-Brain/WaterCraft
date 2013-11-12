@@ -30,7 +30,7 @@ public class ToolBoxSlot extends Slot {
         if (itemstack.getItem() instanceof ItemTool) {
             return true;
         } else if (itemstack.getItem() instanceof ItemHoe) {
-        	return true;
+            return true;
         } else if (itemstack.getItem() instanceof ItemBow) {
             return true;
         } else if (itemstack.getItem() instanceof ItemBucket) {
