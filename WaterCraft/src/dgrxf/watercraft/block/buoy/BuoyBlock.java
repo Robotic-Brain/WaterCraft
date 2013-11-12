@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -66,6 +67,20 @@ public class BuoyBlock extends DirectionalBlock {
     @Override
     public Icon getIcon(int side, int meta) {
         return Block.cloth.getIcon(0, 1);
+    }
+    
+    @SideOnly(Side.CLIENT)
+    private Icon particleIcon;
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister register) {
+    	register.registerIcon("Watercraft:buoyParticle");
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public Icon getParticleIcon() {
+        return particleIcon;
     }
     
     @Override

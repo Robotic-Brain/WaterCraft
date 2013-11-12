@@ -2,6 +2,7 @@ package dgrxf.watercraft.client.particles;
 
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.util.Vector3;
 
 public class BuoyParticle extends EntityFX {
@@ -14,7 +15,9 @@ public class BuoyParticle extends EntityFX {
 		super(world, x, y, z, 0, 0, 0);
 		startingVelocity = new Vector3((float)vx, (float)vy, (float)vz);
 		particleMaxAge = FLY_TIME;
-
+		particleScale = 1;
+		
+		setParticleIcon(ModBlocks.buoy.getParticleIcon());
 	}
 	
 	// Overriding to remove friction
