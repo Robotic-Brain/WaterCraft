@@ -49,12 +49,25 @@ public class BuoyFilterBlock extends BuoyBlock {
     	WCTileEntityFilterBuoy tile = (WCTileEntityFilterBuoy) world.getBlockTileEntity(x, y, z);
     	
     	ForgeDirection direction = (ForgeDirection.getOrientation(side));
-    	
-    	if(direction != ForgeDirection.UP && tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
-    		Colours[] temp = Colours.values();
-    		tile.setColour(RotationHelper.minecraftSidesToForgeDirection(side), temp[stack.getItemDamage()]);
-    		world.markBlockForUpdate(x, y, z);
-    		return true;
+    	if(!player.isSneaking()){
+	    	if(direction != ForgeDirection.UP && tile != null && stack != null && stack.getItem().itemID == ModItems.flag.itemID){
+	    		Colours[] temp = Colours.values();
+	    		tile.setColour(RotationHelper.minecraftSidesToForgeDirection(side), temp[stack.getItemDamage()]);
+	    		world.markBlockForUpdate(x, y, z);
+	    		return true;
+	    	}
+    	}else{
+    		if(direction != ForgeDirection.UP && tile != null && stack == null){
+    			Colours colour = tile.removeColour(RotationHelper.minecraftSidesToForgeDirection(side));
+    			if(colour != null){
+    				ItemStack flag = new ItemStack(ModItems.flag);
+    				flag.setItemDamage(colour.ordinal());
+    				player.inventory.setInventorySlotContents(player.inventory.currentItem, flag);
+    				world.markBlockForUpdate(x, y, z);
+    			}
+	    		world.markBlockForUpdate(x, y, z);
+	    		return true;
+	    	}
     	}
     	return false;
     }
