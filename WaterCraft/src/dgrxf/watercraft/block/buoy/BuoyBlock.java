@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -94,6 +95,16 @@ public class BuoyBlock extends DirectionalBlock {
     }
     
     @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te instanceof WCBouyLogic) {
+            ((WCBouyLogic)world.getBlockTileEntity(x, y, z)).updateBuoys();
+        }
+    }
+    
+    @Override
     public void breakBlock(World par1World, int x, int y, int z, int id, int meta) {
         LogHelper.debug("Pre Super Break: " + par1World.getBlockTileEntity(x, y, z));
         
@@ -118,8 +129,17 @@ public class BuoyBlock extends DirectionalBlock {
         }
         
         
-        
-        LogHelper.debug("Post Super Break: " + par1World.getBlockTileEntity(x, y, z));
+        if (!par1World.isRemote) {
+            LogHelper.debug("Post Super Break: " + par1World.getBlockTileEntity(x, y, z));
+        }
     }
     
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te instanceof WCBouyLogic) {
+            LogHelper.debug((WCBouyLogic)world.getBlockTileEntity(x, y, z));
+        }
+        return true;
+    }
 }

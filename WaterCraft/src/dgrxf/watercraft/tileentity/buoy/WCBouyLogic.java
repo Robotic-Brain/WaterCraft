@@ -9,6 +9,7 @@ import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.tileentity.DirectionalTileEntity;
+import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector3;
 
 public abstract class WCBouyLogic extends DirectionalTileEntity {
@@ -87,16 +88,17 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     }*/
     
     protected void findNewBuoys() {
-        ForgeDirection dir = getBlockDirection();
+        //ForgeDirection dir = getBlockDirection();
         
-        for (int d = ForgeDirection.NORTH.ordinal(); d < ForgeDirection.EAST.ordinal(); ++d) {
-            dir = ForgeDirection.getOrientation(d);
+        for (int d = ForgeDirection.NORTH.ordinal(); d <= ForgeDirection.EAST.ordinal(); ++d) {
+            ForgeDirection dir = ForgeDirection.getOrientation(d);
             
             for (int i = 1; !hasNextBuoy(dir) && i <= searchRange; ++i) {
                 TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, yCoord + dir.offsetY * i, zCoord + dir.offsetZ * i);
                 if (te instanceof WCTileEntityBuoy) {
                     setNextBuoy((WCTileEntityBuoy) te, dir);
-                    //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
+                    ((WCTileEntityBuoy) te).updateBuoys();
+                    LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
                 }
             }
         }
@@ -105,11 +107,15 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     public void updateBuoys() {
         for (int i = 0; i < nextBuoys.length; i++) {
             Vector3 p = nextBuoys[i];
-            TileEntity te = worldObj.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
-            if (!(te instanceof WCBouyLogic)) {
-                nextBuoys[i] = null;
+            if (p != null) {
+                TileEntity te = worldObj.getBlockTileEntity((int) p.x, (int) p.y, (int) p.z);
+                if (!(te instanceof WCBouyLogic)) {
+                    nextBuoys[i] = null;
+                }
             }
         }
+        
+        findNewBuoys();
     }
     
     /**
@@ -134,9 +140,11 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     
     public WCBouyLogic getNextBuoy(ForgeDirection direction) {
         Vector3 p = getNextBuoyCoords(direction);
-        TileEntity te = worldObj.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
-        if (te instanceof WCBouyLogic) {
-            return (WCBouyLogic) te;
+        if (p != null) {
+            TileEntity te = worldObj.getBlockTileEntity((int) p.x, (int) p.y, (int) p.z);
+            if (te instanceof WCBouyLogic) {
+                return (WCBouyLogic) te;
+            }
         }
         
         return null;
@@ -172,13 +180,13 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         return null != getNextBuoy(direction);
     }
     
-    /*@Override
+    @Override
     public void updateEntity() {
         if (worldObj.isRemote) {
             return;
         }
         
-        searchTimer--;
+        /*searchTimer--;
         
         if (searchTimer <= 0) {
             findNextBuoy(0);
@@ -205,8 +213,17 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         if (spawnParticles && particlesTimer-- <= 0) {
         	particlesTimer = PARTICLES_SPAWNING_TIME;
         	spawnParticle();
-        }
-    }*/
+        }*/
+        // Debug stuff
+        /*if (timer <= 0) {
+            LogHelper.debug(this);
+            timer = 20;
+        } else {
+            timer--;
+        }*/
+    }
+    
+    private int timer = 0;
     
     @Override
     public boolean canUpdate() {
@@ -262,8 +279,13 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         return new Vector3(nextX, nextY, nextZ);
     }*/
 
-    /*@Override
+    @Override
     public String toString() {
-        return "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] " + "Next at: " + "[" + nextX + ", " + nextY + ", " + nextZ + "]";
-    }*/
+        String result = "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "]\n";
+        
+        for (int i = 0; i < nextBuoys.length; i++) {
+            result += "\t" + nextBuoys[i] + "\n";
+        }
+        return result;
+    }
 }
