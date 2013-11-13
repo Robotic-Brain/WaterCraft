@@ -27,8 +27,16 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 		  if(tick <= 0){
 			  WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
 			  if(e != null){
-				  
+				  Colours boatColour = e.getFlagColor();
+				  if(boatColour != null){
+					  for(int i = 0; i < directions.length; i++){
+						  if(boatColour == directions[i]){
+							  System.out.println(ForgeDirection.getOrientation(i));
+						  }
+					  }
+				  }
 			  }
+			  tick = 30;
 		  }
 	}
 	
