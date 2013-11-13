@@ -47,11 +47,14 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
 		}
 	}
 	
-	public void removeColour(int direction){
-		int index = direction - 2;
+	public Colours removeColour(ForgeDirection direction){
+		int index = direction.ordinal() - 2;
+		Colours temp = null;
 		if(directions[index] != null){
+			temp = directions[index];
 			directions[index] = null;
 		}
+		return temp;
 	}
 	
 	@Override
