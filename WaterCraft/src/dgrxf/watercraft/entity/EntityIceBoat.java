@@ -337,8 +337,6 @@
 	                        {
 	                            this.worldObj.destroyBlock(i1, l1, j1, true);
 	                        }
-	
-	                        //TODO add ice collision detection
 	                    }
 	                }
 	
@@ -349,5 +347,5 @@
 	            }
 	        }
 	    }
-	    }
 	}
+}
