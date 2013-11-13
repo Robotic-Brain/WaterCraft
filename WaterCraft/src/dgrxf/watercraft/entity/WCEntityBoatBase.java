@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 
 public class WCEntityBoatBase extends Entity
 {
-    protected boolean ridable;
+    protected boolean isEmpty;
     private double speedMultiplier;
     private int boatPosRotationIncrements;
     protected double boatX;
@@ -39,7 +39,7 @@ public class WCEntityBoatBase extends Entity
     public WCEntityBoatBase(World par1World)
     {
         super(par1World);
-        this.ridable = true;
+        this.isEmpty = true;
         this.speedMultiplier = 0.07D;
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
@@ -128,7 +128,7 @@ public class WCEntityBoatBase extends Entity
 
             if (flag || this.getDamageTaken() > 40.0F)
             {
-                if (this.riddenByEntity != null && ridable)
+                if (this.riddenByEntity != null && isEmpty)
                 {
                     this.riddenByEntity.mountEntity(this);
                 }
@@ -177,7 +177,7 @@ public class WCEntityBoatBase extends Entity
      */
     public void setPositionAndRotation2(double par1, double par3, double par5, float par7, float par8, int par9)
     {
-        if (this.ridable)
+        if (this.isEmpty)
         {
             this.boatPosRotationIncrements = par9 + 5;
         }
@@ -227,12 +227,6 @@ public class WCEntityBoatBase extends Entity
         
         updateBuoys();
         
-        //if(worldObj.isRemote) return;
-        
-        if(!this.ridable){
-        	this.riddenByEntity = null;
-        }
-        
         if (this.getTimeSinceHit() > 0)
         {
             this.setTimeSinceHit(this.getTimeSinceHit() - 1);
@@ -260,7 +254,8 @@ public class WCEntityBoatBase extends Entity
                 d0 += 1.0D / (double)b0;
             }
         }
-
+        
+        // ----- PARTICLE LOGIC [START]
         double d3 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         double d4;
         double d5;
@@ -291,11 +286,12 @@ public class WCEntityBoatBase extends Entity
                 }
             }
         }
-
+        // ----- PARTICLE LOGIC [END]
+        
         double d10;
         double d11;
 
-        if (this.worldObj.isRemote && this.ridable)
+        if (this.worldObj.isRemote && this.isEmpty)
         {
             if (this.boatPosRotationIncrements > 0)
             {
@@ -346,7 +342,7 @@ public class WCEntityBoatBase extends Entity
                 this.motionY += 0.007000000216066837D;
             }
 
-            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase && this.ridable)
+            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase && this.isEmpty)
             {
                 d4 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
 
@@ -496,7 +492,7 @@ public class WCEntityBoatBase extends Entity
 
     public void updateRiderPosition()
     {
-        if (this.riddenByEntity != null && this.ridable)
+        if (this.riddenByEntity != null && this.isEmpty)
         {
             double d0 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             double d1 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
@@ -591,24 +587,45 @@ public class WCEntityBoatBase extends Entity
     @SideOnly(Side.CLIENT)
     public void func_70270_d(boolean par1)
     {
-        this.ridable = par1;
+        this.isEmpty = par1;
     }
-
+    
+    
+    /****************************** END of Vanilla code ******************************/
 	public Block getDisplayTile() {
 		return null;
 	}
 	
-	protected void updateBuoys() {
-        int myX = (int)posX;
-        int myY = (int)posY;
-        int myZ = (int)posZ;
+	private int buoyUpdateTimer;
+	private static final int BUOY_UPDATE_INTERVAL = 10;
+	
+	/**
+	 * Updates the Buoys within a 3x3x3 cube
+	 * (see BUOY_UPDATE_INTERVAL)
+	 */
+    protected void updateBuoys() {
+        buoyUpdateTimer--;
+        if (buoyUpdateTimer <= 0) {
+            buoyUpdateTimer = BUOY_UPDATE_INTERVAL;
+            
+            forceUpdateBuoys();
+        }
+    }
+    
+    /**
+     * This Updates the buoys immediately
+     */
+    protected void forceUpdateBuoys() {
+        int myX = (int) posX;
+        int myY = (int) posY;
+        int myZ = (int) posZ;
         
-        for(int dx = -1; dx <= 1; ++dx) {
-            for(int dy = -1; dy <= 1; ++dy) {
-                for(int dz = -1; dz <= 1; ++dz) {
+        for (int dx = -1; dx <= 1; ++dx) {
+            for (int dy = -1; dy <= 1; ++dy) {
+                for (int dz = -1; dz <= 1; ++dz) {
                     TileEntity te = worldObj.getBlockTileEntity(myX + dx, myY + dy, myZ + dz);
                     if (te instanceof WCBouyLogic) {
-                        ((WCBouyLogic)te).updateBuoys();
+                        ((WCBouyLogic) te).updateBuoys();
                     }
                 }
             }

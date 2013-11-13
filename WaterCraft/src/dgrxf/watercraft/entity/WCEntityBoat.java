@@ -52,7 +52,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
-        this.ridable = false;
+        this.isEmpty = false;
     }
     
     @Override

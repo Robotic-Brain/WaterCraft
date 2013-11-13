@@ -71,6 +71,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
      * This checks if listed buoys still exist and adds new ones
      */
     public void updateBuoys() {
+        LogHelper.debug("Buoy Update!");
         for (int i = 0; i < nextBuoys.length; i++) {
             Vector3 p = nextBuoys[i];
             if (p != null) {
