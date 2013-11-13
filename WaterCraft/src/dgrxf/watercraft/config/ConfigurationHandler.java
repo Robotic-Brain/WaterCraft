@@ -25,15 +25,15 @@ public class ConfigurationHandler {
             config.load();
             
             // Items
-            ItemInfo.DUMB_BOAT_ID = config.getItem(ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt() - 256;
-            ItemInfo.BOAT_ID = config.getItem(ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt() - 256;
-            ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt() - 256;
-            ItemInfo.TELESCOPE_ID = config.getItem(ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt() - 256;
-            ItemInfo.ENGINE_ID = config.getItem(ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt() - 256;
-            ItemInfo.BOATCHEST_ID = config.getItem(ItemInfo.BOATCHEST_KEY, ItemInfo.BOATCHEST_ID_DEFAULT).getInt() - 256;
-            ItemInfo.LAVABOAT_ID = config.getItem(ItemInfo.LAVABOAT_KEY, ItemInfo.LAVABOAT_ID_DEFAULT).getInt() - 256;
-            ItemInfo.FLAG_ID = config.getItem(ItemInfo.FLAG_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt() - 256;
-            ItemInfo.ICEBOAT_ID = config.getItem(ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt() - 256;
+            ItemInfo.DUMB_BOAT_ID = config.get("Items", ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt();
+            ItemInfo.BOAT_ID = config.get("Items", ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt();
+            ItemInfo.TAPE_MEASURE_ID = config.get("Items", ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt();
+            ItemInfo.TELESCOPE_ID = config.get("Items", ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt();
+            ItemInfo.ENGINE_ID = config.get("Items", ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt();
+            ItemInfo.BOATCHEST_ID = config.get("Items", ItemInfo.BOATCHEST_KEY, ItemInfo.BOATCHEST_ID_DEFAULT).getInt();
+            ItemInfo.LAVABOAT_ID = config.get("Items", ItemInfo.LAVABOAT_KEY, ItemInfo.LAVABOAT_ID_DEFAULT).getInt();
+            ItemInfo.FLAG_ID = config.get("Items", ItemInfo.FLAG_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt();
+            ItemInfo.ICEBOAT_ID = config.getItem(ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt();
        
             // Blocks
             BlockInfo.BUOY_ID = config.getBlock(BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
@@ -57,5 +57,9 @@ public class ConfigurationHandler {
                 LogHelper.info("Config saved!");
             }
         }
+        
+        System.out.println(ItemInfo.FLAG_ID);
+        System.out.println(ItemInfo.BOATCHEST_ID);
+        System.out.println(ItemInfo.ENGINE_ID);
     }
 }
