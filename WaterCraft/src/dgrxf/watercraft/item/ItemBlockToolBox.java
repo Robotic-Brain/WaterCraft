@@ -3,6 +3,8 @@ package dgrxf.watercraft.item;
 import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -33,18 +35,24 @@ public class ItemBlockToolBox extends ItemBlock {
         maxStackSize = 1;
     }
     
-    //Updates the isOpen in the tag, so the renderer knows to render it closed
+    //Makes the item call createEntity when the item is dropped
     @Override
-    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
+    public boolean hasCustomEntity(ItemStack stack) {
+    	return true;
+    }
+    
+    //This is used to stop the toolbox from being rendered open when dropped
+    @Override
+    public Entity createEntity(World world, Entity location, ItemStack itemstack) {    	
+    	System.out.println("Dropped Item");
+    	
     	NBTTagCompound tag;
-    	if(item.getTagCompound() != null)
-    		tag = item.getTagCompound();
-    	else
-    		tag = new NBTTagCompound();
+    	if(itemstack.getTagCompound() != null) tag = itemstack.getTagCompound();
+    	else tag = new NBTTagCompound();
     	
     	tag.setBoolean("isOpen", false);
-    	item.setTagCompound(tag);
-    	return true;
+    	itemstack.setTagCompound(tag);
+    	return null;
     }
     
     @Override
