@@ -18,6 +18,7 @@ public class Entities {
         EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityBoatChest.class, "EntityBoatChest", 3, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(EntityLavaBoat.class, "EntityLavaBoat", 4, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityIceBoat.class, "EntityIceBoat", 5, Watercraft.instance, 80, 3, true);
     }
     
 }
