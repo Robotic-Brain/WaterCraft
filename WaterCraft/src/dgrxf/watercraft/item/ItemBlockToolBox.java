@@ -10,6 +10,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
@@ -44,7 +45,14 @@ public class ItemBlockToolBox extends ItemBlock {
     //This is used to stop the toolbox from being rendered open when dropped
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {    	
-    	System.out.println("Dropped Item");
+    	AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(location.posX - 1, location.posY - 1, location.posZ - 1, location.posX + 1, location.posY + 1, location.posZ + 1);
+    	List list = world.getEntitiesWithinAABB(EntityPlayer.class, bounds);
+    	
+    	for(int i = 0; i < list.size(); i++){
+    		if(list.get(i) instanceof EntityPlayer){
+    			((EntityPlayer)list.get(i)).closeScreen();
+    		}
+    	}
     	
     	NBTTagCompound tag;
     	if(itemstack.getTagCompound() != null) tag = itemstack.getTagCompound();
