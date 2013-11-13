@@ -2,7 +2,10 @@ package dgrxf.watercraft.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+
 import java.util.List;
+
+import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -10,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -220,7 +224,9 @@ public class WCEntityBoatBase extends Entity
     public void onUpdate()
     {
         super.onUpdate();
-
+        
+        updateBuoys();
+        
         //if(worldObj.isRemote) return;
         
         if(!this.ridable){
@@ -591,4 +597,21 @@ public class WCEntityBoatBase extends Entity
 	public Block getDisplayTile() {
 		return null;
 	}
+	
+	protected void updateBuoys() {
+        int myX = (int)posX;
+        int myY = (int)posY;
+        int myZ = (int)posZ;
+        
+        for(int dx = -1; dx <= 1; ++dx) {
+            for(int dy = -1; dy <= 1; ++dy) {
+                for(int dz = -1; dz <= 1; ++dz) {
+                    TileEntity te = worldObj.getBlockTileEntity(myX + dx, myY + dy, myZ + dz);
+                    if (te instanceof WCBouyLogic) {
+                        ((WCBouyLogic)te).updateBuoys();
+                    }
+                }
+            }
+        }
+    }
 }
