@@ -41,7 +41,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
         updateTimer = UPDATE_COUNT_DOWN;
     }
     
-    @Override
+    // TODO: remove Comments
+    /*@Override
     public void updateEntity() {
         if (worldObj.isRemote) {
             return;
@@ -76,7 +77,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
             
             updateTimer = UPDATE_COUNT_DOWN;
         }
-    }
+    }*/
     
     /*
      * NOTE: This needs updating, should return Entity[] of all boats in List

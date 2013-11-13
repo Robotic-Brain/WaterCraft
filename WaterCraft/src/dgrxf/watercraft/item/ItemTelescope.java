@@ -36,7 +36,8 @@ public class ItemTelescope extends Item{
                 TileEntity te = world.getBlockTileEntity(x, y, z);
                 if (te instanceof WCTileEntityBuoy) {
                     WCTileEntityBuoy buoy = (WCTileEntityBuoy) te;  
-                    buoy.enableSpawning();
+                    // TODO: remove comments
+                    //buoy.enableSpawning();
                 }
             }
         }

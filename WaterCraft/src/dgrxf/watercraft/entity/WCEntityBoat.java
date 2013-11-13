@@ -103,7 +103,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public void onEntityUpdate() {
         if (!worldObj.isRemote) {
             moveToTarget();
-            LogHelper.debug("SV Flag color: " + getFlagColor());
+            //LogHelper.debug("SV Flag color: " + getFlagColor());
         }else{
             this.rotationPitch = 0.0F;
             double d5 = (double)this.rotationYaw;
@@ -130,7 +130,7 @@ public class WCEntityBoat extends WCEntityBoatBase {
             this.rotationYaw = (float)((double)this.rotationYaw + d12);
             this.setRotation(this.rotationYaw, this.rotationPitch);
             
-            LogHelper.debug("CL Flag color: " + getFlagColor());
+            //LogHelper.debug("CL Flag color: " + getFlagColor());
         }
     }
     

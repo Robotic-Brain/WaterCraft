@@ -18,7 +18,10 @@ import dgrxf.watercraft.block.DirectionalBlock;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
+import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
+import dgrxf.watercraft.util.LogHelper;
+import dgrxf.watercraft.util.Vector3;
 
 /**
  * Buoy Block
@@ -88,6 +91,35 @@ public class BuoyBlock extends DirectionalBlock {
         if (!(entity instanceof WCEntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
         }
+    }
+    
+    @Override
+    public void breakBlock(World par1World, int x, int y, int z, int id, int meta) {
+        LogHelper.debug("Pre Super Break: " + par1World.getBlockTileEntity(x, y, z));
+        
+        TileEntity te = par1World.getBlockTileEntity(x, y, z);
+        Vector3[] buoys = null;
+        if (te instanceof WCBouyLogic) {
+            buoys = ((WCBouyLogic)par1World.getBlockTileEntity(x, y, z)).getNextBuoysCoords();
+        }
+        
+        super.breakBlock(par1World, x, y, z, id, meta);
+        
+        if (buoys != null) {
+            for (int i = 0; i < buoys.length; i++) {
+                Vector3 p = buoys[i];
+                if (p != null) {
+                    TileEntity te2 = par1World.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
+                    if (te2 instanceof WCBouyLogic) {
+                        ((WCBouyLogic)te2).updateBuoys();
+                    }
+                }
+            }
+        }
+        
+        
+        
+        LogHelper.debug("Post Super Break: " + par1World.getBlockTileEntity(x, y, z));
     }
     
 }
