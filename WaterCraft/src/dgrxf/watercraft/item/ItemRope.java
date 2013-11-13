@@ -13,10 +13,8 @@ public class ItemRope extends Item {
         setUnlocalizedName(ItemInfo.ROPE_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.creativeTab);
     }
-    
-    @Override
-    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        return false;
-    }
+	
+	
+  
 }
 
