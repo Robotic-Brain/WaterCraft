@@ -21,9 +21,12 @@ public class ToolboxContainer extends Container {
     
     private WCTileEntityToolBox tile;
     private boolean             isInInv;
+    private ItemStack[]         loadedItems;
     
     public ToolboxContainer(InventoryPlayer invPlayer, WCTileEntityToolBox te) {
         
+    	loadedItems = new ItemStack[9];
+    	
         for (int x = 0; x < 9; x++) {
             addSlotToContainer(new Slot(invPlayer, x, 8 + 18 * x, 99));
         }
@@ -56,6 +59,7 @@ public class ToolboxContainer extends Container {
                     
                     if (slot >= 0 && slot < temp.getSizeInventory()) {
                         temp.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                        loadedItems[i] = ItemStack.loadItemStackFromNBT(item);
                     }
                 }
                 tag.setBoolean("isOpen", true);
@@ -80,28 +84,40 @@ public class ToolboxContainer extends Container {
         if (isInInv) {
             ItemStack toolbox = player.getCurrentEquippedItem();
             NBTTagCompound tag;
-            if (toolbox.getTagCompound() != null) {
-                tag = toolbox.getTagCompound();
-            } else {
-                tag = new NBTTagCompound();
-            }
-            NBTTagList items = new NBTTagList();
-            
-            tag.setBoolean("isOpen", false);
-            
-            for (int i = 0; i < tile.getSizeInventory(); i++) {
-                ItemStack stack = tile.getStackInSlot(i);
-                
-                if (stack != null) {
-                    NBTTagCompound item = new NBTTagCompound();
-                    item.setByte("Slot", (byte) i);
-                    stack.writeToNBT(item);
-                    items.appendTag(item);
-                }
-            }
-            tag.setTag("Items", items);
-            toolbox.setTagCompound(tag);
-            player.inventory.mainInventory[player.inventory.currentItem] = toolbox;
+            if(toolbox != null){
+	            if (toolbox.getTagCompound() != null) {
+	                tag = toolbox.getTagCompound();
+	            } else {
+	                tag = new NBTTagCompound();
+	            }
+	            NBTTagList items = new NBTTagList();
+	            
+	            tag.setBoolean("isOpen", false);
+	            
+	            for (int i = 0; i < tile.getSizeInventory(); i++) {
+	                ItemStack stack = tile.getStackInSlot(i);
+	                
+	                if (stack != null) {
+	                    NBTTagCompound item = new NBTTagCompound();
+	                    item.setByte("Slot", (byte) i);
+	                    stack.writeToNBT(item);
+	                    items.appendTag(item);
+	                }
+	            }
+	            tag.setTag("Items", items);
+	            toolbox.setTagCompound(tag);
+	            player.inventory.mainInventory[player.inventory.currentItem] = toolbox;
+	        }else{
+	        	for (int i = 0; i < tile.getSizeInventory(); i++) {
+	        		if(tile.getStackInSlot(i) != null && loadedItems[i] == null){
+	        			player.dropPlayerItem(tile.getStackInSlot(i));
+	        		}else{
+	        			if(tile.getStackInSlot(i) != null)
+	        				System.out.println(loadedItems[i].getDisplayName());
+	        		}
+	        	}
+	        	
+	        }
         } else {
             tile.closeChest();
         }

@@ -33,6 +33,20 @@ public class ItemBlockToolBox extends ItemBlock {
         maxStackSize = 1;
     }
     
+    //Updates the isOpen in the tag, so the renderer knows to render it closed
+    @Override
+    public boolean onDroppedByPlayer(ItemStack item, EntityPlayer player) {
+    	NBTTagCompound tag;
+    	if(item.getTagCompound() != null)
+    		tag = item.getTagCompound();
+    	else
+    		tag = new NBTTagCompound();
+    	
+    	tag.setBoolean("isOpen", false);
+    	item.setTagCompound(tag);
+    	return true;
+    }
+    
     @Override
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
         if (world.isRemote) return false;
