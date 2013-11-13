@@ -15,16 +15,8 @@ import dgrxf.watercraft.util.Vector3;
 public abstract class WCBouyLogic extends DirectionalTileEntity {
     
     /**
-     * NBT-Tags
-     */
-    /*private static final String NBT_NEXT_BUOY_X = "BuoyTarX";
-    private static final String NBT_NEXT_BUOY_Y = "BuoyTarY";
-    private static final String NBT_NEXT_BUOY_Z = "BuoyTarZ";*/
-    
-    /**
      * Constants
      */
-    /*private static final int SEARCH_COUNT_DOWN = 10;*/
     private static final int PARTICLES_SPAWNING_TIME = 10;
     
     /**
@@ -35,12 +27,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /**
      * Fields
      */
-    /*protected boolean           hasBuoy;
-    protected int               nextX;                                // needed for readFromNBT
-	protected int               nextY;                                // needed for readFromNBT
-    protected int               nextZ;                                // needed for readFromNBT*/
     protected int               searchRange;
-    //private int                 searchTimer;                          //do not save this value to nbt, there's no need
     private int 				lastEntityId;
     private boolean				spawnParticles;
     private int					particlesTimer;
@@ -52,44 +39,20 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
      * Mapping: NORTH, SOUTH, WEST, EAST
      */
     protected Vector3[] nextBuoys = new Vector3[4];
-    /*protected WCBouyLogic nextBuoyNegX;
-    protected WCBouyLogic nextBuoyY;
-    protected WCBouyLogic nextBuoyNegY;*/
                                                                        
     /**
      * Default Constructor
-     * 
      */
     public WCBouyLogic() {
-        //hasBuoy = false;
         searchRange = DEFAULT_RANGE;
         particlesTimer = PARTICLES_SPAWNING_TIME;
         spawnParticles = false;
     }
     
     /**
-     * Searches for the next buoy
-     * 
-     * @param yOffset
-     *            vertical search offset
+     * Searches for the next buoys in range
      */
-    /*protected void findNextBuoy(int yOffset) {
-        ForgeDirection dir = getBlockDirection();
-        
-        setNextBuoy(null);
-        
-        for (int i = 1; !hasNextBuoy() && i <= searchRange; ++i) {
-            TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord + yOffset) + dir.offsetY * i, zCoord + dir.offsetZ * i);
-            if (te instanceof WCTileEntityBuoy) {
-                setNextBuoy((WCTileEntityBuoy) te);
-                //LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
-            }
-        }
-    }*/
-    
     protected void findNewBuoys() {
-        //ForgeDirection dir = getBlockDirection();
-        
         for (int d = ForgeDirection.NORTH.ordinal(); d <= ForgeDirection.EAST.ordinal(); ++d) {
             ForgeDirection dir = ForgeDirection.getOrientation(d);
             
@@ -104,6 +67,9 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         }
     }
     
+    /**
+     * This checks if listed buoys still exist and adds new ones
+     */
     public void updateBuoys() {
         for (int i = 0; i < nextBuoys.length; i++) {
             Vector3 p = nextBuoys[i];
@@ -129,7 +95,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     }
     
     /**
-     * Gets the next Buoy in line
+     * Gets the next Buoy Coordinates in line
      * 
      * @param direction Direction of next buoy
      * @return nextBuoy
@@ -138,6 +104,12 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
             return nextBuoys[direction.ordinal() - 2];
     }
     
+    /**
+     * Gets the next Buoy TE in given direction or null
+     * 
+     * @param direction Direction to travel
+     * @return Next buoy
+     */
     public WCBouyLogic getNextBuoy(ForgeDirection direction) {
         Vector3 p = getNextBuoyCoords(direction);
         if (p != null) {
@@ -150,11 +122,16 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         return null;
     }
     
+    /**
+     * Gets all stored Buoy coordinates
+     * 
+     * @return Buoy coordinate array
+     */
     public Vector3[] getNextBuoysCoords() {
         return nextBuoys;
     }
     
-    public WCEntityBoat findEntityBoat(ForgeDirection direction, Class<? extends WCEntityBoat> entC) {
+    /*public WCEntityBoat findEntityBoat(ForgeDirection direction, Class<? extends WCEntityBoat> entC) {
         
         AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(xCoord - 1, yCoord - 2, zCoord - 1, xCoord + 2, yCoord + 2, zCoord + 2);
         
@@ -168,7 +145,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
             }
         }
         return null;
-    }
+    }*/
     
     /**
      * Has Next Buoy
@@ -180,11 +157,11 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         return null != getNextBuoy(direction);
     }
     
-    @Override
+    /*@Override
     public void updateEntity() {
         if (worldObj.isRemote) {
             return;
-        }
+        }*/
         
         /*searchTimer--;
         
@@ -221,39 +198,17 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         } else {
             timer--;
         }*/
-    }
+    //}
     
-    private int timer = 0;
+    //private int timer = 0;
     
+    /**
+     * Buoys don't have to tick anymore
+     */
     @Override
     public boolean canUpdate() {
         return false;
     };
-    
-    /*@Override
-    public void writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        if (hasNextBuoy()) {
-            compound.setInteger(NBT_NEXT_BUOY_X, nextX);
-            compound.setInteger(NBT_NEXT_BUOY_Y, nextY);
-            compound.setInteger(NBT_NEXT_BUOY_Z, nextZ);
-        }
-    }*/
-    
-    /*@Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        if (compound.hasKey(NBT_NEXT_BUOY_X) && compound.hasKey(NBT_NEXT_BUOY_Y) && compound.hasKey(NBT_NEXT_BUOY_Z)) {
-            nextX = compound.getInteger(NBT_NEXT_BUOY_X);
-            nextY = compound.getInteger(NBT_NEXT_BUOY_Y);
-            nextZ = compound.getInteger(NBT_NEXT_BUOY_Z);
-            hasBuoy = true;
-        } else {
-            hasBuoy = false;
-        }
-        
-        LogHelper.debug("Loaded " + this);
-    }*/
     
     /*private void spawnParticle() {
     	if (hasNextBuoy()) {
@@ -268,15 +223,6 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     
     /*public void enableSpawning() {
     	spawnParticles = !spawnParticles;
-    }*/
-    
-    /**
-     * Returns the position of next buoy
-     * 
-     * @return position
-     */
-    /*public Vector3 getNextBuoyPos() {
-        return new Vector3(nextX, nextY, nextZ);
     }*/
 
     @Override

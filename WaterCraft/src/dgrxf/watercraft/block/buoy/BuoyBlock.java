@@ -27,10 +27,6 @@ import dgrxf.watercraft.util.Vector3;
 /**
  * Buoy Block
  * 
- * @author Robotic-Brain
- * @author xandayn (re-created)
- * @author Drunk Mafia (modified)
- * 
  */
 public class BuoyBlock extends DirectionalBlock {
     
@@ -87,6 +83,11 @@ public class BuoyBlock extends DirectionalBlock {
         return particleIcon;
     }
     
+    /****************************************** END of Boilerplate ******************************************/
+    
+    /**
+     * Ignore Boat/Buoy collisions
+     */
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
         if (!(entity instanceof WCEntityBoat)) {
@@ -94,6 +95,9 @@ public class BuoyBlock extends DirectionalBlock {
         }
     }
     
+    /**
+     * Initial update if buoy placed
+     */
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
@@ -104,16 +108,18 @@ public class BuoyBlock extends DirectionalBlock {
         }
     }
     
+    /**
+     * Update connected buoys if buoy destroyed
+     */
     @Override
     public void breakBlock(World par1World, int x, int y, int z, int id, int meta) {
-        LogHelper.debug("Pre Super Break: " + par1World.getBlockTileEntity(x, y, z));
-        
         TileEntity te = par1World.getBlockTileEntity(x, y, z);
         Vector3[] buoys = null;
         if (te instanceof WCBouyLogic) {
             buoys = ((WCBouyLogic)par1World.getBlockTileEntity(x, y, z)).getNextBuoysCoords();
         }
         
+        // This removes the TE
         super.breakBlock(par1World, x, y, z, id, meta);
         
         if (buoys != null) {
@@ -127,13 +133,11 @@ public class BuoyBlock extends DirectionalBlock {
                 }
             }
         }
-        
-        
-        if (!par1World.isRemote) {
-            LogHelper.debug("Post Super Break: " + par1World.getBlockTileEntity(x, y, z));
-        }
     }
     
+    /**
+     * Debug Code!
+     */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         TileEntity te = world.getBlockTileEntity(x, y, z);
