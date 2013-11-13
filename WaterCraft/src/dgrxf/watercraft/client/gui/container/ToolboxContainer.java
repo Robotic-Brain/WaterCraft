@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
+import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 /**
@@ -33,7 +34,7 @@ public class ToolboxContainer extends Container {
         
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 9; x++) {
-                addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
+            	addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 8 + 18 * x, 41 + y * 18));
             }
         }
         
