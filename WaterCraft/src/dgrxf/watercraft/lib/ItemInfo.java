@@ -40,6 +40,9 @@ public class ItemInfo {
 	public static final String ICEBOAT_UNLOCALIZED_NAME = "iceBoat";
 	public static final String ICEBOAT_KEY = "Ice Boat";
 	
+	public static final String ROPE_UNLOCALIZED_NAME = "rope";
+	public static final String ROPE_KEY = "Rope";
+	
     /*************
      * Integers
      *************/
@@ -71,4 +74,7 @@ public class ItemInfo {
     
     public static final int ICEBOAT_ID_DEFAULT = 714;
     public static int ICEBOAT_ID;
+    
+    public static final int ROPE_ID_DEFAULT = 715;
+    public static int ROPE_ID;
 }
