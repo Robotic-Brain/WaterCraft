@@ -72,7 +72,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     }
     
     public void moveToTarget() {
-        
+        // ROPE CODE
     }
     
     public void setFollowing(WCEntityBoatBase boat) {
@@ -86,8 +86,11 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     @Override
     public boolean interactFirst(EntityPlayer player) {
         if (!this.worldObj.isRemote)
-        {
-            player.displayGUIChest(this);
+        {	if (!player.isSneaking()) {
+        		player.displayGUIChest(this);
+        	} else {
+        		//do something with rope
+        	}
         }
 
         return true;

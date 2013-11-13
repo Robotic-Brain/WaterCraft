@@ -13,8 +13,6 @@ public class ItemRope extends Item {
         setUnlocalizedName(ItemInfo.ROPE_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.creativeTab);
     }
-	
-	
-  
+
 }
 
