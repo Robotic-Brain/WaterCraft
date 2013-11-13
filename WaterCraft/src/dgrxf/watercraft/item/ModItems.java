@@ -24,6 +24,7 @@ public class ModItems {
     public static Item vanillaBoat;
     public static Item flag;
     public static Item iceBoat;
+    public static Item blockPlacer;
     
     public static void init() {
     	vanillaBoat = new ItemBoat();
@@ -34,7 +35,5 @@ public class ModItems {
         lavaBoat = new ItemLavaBoat();
         flag = new ItemFlag();
         iceBoat = new ItemIceBoat();
-        
-        GameRegistry.registerItem(flag, ItemInfo.FLAG_UNLOCALIZED_NAME);
     }
 }
