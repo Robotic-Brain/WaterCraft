@@ -55,23 +55,6 @@ public class EntityLavaBoat extends WCEntityBoatBase{
 	}
 	
 	@Override
-	public boolean interactFirst(EntityPlayer par1EntityPlayer)
-    {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer)
-        {
-            return true;
-        }
-        else
-        {
-            if (!this.worldObj.isRemote)
-            {
-                par1EntityPlayer.mountEntity(this);
-            }
-        }
-        return true;
-    }
-	
-	@Override
 	 public void updateRiderPosition()
     {
         if (this.riddenByEntity != null)
