@@ -65,6 +65,8 @@ public class WCTileEntityFilterBuoy extends WCBouyLogic {
         		Colours[] temp = Colours.values();
         		int index = (int) tag.getByte("" + i);
         		directions[i] = temp[index];
+        	}else{
+        		directions[i] = null;
         	}
         }
     }
