@@ -20,13 +20,14 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
 public class WCChest extends BlockContainer {
 	
@@ -35,10 +36,10 @@ public class WCChest extends BlockContainer {
 	    /** 1 for trapped chests, 0 for normal chests. */
 	    public final int chestType;
 
-	    protected WCChest(int id, int material) {
+	    protected WCChest(int id, int type) {
 	        super(id, Material.wood);
-	        this.chestType = material;
-	        this.setCreativeTab(CreativeTabs.tabDecorations);
+	        this.chestType = type;
+	        this.setCreativeTab(Watercraft.miscTab);
 	        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	    }
 
@@ -143,7 +144,7 @@ public class WCChest extends BlockContainer {
 	        }
 
 	        if (par6ItemStack.hasDisplayName()) {
-	            ((TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4)).setChestGuiName(par6ItemStack.getDisplayName());
+	            ((WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4)).setChestGuiName(par6ItemStack.getDisplayName());
 	        }
 	    }
 
@@ -260,7 +261,7 @@ public class WCChest extends BlockContainer {
 
 	    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
 	        super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
-	        TileEntityChest tileentitychest = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+	        WCTileEntityChest tileentitychest = (WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
 
 	        if (tileentitychest != null) {
 	            tileentitychest.updateContainingBlockInfo();
@@ -268,7 +269,7 @@ public class WCChest extends BlockContainer {
 	    }
 
 	    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
-	        TileEntityChest tileentitychest = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+	    	WCTileEntityChest tileentitychest = (WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
 
 	        if (tileentitychest != null) {
 	            for (int j1 = 0; j1 < tileentitychest.getSizeInventory(); ++j1) {
@@ -321,7 +322,7 @@ public class WCChest extends BlockContainer {
 	    }
 
 	    public IInventory getInventory(World par1World, int par2, int par3, int par4) {
-	    	Object object = (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
+	    	Object object = (WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4);
 
 	        if (object == null) {
 	            return null;
@@ -339,19 +340,19 @@ public class WCChest extends BlockContainer {
 	            return null;
 	        } else {
 	            if (par1World.getBlockId(par2 - 1, par3, par4) == this.blockID) {
-	                object = new InventoryLargeChest("container.chestDouble", (TileEntityChest)par1World.getBlockTileEntity(par2 - 1, par3, par4), (IInventory)object);
+	                object = new InventoryLargeChest("container.chestDouble", (WCTileEntityChest)par1World.getBlockTileEntity(par2 - 1, par3, par4), (IInventory)object);
 	            }
 
 	            if (par1World.getBlockId(par2 + 1, par3, par4) == this.blockID) {
-	                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (TileEntityChest)par1World.getBlockTileEntity(par2 + 1, par3, par4));
+	                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (WCTileEntityChest)par1World.getBlockTileEntity(par2 + 1, par3, par4));
 	            }
 
 	            if (par1World.getBlockId(par2, par3, par4 - 1) == this.blockID) {
-	                object = new InventoryLargeChest("container.chestDouble", (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4 - 1), (IInventory)object);
+	                object = new InventoryLargeChest("container.chestDouble", (WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4 - 1), (IInventory)object);
 	            }
 
 	            if (par1World.getBlockId(par2, par3, par4 + 1) == this.blockID) {
-	                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (TileEntityChest)par1World.getBlockTileEntity(par2, par3, par4 + 1));
+	                object = new InventoryLargeChest("container.chestDouble", (IInventory)object, (WCTileEntityChest)par1World.getBlockTileEntity(par2, par3, par4 + 1));
 	            }
 
 	            return (IInventory)object;
@@ -359,7 +360,7 @@ public class WCChest extends BlockContainer {
 	    }
 
 	    public TileEntity createNewTileEntity(World par1World) {
-	        TileEntityChest tileentitychest = new TileEntityChest();
+	    	WCTileEntityChest tileentitychest = new WCTileEntityChest();
 	        return tileentitychest;
 	    }
 
@@ -371,7 +372,7 @@ public class WCChest extends BlockContainer {
 	        if (!this.canProvidePower()) {
 	            return 0;
 	        } else {
-	            int i1 = ((TileEntityChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
+	            int i1 = ((WCTileEntityChest)par1IBlockAccess.getBlockTileEntity(par2, par3, par4)).numUsingPlayers;
 	            return MathHelper.clamp_int(i1, 0, 15);
 	        }
 	    }

@@ -31,6 +31,10 @@ public class BlockInfo {
     public static final String BUOY_FILTER_KEY                           = "Buoy Filter";
     public static final String BUOY_FILTER_TE_KEY                        = "WCTileEntityFilterBuoy";
     
+    public static final String WC_CHEST_UNLOCALIZED_NAME              = "wcChestName";
+    public static final String WC_CHEST_KEY                           = "Chest";
+    public static final String WC_CHEST_TE_KEY                        = "WCTileEntityChest";
+    
     /*************
      * Integers
      *************/
@@ -52,4 +56,7 @@ public class BlockInfo {
     
     public static final int    BUOY_FILTER_ID_DEFAULT                    = 707;
     public static int          BUOY_FILTER_ID;
+    
+    public static final int    WC_CHEST_ID_DEFAULT                    = 708;
+    public static int          WC_CHEST_ID;
 }
