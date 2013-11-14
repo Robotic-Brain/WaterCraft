@@ -219,6 +219,9 @@ public class WCEntityBoatBase extends Entity
 
     /**
      * This heals the boat over time
+     * 
+     * depends on:
+     *      nothing
      */
     private void tickHealing() {
         if (this.getTimeSinceHit() > 0)
@@ -234,7 +237,11 @@ public class WCEntityBoatBase extends Entity
     
     /**
      * This calculates the vertical speed to "bounce" to the surface
-     * @return
+     * 
+     * depends on:
+     *      this.boundingBox
+     * 
+     * @return 
      */
     private double h_calc_bounce() {
         byte b0 = 5;
@@ -298,6 +305,17 @@ public class WCEntityBoatBase extends Entity
         }
     }
     
+    /**
+     * Applies player steering
+     * 
+     * depends on:
+     *      this.riddenByEntity
+     *      this.speedMultiplier
+     *      
+     * modified state:
+     *      this.motionX
+     *      this.motionZ
+     */
     private void h_steer_by_player() {
      // ---------- PLAYER STEERING [START]
         if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
@@ -315,6 +333,23 @@ public class WCEntityBoatBase extends Entity
         // ---------- PLAYER STEERING [END]
     }
     
+    /**
+     * Updates the velocity vector
+     * 
+     * depends on:
+     *      this.motionX
+     *      this.motionZ
+     *      this.speedMultiplier
+     *      this.onGround
+     *      
+     * modified state:
+     *      this.speedMultiplier
+     *      this.motionX
+     *      this.motionY
+     *      this.motionZ
+     * 
+     * @param xzSpeed   Stored Speed
+     */
     private void h_update_speed(double xzSpeed) {
         double xzSpeed2 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
@@ -353,6 +388,12 @@ public class WCEntityBoatBase extends Entity
         }
     }
     
+    /**
+     * Performs the boat breaking and drops planks and sticks
+     * 
+     * modified state:
+     *      this.setDead()
+     */
     private void h_break_boat() {
         if (!this.worldObj.isRemote && !this.isDead)
         {
@@ -371,6 +412,21 @@ public class WCEntityBoatBase extends Entity
         }
     }
     
+    /**
+     * Updates the facing of the boat
+     * 
+     * depends on:
+     *      this.rotationYaw
+     *      (this.rotationPitch)
+     *      this.prevPosX
+     *      this.prevPosZ
+     *      this.posX
+     *      this.posZ
+     *      
+     * modified state:
+     *      this.rotationYaw
+     *      this.setRotation()
+     */
     private void h_update_facing() {
         this.rotationPitch = 0.0F;
         double curr_facing_y = (double)this.rotationYaw;
@@ -419,9 +475,6 @@ public class WCEntityBoatBase extends Entity
         
         // store speed
         double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        
-        //double d10;
-        //double d11;
 
         if (this.worldObj.isRemote && this.isEmpty)
         {
