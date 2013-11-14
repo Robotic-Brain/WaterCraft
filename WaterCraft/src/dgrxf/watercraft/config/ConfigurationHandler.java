@@ -1,10 +1,10 @@
 package dgrxf.watercraft.config;
 
 /**
- * Class Made By: ???
+ * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By: ???
- * Class Last Edited On: 07/11/2013
+ * Class Last Edited By: Drunk Mafia
+ * Class Last Edited On: 14/11/2013
  * 						 DD/MM/YYYY
  * 
  */
