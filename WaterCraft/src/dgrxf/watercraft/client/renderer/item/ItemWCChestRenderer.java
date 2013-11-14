@@ -31,21 +31,24 @@ public class ItemWCChestRenderer  implements IItemRenderer {
 		GL11.glPushMatrix();
 		GL11.glScalef(-1F, -1F, 1F);
         
-        Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
         switch (type) {
             case EQUIPPED:
-                GL11.glTranslatef(0.4F, 1.2F, 0.6F);
+            	GL11.glTranslatef(-0.8F, -0.7F, 0.7F);
                 break;
             case EQUIPPED_FIRST_PERSON:
-                GL11.glTranslatef(0F, 0.7F, 0.5F);
-                GL11.glRotatef(180, 0F, 0.5F, 0);
+            	GL11.glTranslatef(0F, 0.8F, 0.7F);
                 break;
             case INVENTORY:
-            	GL11.glTranslatef(0.0F, 0.3F, 0.0F);
-            	GL11.glScalef(1.8F, 1.8F, 1.8F);
+            	GL11.glTranslatef(-0.8F, -0.8F, 0F);
                 break;
+            case ENTITY:
+            	GL11.glTranslatef(0F, -0.5F, 0F);
+            	break;
             default:
         }
+        
+        Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
+        chestModel.renderAll();
         
         GL11.glPopMatrix();
     }
