@@ -33,8 +33,7 @@ public class GuiCalculator extends GuiContainer{
 	@Override
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		fontRenderer.drawString("Calculator", 8, 3, 0x404040);
-		//fontRenderer.drawString("Calculator", 8, 3, 0x404040);
-		fontRenderer.drawSplitString(screenText, 10, 17, 100, 0x404040);
+		fontRenderer.drawSplitString(screenText, 10, 17, 178, 0x404040);
 		
 	}
 	
@@ -44,10 +43,10 @@ public class GuiCalculator extends GuiContainer{
 		buttonList.clear();
 		int id = 0;
 		for (int y = 0; y < 3; y++) {
-            for (int x = 0; x < 7; x++) {
+            for (int x = 0; x < 5; x++) {
             	if(id != 10){
             		id++;
-            		buttonList.add(new GuiButton(x + y * 9, guiLeft + 12 + 19 * x, guiTop + 41 + y * 22, 18, 20, "" + id));
+            		buttonList.add(new GuiButton(id, guiLeft + 12 + 19 * x, guiTop + 41 + y * 22, 18, 20, "" + id));
             	}
             }
         }
@@ -55,9 +54,9 @@ public class GuiCalculator extends GuiContainer{
 		buttonList.add(new GuiButton((id + 2), guiLeft + 31, 118, 18, 20, "-"));
 		buttonList.add(new GuiButton((id + 3), guiLeft + 50, 118, 18, 20, "/"));
 		buttonList.add(new GuiButton((id + 2), guiLeft + 69, 118, 18, 20, "*"));
-		buttonList.add(new GuiButton((id + 2), guiLeft + 88, 118, 75, 20, "="));
-		buttonList.add(new GuiButton((id + 2), guiLeft + 165, 118, 18, 20, "C"));
-		buttonList.add(new GuiButton((id + 2), guiLeft + 165, 96, 18, 20, "<="));
+		buttonList.add(new GuiButton((id + 2), guiLeft + 12, 96, 57, 20, "="));
+		buttonList.add(new GuiButton((id + 2), guiLeft + 88, 118, 18, 20, "C"));
+		buttonList.add(new GuiButton((id + 2), guiLeft + 69, 96, 38, 20, "<="));
 	}
 	
 	@Override
