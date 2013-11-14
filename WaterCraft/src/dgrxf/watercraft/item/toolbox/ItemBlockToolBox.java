@@ -98,9 +98,11 @@ public class ItemBlockToolBox extends ItemBlock {
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!player.isSneaking()) {
             if (stack.getTagCompound() == null) {
+            	ItemStack toolbox = stack;
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setString("playerName", player.username);
-                stack.setTagCompound(tag);
+                toolbox.setTagCompound(tag);
+                player.inventory.setInventorySlotContents(player.inventory.currentItem, toolbox);
             }
 		    Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
             FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
