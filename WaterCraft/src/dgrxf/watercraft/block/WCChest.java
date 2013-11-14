@@ -39,7 +39,7 @@ public class WCChest extends BlockContainer {
 	    protected WCChest(int id, int type) {
 	        super(id, Material.wood);
 	        this.chestType = type;
-	        //this.setCreativeTab(Watercraft.miscTab);
+	        this.setCreativeTab(Watercraft.miscTab);
 	        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	    }
 	    

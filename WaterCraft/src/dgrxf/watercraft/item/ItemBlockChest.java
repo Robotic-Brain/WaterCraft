@@ -24,7 +24,7 @@ public class ItemBlockChest extends ItemBlock {
     
     public ItemBlockChest(int id) {
         super(id);
-        this.setCreativeTab(Watercraft.miscTab);
+        setCreativeTab(Watercraft.miscTab);
         maxStackSize = 64;
     }
 }
