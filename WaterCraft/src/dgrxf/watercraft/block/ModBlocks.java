@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.block.buoy.BuoyFilterBlock;
+import dgrxf.watercraft.item.ItemBlockChest;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoyFilter;
 import dgrxf.watercraft.item.toolbox.ItemBlockToolBox;
@@ -49,7 +50,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(controlUnitDock, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
-        GameRegistry.registerBlock(chest, BlockInfo.WC_CHEST_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(chest, ItemBlockChest.class, BlockInfo.WC_CHEST_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityFilterBuoy.class, BlockInfo.BUOY_FILTER_TE_KEY);
