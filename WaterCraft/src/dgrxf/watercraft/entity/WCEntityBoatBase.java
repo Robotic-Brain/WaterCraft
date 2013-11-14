@@ -340,7 +340,8 @@ public class WCEntityBoatBase extends Entity
 
                 this.motionY += 0.007000000216066837D;
             }
-
+            
+            // ---------- PLAYER STEERING [START]
             if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
             {
                 d4 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
@@ -353,6 +354,7 @@ public class WCEntityBoatBase extends Entity
                     this.motionZ += d11 * this.speedMultiplier * 0.05000000074505806D;
                 }
             }
+            // ---------- PLAYER STEERING [END]
 
             d4 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
@@ -391,7 +393,8 @@ public class WCEntityBoatBase extends Entity
             }
 
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
-
+            
+            // ---------- COLLISSION BREAKING [START]
             if (this.isCollidedHorizontally && d3 > 0.2D)
             {
                 if (!this.worldObj.isRemote && !this.isDead)
@@ -410,6 +413,7 @@ public class WCEntityBoatBase extends Entity
                     }
                 }
             }
+            // ---------- COLLISSION BREAKING [END]
             else
             {
                 this.motionX *= 0.9900000095367432D;
@@ -444,6 +448,8 @@ public class WCEntityBoatBase extends Entity
 
             if (!this.worldObj.isRemote)
             {
+                // ---------- COLLISSION HANDLING [START]
+                // ---------- Pushing boat by other boats [START]
                 List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
                 int l;
 
@@ -459,7 +465,9 @@ public class WCEntityBoatBase extends Entity
                         }
                     }
                 }
+                // ---------- Pushing boat by other boats [END]
 
+                // ---------- Waterlily and Snow collisions [START]
                 for (l = 0; l < 4; ++l)
                 {
                     int i1 = MathHelper.floor_double(this.posX + ((double)(l % 2) - 0.5D) * 0.8D);
@@ -480,11 +488,15 @@ public class WCEntityBoatBase extends Entity
                         }
                     }
                 }
-
+                // ---------- Waterlily and Snow collisions [END]
+                // ---------- COLLISSION HANDLING [END]
+                
+                // ---------- Set empty if rider dead [START]
                 if (this.riddenByEntity != null && this.riddenByEntity.isDead)
                 {
                     this.riddenByEntity = null;
                 }
+                // ---------- Set empty if rider dead [END]
             }
         }
     }
