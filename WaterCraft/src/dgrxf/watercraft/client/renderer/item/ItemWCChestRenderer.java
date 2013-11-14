@@ -29,7 +29,6 @@ public class ItemWCChestRenderer  implements IItemRenderer {
 	@Override
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		GL11.glPushMatrix();
-        NBTTagCompound tag;
 		GL11.glScalef(-1F, -1F, 1F);
         
         Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
