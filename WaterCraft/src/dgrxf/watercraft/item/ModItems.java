@@ -10,6 +10,12 @@ package dgrxf.watercraft.item;
  */
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import dgrxf.watercraft.item.boat.ItemBoat;
+import dgrxf.watercraft.item.boat.ItemBoatChest;
+import dgrxf.watercraft.item.boat.ItemDumbBoat;
+import dgrxf.watercraft.item.boat.ItemIceBoat;
+import dgrxf.watercraft.item.boat.ItemLavaBoat;
+import dgrxf.watercraft.item.buoy.ItemFlag;
 import dgrxf.watercraft.lib.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
