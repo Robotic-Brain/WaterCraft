@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -15,7 +16,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.DirectionalBlock;
-import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
@@ -90,7 +90,7 @@ public class BuoyBlock extends DirectionalBlock {
      */
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
-        if (!(entity instanceof WCEntityBoatBase)) {
+        if (!(entity instanceof WCEntityBoatBase) && !(entity instanceof EntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
         }
     }
