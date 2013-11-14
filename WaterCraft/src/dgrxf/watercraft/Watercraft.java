@@ -27,12 +27,13 @@ import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
+import dgrxf.watercraft.recipe.RecipeHandler;
 import dgrxf.watercraft.util.RecipeHelper;
 
 /**
  * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:11/06/2013 MM/DD/YYYYY
+ * Class Last Edited By:Drunk Mafia Class Last Edited On:14/06/2013 MM/DD/YYYYY
  * 
  */
 
@@ -53,7 +54,7 @@ public class Watercraft {
     	MinecraftForge.EVENT_BUS.register(new WCEventHandler());
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
-        RecipeHelper.removeCraftingRecipe(new ItemStack(Item.boat));
+        RecipeHandler.removeVanillaRecpies();
     }
     
     @EventHandler
@@ -64,14 +65,9 @@ public class Watercraft {
         ModItems.init();
         MultiBlockInfo.init();
         Entities.init();
-        GameRegistry.addRecipe(new ItemStack(ModItems.boat), "x x", "xxx", 'x', Block.planks); //Temporary until we add the "new" vanilla boat
+        RecipeHandler.init();
     }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent e) {
         
-    }
-    
     public static void printToPlayer(String txt) {
         Minecraft.getMinecraft().thePlayer.sendChatMessage("" + txt);
     }
