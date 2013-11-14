@@ -16,7 +16,7 @@
 	
 	public class EntityIceBoat extends WCEntityBoatBase {
 		
-		private boolean field_70279_a;
+	    private boolean field_70279_a;
 	    private double speedMultiplier;
 	    private int boatPosRotationIncrements;
 	    private double boatX;
