@@ -10,7 +10,7 @@ package dgrxf.watercraft.lib;
 public class ModInfo {
     
     public static final String MODID        = "watercraft";
-    public static final String VERSION      = "Pre-Alpha 0.01";
+    public static final String VERSION      = "Pre-Alpha 0.05";
     public static final String NAME         = "WaterCraft";
     public static final String CHANNEL      = MODID;
     public static final String COMMON_PROXY = "dgrxf.watercraft.proxy.CommonProxy";
