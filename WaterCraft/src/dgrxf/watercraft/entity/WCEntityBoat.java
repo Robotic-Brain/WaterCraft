@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
@@ -100,7 +101,8 @@ public class WCEntityBoat extends WCEntityBoatBase {
     }
     
     @Override
-    public void onEntityUpdate() {
+    public void onUpdate() {
+        super.onUpdate();
         if (!worldObj.isRemote) {
             moveToTarget();
             //LogHelper.debug("SV Flag color: " + getFlagColor());
@@ -180,32 +182,14 @@ public class WCEntityBoat extends WCEntityBoatBase {
     public Colours getFlagColor(){
     	return this.getColour(dataWatcher.getWatchableObjectInt(FLAG_COLOR_WATCHER));
     }
-    
-    public void setDamageTaken(float par1) {
-        this.dataWatcher.updateObject(DAMAGE_TAKEN_WATCHER, Float.valueOf(par1));
-    }
-    
-    public float getDamageTaken() {
-        return this.dataWatcher.getWatchableObjectFloat(DAMAGE_TAKEN_WATCHER);
-    }
-    
-    public void setTimeSinceHit(int par1) {
-        this.dataWatcher.updateObject(HIT_TIME_WATCHER, Integer.valueOf(par1));
-    }
-    
-    public int getTimeSinceHit() {
-        return this.dataWatcher.getWatchableObjectInt(HIT_TIME_WATCHER);
-    }
-    
-    public void setForwardDirection(int par1) {
-        this.dataWatcher.updateObject(FORWARD_WATCHER, Integer.valueOf(par1));
-    }
-    
-    public int getForwardDirection() {
-        return this.dataWatcher.getWatchableObjectInt(FORWARD_WATCHER);
-    }
 
 	public Block getDisplayTile() {
 		return null;
+	}
+	
+	@Override
+	protected void buoyFound(WCBouyLogic buoy) {
+	    setTargetLocation(new Vector2(buoy.xCoord, buoy.zCoord));
+	    LogHelper.debug("Traget set");
 	}
 }

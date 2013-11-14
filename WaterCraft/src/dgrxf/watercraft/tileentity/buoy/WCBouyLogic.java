@@ -1,12 +1,7 @@
 package dgrxf.watercraft.tileentity.buoy;
 
-import java.util.List;
-
-import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.tileentity.DirectionalTileEntity;
 import dgrxf.watercraft.util.LogHelper;
@@ -157,51 +152,6 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     public boolean hasNextBuoy(ForgeDirection direction) {
         return null != getNextBuoy(direction);
     }
-    
-    /*@Override
-    public void updateEntity() {
-        if (worldObj.isRemote) {
-            return;
-        }*/
-        
-        /*searchTimer--;
-        
-        if (searchTimer <= 0) {
-            findNextBuoy(0);
-            
-            WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
-            WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBlockDirection(), WCEntitySmartBoat.class);
-            
-            if (eS != null && lastEntityId != eS.entityId) {
-            	lastEntityId = eS.entityId;
-            	eS.iterateList();
-            }
-            else if(eS == null)
-            {
-            	lastEntityId = 0;
-            }
-            if (e != null && hasNextBuoy()) {
-            	if(!(e instanceof WCEntitySmartBoat))
-            	e.setTargetLocation(new Vector2(nextX, nextZ));
-            }
-            
-            searchTimer = SEARCH_COUNT_DOWN;
-        }
-        
-        if (spawnParticles && particlesTimer-- <= 0) {
-        	particlesTimer = PARTICLES_SPAWNING_TIME;
-        	spawnParticle();
-        }*/
-        // Debug stuff
-        /*if (timer <= 0) {
-            LogHelper.debug(this);
-            timer = 20;
-        } else {
-            timer--;
-        }*/
-    //}
-    
-    //private int timer = 0;
     
     /**
      * Buoys don't have to tick anymore

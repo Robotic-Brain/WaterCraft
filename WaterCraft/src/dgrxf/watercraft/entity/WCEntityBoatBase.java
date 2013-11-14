@@ -1,11 +1,7 @@
 package dgrxf.watercraft.entity;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import java.util.List;
 
-import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -18,6 +14,9 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 public class WCEntityBoatBase extends Entity
 {
@@ -128,7 +127,7 @@ public class WCEntityBoatBase extends Entity
 
             if (flag || this.getDamageTaken() > 40.0F)
             {
-                if (this.riddenByEntity != null && isEmpty)
+                if (this.riddenByEntity != null)
                 {
                     this.riddenByEntity.mountEntity(this);
                 }
@@ -342,7 +341,7 @@ public class WCEntityBoatBase extends Entity
                 this.motionY += 0.007000000216066837D;
             }
 
-            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase && this.isEmpty)
+            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
             {
                 d4 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
 
@@ -492,7 +491,7 @@ public class WCEntityBoatBase extends Entity
 
     public void updateRiderPosition()
     {
-        if (this.riddenByEntity != null && this.isEmpty)
+        if (this.riddenByEntity != null)
         {
             double d0 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             double d1 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
@@ -626,9 +625,17 @@ public class WCEntityBoatBase extends Entity
                     TileEntity te = worldObj.getBlockTileEntity(myX + dx, myY + dy, myZ + dz);
                     if (te instanceof WCBouyLogic) {
                         ((WCBouyLogic) te).updateBuoys();
+                        this.buoyFound((WCBouyLogic) te);
                     }
                 }
             }
         }
     }
+    
+    /**
+     * This callback gets called by the Boat base class if boat is near buoy
+     * 
+     * @param buoy
+     */
+    protected void buoyFound(WCBouyLogic buoy) {}
 }
