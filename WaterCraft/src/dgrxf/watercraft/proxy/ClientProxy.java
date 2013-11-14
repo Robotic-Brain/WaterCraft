@@ -16,6 +16,7 @@ import dgrxf.watercraft.client.sound.SoundHandler;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.entity.WCEntitySmartBoat;
+import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.RenderInfo;
