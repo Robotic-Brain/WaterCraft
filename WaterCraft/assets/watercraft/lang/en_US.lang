@@ -11,6 +11,10 @@ item.boatChest.name=Chest Boat
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat
+item.dumbBoat.name=Simple Boat
+item.iceBoat.name=Ice Boat
+item.rope.name=Rope
+item.padlock.name=Padlock
 
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
