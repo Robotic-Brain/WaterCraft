@@ -26,6 +26,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
 public class WCChest extends BlockContainer {
@@ -38,7 +39,7 @@ public class WCChest extends BlockContainer {
 	    protected WCChest(int id, int type) {
 	        super(id, Material.wood);
 	        this.chestType = type;
-	        this.setCreativeTab(Watercraft.miscTab);
+	        //this.setCreativeTab(Watercraft.miscTab);
 	        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	    }
 
@@ -51,8 +52,7 @@ public class WCChest extends BlockContainer {
 	    }
 
 	    public int getRenderType() {
-	    	//TODO custom render for padlock
-	        return 22;
+	        return RenderInfo.WC_CHEST_RENDER_ID;
 	    }
 
 	    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {

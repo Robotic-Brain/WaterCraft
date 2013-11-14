@@ -24,4 +24,6 @@ public class RenderInfo {
     
     public static final String           FLAG_TEXTURE_LOCATION         = "textures/models/flag/UV_";
     public static int                    FLAG_RENDER_ID;
+    
+    public static int                    WC_CHEST_RENDER_ID;
 }
