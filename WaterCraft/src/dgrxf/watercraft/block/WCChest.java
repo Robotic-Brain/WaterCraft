@@ -35,24 +35,14 @@ public class WCChest extends BlockContainer {
 
 	    /** 1 for trapped chests, 0 for normal chests. */
 	    public final int chestType;
-	    private boolean locked;
 
 	    protected WCChest(int id, int type) {
 	        super(id, Material.wood);
 	        this.chestType = type;
-	        locked = false;
 	        //this.setCreativeTab(Watercraft.miscTab);
 	        this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
 	    }
 	    
-	    public void setLocked(boolean lock) {
-	    	locked = lock;
-	    }
-	    
-	    public boolean isLocked() {
-	    	return locked;
-	    }
-
 	    public boolean isOpaqueCube() {
 	        return false;
 	    }
@@ -317,9 +307,17 @@ public class WCChest extends BlockContainer {
 	    }
 
 	    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-	        if (par1World.isRemote || isLocked()) {
+	        if (par1World.isRemote) {
 	            return true;
 	        } else {
+	        	TileEntity te = par1World.getBlockTileEntity(par2, par3, par4);
+	        	
+	        	if (te instanceof WCTileEntityChest) {
+	        		if (((WCTileEntityChest)te).isLocked()) {
+	        			return true;
+	        		}
+	        	}
+	        	
 	            IInventory iinventory = this.getInventory(par1World, par2, par3, par4);
 
 	            if (iinventory != null) {

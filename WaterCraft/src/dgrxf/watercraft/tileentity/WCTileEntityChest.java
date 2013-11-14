@@ -31,14 +31,24 @@ public class WCTileEntityChest extends TileEntity implements IInventory {
     private int ticksSinceSync;
     private int cachedChestType;
     private String customName;
+    private boolean locked;
 
     public WCTileEntityChest() {
         this.cachedChestType = -1;
+        locked = false;
     }
 
     @SideOnly(Side.CLIENT)
     public WCTileEntityChest(int par1) {
         this.cachedChestType = par1;
+    }
+    
+    public void setLocked(boolean lock) {
+    	locked = lock;
+    }
+    
+    public boolean isLocked() {
+    	return locked;
     }
 
     public int getSizeInventory() {
