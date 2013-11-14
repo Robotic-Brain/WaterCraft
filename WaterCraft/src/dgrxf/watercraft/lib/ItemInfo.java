@@ -52,36 +52,36 @@ public class ItemInfo {
      * Integers
      *************/
     
-    public static final int    BOAT_ID_DEFAULT       = 700;
+    public static final int    BOAT_ID_DEFAULT       = 1700;
     public static int          BOAT_ID;
     
-    public static final int TAPE_MEASURE_ID_DEFAULT = 707;
+    public static final int TAPE_MEASURE_ID_DEFAULT = 1707;
     public static int TAPE_MEASURE_ID;
     
-    public static final int TELESCOPE_ID_DEFAULT = 708;
+    public static final int TELESCOPE_ID_DEFAULT = 1708;
     public static int TELESCOPE_ID;
     
-    public static final int ENGINE_ID_DEFAULT = 709;
+    public static final int ENGINE_ID_DEFAULT = 1709;
     public static int ENGINE_ID;
 
-	public static final int BOATCHEST_ID_DEFAULT = 710;
+	public static final int BOATCHEST_ID_DEFAULT = 1710;
 	public static int BOATCHEST_ID;
 
-	public static final int LAVABOAT_ID_DEFAULT = 711;
+	public static final int LAVABOAT_ID_DEFAULT = 1711;
 	public static int LAVABOAT_ID;
     
-    public static final int DUMB_BOAT_ID_DEFAULT = 712;
+    public static final int DUMB_BOAT_ID_DEFAULT = 1712;
     public static int DUMB_BOAT_ID;
     
-    public static final int FLAG_ID_DEFAULT = 713;
+    public static final int FLAG_ID_DEFAULT = 1713;
     public static int FLAG_ID;
     
-    public static final int ICEBOAT_ID_DEFAULT = 714;
+    public static final int ICEBOAT_ID_DEFAULT = 1714;
     public static int ICEBOAT_ID;
     
-    public static final int ROPE_ID_DEFAULT = 715;
+    public static final int ROPE_ID_DEFAULT = 1715;
     public static int ROPE_ID;
     
-    public static final int PADLOCK_ID_DEFAULT = 716;
+    public static final int PADLOCK_ID_DEFAULT = 1716;
     public static int PADLOCK_ID;
 }
