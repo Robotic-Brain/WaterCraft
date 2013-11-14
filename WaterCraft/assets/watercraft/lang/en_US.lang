@@ -16,6 +16,7 @@ item.dumbBoat.name=Simple Boat
 item.iceBoat.name=Ice Boat
 item.rope.name=Rope
 item.padlock.name=Padlock
+item.calculator.name=Calculator
 
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
