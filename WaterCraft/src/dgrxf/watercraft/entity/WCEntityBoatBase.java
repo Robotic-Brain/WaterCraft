@@ -217,15 +217,8 @@ public class WCEntityBoatBase extends Entity
         this.velocityZ = this.motionZ = par5;
     }
 
-    /**
-     * Called to update the entity's position/logic.
-     */
-    public void onUpdate()
-    {
-        super.onUpdate();
-        
-        updateBuoys();
-        
+    
+    private void h_timer() {
         if (this.getTimeSinceHit() > 0)
         {
             this.setTimeSinceHit(this.getTimeSinceHit() - 1);
@@ -235,12 +228,11 @@ public class WCEntityBoatBase extends Entity
         {
             this.setDamageTaken(this.getDamageTaken() - 1.0F);
         }
-
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
+    }
+    
+    private double h_calc_bounce() {
         byte b0 = 5;
-        double d0 = 0.0D;
+        double temp_y_speed = 0.0D;
 
         for (int i = 0; i < b0; ++i)
         {
@@ -250,21 +242,25 @@ public class WCEntityBoatBase extends Entity
 
             if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water))
             {
-                d0 += 1.0D / (double)b0;
+                temp_y_speed += 1.0D / (double)b0;
             }
         }
         
-        // ----- PARTICLE LOGIC [START]
-        double d3 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        double d4;
-        double d5;
+        return temp_y_speed;
+    }
+    
+    private void h_spawn_paricles() {
+     // ----- PARTICLE LOGIC [START]
+        double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        double curr_facing_x;
+        double curr_facing_y;
 
-        if (d3 > 0.26249999999999996D)
+        if (xzSpeed > 0.26249999999999996D)
         {
-            d4 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
-            d5 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
+            curr_facing_x = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
+            curr_facing_y = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
 
-            for (int j = 0; (double)j < 1.0D + d3 * 60.0D; ++j)
+            for (int j = 0; (double)j < 1.0D + xzSpeed * 60.0D; ++j)
             {
                 double d6 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
                 double d7 = (double)(this.rand.nextInt(2) * 2 - 1) * 0.7D;
@@ -273,44 +269,143 @@ public class WCEntityBoatBase extends Entity
 
                 if (this.rand.nextBoolean())
                 {
-                    d8 = this.posX - d4 * d6 * 0.8D + d5 * d7;
-                    d9 = this.posZ - d5 * d6 * 0.8D - d4 * d7;
+                    d8 = this.posX - curr_facing_x * d6 * 0.8D + curr_facing_y * d7;
+                    d9 = this.posZ - curr_facing_y * d6 * 0.8D - curr_facing_x * d7;
                     this.worldObj.spawnParticle("splash", d8, this.posY - 0.125D, d9, this.motionX, this.motionY, this.motionZ);
                 }
                 else
                 {
-                    d8 = this.posX + d4 + d5 * d6 * 0.7D;
-                    d9 = this.posZ + d5 - d4 * d6 * 0.7D;
+                    d8 = this.posX + curr_facing_x + curr_facing_y * d6 * 0.7D;
+                    d9 = this.posZ + curr_facing_y - curr_facing_x * d6 * 0.7D;
                     this.worldObj.spawnParticle("splash", d8, this.posY - 0.125D, d9, this.motionX, this.motionY, this.motionZ);
                 }
             }
         }
         // ----- PARTICLE LOGIC [END]
+    }
+    
+    private void h_steer_by_player() {
+     // ---------- PLAYER STEERING [START]
+        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
+        {
+            double curr_facing_x = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
+
+            if (curr_facing_x > 0.0D)
+            {
+                double curr_facing_y = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
+                double d11 = Math.cos((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
+                this.motionX += curr_facing_y * this.speedMultiplier * 0.05000000074505806D;
+                this.motionZ += d11 * this.speedMultiplier * 0.05000000074505806D;
+            }
+        }
+        // ---------- PLAYER STEERING [END]
+    }
+    
+    private void h_update_speed(double xzSpeed) {
+        double xzSpeed2 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+        if (xzSpeed2 > 0.35D)
+        {
+            double curr_facing_y = 0.35D / xzSpeed2;
+            this.motionX *= curr_facing_y;
+            this.motionZ *= curr_facing_y;
+            xzSpeed2 = 0.35D;
+        }
+
+        if (xzSpeed2 > xzSpeed && this.speedMultiplier < 0.35D)
+        {
+            this.speedMultiplier += (0.35D - this.speedMultiplier) / 35.0D;
+
+            if (this.speedMultiplier > 0.35D)
+            {
+                this.speedMultiplier = 0.35D;
+            }
+        }
+        else
+        {
+            this.speedMultiplier -= (this.speedMultiplier - 0.07D) / 35.0D;
+
+            if (this.speedMultiplier < 0.07D)
+            {
+                this.speedMultiplier = 0.07D;
+            }
+        }
+
+        if (this.onGround)
+        {
+            this.motionX *= 0.5D;
+            this.motionY *= 0.5D;
+            this.motionZ *= 0.5D;
+        }
+    }
+    
+    private void h_break_boat() {
+        if (!this.worldObj.isRemote && !this.isDead)
+        {
+            this.setDead();
+            int k;
+
+            for (k = 0; k < 3; ++k)
+            {
+                this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
+            }
+
+            for (k = 0; k < 2; ++k)
+            {
+                this.dropItemWithOffset(Item.stick.itemID, 1, 0.0F);
+            }
+        }
+    }
+    
+    /**
+     * Called to update the entity's position/logic.
+     */
+    public void onUpdate()
+    {
+        super.onUpdate();
+        
+        updateBuoys();
+        
+        h_timer();
+
+        this.prevPosX = this.posX;
+        this.prevPosY = this.posY;
+        this.prevPosZ = this.posZ;
+        
+        double temp_y_speed = h_calc_bounce();
+        
+        h_spawn_paricles();
+        
+        /*double curr_facing_x;
+        double curr_facing_y;*/
+        
+        // store speed
+        double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         
         double d10;
-        double d11;
+        //double d11;
 
         if (this.worldObj.isRemote && this.isEmpty)
         {
             if (this.boatPosRotationIncrements > 0)
             {
-                d4 = this.posX + (this.boatX - this.posX) / (double)this.boatPosRotationIncrements;
-                d5 = this.posY + (this.boatY - this.posY) / (double)this.boatPosRotationIncrements;
-                d11 = this.posZ + (this.boatZ - this.posZ) / (double)this.boatPosRotationIncrements;
+                double curr_facing_x = this.posX + (this.boatX - this.posX) / (double)this.boatPosRotationIncrements;
+                double curr_facing_y = this.posY + (this.boatY - this.posY) / (double)this.boatPosRotationIncrements;
+                double d11 = this.posZ + (this.boatZ - this.posZ) / (double)this.boatPosRotationIncrements;
                 d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double)this.rotationYaw);
                 this.rotationYaw = (float)((double)this.rotationYaw + d10 / (double)this.boatPosRotationIncrements);
                 this.rotationPitch = (float)((double)this.rotationPitch + (this.boatPitch - (double)this.rotationPitch) / (double)this.boatPosRotationIncrements);
                 --this.boatPosRotationIncrements;
-                this.setPosition(d4, d5, d11);
+                this.setPosition(curr_facing_x, curr_facing_y, d11);
                 this.setRotation(this.rotationYaw, this.rotationPitch);
                 
             }
             else
             {
-                d4 = this.posX + this.motionX;
-                d5 = this.posY + this.motionY;
-                d11 = this.posZ + this.motionZ;
-                this.setPosition(d4, d5, d11);
+                double curr_facing_x = this.posX + this.motionX;
+                double curr_facing_y = this.posY + this.motionY;
+                double d11 = this.posZ + this.motionZ;
+                this.setPosition(curr_facing_x, curr_facing_y, d11);
 
                 if (this.onGround)
                 {
@@ -326,10 +421,10 @@ public class WCEntityBoatBase extends Entity
         }
         else
         {
-            if (d0 < 1.0D)
+            if (temp_y_speed < 1.0D)
             {
-                d4 = d0 * 2.0D - 1.0D;
-                this.motionY += 0.03999999910593033D * d4;
+                double curr_facing_x = temp_y_speed * 2.0D - 1.0D;
+                this.motionY += 0.03999999910593033D * curr_facing_x;
             }
             else
             {
@@ -341,77 +436,16 @@ public class WCEntityBoatBase extends Entity
                 this.motionY += 0.007000000216066837D;
             }
             
-            // ---------- PLAYER STEERING [START]
-            if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
-            {
-                d4 = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
+            h_steer_by_player();
 
-                if (d4 > 0.0D)
-                {
-                    d5 = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                    d11 = Math.cos((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                    this.motionX += d5 * this.speedMultiplier * 0.05000000074505806D;
-                    this.motionZ += d11 * this.speedMultiplier * 0.05000000074505806D;
-                }
-            }
-            // ---------- PLAYER STEERING [END]
-
-            d4 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-            if (d4 > 0.35D)
-            {
-                d5 = 0.35D / d4;
-                this.motionX *= d5;
-                this.motionZ *= d5;
-                d4 = 0.35D;
-            }
-
-            if (d4 > d3 && this.speedMultiplier < 0.35D)
-            {
-                this.speedMultiplier += (0.35D - this.speedMultiplier) / 35.0D;
-
-                if (this.speedMultiplier > 0.35D)
-                {
-                    this.speedMultiplier = 0.35D;
-                }
-            }
-            else
-            {
-                this.speedMultiplier -= (this.speedMultiplier - 0.07D) / 35.0D;
-
-                if (this.speedMultiplier < 0.07D)
-                {
-                    this.speedMultiplier = 0.07D;
-                }
-            }
-
-            if (this.onGround)
-            {
-                this.motionX *= 0.5D;
-                this.motionY *= 0.5D;
-                this.motionZ *= 0.5D;
-            }
+            h_update_speed(xzSpeed);
 
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
             
             // ---------- COLLISSION BREAKING [START]
-            if (this.isCollidedHorizontally && d3 > 0.2D)
+            if (this.isCollidedHorizontally && xzSpeed > 0.2D)
             {
-                if (!this.worldObj.isRemote && !this.isDead)
-                {
-                    this.setDead();
-                    int k;
-
-                    for (k = 0; k < 3; ++k)
-                    {
-                        this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
-                    }
-
-                    for (k = 0; k < 2; ++k)
-                    {
-                        this.dropItemWithOffset(Item.stick.itemID, 1, 0.0F);
-                    }
-                }
+                h_break_boat();
             }
             // ---------- COLLISSION BREAKING [END]
             else
@@ -422,16 +456,16 @@ public class WCEntityBoatBase extends Entity
             }
 
             this.rotationPitch = 0.0F;
-            d5 = (double)this.rotationYaw;
-            d11 = this.prevPosX - this.posX;
+            double curr_facing_y = (double)this.rotationYaw;
+            double d11 = this.prevPosX - this.posX;
             d10 = this.prevPosZ - this.posZ;
 
             if (d11 * d11 + d10 * d10 > 0.001D)
             {
-                d5 = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
+                curr_facing_y = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
             }
 
-            double d12 = MathHelper.wrapAngleTo180_double(d5 - (double)this.rotationYaw);
+            double d12 = MathHelper.wrapAngleTo180_double(curr_facing_y - (double)this.rotationYaw);
 
             if (d12 > 20.0D)
             {
