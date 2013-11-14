@@ -5,6 +5,9 @@ public class BlockInfo {
     /*************
      * Strings
      *************/
+	
+	public static final String CATEGORY                           = "Blocks";
+	
     public static final String BUOY_UNLOCALIZED_NAME              = "buoyBlockName";
     public static final String BUOY_KEY                           = "Buoy";
     public static final String BUOY_TE_KEY                        = "WCTileEntityBuoy";

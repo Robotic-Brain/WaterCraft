@@ -13,6 +13,8 @@ public class ItemInfo {
      * Strings
      *************/
     
+	public static final String CATEGORY                           = "Items";
+	
     public static final String BOAT_UNLOCALIZED_NAME = "wcboat";
     public static final String BOAT_KEY              = "wc boat";
 
@@ -43,13 +45,15 @@ public class ItemInfo {
 	public static final String ROPE_UNLOCALIZED_NAME = "rope";
 	public static final String ROPE_KEY = "Rope";
 	
+	public static final String PADLOCK_UNLOCALIZED_NAME = "padlock";
+	public static final String PADLOCK_KEY = "Padlock";
+	
     /*************
      * Integers
      *************/
     
     public static final int    BOAT_ID_DEFAULT       = 700;
     public static int          BOAT_ID;
-
     
     public static final int TAPE_MEASURE_ID_DEFAULT = 707;
     public static int TAPE_MEASURE_ID;
@@ -77,4 +81,7 @@ public class ItemInfo {
     
     public static final int ROPE_ID_DEFAULT = 715;
     public static int ROPE_ID;
+    
+    public static final int PADLOCK_ID_DEFAULT = 716;
+    public static int PADLOCK_ID;
 }
