@@ -217,8 +217,10 @@ public class WCEntityBoatBase extends Entity
         this.velocityZ = this.motionZ = par5;
     }
 
-    
-    private void h_timer() {
+    /**
+     * This heals the boat over time
+     */
+    private void tickHealing() {
         if (this.getTimeSinceHit() > 0)
         {
             this.setTimeSinceHit(this.getTimeSinceHit() - 1);
@@ -230,6 +232,10 @@ public class WCEntityBoatBase extends Entity
         }
     }
     
+    /**
+     * This calculates the vertical speed to "bounce" to the surface
+     * @return
+     */
     private double h_calc_bounce() {
         byte b0 = 5;
         double temp_y_speed = 0.0D;
@@ -249,39 +255,47 @@ public class WCEntityBoatBase extends Entity
         return temp_y_speed;
     }
     
+    /**
+     * This spawns "splash" particles behind the boat
+     * (depending on horizontal speed)
+     * 
+     * depends on:
+     *      this.motionX
+     *      this.motionY
+     *      this.motionZ
+     *      this.posX
+     *      this.posY
+     *      this.posZ
+     * 
+     * modified state:
+     *      none
+     */
     private void h_spawn_paricles() {
-     // ----- PARTICLE LOGIC [START]
         double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        double curr_facing_x;
-        double curr_facing_y;
 
         if (xzSpeed > 0.26249999999999996D)
         {
-            curr_facing_x = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
-            curr_facing_y = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
+            double curr_facing_x = Math.cos((double)this.rotationYaw * Math.PI / 180.0D);
+            double curr_facing_y = Math.sin((double)this.rotationYaw * Math.PI / 180.0D);
 
             for (int j = 0; (double)j < 1.0D + xzSpeed * 60.0D; ++j)
             {
                 double d6 = (double)(this.rand.nextFloat() * 2.0F - 1.0F);
                 double d7 = (double)(this.rand.nextInt(2) * 2 - 1) * 0.7D;
-                double d8;
-                double d9;
+                double partPosX;
+                double partPosZ;
 
-                if (this.rand.nextBoolean())
-                {
-                    d8 = this.posX - curr_facing_x * d6 * 0.8D + curr_facing_y * d7;
-                    d9 = this.posZ - curr_facing_y * d6 * 0.8D - curr_facing_x * d7;
-                    this.worldObj.spawnParticle("splash", d8, this.posY - 0.125D, d9, this.motionX, this.motionY, this.motionZ);
+                if (this.rand.nextBoolean()) {
+                    partPosX = this.posX - curr_facing_x * d6 * 0.8D + curr_facing_y * d7;
+                    partPosZ = this.posZ - curr_facing_y * d6 * 0.8D - curr_facing_x * d7;
+                } else {
+                    partPosX = this.posX + curr_facing_x + curr_facing_y * d6 * 0.7D;
+                    partPosZ = this.posZ + curr_facing_y - curr_facing_x * d6 * 0.7D;
                 }
-                else
-                {
-                    d8 = this.posX + curr_facing_x + curr_facing_y * d6 * 0.7D;
-                    d9 = this.posZ + curr_facing_y - curr_facing_x * d6 * 0.7D;
-                    this.worldObj.spawnParticle("splash", d8, this.posY - 0.125D, d9, this.motionX, this.motionY, this.motionZ);
-                }
+                
+                this.worldObj.spawnParticle("splash", partPosX, this.posY - 0.125D, partPosZ, this.motionX, this.motionY, this.motionZ);
             }
         }
-        // ----- PARTICLE LOGIC [END]
     }
     
     private void h_steer_by_player() {
@@ -357,6 +371,33 @@ public class WCEntityBoatBase extends Entity
         }
     }
     
+    private void h_update_facing() {
+        this.rotationPitch = 0.0F;
+        double curr_facing_y = (double)this.rotationYaw;
+        double d11 = this.prevPosX - this.posX;
+        double d10 = this.prevPosZ - this.posZ;
+
+        if (d11 * d11 + d10 * d10 > 0.001D)
+        {
+            curr_facing_y = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
+        }
+
+        double d12 = MathHelper.wrapAngleTo180_double(curr_facing_y - (double)this.rotationYaw);
+
+        if (d12 > 20.0D)
+        {
+            d12 = 20.0D;
+        }
+
+        if (d12 < -20.0D)
+        {
+            d12 = -20.0D;
+        }
+
+        this.rotationYaw = (float)((double)this.rotationYaw + d12);
+        this.setRotation(this.rotationYaw, this.rotationPitch);
+    }
+    
     /**
      * Called to update the entity's position/logic.
      */
@@ -366,7 +407,7 @@ public class WCEntityBoatBase extends Entity
         
         updateBuoys();
         
-        h_timer();
+        tickHealing();
 
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
@@ -376,13 +417,10 @@ public class WCEntityBoatBase extends Entity
         
         h_spawn_paricles();
         
-        /*double curr_facing_x;
-        double curr_facing_y;*/
-        
         // store speed
         double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         
-        double d10;
+        //double d10;
         //double d11;
 
         if (this.worldObj.isRemote && this.isEmpty)
@@ -392,7 +430,7 @@ public class WCEntityBoatBase extends Entity
                 double curr_facing_x = this.posX + (this.boatX - this.posX) / (double)this.boatPosRotationIncrements;
                 double curr_facing_y = this.posY + (this.boatY - this.posY) / (double)this.boatPosRotationIncrements;
                 double d11 = this.posZ + (this.boatZ - this.posZ) / (double)this.boatPosRotationIncrements;
-                d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double)this.rotationYaw);
+                double d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double)this.rotationYaw);
                 this.rotationYaw = (float)((double)this.rotationYaw + d10 / (double)this.boatPosRotationIncrements);
                 this.rotationPitch = (float)((double)this.rotationPitch + (this.boatPitch - (double)this.rotationPitch) / (double)this.boatPosRotationIncrements);
                 --this.boatPosRotationIncrements;
@@ -455,30 +493,7 @@ public class WCEntityBoatBase extends Entity
                 this.motionZ *= 0.9900000095367432D;
             }
 
-            this.rotationPitch = 0.0F;
-            double curr_facing_y = (double)this.rotationYaw;
-            double d11 = this.prevPosX - this.posX;
-            d10 = this.prevPosZ - this.posZ;
-
-            if (d11 * d11 + d10 * d10 > 0.001D)
-            {
-                curr_facing_y = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
-            }
-
-            double d12 = MathHelper.wrapAngleTo180_double(curr_facing_y - (double)this.rotationYaw);
-
-            if (d12 > 20.0D)
-            {
-                d12 = 20.0D;
-            }
-
-            if (d12 < -20.0D)
-            {
-                d12 = -20.0D;
-            }
-
-            this.rotationYaw = (float)((double)this.rotationYaw + d12);
-            this.setRotation(this.rotationYaw, this.rotationPitch);
+            h_update_facing();
 
             if (!this.worldObj.isRemote)
             {
