@@ -16,6 +16,7 @@ import dgrxf.watercraft.item.boat.ItemDumbBoat;
 import dgrxf.watercraft.item.boat.ItemIceBoat;
 import dgrxf.watercraft.item.boat.ItemLavaBoat;
 import dgrxf.watercraft.item.buoy.ItemFlag;
+import dgrxf.watercraft.item.toolbox.ItemPadlock;
 import dgrxf.watercraft.lib.ItemInfo;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -32,6 +33,7 @@ public class ModItems {
     public static Item iceBoat;
     public static Item blockPlacer;
     public static Item rope;
+    public static Item padlock;
     
     public static void init() {
     	vanillaBoat = new ItemBoat();
@@ -43,5 +45,6 @@ public class ModItems {
         flag = new ItemFlag();
         iceBoat = new ItemIceBoat();
         rope = new ItemRope();
+        padlock = new ItemPadlock();
     }
 }
