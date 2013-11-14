@@ -32,7 +32,7 @@ public class ItemBlockToolBox extends ItemBlock {
     
     public ItemBlockToolBox(int id) {
         super(id);
-        this.setCreativeTab(Watercraft.creativeTab);
+        this.setCreativeTab(Watercraft.miscTab);
         maxStackSize = 1;
     }
     

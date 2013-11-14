@@ -1,25 +1,22 @@
 package dgrxf.watercraft;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
-import dgrxf.watercraft.creativetab.CreativeTabWaterCraft;
+import dgrxf.watercraft.creativetab.CreativeTabBoats;
+import dgrxf.watercraft.creativetab.CreativeTabBuoys;
+import dgrxf.watercraft.creativetab.CreativeTabMisc;
 import dgrxf.watercraft.entity.Entities;
 import dgrxf.watercraft.event.WCEventHandler;
 import dgrxf.watercraft.item.ModItems;
@@ -28,7 +25,6 @@ import dgrxf.watercraft.lib.MultiBlockInfo;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
-import dgrxf.watercraft.util.RecipeHelper;
 
 /**
  * Class Made By: Drunk Mafia
@@ -47,7 +43,9 @@ public class Watercraft {
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
     public static CommonProxy           proxy;
     
-    public static CreativeTabWaterCraft creativeTab = new CreativeTabWaterCraft(CreativeTabs.getNextID(), ModInfo.MODID);
+    public static CreativeTabMisc miscTab = new CreativeTabMisc(CreativeTabs.getNextID(), ModInfo.MISC_TAB);
+    public static CreativeTabBoats boatTab = new CreativeTabBoats(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
+    public static CreativeTabBuoys buoyTab = new CreativeTabBuoys(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {

@@ -17,7 +17,7 @@ public class ItemFlag extends Item{
 	public ItemFlag() {
 		super(ItemInfo.FLAG_ID);
 		setUnlocalizedName(ItemInfo.FLAG_UNLOCALIZED_NAME);
-		setCreativeTab(Watercraft.creativeTab);
+		setCreativeTab(Watercraft.boatTab);
 		hasSubtypes = true;
 		maxStackSize = 1;
 	}	

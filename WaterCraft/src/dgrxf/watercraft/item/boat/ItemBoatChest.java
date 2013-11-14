@@ -19,7 +19,7 @@ public class ItemBoatChest extends Item {
     public ItemBoatChest() {
         super(ItemInfo.BOATCHEST_ID);
         setUnlocalizedName(ItemInfo.BOATCHEST_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.boatTab);
     }
     
     @Override

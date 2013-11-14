@@ -16,6 +16,10 @@ public class ModInfo {
     public static final String COMMON_PROXY = "dgrxf.watercraft.proxy.CommonProxy";
     public static final String CLIENT_PROXY = "dgrxf.watercraft.proxy.ClientProxy";
     
+    public static final String MISC_TAB = "WaterCraft Miscellaneous";
+    public static final String BOATS_TAB = "WaterCraft Boats";
+    public static final String BUOYS_TAB = "WaterCraft Buoys";
+    
     public static String getMODID() {
         return "[" + MODID + "]";
     }

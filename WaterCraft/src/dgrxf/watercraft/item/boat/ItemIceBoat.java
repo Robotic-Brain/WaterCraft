@@ -19,7 +19,7 @@ public class ItemIceBoat extends Item {
     public ItemIceBoat() {
         super(ItemInfo.ICEBOAT_ID);
         setUnlocalizedName(ItemInfo.ICEBOAT_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.boatTab);
     }
     
     @Override

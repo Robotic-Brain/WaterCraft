@@ -24,7 +24,7 @@ public class ItemLavaBoat extends Item {
     public ItemLavaBoat() {
         super(ItemInfo.LAVABOAT_ID);
         setUnlocalizedName(ItemInfo.LAVABOAT_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.boatTab);
     }
     
     @Override

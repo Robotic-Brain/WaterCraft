@@ -21,7 +21,7 @@ public class ItemPadlock extends Item{
 	public ItemPadlock() {
 		super(ItemInfo.PADLOCK_ID);
 		setUnlocalizedName(ItemInfo.PADLOCK_UNLOCALIZED_NAME);
-		setCreativeTab(Watercraft.creativeTab);
+		setCreativeTab(Watercraft.miscTab);
 	}
 	
 	@Override

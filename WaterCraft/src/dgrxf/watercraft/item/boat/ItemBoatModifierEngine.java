@@ -13,7 +13,7 @@ public class ItemBoatModifierEngine extends ItemModifier {
 	public ItemBoatModifierEngine(int id, FuelType fuel) {
 		super(id, ModifierType.ENGINE);
 		setUnlocalizedName(ItemInfo.ENGINE_UNLOCALIZED_NAME);
-		setCreativeTab(Watercraft.creativeTab);
+		setCreativeTab(Watercraft.boatTab);
 		this.fuel = fuel;
 	}
 	

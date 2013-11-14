@@ -23,7 +23,7 @@ public class ItemTelescope extends Item{
     public ItemTelescope() {
         super(ItemInfo.TELESCOPE_ID);
         setUnlocalizedName(ItemInfo.TELESCOPE_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.miscTab);
     }
     
     @Override

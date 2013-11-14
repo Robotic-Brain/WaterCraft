@@ -29,7 +29,7 @@ public class BuoyFilterBlock extends BuoyBlock {
     
     public BuoyFilterBlock(int id) {
         super(id);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.buoyTab);
         setUnlocalizedName(BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
         setLightValue(1F);
