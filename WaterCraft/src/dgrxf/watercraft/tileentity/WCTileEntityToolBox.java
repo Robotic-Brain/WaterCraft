@@ -30,13 +30,15 @@ import dgrxf.watercraft.lib.BlockInfo;
 public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory {
     
     private ItemStack[] inventory;
-    private String      playerName;
+    public  String      playerName;
     public  int         playersInInv;
     public  boolean     isOpen;
+    public  boolean     isLocked;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
         isOpen = false;
+        isLocked = false;
         playersInInv = 0;
     }
     
@@ -167,6 +169,7 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         }
         compound.setTag("Items", items);
         compound.setString("playerName", playerName);
+        compound.setBoolean("isLocked", isLocked);
     }
     
     @Override
@@ -183,6 +186,7 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
             }
         }
         playerName = compound.getString("playerName");
+        isLocked = compound.getBoolean("isLocked");
     }
     
     @Override
@@ -190,6 +194,8 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         NBTTagCompound tag = pkt.data;
         playerName = tag.getString("playerName");
         isOpen = tag.getBoolean("isOpen");
+        isLocked = tag.getBoolean("isLocked");
+        System.out.println("Client: Packet Recevied");
     }
     
     @Override
@@ -198,6 +204,8 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         if (playerName != null)
             tag.setString("playerName", playerName);
         tag.setBoolean("isOpen", isOpen);
+        tag.setBoolean("isLocked", isLocked);
+        System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
 }
