@@ -63,19 +63,6 @@ public class BuoyBlock extends DirectionalBlock {
         return new WCTileEntityBuoy();
     }
     
-    @Override
-    public boolean canProvidePower() {
-    	return true;
-    }
-    
-    @Override
-    public int isProvidingStrongPower(IBlockAccess world, int x, int y, int z, int side) {
-    	WCTileEntityBuoy tile = (WCTileEntityBuoy) world.getBlockTileEntity(x, y, z);
-    	int val = tile.getRedstoneSignal();
-    	tile.setRedstoneSignal(false);
-    	return val;
-    }
-    
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIcon(int side, int meta) {
