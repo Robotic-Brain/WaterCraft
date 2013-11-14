@@ -13,6 +13,7 @@ import dgrxf.watercraft.client.renderer.item.ItemBuoyRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemPadlockRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemToolBoxRenderer;
+import dgrxf.watercraft.client.renderer.item.ItemWCChestRenderer;
 import dgrxf.watercraft.client.sound.SoundHandler;
 import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
@@ -59,7 +60,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_FILTER_ID, new ItemBuoyRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.TOOLBOX_ID, new ItemToolBoxRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
-        
+        MinecraftForgeClient.registerItemRenderer(BlockInfo.WC_CHEST_ID, new ItemWCChestRenderer());
         
         MinecraftForgeClient.registerItemRenderer(ItemInfo.PADLOCK_ID + 256, new ItemPadlockRenderer());
     }

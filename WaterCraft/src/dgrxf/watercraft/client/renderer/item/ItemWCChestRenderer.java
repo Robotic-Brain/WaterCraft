@@ -30,22 +30,20 @@ public class ItemWCChestRenderer  implements IItemRenderer {
 	public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
 		GL11.glPushMatrix();
         NBTTagCompound tag;
+		GL11.glScalef(-1F, -1F, 1F);
         
         Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
         switch (type) {
             case EQUIPPED:
                 GL11.glTranslatef(0.4F, 1.2F, 0.6F);
-                GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case EQUIPPED_FIRST_PERSON:
                 GL11.glTranslatef(0F, 0.7F, 0.5F);
                 GL11.glRotatef(180, 0F, 0.5F, 0);
-                GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case INVENTORY:
             	GL11.glTranslatef(0.0F, 0.3F, 0.0F);
             	GL11.glScalef(1.8F, 1.8F, 1.8F);
-            	GL11.glRotatef(180, 0F, 1F, 0);
                 break;
             default:
         }
