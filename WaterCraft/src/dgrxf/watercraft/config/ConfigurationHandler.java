@@ -41,7 +41,7 @@ public class ConfigurationHandler {
             BlockInfo.BUOY_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
             BlockInfo.CONTROL_UNIT_DOCK_ID = config.get(BlockInfo.CATEGORY, BlockInfo.CONTROL_UNIT_DOCK_KEY, BlockInfo.CONTROL_UNIT_DOCK_ID_DEFAULT).getInt();
             BlockInfo.FREEZER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.FREEZER_KEY, BlockInfo.FREEZER_ID_DEFAULT).getInt();
-            BlockInfo.DROPZONE_ID = config.get(BlockInfo.CATEGORY, BlockInfo.DROPZONE_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
+            BlockInfo.DROPZONE_ID = config.get(BlockInfo.CATEGORY, BlockInfo.DROPZONE_KEY, BlockInfo.DROPZONE_ID_DEFAULT).getInt();
             BlockInfo.TOOLBOX_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
             BlockInfo.BUOY_FILTER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_FILTER_KEY, BlockInfo.BUOY_FILTER_ID_DEFAULT).getInt();
             
@@ -49,6 +49,7 @@ public class ConfigurationHandler {
             
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();
             MiscInfo.TICKING_RATE = config.get(MiscInfo.CATEGORY, MiscInfo.TICKING_KEY, MiscInfo.TICKING_DEFAULT_RATE).getInt();
+            MiscInfo.DEBUG = config.get(MiscInfo.CATEGORY, MiscInfo.DEBUG_KEY, MiscInfo.DEBUG_DEFAULT).getBoolean(MiscInfo.DEBUG_DEFAULT);
             
         } catch (Exception e) {
             LogHelper.severe("There was a problem while loading the config, Please report this.");
@@ -59,9 +60,5 @@ public class ConfigurationHandler {
                 LogHelper.info("Config saved!");
             }
         }
-        
-        System.out.println(ItemInfo.FLAG_ID);
-        System.out.println(ItemInfo.BOATCHEST_ID);
-        System.out.println(ItemInfo.ENGINE_ID);
     }
 }
