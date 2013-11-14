@@ -24,8 +24,6 @@
 	    private double boatZ;
 	    private double boatYaw;
 	    private double boatPitch;
-		private int fire;
-		private boolean firstUpdate;
 	    Random myRandom = new Random();
 		
 		public EntityIceBoat(World par1World, double par2, double par4, double par6) {
@@ -56,7 +54,6 @@
 	    {
 	        if (this.riddenByEntity != null)
 	        {
-	        	this.riddenByEntity.extinguish();
 	            double d0 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
 	            double d1 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
 	            this.riddenByEntity.setPosition(this.posX + d0, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + d1);
@@ -86,12 +83,13 @@
 	        
 	        int randomness = 0;
 	    	for (int int1 = -2; int1 < 2; int1++) {
-	    		for (int int2 = -2; int2 < 2; int2++) {
+	    		for (int int2 = -2; int2 < 1; int2++) {
 	    			for (int int3 = -2; int3 < 2; int3++) {
 	    				if (worldObj.getBlockId(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3)) == Block.ice.blockID) {
 	    					randomness = myRandom.nextInt(5);
 	    					if (randomness != 3) {
 	    						this.worldObj.destroyBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
+	    						//this.addVelocity(par1, par3, par5);
 	    					}
 	    				}
 	    			}
@@ -248,7 +246,7 @@
 	            {
 	            	boolean safe = true;
 	            	for (int int1 = -2; int1 < 2; int1++) {
-	            		for (int int2 = -2; int2 < 2; int2++) {
+	            		for (int int2 = -2; int2 < 1; int2++) {
 	            			for (int int3 = -2; int3 < 2; int3++) {
 	            				if (worldObj.getBlockId(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3)) != Block.ice.blockID  && 
 	            						(worldObj.getBlockId(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3)) != Block.waterMoving.blockID) &&
