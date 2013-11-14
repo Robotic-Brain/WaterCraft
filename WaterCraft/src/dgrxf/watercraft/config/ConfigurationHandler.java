@@ -36,7 +36,8 @@ public class ConfigurationHandler {
             ItemInfo.ICEBOAT_ID = config.get(ItemInfo.CATEGORY,ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt() - 256;
             ItemInfo.ROPE_ID = config.get(ItemInfo.CATEGORY, ItemInfo.ROPE_KEY, ItemInfo.ROPE_ID_DEFAULT).getInt() - 256;
             ItemInfo.PADLOCK_ID = config.get(ItemInfo.CATEGORY, ItemInfo.PADLOCK_KEY, ItemInfo.PADLOCK_ID_DEFAULT).getInt() - 256;
-       
+            ItemInfo.CALCULATOR_ID = config.get(ItemInfo.CATEGORY, ItemInfo.CALCULATOR_KEY, ItemInfo.CALCULATOR_ID_DEFAULT).getInt() - 256;
+            
             // Blocks
             BlockInfo.BUOY_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
             BlockInfo.CONTROL_UNIT_DOCK_ID = config.get(BlockInfo.CATEGORY, BlockInfo.CONTROL_UNIT_DOCK_KEY, BlockInfo.CONTROL_UNIT_DOCK_ID_DEFAULT).getInt();

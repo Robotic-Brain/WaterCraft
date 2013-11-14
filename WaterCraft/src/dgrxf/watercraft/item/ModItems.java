@@ -34,6 +34,7 @@ public class ModItems {
     public static Item blockPlacer;
     public static Item rope;
     public static Item padlock;
+    public static Item calculator;
     
     public static void init() {
     	vanillaBoat = new ItemBoat();
@@ -46,5 +47,6 @@ public class ModItems {
         iceBoat = new ItemIceBoat();
         rope = new ItemRope();
         padlock = new ItemPadlock();
+        calculator = new ItemCalculator();
     }
 }

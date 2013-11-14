@@ -48,6 +48,9 @@ public class ItemInfo {
 	public static final String PADLOCK_UNLOCALIZED_NAME = "padlock";
 	public static final String PADLOCK_KEY = "Padlock";
 	
+	public static final String CALCULATOR_UNLOCALIZED_NAME = "calculator";
+	public static final String CALCULATOR_KEY = "Calculator";
+	
     /*************
      * Integers
      *************/
@@ -84,4 +87,7 @@ public class ItemInfo {
     
     public static final int PADLOCK_ID_DEFAULT = 1716;
     public static int PADLOCK_ID;
+    
+    public static final int CALCULATOR_ID_DEFAULT = 1717;
+    public static int CALCULATOR_ID;
 }
