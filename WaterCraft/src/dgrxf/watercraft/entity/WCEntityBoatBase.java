@@ -224,8 +224,10 @@ public class WCEntityBoatBase extends Entity
     /**
      * This heals the boat over time
      * 
+     * <pre>
      * depends on:
      *      nothing
+     * </pre>
      */
     private void tickHealing() {
         if (this.getTimeSinceHit() > 0)
@@ -242,8 +244,10 @@ public class WCEntityBoatBase extends Entity
     /**
      * This calculates the vertical speed to "bounce" to the surface
      * 
+     * <pre>
      * depends on:
      *      this.boundingBox
+     * </pre>
      * 
      * @return 
      */
@@ -267,9 +271,10 @@ public class WCEntityBoatBase extends Entity
     }
     
     /**
-     * This spawns "splash" particles behind the boat
-     * (depending on horizontal speed)
+     * This spawns "splash" particles behind the boat<br>
+     * (depending on horizontal speed)<br>
      * 
+     * <pre>
      * depends on:
      *      this.motionX
      *      this.motionY
@@ -280,6 +285,7 @@ public class WCEntityBoatBase extends Entity
      * 
      * modified state:
      *      none
+     * </pre>
      */
     private void h_spawn_paricles() {
         double xzSpeed = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
@@ -312,6 +318,7 @@ public class WCEntityBoatBase extends Entity
     /**
      * Applies player steering
      * 
+     * <pre>
      * depends on:
      *      this.riddenByEntity
      *      this.speedMultiplier
@@ -319,6 +326,7 @@ public class WCEntityBoatBase extends Entity
      * modified state:
      *      this.motionX
      *      this.motionZ
+     * </pre>
      */
     private void h_steer_by_player() {
      // ---------- PLAYER STEERING [START]
@@ -340,6 +348,7 @@ public class WCEntityBoatBase extends Entity
     /**
      * Updates the velocity vector
      * 
+     * <pre>
      * depends on:
      *      this.motionX
      *      this.motionZ
@@ -351,6 +360,7 @@ public class WCEntityBoatBase extends Entity
      *      this.motionX
      *      this.motionY
      *      this.motionZ
+     * </pre>
      * 
      * @param xzSpeed   Stored Speed
      */
@@ -395,8 +405,10 @@ public class WCEntityBoatBase extends Entity
     /**
      * Performs the boat breaking and drops planks and sticks
      * 
+     * <pre>
      * modified state:
      *      this.setDead()
+     * </pre>
      */
     private void h_break_boat() {
         if (!this.worldObj.isRemote && !this.isDead)
@@ -419,6 +431,7 @@ public class WCEntityBoatBase extends Entity
     /**
      * Updates the facing of the boat
      * 
+     * <pre>
      * depends on:
      *      this.rotationYaw
      *      (this.rotationPitch)
@@ -430,6 +443,7 @@ public class WCEntityBoatBase extends Entity
      * modified state:
      *      this.rotationYaw
      *      this.setRotation()
+     * </pre>
      */
     private void h_update_facing() {
         this.rotationPitch = 0.0F;
@@ -459,6 +473,74 @@ public class WCEntityBoatBase extends Entity
     }
     
     /**
+     * This smoothens out the boat movement on the client side
+     * 
+     * <pre>
+     * depends on:
+     *      this.posX
+     *      this.posY
+     *      this.posZ
+     *      this.rotationYaw
+     *      this.rotationPitch
+     *      this.boatX
+     *      this.boatY
+     *      this.boatZ
+     *      this.boatYaw
+     *      this.boatPitch
+     *      this.boatPosRotationIncrements
+     *      
+     *      this.motionX
+     *      this.motionY
+     *      this.motionZ
+     *      this.onGround
+     *      
+     * modified state:
+     *      this.rotationYaw
+     *      this.rotationPitch
+     *      this.boatPosRotationIncrements
+     *      this.setPosition()
+     *      this.setRotation()
+     *      
+     *      this.motionX
+     *      this.motionY
+     *      this.motionZ
+     * </pre>
+     */
+    private void h_interpolate_movement() {
+        if (this.boatPosRotationIncrements > 0)
+        {
+            double curr_facing_x = this.posX + (this.boatX - this.posX) / (double)this.boatPosRotationIncrements;
+            double curr_facing_y = this.posY + (this.boatY - this.posY) / (double)this.boatPosRotationIncrements;
+            double d11 = this.posZ + (this.boatZ - this.posZ) / (double)this.boatPosRotationIncrements;
+            double d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double)this.rotationYaw);
+            this.rotationYaw = (float)((double)this.rotationYaw + d10 / (double)this.boatPosRotationIncrements);
+            this.rotationPitch = (float)((double)this.rotationPitch + (this.boatPitch - (double)this.rotationPitch) / (double)this.boatPosRotationIncrements);
+            --this.boatPosRotationIncrements;
+            this.setPosition(curr_facing_x, curr_facing_y, d11);
+            this.setRotation(this.rotationYaw, this.rotationPitch);
+            
+        }
+        else
+        {
+            double curr_facing_x = this.posX + this.motionX;
+            double curr_facing_y = this.posY + this.motionY;
+            double d11 = this.posZ + this.motionZ;
+            this.setPosition(curr_facing_x, curr_facing_y, d11);
+
+            if (this.onGround)
+            {
+                this.motionX *= 0.5D;
+                this.motionY *= 0.5D;
+                this.motionZ *= 0.5D;
+            }
+
+            this.motionX *= 0.9900000095367432D;
+            this.motionY *= 0.949999988079071D;
+            this.motionZ *= 0.9900000095367432D;
+        }
+    }
+    
+    /**
      * Called to update the entity's position/logic.
      */
     public void onUpdate()
@@ -473,8 +555,6 @@ public class WCEntityBoatBase extends Entity
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         
-        double temp_y_speed = h_calc_bounce();
-        
         h_spawn_paricles();
         
         // store speed
@@ -482,40 +562,11 @@ public class WCEntityBoatBase extends Entity
 
         if (this.worldObj.isRemote && this.isEmpty)
         {
-            if (this.boatPosRotationIncrements > 0)
-            {
-                double curr_facing_x = this.posX + (this.boatX - this.posX) / (double)this.boatPosRotationIncrements;
-                double curr_facing_y = this.posY + (this.boatY - this.posY) / (double)this.boatPosRotationIncrements;
-                double d11 = this.posZ + (this.boatZ - this.posZ) / (double)this.boatPosRotationIncrements;
-                double d10 = MathHelper.wrapAngleTo180_double(this.boatYaw - (double)this.rotationYaw);
-                this.rotationYaw = (float)((double)this.rotationYaw + d10 / (double)this.boatPosRotationIncrements);
-                this.rotationPitch = (float)((double)this.rotationPitch + (this.boatPitch - (double)this.rotationPitch) / (double)this.boatPosRotationIncrements);
-                --this.boatPosRotationIncrements;
-                this.setPosition(curr_facing_x, curr_facing_y, d11);
-                this.setRotation(this.rotationYaw, this.rotationPitch);
-                
-            }
-            else
-            {
-                double curr_facing_x = this.posX + this.motionX;
-                double curr_facing_y = this.posY + this.motionY;
-                double d11 = this.posZ + this.motionZ;
-                this.setPosition(curr_facing_x, curr_facing_y, d11);
-
-                if (this.onGround)
-                {
-                    this.motionX *= 0.5D;
-                    this.motionY *= 0.5D;
-                    this.motionZ *= 0.5D;
-                }
-
-                this.motionX *= 0.9900000095367432D;
-                this.motionY *= 0.949999988079071D;
-                this.motionZ *= 0.9900000095367432D;
-            }
+            h_interpolate_movement();
         }
         else
         {
+            double temp_y_speed = h_calc_bounce();
             if (temp_y_speed < 1.0D)
             {
                 double curr_facing_x = temp_y_speed * 2.0D - 1.0D;
