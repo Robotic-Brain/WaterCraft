@@ -43,9 +43,9 @@ public class GuiFreezer extends GuiContainer {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		buttonList.add(new GuiButton((0), guiLeft + 12, guiTop + 12, 18, 35, "Off"));
-		buttonList.add(new GuiButton((1), guiLeft + 12, guiTop + 31, 18, 35, "Freeze"));
-		buttonList.add(new GuiButton((2), guiLeft + 12, guiTop + 50, 18, 35, "Smelt"));
+		buttonList.add(new GuiButton((0), guiLeft + 12, guiTop + 12, 35, 20, "Off"));
+		buttonList.add(new GuiButton((1), guiLeft + 12, guiTop + 31, 35, 20, "Freeze"));
+		buttonList.add(new GuiButton((2), guiLeft + 12, guiTop + 50, 35, 20, "Smelt"));
 	}
 	
 	@Override

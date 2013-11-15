@@ -35,7 +35,7 @@ public class WCModelChest extends ModelBase
         this.chestBelow.rotationPointY = 6.0F;
         this.chestBelow.rotationPointZ = 1.0F;
         this.lock = ((new ModelRenderer(this, 0, 43)).setTextureSize(64, 64));
-        this.lock.addBox(-1.0F, -2.0F, -15.0F, 4, 4, 2, 0.0F);
+        this.lock.addBox(-2.0F, -2.0F, -15.0F, 4, 4, 2, 0.0F);
         this.lock.rotationPointX = 8.0F;
         this.lock.rotationPointY = 7.0F;
         this.lock.rotationPointZ = 15.0F;
@@ -43,10 +43,10 @@ public class WCModelChest extends ModelBase
 
     public void renderAll(boolean locked)
     {
-        this.chestKnob.rotateAngleX = this.chestLid.rotateAngleX;
-        this.chestLid.render(0.0625F);
-        this.chestKnob.render(0.0625F);
-        if (locked) this.lock.render(0.0625F);              
+        this.chestKnob.rotateAngleX = this.lock.rotateAngleX = this.chestLid.rotateAngleX;
+        this.chestLid.render(0.0625F); 
+        if (locked) this.lock.render(0.0625F); 
+        else this.chestKnob.render(0.0625F);
         this.chestBelow.render(0.0625F);
     }
 }
