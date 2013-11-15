@@ -89,7 +89,10 @@
 	    				if (worldObj.getBlockId(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3)) == Block.ice.blockID) {
 	    					randomness = myRandom.nextInt(5);
 	    					if (randomness != 3) {
-	    						this.worldObj.setBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), Block.waterStill.blockID);//((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
+	    						if(posY + int2 > (int)posY)
+	    							this.worldObj.destroyBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
+	    						else
+	    							this.worldObj.setBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), Block.waterStill.blockID);//((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
 	    						//this.addVelocity(par1, par3, par5);
 	    					}
 	    				}

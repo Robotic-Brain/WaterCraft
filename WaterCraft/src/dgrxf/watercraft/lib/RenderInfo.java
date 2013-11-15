@@ -22,6 +22,8 @@ public class RenderInfo {
     public static final ResourceLocation TOOLBOX_TEXTURE_LOCATION      = new ResourceLocation(ModInfo.MODID, "textures/models/Toolbox.png");
     public static int                    TOOLBOX_RENDER_ID;
     
+    public static final ResourceLocation PADLOCK_TEXTURE_LOCATION		= new ResourceLocation(ModInfo.MODID, "textures/models/Toolbox.png");
+    
     public static final String           FLAG_TEXTURE_LOCATION         = "textures/models/flag/UV_";
     public static int                    FLAG_RENDER_ID;
     

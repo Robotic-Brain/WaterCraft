@@ -2,6 +2,8 @@ package dgrxf.watercraft.client.renderer.item;
 
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import dgrxf.watercraft.lib.RenderInfo;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.model.AdvancedModelLoader;
@@ -34,21 +36,19 @@ public class ItemPadlockRenderer implements IItemRenderer{
 		switch (type) {
 	        case EQUIPPED:
 	            GL11.glTranslatef(0.4F, 1F, 0.6F);
-	            GL11.glScalef(1F, 1F, 1F);
 	            break;
 	        case EQUIPPED_FIRST_PERSON:
 	            GL11.glTranslatef(0F, 0.7F, 0.5F);
 	            GL11.glRotatef(180, 0F, 1F, 0);
-	            GL11.glScalef(1F, 1F, 1F);
 	            break;
 	        case INVENTORY:
-	            GL11.glTranslatef(0.0F, -0.26F, 0.0F);
-	            GL11.glRotatef(180, 0F, 1F, 0);
-	            GL11.glScalef(1F, 1F, 1F);
+	            GL11.glTranslatef(-2.0F, -2.0F, 0.0F);
+	            GL11.glRotatef(180, 0.0F, 0.0F, 0.0F);
 	            break;
 	        default:
 		}
 		GL11.glScalef(5F, 5F, 5F);
+		FMLClientHandler.instance().getClient().renderEngine.bindTexture(RenderInfo.PADLOCK_TEXTURE_LOCATION);
 		modelPadlock.renderAll();
 		
 		GL11.glPopMatrix();		
