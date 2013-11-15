@@ -51,6 +51,9 @@ public class ItemInfo {
 	public static final String CALCULATOR_UNLOCALIZED_NAME = "calculator";
 	public static final String CALCULATOR_KEY = "Calculator";
 	
+	public static final String KEY_UNLOCALIZED_NAME = "key";
+	public static final String KEY_KEY = "Key";
+	
     /*************
      * Integers
      *************/
@@ -90,4 +93,7 @@ public class ItemInfo {
     
     public static final int CALCULATOR_ID_DEFAULT = 1717;
     public static int CALCULATOR_ID;
+    
+    public static final int KEY_ID_DEFAULT = 1717;
+    public static int KEY_ID;
 }
