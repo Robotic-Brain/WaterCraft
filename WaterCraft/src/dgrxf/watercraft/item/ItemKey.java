@@ -39,9 +39,12 @@ public class ItemKey extends Item {
 				         world.spawnEntityInWorld(entityitem);
 					}
 				}
+			} else {
+				//this will open the gui of the block later
+				Watercraft.printToPlayer("not sneaky click");
 			}
 		}
 		
-		return true;
+		return false;
 	}
 }
