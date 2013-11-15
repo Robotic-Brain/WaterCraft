@@ -34,7 +34,7 @@ public class WCModelChest extends ModelBase
         this.chestBelow.rotationPointX = 1.0F;
         this.chestBelow.rotationPointY = 6.0F;
         this.chestBelow.rotationPointZ = 1.0F;
-        this.lock = ((new ModelRenderer(this, 0, 19)).setTextureSize(64, 64));
+        this.lock = ((new ModelRenderer(this, 0, 43)).setTextureSize(64, 64));
         this.lock.addBox(-1.0F, -2.0F, -15.0F, 4, 4, 2, 0.0F);
         this.lock.rotationPointX = 8.0F;
         this.lock.rotationPointY = 7.0F;

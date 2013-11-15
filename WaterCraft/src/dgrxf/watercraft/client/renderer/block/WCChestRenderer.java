@@ -14,6 +14,7 @@ import cpw.mods.fml.common.FMLLog;
 import dgrxf.watercraft.block.WCChest;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.models.WCModelLargeChest;
+import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
 public class WCChestRenderer extends TileEntitySpecialRenderer {
@@ -23,7 +24,7 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
     public static final ResourceLocation RES_NORMAL_DOUBLE = new ResourceLocation("textures/entity/chest/normal_double.png");
     public static final ResourceLocation RES_TRAPPED_SINGLE = new ResourceLocation("textures/entity/chest/trapped.png");
     public static final ResourceLocation RES_CHRISTMAS_SINGLE = new ResourceLocation("textures/entity/chest/christmas.png");
-    public static final ResourceLocation RES_NORMAL_SINGLE = new ResourceLocation("textures/entity/chest/normal.png");
+    public static final ResourceLocation RES_NORMAL_SINGLE = new ResourceLocation(ModInfo.MODID, "textures/models/chest.png");
     
     private WCModelChest chestModel = new WCModelChest();
     private WCModelChest largeChestModel = new WCModelLargeChest();
