@@ -1,5 +1,7 @@
 package dgrxf.watercraft.item;
 
+import java.util.Random;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +13,8 @@ import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemKey extends Item {
+	
+	 Random random = new Random();
 
 	public ItemKey() {
 		super(ItemInfo.KEY_ID);
@@ -21,27 +25,31 @@ public class ItemKey extends Item {
 	@Override
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		if (!world.isRemote) {
-			if (player.isSneaking()) {
-				TileEntity te = world.getBlockTileEntity(x, y, z);
+			TileEntity te = world.getBlockTileEntity(x, y, z);
+			
+			if (te instanceof ILockableBlock && ((ILockableBlock)te).isLocked()) {					
+				int code = ((ILockableBlock)te).getCode();
 				
-				if (te instanceof ILockableBlock && ((ILockableBlock)te).isLocked()) {					
-					int code = ((ILockableBlock)te).getCode();
-					
-					Watercraft.printToPlayer(Integer.toString(code));
-					
-					if (code == stack.getItemDamage()) {
-						 ((ILockableBlock)te).setLocked(false);
-						 ((ILockableBlock)te).setCode(-1);
-						 world.markBlockForUpdate(x, y, z);
-
-						 EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ModItems.padlock, 1, code));
-				         entityitem.delayBeforeCanPickup = 10;
-				         world.spawnEntityInWorld(entityitem);
+				Watercraft.printToPlayer(Integer.toString(code));
+				
+				if (code == stack.getItemDamage()) {
+					if (player.isSneaking()) {	
+						((ILockableBlock)te).setLocked(false);
+						((ILockableBlock)te).setCode(-1);
+						world.markBlockForUpdate(x, y, z);
+		
+						EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ModItems.padlock, 1, code));
+								 
+						float f3 = 0.05F;
+			            entityitem.motionX = (double)((float)this.random.nextGaussian() * f3);
+			            entityitem.motionY = (double)((float)this.random.nextGaussian() * f3 + 0.2F);
+			            entityitem.motionZ = (double)((float)this.random.nextGaussian() * f3);
+						entityitem.delayBeforeCanPickup = 10;
+						world.spawnEntityInWorld(entityitem);
+					} else {					
+						//					
 					}
 				}
-			} else {
-				//this will open the gui of the block later
-				Watercraft.printToPlayer("not sneaky click");
 			}
 		}
 		
