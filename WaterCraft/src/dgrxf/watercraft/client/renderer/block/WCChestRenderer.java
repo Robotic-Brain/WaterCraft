@@ -25,7 +25,6 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
     public static final ResourceLocation RES_CHRISTMAS_SINGLE = new ResourceLocation("textures/entity/chest/christmas.png");
     public static final ResourceLocation RES_NORMAL_SINGLE = new ResourceLocation("textures/entity/chest/normal.png");
     
-    //TODO new models to support locks
     private WCModelChest chestModel = new WCModelChest();
     private WCModelChest largeChestModel = new WCModelLargeChest();
     private boolean isChristmas;

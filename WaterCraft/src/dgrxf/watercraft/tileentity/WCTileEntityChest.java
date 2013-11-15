@@ -11,10 +11,14 @@ import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.WCChest;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 
@@ -389,4 +393,19 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 	public void setCode(int code) {
 		this.code = code;
 	}
+	
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+        NBTTagCompound tag = pkt.data;
+        locked = tag.getBoolean("isLocked");
+        System.out.println("Client: Packet Recevied");
+    }
+    
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("isLocked", locked);
+        System.out.println("Server: Sending packet");
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
+    }
 }
