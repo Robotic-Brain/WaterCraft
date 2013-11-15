@@ -33,9 +33,11 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
     private int cachedChestType;
     private String customName;
     private boolean locked;
+    private int code;
 
     public WCTileEntityChest() {
         this.cachedChestType = -1;
+        setCode(-1);
         locked = false;
     }
 
@@ -377,4 +379,14 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 
         return this.cachedChestType;
     }
+
+	@Override
+	public int getCode() {
+		return code;
+	}
+	
+	@Override
+	public void setCode(int code) {
+		this.code = code;
+	}
 }

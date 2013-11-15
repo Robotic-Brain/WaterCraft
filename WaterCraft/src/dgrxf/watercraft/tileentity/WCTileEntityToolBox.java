@@ -34,7 +34,8 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
     public  String      playerName;
     public  int         playersInInv;
     public  boolean     isOpen;
-    private  boolean     isLocked;
+    private boolean     isLocked;
+    private int 		code;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
@@ -218,5 +219,15 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
 	@Override
 	public boolean isLocked() {
 		return isLocked;
+	}
+	
+	@Override
+	public int getCode() {
+		return code;
+	}
+	
+	@Override
+	public void setCode(int code) {
+		this.code = code;
 	}
 }

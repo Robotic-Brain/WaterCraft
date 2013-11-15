@@ -24,8 +24,10 @@ public class ItemKey extends Item {
 			if (player.isSneaking()) {
 				TileEntity te = world.getBlockTileEntity(x, y, z);
 				
-				if (te instanceof ILockableBlock) {
+				if (te instanceof ILockableBlock && ((ILockableBlock)te).isLocked()) {					
 					int code = ((ILockableBlock)te).getCode();
+					
+					Watercraft.printToPlayer(Integer.toString(code));
 					
 					if (code == stack.getItemDamage()) {
 						 ((ILockableBlock)te).setLocked(false);

@@ -21,5 +21,20 @@ public interface ILockableBlock {
 	 * @return Lock state
 	 */
 	public boolean isLocked();
+	
+	/**
+	 * gets the lock code 
+	 * used for unlocking
+	 * 
+	 * @return Lock code
+	 */
+	public int getCode();
+	
+	/**
+	 * Sets the lock code
+	 * 
+	 * @param code the code
+	 */
+	public void setCode(int code);
 
 }
