@@ -35,6 +35,7 @@ public class ModItems {
     public static Item rope;
     public static Item padlock;
     public static Item calculator;
+    public static Item key;
     
     public static void init() {
     	boatVanilla = new ItemBoat();
@@ -48,5 +49,6 @@ public class ModItems {
         rope = new ItemRope();
         padlock = new ItemPadlock();
         calculator = new ItemCalculator();
+        key = new ItemKey();
     }
 }

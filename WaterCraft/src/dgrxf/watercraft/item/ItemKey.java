@@ -6,9 +6,9 @@ import net.minecraft.item.Item;
 
 public class ItemKey extends Item {
 
-	public ItemKey(int par1) {
-		super(ItemInfo.TELESCOPE_ID);
-        setUnlocalizedName(ItemInfo.TELESCOPE_UNLOCALIZED_NAME);
+	public ItemKey() {
+		super(ItemInfo.KEY_ID);
+        setUnlocalizedName(ItemInfo.KEY_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.miscTab);
 	}
 	
