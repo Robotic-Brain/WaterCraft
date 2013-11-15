@@ -47,7 +47,7 @@ public class ItemKey extends Item {
 						entityitem.delayBeforeCanPickup = 10;
 						world.spawnEntityInWorld(entityitem);
 					} else {					
-						//					
+						((ILockableBlock)te).setLocked(false);				
 					}
 				}
 			}

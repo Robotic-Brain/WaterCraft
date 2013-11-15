@@ -326,6 +326,8 @@ public class WCChest extends BlockContainer {
 	            if (iinventory != null) {
 	                par5EntityPlayer.displayGUIChest(iinventory);
 	            }
+	            
+	            ((WCTileEntityChest)te).setLocked(true);
 
 	            return true;
 	        }
