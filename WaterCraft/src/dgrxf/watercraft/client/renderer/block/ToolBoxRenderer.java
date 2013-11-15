@@ -30,7 +30,7 @@ public class ToolBoxRenderer extends TileEntitySpecialRenderer {
     	 WCTileEntityToolBox tile = (WCTileEntityToolBox) tileentity;
     	 
     	 renderToolBox(tile, x, y, z);
-    	 if(tile.isLocked) renderPadlock(tile, x, y, z);
+    	 if(tile.isLocked()) renderPadlock(tile, x, y, z);
     }
     
     public void renderToolBox(WCTileEntityToolBox tile, double x, double y, double z){

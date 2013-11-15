@@ -72,7 +72,7 @@ public class ToolBoxBlock extends DirectionalBlock {
 		if (world.isRemote) return true;
 		
 		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-		if(tile.isLocked && tile.playerName != player.username){
+		if(tile.isLocked() && tile.playerName != player.username){
 			Watercraft.printToPlayer("This is not your Toolbox!");
 			return false;
 		}
@@ -115,7 +115,7 @@ public class ToolBoxBlock extends DirectionalBlock {
         }
         compound.setTag("Items", items);
         compound.setString("playerName", tile.getPlayerName());
-        compound.setBoolean("isLocked", tile.isLocked);
+        compound.setBoolean("isLocked", tile.isLocked());
         toolBox.setTagCompound(compound);
         
         world.setBlockToAir(x, y, z);
@@ -176,7 +176,7 @@ public class ToolBoxBlock extends DirectionalBlock {
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
     	WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-		if(tile.isLocked && tile.playerName != player.username){
+		if(tile.isLocked() && tile.playerName != player.username){
 			return -1F;
 		}
 		return 5F;

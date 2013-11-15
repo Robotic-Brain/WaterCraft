@@ -34,10 +34,13 @@ public class ItemPadlock extends Item{
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		
 		if(tile instanceof ILockableBlock && !((ILockableBlock)tile).isLocked()){
-			System.out.println("Toolbox found, placing padlock");
+			//System.out.println("Toolbox found, placing padlock");
 			((ILockableBlock)tile).setLocked(true);
 			world.markBlockForUpdate(x, y, z);
-			stack.stackSize--;
+			
+			if (!player.capabilities.isCreativeMode) {
+				stack.stackSize--;
+			}
 		}
 
 		return true;
