@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 /**
@@ -28,11 +29,11 @@ public class ItemPadlock extends Item{
 	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		if(world.isRemote) return false;
 		System.out.println("Right click");
-		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		
-		if(tile != null && tile instanceof WCTileEntityToolBox && !tile.isLocked){
+		if(tile != null && tile instanceof WCTileEntityToolBox && !((WCTileEntityToolBox)tile).isLocked){
 			System.out.println("Toolbox found, placing padlock");
-			tile.isLocked = true;
+			((WCTileEntityToolBox)tile).isLocked = true;
 			world.markBlockForUpdate(x, y, z);
 			stack.stackSize--;
 		}
