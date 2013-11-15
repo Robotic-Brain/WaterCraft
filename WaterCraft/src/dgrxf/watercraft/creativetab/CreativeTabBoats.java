@@ -17,7 +17,7 @@ public class CreativeTabBoats extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {        
-        return ModItems.boat.itemID;
+        return ModItems.boatSimple.itemID;
     }
     
 }

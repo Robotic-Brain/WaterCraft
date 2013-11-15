@@ -9,7 +9,7 @@ Just needed to place this for future ref:
     - Boats
         - Chest Boat
         - Tank Boat
-        - (Future Integration) Energy Storage Boat (Batbox/MFE/MFSU ect.)
+        - (Future Integration) Energy Storage Boat (BatBox/MFE/MFSU ect.)
         - EntityLiving Boat
         - Lava Boats?
             - Boats that are resistant to lava? So they can work in the nether.
@@ -42,7 +42,7 @@ Just needed to place this for future ref:
         - Boat Cranes, to raise and lower boats
         - Floodgate type thing, boat goes into the block and it fills up with water allowing the boat to increase/decrease its z axis.
     	- Normal Bouy, sends simple ships in the direction they are facing and smart ships in the direction
-`	  that they are progammed to take.
+`	      that they are programmed to take.
 	- The Filter Buoy, the filter buoy will send a simple ship in either 3 directions depending on it's colour.
 		- It's colour will be defined via a Flag.
 			- The flag will have multiple different colours, all the colours that are in MC

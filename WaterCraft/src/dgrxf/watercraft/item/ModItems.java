@@ -23,12 +23,12 @@ import net.minecraft.item.Item;
 
 public class ModItems {
     
-    public static Item boat;
+    public static Item boatSimple;
     public static Item tapeMeasure;
     public static Item telescope;
     public static Item boatChest;
     public static Item lavaBoat;
-    public static Item vanillaBoat;
+    public static Item boatVanilla;
     public static Item flag;
     public static Item iceBoat;
     public static Item blockPlacer;
@@ -37,8 +37,8 @@ public class ModItems {
     public static Item calculator;
     
     public static void init() {
-    	vanillaBoat = new ItemBoat();
-        boat = new ItemDumbBoat();
+    	boatVanilla = new ItemBoat();
+        boatSimple = new ItemDumbBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();
         boatChest = new ItemBoatChest();
