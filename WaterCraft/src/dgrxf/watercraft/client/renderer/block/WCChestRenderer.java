@@ -3,11 +3,8 @@ package dgrxf.watercraft.client.renderer.block;
 import java.util.Calendar;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.model.ModelChest;
-import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -15,6 +12,8 @@ import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.common.FMLLog;
 import dgrxf.watercraft.block.WCChest;
+import dgrxf.watercraft.client.models.WCModelChest;
+import dgrxf.watercraft.client.models.WCModelLargeChest;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
 public class WCChestRenderer extends TileEntitySpecialRenderer {
@@ -27,8 +26,8 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
     public static final ResourceLocation RES_NORMAL_SINGLE = new ResourceLocation("textures/entity/chest/normal.png");
     
     //TODO new models to support locks
-    private ModelChest chestModel = new ModelChest();
-    private ModelChest largeChestModel = new ModelLargeChest();
+    private WCModelChest chestModel = new WCModelChest();
+    private WCModelChest largeChestModel = new WCModelLargeChest();
     private boolean isChristmas;
 
     public WCChestRenderer() {
@@ -62,7 +61,7 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
         }
 
         if (par1TileEntityChest.adjacentChestZNeg == null && par1TileEntityChest.adjacentChestXNeg == null) {
-            ModelChest modelchest;
+            WCModelChest modelchest;
 
             if (par1TileEntityChest.adjacentChestXPos == null && par1TileEntityChest.adjacentChestZPosition == null) {
                 modelchest = this.chestModel;
@@ -142,7 +141,7 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
             f1 = 1.0F - f1;
             f1 = 1.0F - f1 * f1 * f1;
             modelchest.chestLid.rotateAngleX = -(f1 * (float)Math.PI / 2.0F);
-            modelchest.renderAll();
+            modelchest.renderAll(par1TileEntityChest.isLocked());
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

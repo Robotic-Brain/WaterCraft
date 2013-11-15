@@ -1,20 +1,17 @@
 package dgrxf.watercraft.client.renderer.item;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
-import dgrxf.watercraft.lib.RenderInfo;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelChest;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
 
 public class ItemWCChestRenderer  implements IItemRenderer {
 
-	private ModelChest chestModel = new ModelChest();
+	private WCModelChest chestModel = new WCModelChest();
     
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -51,7 +48,7 @@ public class ItemWCChestRenderer  implements IItemRenderer {
         }
         
         Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
-        chestModel.renderAll();
+        chestModel.renderAll(false);
         
         GL11.glPopMatrix();
     }

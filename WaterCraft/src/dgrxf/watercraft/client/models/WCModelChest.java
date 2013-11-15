@@ -16,6 +16,8 @@ public class WCModelChest extends ModelBase
 
     /** The chest's knob in the chest model. */
     public ModelRenderer chestKnob;
+    
+    public ModelRenderer lock;
 
     public WCModelChest() {
         this.chestLid.addBox(0.0F, -5.0F, -14.0F, 14, 5, 14, 0.0F);
@@ -32,17 +34,19 @@ public class WCModelChest extends ModelBase
         this.chestBelow.rotationPointX = 1.0F;
         this.chestBelow.rotationPointY = 6.0F;
         this.chestBelow.rotationPointZ = 1.0F;
+        this.lock = ((new ModelRenderer(this, 0, 19)).setTextureSize(64, 64));
+        this.lock.addBox(-1.0F, -2.0F, -15.0F, 4, 4, 2, 0.0F);
+        this.lock.rotationPointX = 8.0F;
+        this.lock.rotationPointY = 7.0F;
+        this.lock.rotationPointZ = 15.0F;
     }
 
     public void renderAll(boolean locked)
     {
         this.chestKnob.rotateAngleX = this.chestLid.rotateAngleX;
         this.chestLid.render(0.0625F);
-        if (locked) {
-        	this.chestKnob.render(0.0625F);
-        } else {
-        	this.chestKnob.render(0.125F);
-        }       
+        this.chestKnob.render(0.0625F);
+        if (locked) this.lock.render(0.0625F);              
         this.chestBelow.render(0.0625F);
     }
 }
