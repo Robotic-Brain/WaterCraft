@@ -24,6 +24,8 @@ import dgrxf.watercraft.interfaces.ILockableBlock;
 
 public class WCTileEntityChest extends TileEntity implements IInventory, ILockableBlock {
     private ItemStack[] inventory = new ItemStack[36];
+    
+    //TODO support for large chests (locks)
 
     public boolean adjacentChestChecked;
     public WCTileEntityChest adjacentChestZNeg;
