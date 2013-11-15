@@ -7,14 +7,17 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import dgrxf.watercraft.client.gui.container.CalculatorContainer;
 import dgrxf.watercraft.client.gui.container.ControlUnitContainer;
+import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.client.gui.container.ToolboxContainer;
 import dgrxf.watercraft.client.gui.interfaces.GuiCalculator;
+import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
 import dgrxf.watercraft.client.gui.interfaces.ToolBoxGUI;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.ControlUnitGUI;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class GuiHandler implements IGuiHandler {
@@ -22,6 +25,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int TOOLBOX_GUI_ID = 0;
     public static final int CONTROLUNIT_GUI_ID = 1;
     public static final int CALCULATOR_GUI_ID = 2;
+    public static final int FREEZER_GUI_ID = 3;
     
     public GuiHandler() {
     }
@@ -47,6 +51,11 @@ public class GuiHandler implements IGuiHandler {
             		return new CalculatorContainer();
             	}else System.out.println("Item is not valid");
             	break;
+            case FREEZER_GUI_ID:
+            	if (te instanceof WCTileEntityFreezer) {
+            		return new FreezerContainer((WCTileEntityFreezer)te);
+            	}
+            	break;
         }
         return null;
     }
@@ -71,6 +80,11 @@ public class GuiHandler implements IGuiHandler {
             	if(player.inventory.getCurrentItem().getItem().itemID == ModItems.calculator.itemID){
             		return new GuiCalculator();
             	}else System.out.println("Item is not valid");
+            	break;
+            case FREEZER_GUI_ID:
+            	if (te instanceof WCTileEntityFreezer) {
+            		return new GuiFreezer((WCTileEntityFreezer)te);
+            	}
             	break;
         }
         return null;

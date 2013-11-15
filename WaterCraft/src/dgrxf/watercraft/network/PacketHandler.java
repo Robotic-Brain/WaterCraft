@@ -19,9 +19,11 @@ import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.client.gui.container.ITeContainer;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
+import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class PacketHandler implements IPacketHandler {
@@ -55,7 +57,12 @@ public class PacketHandler implements IPacketHandler {
         		break;
         	case FREEZER_PACKET_ID:
         		byte data = reader.readByte();
-        		
+        		if(container != null && container instanceof FreezerContainer) {
+					TileEntity te = ((FreezerContainer)container).getTileEntity();
+					if(te instanceof WCTileEntityFreezer) {
+						((WCTileEntityFreezer)te).setType(data);
+					}
+				}
         		
             default:
                 System.out.println(ModInfo.getMODID() + " Invalid packet recived!");

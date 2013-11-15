@@ -1,27 +1,26 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
-import java.util.ArrayList;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.container.CalculatorContainer;
+import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.network.PacketHandler;
+import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
 public class GuiFreezer extends GuiContainer {
 
 	private String screenText;
 	private String temp;
 	
-	public GuiFreezer() {
+	public GuiFreezer(WCTileEntityFreezer te) {
 		//CalculatorContainer is an empty container, so I'm stealing that instead of creating a new one.
 		//If this is a problem please create a new one.
-		super(new CalculatorContainer());	
+		super(new FreezerContainer(te));	
         xSize = 151;
         ySize = 80;
 	}
@@ -38,17 +37,15 @@ public class GuiFreezer extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		fontRenderer.drawString("Select block mode", 8, 3, 0x404040);
-		
-		fontRenderer.drawSplitString(screenText, 10, 17, 178, 0x404040);
 	}
 	
 	@Override
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		buttonList.add(new GuiButton((0), guiLeft + 12, 118, 18, 20, "Off"));
-		buttonList.add(new GuiButton((1), guiLeft + 31, 118, 18, 20, "Freeze"));
-		buttonList.add(new GuiButton((1), guiLeft + 50, 118, 18, 20, "Smelt"));
+		buttonList.add(new GuiButton((0), guiLeft + 12, guiTop + 12, 18, 35, "Off"));
+		buttonList.add(new GuiButton((1), guiLeft + 12, guiTop + 31, 18, 35, "Freeze"));
+		buttonList.add(new GuiButton((2), guiLeft + 12, guiTop + 50, 18, 35, "Smelt"));
 	}
 	
 	@Override
