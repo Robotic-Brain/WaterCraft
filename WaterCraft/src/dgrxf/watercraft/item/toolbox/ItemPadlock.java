@@ -1,6 +1,8 @@
 package dgrxf.watercraft.item.toolbox;
 
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -31,12 +33,13 @@ public class ItemPadlock extends Item{
 		System.out.println("Right click");
 		TileEntity tile = world.getBlockTileEntity(x, y, z);
 		
-		if(tile != null && tile instanceof WCTileEntityToolBox && !((WCTileEntityToolBox)tile).isLocked){
+		if(tile instanceof ILockableBlock && !((ILockableBlock)tile).isLocked()){
 			System.out.println("Toolbox found, placing padlock");
-			((WCTileEntityToolBox)tile).isLocked = true;
+			((ILockableBlock)tile).setLocked(true);
 			world.markBlockForUpdate(x, y, z);
 			stack.stackSize--;
 		}
+
 		return true;
 	}
 }

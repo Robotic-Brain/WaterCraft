@@ -16,8 +16,9 @@ import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.block.WCChest;
+import dgrxf.watercraft.interfaces.ILockableBlock;
 
-public class WCTileEntityChest extends TileEntity implements IInventory {
+public class WCTileEntityChest extends TileEntity implements IInventory, ILockableBlock {
     private ItemStack[] inventory = new ItemStack[36];
 
     public boolean adjacentChestChecked;

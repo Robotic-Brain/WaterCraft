@@ -18,6 +18,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.BlockInfo;
 
 /**
@@ -27,13 +28,13 @@ import dgrxf.watercraft.lib.BlockInfo;
  * 
  */
 
-public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory {
+public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory, ILockableBlock {
     
     private ItemStack[] inventory;
     public  String      playerName;
     public  int         playersInInv;
     public  boolean     isOpen;
-    public  boolean     isLocked;
+    private  boolean     isLocked;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
@@ -208,4 +209,14 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
+
+	@Override
+	public void setLocked(boolean lock) {
+		isLocked = lock;
+	}
+
+	@Override
+	public boolean isLocked() {
+		return isLocked;
+	}
 }
