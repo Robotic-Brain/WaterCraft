@@ -23,6 +23,9 @@ public class WCEntityBoatBase extends Entity
     protected boolean isEmpty;
     private double speedMultiplier;
     private int boatPosRotationIncrements;
+    
+    // Interpolation helpers
+    // ==================================
     protected double boatX;
     protected double boatY;
     protected double boatZ;
@@ -34,6 +37,7 @@ public class WCEntityBoatBase extends Entity
     private double velocityY;
     @SideOnly(Side.CLIENT)
     private double velocityZ;
+    // ==================================
 
     public WCEntityBoatBase(World par1World)
     {
