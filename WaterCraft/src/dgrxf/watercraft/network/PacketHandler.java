@@ -27,6 +27,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 public class PacketHandler implements IPacketHandler {
     
 	public static final int INTERFACE_PACKET_ID = 0;
+	public static final int FREEZER_PACKET_ID = 1;
 	
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -52,6 +53,10 @@ public class PacketHandler implements IPacketHandler {
 					}
 				}
         		break;
+        	case FREEZER_PACKET_ID:
+        		byte data = reader.readByte();
+        		
+        		
             default:
                 System.out.println(ModInfo.getMODID() + " Invalid packet recived!");
         }
@@ -71,6 +76,22 @@ public class PacketHandler implements IPacketHandler {
 			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
 		} catch (IOException e) {
 			System.err.append("Failed to send interface packet");
+		}
+		
+	}
+    
+    public static void sendFreezerPacket(byte data) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+		
+		try {
+			
+			dataStream.writeByte((byte)FREEZER_PACKET_ID);
+			dataStream.writeByte(data);
+			
+			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
+		} catch (IOException e) {
+			System.err.append("Failed to send freezer packet");
 		}
 		
 	}
