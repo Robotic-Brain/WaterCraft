@@ -37,6 +37,7 @@
 	        this.preventEntitySpawning = true;
 	        this.setSize(1.5F, 0.6F);
 	        this.yOffset = this.height / 2.0F;
+	        this.ridable = true;
 		}
 		
 		@Override
@@ -88,7 +89,7 @@
 	    				if (worldObj.getBlockId(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3)) == Block.ice.blockID) {
 	    					randomness = myRandom.nextInt(5);
 	    					if (randomness != 3) {
-	    						this.worldObj.destroyBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
+	    						this.worldObj.setBlock(((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), Block.waterStill.blockID);//((int)posX + int1), ((int)posY + int2), ((int)posZ + int3), false);
 	    						//this.addVelocity(par1, par3, par5);
 	    					}
 	    				}
