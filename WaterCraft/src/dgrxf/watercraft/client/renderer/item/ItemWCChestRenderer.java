@@ -36,13 +36,15 @@ public class ItemWCChestRenderer  implements IItemRenderer {
             	GL11.glTranslatef(-0.8F, -0.7F, 0.7F);
                 break;
             case EQUIPPED_FIRST_PERSON:
-            	GL11.glTranslatef(0F, 0.8F, 0.7F);
+            	GL11.glTranslatef(0.0F, -1.25F, 0.25F);
+            	GL11.glScalef(0.75F, 0.75F, 0.75F);
                 break;
             case INVENTORY:
-            	GL11.glTranslatef(-0.8F, -0.8F, 0F);
+            	GL11.glTranslatef(0.0F, -0.05F, 0F);
+            	GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 break;
             case ENTITY:
-            	GL11.glTranslatef(0F, -0.5F, 0F);
+            	GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
             	break;
             default:
         }
