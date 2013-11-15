@@ -139,6 +139,9 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
                 this.inventory[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }
         }
+        
+        setLocked(par1NBTTagCompound.getBoolean("locked"));
+        setCode(par1NBTTagCompound.getInteger("code"));
     }
 
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
@@ -159,6 +162,9 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
         if (this.isInvNameLocalized()) {
             par1NBTTagCompound.setString("CustomName", this.customName);
         }
+        
+        par1NBTTagCompound.setInteger("code", getCode());
+        par1NBTTagCompound.setBoolean("locked", isLocked());
     }
 
     public int getInventoryStackLimit() {
@@ -397,14 +403,14 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         NBTTagCompound tag = pkt.data;
-        locked = tag.getBoolean("isLocked");
+        setLocked(tag.getBoolean("isLocked"));
         System.out.println("Client: Packet Recevied");
     }
     
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setBoolean("isLocked", locked);
+        tag.setBoolean("isLocked", isLocked());
         System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
