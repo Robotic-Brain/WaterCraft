@@ -5,6 +5,10 @@ import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 
 public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<BoatAITaskBase> {
     
+    /**
+     * Priority of task
+     * Lower numbers mean higher priority
+     */
     private float priority;
     
     public BoatAITaskBase(WCEntityBoatBase boat, float priority) {
