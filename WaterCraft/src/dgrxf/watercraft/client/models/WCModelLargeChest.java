@@ -24,5 +24,10 @@ public class WCModelLargeChest extends WCModelChest
         this.chestBelow.rotationPointX = 1.0F;
         this.chestBelow.rotationPointY = 6.0F;
         this.chestBelow.rotationPointZ = 1.0F;
+        this.lock = ((new ModelRenderer(this, 0, 0)).setTextureSize(64, 64));
+        this.lock.addBox(-2.0F, -2.0F, -15.0F, 4, 4, 2, 0.0F);
+        this.lock.rotationPointX = 16.0F;
+        this.lock.rotationPointY = 7.0F;
+        this.lock.rotationPointZ = 15.0F;
     }
 }

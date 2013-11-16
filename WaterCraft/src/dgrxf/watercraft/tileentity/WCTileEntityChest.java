@@ -54,6 +54,22 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
     
     public void setLocked(boolean lock) {
     	locked = lock;
+    	
+    	if (adjacentChestXNeg!= null && adjacentChestXNeg.isLocked()!= lock) {
+    		adjacentChestXNeg.setLocked(lock);
+    	}
+    	
+    	if (adjacentChestZNeg!= null && adjacentChestZNeg.isLocked()!= lock) {
+    		adjacentChestZNeg.setLocked(lock);
+    	}
+    	
+    	if (adjacentChestXPos!= null && adjacentChestXPos.isLocked()!= lock) {
+    		adjacentChestXPos.setLocked(lock);
+    	}
+    	
+    	if (adjacentChestZPosition!= null && adjacentChestZPosition.isLocked()!= lock) {
+    		adjacentChestZPosition.setLocked(lock);
+    	}
     }
     
     public boolean isLocked() {
@@ -400,6 +416,22 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 	@Override
 	public void setCode(int code) {
 		this.code = code;
+		
+		if (adjacentChestXNeg!= null && adjacentChestXNeg.getCode()!= code) {
+    		adjacentChestXNeg.setCode(code);
+    	}
+    	
+    	if (adjacentChestZNeg!= null && adjacentChestZNeg.getCode()!= code) {
+    		adjacentChestZNeg.setCode(code);
+    	}
+    	
+    	if (adjacentChestXPos!= null && adjacentChestXPos.getCode()!= code) {
+    		adjacentChestXPos.setCode(code);
+    	}
+    	
+    	if (adjacentChestZPosition!= null && adjacentChestZPosition.getCode()!= code) {
+    		adjacentChestZPosition.setCode(code);
+    	}
 	}
 	
     @Override
