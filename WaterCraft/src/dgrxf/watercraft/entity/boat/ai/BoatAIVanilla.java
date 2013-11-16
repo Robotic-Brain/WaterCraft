@@ -15,7 +15,6 @@ public class BoatAIVanilla extends BoatAIBase {
         if (boat.riddenByEntity != null && boat.riddenByEntity instanceof EntityLivingBase)
         {
             double forwardSpeed = (double)((EntityLivingBase)boat.riddenByEntity).moveForward;
-            forwardSpeed = 0.5D;
 
             if (forwardSpeed > 0.0D)
             {
