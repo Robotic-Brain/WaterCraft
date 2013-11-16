@@ -24,6 +24,8 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  * Vanilla functionality
  * 
  * when subclassing overwrite this.ai
+ * 
+ * NOTE: methods starting with "h_" need more cleanup. I figured out what I wanted, so I didn't care to clean up further.
  *
  */
 public class WCEntityBoatBase extends Entity
@@ -58,7 +60,7 @@ public class WCEntityBoatBase extends Entity
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
-        this.ai = new BoatAIVanilla(this);
+        this.setBoatAI();
         
         // super() calls entityInit so call the external version here
         this.ai.entityInit();
@@ -839,5 +841,12 @@ public class WCEntityBoatBase extends Entity
      */
     protected void buoyFound(WCBouyLogic buoy) {
         this.ai.buoyFound(buoy);
+    }
+    
+    /**
+     * Overwrite this to set the boat logic
+     */
+    protected void setBoatAI() {
+        this.ai = new BoatAIVanilla(this);
     }
 }

@@ -12,7 +12,6 @@ import dgrxf.watercraft.client.renderer.item.ItemBuoyRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.item.ItemToolBoxRenderer;
 import dgrxf.watercraft.client.sound.SoundHandler;
-import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.lib.BlockInfo;
