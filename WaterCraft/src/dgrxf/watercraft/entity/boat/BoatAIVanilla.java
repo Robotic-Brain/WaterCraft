@@ -1,9 +1,7 @@
 package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
-import dgrxf.watercraft.util.LogHelper;
 
 public class BoatAIVanilla extends BoatAIBase {
     
@@ -28,23 +26,5 @@ public class BoatAIVanilla extends BoatAIBase {
             }
         }
         // ---------- PLAYER STEERING [END]
-    }
-    
-    private byte test;
-    
-    @Override
-    public void readEntityFromNBT(NBTTagCompound tagCompound) {
-        LogHelper.debug("Server?" + !boat.worldObj.isRemote);
-        LogHelper.debug(tagCompound);
-        test = tagCompound.getByte("testInt");
-        LogHelper.debug("Read Value" + test);
-        test++;
-    }
-    
-    @Override
-    public void writeEntityToNBT(NBTTagCompound tagCompound) {
-        LogHelper.debug("Server?" + !boat.worldObj.isRemote);
-        tagCompound.setByte("testInt", test);
-        LogHelper.debug("Stored Value" + test);
     }
 }
