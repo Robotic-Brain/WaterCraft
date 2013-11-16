@@ -1,8 +1,8 @@
 package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.world.World;
-import dgrxf.watercraft.entity.boat.ai.BoatAITasks;
-import dgrxf.watercraft.entity.boat.ai.BoatAIDumb;
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 
 public class DumbBoat extends WCEntityBoatBase{
 
@@ -17,7 +17,9 @@ public class DumbBoat extends WCEntityBoatBase{
     @Override
     protected void setBoatAI() {
         //this.ai = new BoatAIDumb(this);
-        this.ai = new BoatAITasks(this);
-        ((BoatAITasks) this.ai).addTask(1, new BoatAIDumb(this));
+        BoatAITaskList list = new BoatAITaskList(this);
+        list.addTask(new DumbTask(this, 1f));
+        
+        this.ai = list;
     }
 }
