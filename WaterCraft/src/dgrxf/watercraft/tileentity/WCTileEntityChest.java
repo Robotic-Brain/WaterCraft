@@ -18,9 +18,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.block.ModBlocks;
-import dgrxf.watercraft.block.WCChest;
+import dgrxf.watercraft.block.WCChestBlock;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 
 public class WCTileEntityChest extends TileEntity implements IInventory, ILockableBlock {
@@ -311,7 +309,7 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 
     private boolean func_94044_a(int par1, int par2, int par3) {
         Block block = Block.blocksList[this.worldObj.getBlockId(par1, par2, par3)];
-        return block != null && block instanceof WCChest ? ((WCChest)block).chestType == this.getChestType() : false;
+        return block != null && block instanceof WCChestBlock ? ((WCChestBlock)block).chestType == this.getChestType() : false;
     }
 
     public void updateEntity() {
@@ -420,7 +418,7 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
     }
 
     public void closeChest() {
-        if (this.getBlockType() != null && this.getBlockType() instanceof WCChest) {
+        if (this.getBlockType() != null && this.getBlockType() instanceof WCChestBlock) {
             --this.numUsingPlayers;
             this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID, 1, this.numUsingPlayers);
             this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType().blockID);
@@ -440,11 +438,11 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 
     public int getChestType() {
         if (this.cachedChestType == -1) {
-            if (this.worldObj == null || !(this.getBlockType() instanceof WCChest)) {
+            if (this.worldObj == null || !(this.getBlockType() instanceof WCChestBlock)) {
                 return 0;
             }
 
-            this.cachedChestType = ((WCChest)this.getBlockType()).chestType;
+            this.cachedChestType = ((WCChestBlock)this.getBlockType()).chestType;
         }
 
         return this.cachedChestType;

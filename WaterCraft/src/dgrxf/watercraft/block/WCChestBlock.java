@@ -30,14 +30,14 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
-public class WCChest extends BlockContainer {
+public class WCChestBlock extends BlockContainer {
 	
 	 private final Random random = new Random();
 
 	    /** 1 for trapped chests, 0 for normal chests. */
 	    public final int chestType;
 
-	    protected WCChest(int id, int type) {
+	    protected WCChestBlock(int id, int type) {
 	        super(id, Material.wood);
 	        this.chestType = type;
 	        this.setCreativeTab(Watercraft.miscTab);

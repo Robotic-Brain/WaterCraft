@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import cpw.mods.fml.common.FMLLog;
-import dgrxf.watercraft.block.WCChest;
+import dgrxf.watercraft.block.WCChestBlock;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.models.WCModelLargeChest;
 import dgrxf.watercraft.lib.ModInfo;
@@ -47,9 +47,9 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
             Block block = par1TileEntityChest.getBlockType();
             i = par1TileEntityChest.getBlockMetadata();
 
-            if (block instanceof WCChest && i == 0) {
+            if (block instanceof WCChestBlock && i == 0) {
                 try {
-                    ((WCChest)block).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
+                    ((WCChestBlock)block).unifyAdjacentChests(par1TileEntityChest.getWorldObj(), par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);
                 } catch (ClassCastException e) {
                     FMLLog.severe("Attempted to render a chest at %d,  %d, %d that was not a chest",
                             par1TileEntityChest.xCoord, par1TileEntityChest.yCoord, par1TileEntityChest.zCoord);

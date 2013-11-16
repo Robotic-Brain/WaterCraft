@@ -42,7 +42,7 @@ public class ModBlocks {
         freezer = new WaterFreezerBlock(BlockInfo.FREEZER_ID);
         dropZone = new DropZoneBlock();
         toolbox = new ToolBoxBlock();
-        chest = new WCChest(BlockInfo.WC_CHEST_ID, 0);
+        chest = new WCChestBlock(BlockInfo.WC_CHEST_ID, 0);
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(filter, ItemBlockBuoyFilter.class, BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
