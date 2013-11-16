@@ -1,7 +1,7 @@
-package dgrxf.watercraft.entity.boat;
+package dgrxf.watercraft.entity.boat.ai;
 
 import net.minecraft.entity.EntityLivingBase;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 
 public class BoatAIVanilla extends BoatAIBase {
     

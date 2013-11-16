@@ -1,7 +1,7 @@
-package dgrxf.watercraft.entity.boat;
+package dgrxf.watercraft.entity.boat.ai;
 
 import net.minecraft.nbt.NBTTagCompound;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 public abstract class BoatAIBase {

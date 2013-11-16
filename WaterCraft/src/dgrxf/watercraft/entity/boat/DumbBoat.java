@@ -1,7 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.world.World;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAIDumb;
 
 public class DumbBoat extends WCEntityBoatBase{

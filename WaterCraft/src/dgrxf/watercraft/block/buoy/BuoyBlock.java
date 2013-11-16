@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.DirectionalBlock;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;

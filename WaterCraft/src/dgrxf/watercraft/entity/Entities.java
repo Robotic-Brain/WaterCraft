@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.DumbBoat;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 
 /**
  * Class Made By: Gory_Moon

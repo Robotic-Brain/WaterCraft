@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemBoat extends Item {

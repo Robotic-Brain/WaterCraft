@@ -1,4 +1,4 @@
-package dgrxf.watercraft.entity;
+package dgrxf.watercraft.entity.boat;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.entity.boat.BoatAIBase;
-import dgrxf.watercraft.entity.boat.BoatAIVanilla;
+import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
+import dgrxf.watercraft.entity.boat.ai.BoatAIVanilla;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**

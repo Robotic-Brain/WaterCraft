@@ -8,8 +8,8 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.entity.boat.DumbBoat;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**

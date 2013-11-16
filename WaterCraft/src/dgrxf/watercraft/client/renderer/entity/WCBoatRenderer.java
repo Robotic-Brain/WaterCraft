@@ -15,7 +15,7 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;

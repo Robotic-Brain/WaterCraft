@@ -1,8 +1,7 @@
 package dgrxf.watercraft.entity.boat.ai;
 
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.WCEntityBoatBase;
-import dgrxf.watercraft.entity.boat.BoatAIBase;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.MathHelper;
