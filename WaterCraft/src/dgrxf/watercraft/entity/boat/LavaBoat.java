@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
@@ -35,4 +36,7 @@ public class LavaBoat extends WCEntityBoatBase {
             return super.attackEntityFrom(src, par2);
         }
     }
+
+    @Override
+    protected void setBoatAI(BoatAITaskList list) {}
 }

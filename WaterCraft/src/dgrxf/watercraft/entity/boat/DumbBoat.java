@@ -16,12 +16,8 @@ public class DumbBoat extends WCEntityBoatBase{
     }
 
     @Override
-    protected void setBoatAI() {
-        //this.ai = new BoatAIDumb(this);
-        BoatAITaskList list = new BoatAITaskList(this);
+    protected void setBoatAI(BoatAITaskList list) {
         list.addTask(new DumbTask(this, 1f));
         list.addTask(new VanillaTask(this, 0f));
-        
-        this.ai = list;
     }
 }

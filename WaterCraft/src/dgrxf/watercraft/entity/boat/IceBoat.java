@@ -14,14 +14,11 @@ public class IceBoat extends WCEntityBoatBase {
     public IceBoat(World par1World, double par2, double par4, double par6) {
         super(par1World, par2, par4, par6);
     }
-    
+
     @Override
-    protected void setBoatAI() {
-        BoatAITaskList list = new BoatAITaskList(this);
+    protected void setBoatAI(BoatAITaskList list) {
         list.addTask(new VanillaTask(this, 1f));
         list.addTask(new IceTask(this, 1.1f));
-        
-        this.ai = list;
     }
 
 }
