@@ -21,7 +21,7 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
 	
 	public static final ResourceLocation RES_TRAPPED_DOUBLE = new ResourceLocation("textures/entity/chest/trapped_double.png");
 	public static final ResourceLocation RES_CHRISTMAS_DOUBLE = new ResourceLocation("textures/entity/chest/christmas_double.png");
-    public static final ResourceLocation RES_NORMAL_DOUBLE = new ResourceLocation("textures/entity/chest/normal_double.png");
+    public static final ResourceLocation RES_NORMAL_DOUBLE = new ResourceLocation(ModInfo.MODID, "textures/models/largeChest.png");
     public static final ResourceLocation RES_TRAPPED_SINGLE = new ResourceLocation("textures/entity/chest/trapped.png");
     public static final ResourceLocation RES_CHRISTMAS_SINGLE = new ResourceLocation("textures/entity/chest/christmas.png");
     public static final ResourceLocation RES_NORMAL_SINGLE = new ResourceLocation(ModInfo.MODID, "textures/models/chest.png");
