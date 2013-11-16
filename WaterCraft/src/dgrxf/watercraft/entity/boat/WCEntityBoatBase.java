@@ -283,7 +283,8 @@ public class WCEntityBoatBase extends Entity
             double d2 = this.boundingBox.minY + (this.boundingBox.maxY - this.boundingBox.minY) * (double)(i + 1) / (double)b0 - 0.125D;
             AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB(this.boundingBox.minX, d1, this.boundingBox.minZ, this.boundingBox.maxX, d2, this.boundingBox.maxZ);
 
-            if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water))
+            if (this.worldObj.isAABBInMaterial(axisalignedbb, Material.water)
+                    || this.worldObj.isAABBInMaterial(axisalignedbb, Material.lava))
             {
                 temp_y_speed += 1.0D / (double)b0;
             }

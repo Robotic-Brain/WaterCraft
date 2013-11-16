@@ -8,6 +8,7 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.entity.boat.LavaBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**
@@ -42,7 +43,7 @@ public class ItemLavaBoat extends Item {
                 int z1 = movingobjectposition.blockZ;
                 
                 if ((world.getBlockMaterial(x1, y1, z1) == Material.water || world.getBlockMaterial(x1, y1, z1) == Material.lava) && world.isAirBlock(x1, y1 + 1, z1)) {
-                    EntityLavaBoat boat = new EntityLavaBoat(world, x1, y1 + 1, z1);
+                    LavaBoat boat = new LavaBoat(world, x1, y1 + 1, z1);
                     
                     world.spawnEntityInWorld(boat);
                     
