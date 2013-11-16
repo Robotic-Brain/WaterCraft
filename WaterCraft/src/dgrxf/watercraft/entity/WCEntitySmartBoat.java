@@ -2,9 +2,10 @@ package dgrxf.watercraft.entity;
 
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.util.Vector2;
 
-public class WCEntitySmartBoat extends WCEntityBoat {
+public class WCEntitySmartBoat extends WCEntityBoatBase {
 
 	private int iterator = 0;
 	private ForgeDirection[] list;

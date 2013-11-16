@@ -20,9 +20,9 @@ import dgrxf.watercraft.util.RecipeHelper;
 
 public class RecipeHandler {
 	public static void init(){
-		blockRecipes();
-		itemRecipes();
-		oreDictRecipes();
+		//blockRecipes();
+		//itemRecipes();
+		//oreDictRecipes();
 	}
 	
 	public static void oreDictRecipes(){

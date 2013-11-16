@@ -7,6 +7,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.entity.WCEntitySmartBoat;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.Vector3;
@@ -37,7 +39,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
         updateTimer = UPDATE_COUNT_DOWN;
     }
     
-    // TODO: remove Comments
+    // TODO: redo code for this
     /*@Override
     public void updateEntity() {
         if (worldObj.isRemote) {
@@ -48,13 +50,12 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
         
         if (updateTimer <= 0) {
             secondTimer++;
-            findNextBuoy(-1);
             
             if (!multiBlockFormed || secondTimer >= SECOND_TIMER) {
                 secondTimer = 0;
                 multiBlockFormed = checkForMultiBlock();
             } else {
-                WCEntityBoat e = findEntityBoat(getBlockDirection(), WCEntityBoat.class);
+                WCEntityBoatBase e = findEntityBoat(getBlockDirection(), WCEntityBoatBase.class);
                 WCEntitySmartBoat eS = (WCEntitySmartBoat)findEntityBoat(getBlockDirection(), WCEntitySmartBoat.class);
                 
                 if(eS != null){
@@ -80,10 +81,9 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
      * list. Haven't bothered yet though for testing purposes.
      * TODO: Update this to work with the new dock code
      */
-    @Override
-    public WCEntityBoat findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoat> entC) {
+    public WCEntityBoatBase findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoatBase> entC) {
         int tempX = xCoord + d.offsetX * 3;
-        int tempY = yCoord - 1;
+        int tempY = yCoord;
         int tempZ = zCoord + d.offsetZ * 3;
         
         AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, tempY - 1, tempZ - 1, tempX + 1, tempY + 1, tempZ + 1);
@@ -92,8 +92,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
         
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
-            if (e instanceof WCEntityBoat) {
-                return (WCEntityBoat) e;
+            if (e instanceof WCEntityBoatBase) {
+                return (WCEntityBoatBase) e;
             }
         }
         
@@ -101,10 +101,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     }
     
     public boolean checkForMultiBlock() {
-        //return MultiBlockInfo.dock.getMultiBlock(getWorldObj(), xCoord, yCoord, zCoord, getBlockDirection());
         return null != NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord, zCoord), getBlockDirection());
-        
-        //return true;
     }
 
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
