@@ -19,6 +19,7 @@ import net.minecraft.util.AxisAlignedBB;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.block.WCChest;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 
@@ -40,14 +41,50 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
     private String customName;
     private boolean locked;
     private int code;
+    private boolean shouldUpdateCode;
 
     public WCTileEntityChest() {
         this.cachedChestType = -1;
-        setCode(-1);
-        locked = false;
+        shouldUpdateCode = true;
     }
 
-    @SideOnly(Side.CLIENT)
+    private void checkForAdjacentLockedChests() {
+    	if (worldObj.getBlockTileEntity(this.xCoord - 1, this.yCoord, this.zCoord) != null && worldObj.getBlockTileEntity(this.xCoord - 1, this.yCoord, this.zCoord) instanceof WCTileEntityChest) {
+            this.adjacentChestXNeg = (WCTileEntityChest)this.worldObj.getBlockTileEntity(this.xCoord - 1, this.yCoord, this.zCoord);
+        }
+
+        if (worldObj.getBlockTileEntity(this.xCoord + 1, this.yCoord, this.zCoord) != null && worldObj.getBlockTileEntity(this.xCoord + 1, this.yCoord, this.zCoord) instanceof WCTileEntityChest) {
+            this.adjacentChestXPos = (WCTileEntityChest)this.worldObj.getBlockTileEntity(this.xCoord + 1, this.yCoord, this.zCoord);
+        }
+
+        if ( worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord - 1) != null && worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord - 1) instanceof WCTileEntityChest) {
+            this.adjacentChestZNeg = (WCTileEntityChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord - 1);
+        }
+
+        if ( worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord + 1) != null && worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord + 1) instanceof WCTileEntityChest) {
+            this.adjacentChestZPosition = (WCTileEntityChest)this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord + 1);
+        }
+        
+		if (adjacentChestXNeg!= null) {
+    		code = adjacentChestXNeg.getCode();
+    		locked = adjacentChestXNeg.isLocked();
+    	} else if (adjacentChestZNeg!= null) {
+    		code = adjacentChestZNeg.getCode();
+    		locked = adjacentChestZNeg.isLocked();
+    	} else if (adjacentChestXPos!= null) {
+    		code = adjacentChestXPos.getCode();
+    		locked = adjacentChestXPos.isLocked();
+    	} else if (adjacentChestZPosition!= null) {
+    		code = adjacentChestZPosition.getCode();
+    		locked = adjacentChestZPosition.isLocked();
+    	} else {
+    		code = -1;
+    		locked = false;
+    	}
+		
+	}
+
+	@SideOnly(Side.CLIENT)
     public WCTileEntityChest(int par1) {
         this.cachedChestType = par1;
     }
@@ -279,6 +316,11 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
 
     public void updateEntity() {
         super.updateEntity();
+        if (shouldUpdateCode) {
+        	checkForAdjacentLockedChests();
+        	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        	shouldUpdateCode = false;
+        }
         this.checkForAdjacentChests();
         ++this.ticksSinceSync;
         float f;
