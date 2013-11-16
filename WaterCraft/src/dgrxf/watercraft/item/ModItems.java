@@ -9,10 +9,9 @@ package dgrxf.watercraft.item;
  * 
  */
 
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.lib.ItemInfo;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 public class ModItems {
     
@@ -30,10 +29,10 @@ public class ModItems {
         boat = new ItemDumbBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();
-        boatChest = new ItemBoatChest();
-        lavaBoat = new ItemLavaBoat();
+        //boatChest = new ItemBoatChest();
+        //lavaBoat = new ItemLavaBoat();
         flag = new ItemFlag();
-        iceBoat = new ItemIceBoat();
+        //iceBoat = new ItemIceBoat();
         
         GameRegistry.registerItem(flag, ItemInfo.FLAG_UNLOCALIZED_NAME);
     }

@@ -27,33 +27,35 @@ public class BoatAIDumb extends BoatAIBase {
         zDist = MathHelper.calculatePointDistance((float) boat.posZ, target.y);
         if (xDist > 1.0F) {
             if (boat.posX < target.x)
-                boat.motionX = 0.1;
+                boat.motionX += 0.1;
             else if (boat.posX > target.x)
-                boat.motionX = -0.1;
-        } else {
+                boat.motionX += -0.1;
+        }/* else {
             boat.motionX = 0;
             xDist = 0;
-        }
+        }*/
         
         if (zDist > 1.0F) {
             if (boat.posZ < target.y)
-                boat.motionZ = 0.1;
+                boat.motionZ += 0.1;
             else if (boat.posZ > target.y)
-                boat.motionZ = -0.1;
-        } else {
+                boat.motionZ += -0.1;
+        }/* else {
             boat.motionZ = 0;
             zDist = 0;
-        }
+        }*/
         
-        if (zDist == 0 && xDist == 0) {
+        if (zDist <= 1F && xDist <= 1F) {
             target = null;
         }
     }
     
     @Override
     public void buoyFound(WCBouyLogic buoy) {
-        setTargetLocation(buoy.getNextBuoyCoords(ForgeDirection.NORTH).xz());
-        LogHelper.debug("Traget set");
+        if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
+            setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
+            LogHelper.debug("Traget set");
+        }
     }
     
     public void setTargetLocation(Vector2 target) {

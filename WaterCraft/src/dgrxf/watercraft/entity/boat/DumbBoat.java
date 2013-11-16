@@ -10,6 +10,10 @@ public class DumbBoat extends WCEntityBoatBase{
         super(par1World);
     }
     
+    public DumbBoat(World world, double x, double y, double z) {
+        super(world, x, y, z);
+    }
+
     @Override
     protected void setBoatAI() {
         this.ai = new BoatAIDumb(this);

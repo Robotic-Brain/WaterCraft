@@ -178,7 +178,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
 
     @Override
     public String toString() {
-        String result = "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "]\n";
+        String result = "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] " + getBlockDirection() + "\n";
         
         for (int i = 0; i < nextBuoys.length; i++) {
             result += "\t" + nextBuoys[i] + "\n";

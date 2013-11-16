@@ -8,8 +8,8 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.WCEntityBoat;
-import dgrxf.watercraft.entity.WCEntitySmartBoat;
+import dgrxf.watercraft.entity.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**
@@ -32,7 +32,6 @@ public class ItemDumbBoat extends Item {
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (world.isRemote)
             return itemStack;
-        WCEntityBoat boat;
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         
         if (movingobjectposition == null) {
@@ -44,11 +43,12 @@ public class ItemDumbBoat extends Item {
                 int y1 = movingobjectposition.blockY;
                 int z1 = movingobjectposition.blockZ;
                 
+                WCEntityBoatBase boat;
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                	if(!player.isSneaking())
-                		boat = new WCEntityBoat(world, x1, y1 + 1, z1);
-                	else
-                		boat = new WCEntitySmartBoat(world, x1, y1 + 1, z1);
+                	//if(!player.isSneaking())
+                		boat = new DumbBoat(world, x1, y1 + 1, z1);
+                	/*else
+                		boat = new WCEntitySmartBoat(world, x1, y1 + 1, z1);*/
                     
                     world.spawnEntityInWorld(boat);
                     

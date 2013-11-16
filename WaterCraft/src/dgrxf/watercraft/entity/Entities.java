@@ -2,6 +2,7 @@ package dgrxf.watercraft.entity;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.entity.boat.DumbBoat;
 
 /**
  * Class Made By: Gory_Moon
@@ -14,10 +15,10 @@ public class Entities {
     
     public static void init() {
     	EntityRegistry.registerModEntity(WCEntityBoatBase.class, "WCEntityBoatBase", 0, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(WCEntityBoat.class, "WCEntityBoat", 1, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityBoatChest.class, "EntityBoatChest", 3, Watercraft.instance, 80, 3, true);
-        EntityRegistry.registerModEntity(EntityLavaBoat.class, "EntityLavaBoat", 4, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(DumbBoat.class, "WCEntityBoat", 1, Watercraft.instance, 80, 3, true);
+        //EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);
+        //EntityRegistry.registerModEntity(EntityBoatChest.class, "EntityBoatChest", 3, Watercraft.instance, 80, 3, true);
+        //EntityRegistry.registerModEntity(EntityLavaBoat.class, "EntityLavaBoat", 4, Watercraft.instance, 80, 3, true);
     }
     
 }

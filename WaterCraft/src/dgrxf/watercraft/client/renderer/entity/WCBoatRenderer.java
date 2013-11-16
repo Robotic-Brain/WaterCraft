@@ -15,7 +15,6 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.entity.WCEntityBoatBase;
 import dgrxf.watercraft.enumeration.Colours;
 import dgrxf.watercraft.lib.ModInfo;
@@ -71,9 +70,9 @@ public class WCBoatRenderer extends Render {
         
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
+        /*if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
         	renderFlag(((WCEntityBoat)entity), par2, par4, par6, par8, par9);
-        }
+        }*/
         GL11.glPopMatrix();
     }
     
@@ -92,7 +91,7 @@ public class WCBoatRenderer extends Render {
 	
 	private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
     
-    private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
+    /*private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
 		GL11.glPushMatrix();
 		Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.getFlagColor().ordinal() + 1) + ".png"));
 		GL11.glTranslatef(0.7F, -0.2F, -0.55F);
@@ -100,7 +99,7 @@ public class WCBoatRenderer extends Render {
 		GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
 		flagModel.renderAll();
 		GL11.glPopMatrix();		
-	}
+	}*/
 
 	@Override
     protected ResourceLocation getEntityTexture(Entity entity) {
