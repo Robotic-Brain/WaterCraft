@@ -1,10 +1,8 @@
 package dgrxf.watercraft;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -40,18 +38,18 @@ import dgrxf.watercraft.recipe.RecipeHandler;
 public class Watercraft {
     
     @Instance(ModInfo.MODID)
-    public static Watercraft            instance;
+    public static Watercraft       instance;
     
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.COMMON_PROXY)
-    public static CommonProxy           proxy;
+    public static CommonProxy      proxy;
     
-    public static CreativeTabMisc miscTab = new CreativeTabMisc(CreativeTabs.getNextID(), ModInfo.MISC_TAB);
+    public static CreativeTabMisc  miscTab = new CreativeTabMisc(CreativeTabs.getNextID(), ModInfo.MISC_TAB);
     public static CreativeTabBoats boatTab = new CreativeTabBoats(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
     public static CreativeTabBuoys buoyTab = new CreativeTabBuoys(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
-    	MinecraftForge.EVENT_BUS.register(new WCEventHandler());
+        MinecraftForge.EVENT_BUS.register(new WCEventHandler());
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         RecipeHandler.removeVanillaRecpies();
@@ -67,7 +65,7 @@ public class Watercraft {
         Entities.init();
         RecipeHandler.init();
     }
-        
+    
     public static void printToPlayer(String txt) {
         Minecraft.getMinecraft().thePlayer.sendChatMessage("" + txt);
     }

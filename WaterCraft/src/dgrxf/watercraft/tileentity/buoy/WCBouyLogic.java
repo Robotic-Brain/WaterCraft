@@ -17,24 +17,23 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /**
      * Now configurable inside the Config
      */
-    private static final int    DEFAULT_RANGE   = MiscInfo.BOUY_RANGE;
+    private static final int DEFAULT_RANGE           = MiscInfo.BOUY_RANGE;
     
     /**
      * Fields
      */
-    protected int               searchRange;
-    private int 				lastEntityId;
-    private boolean				spawnParticles;
-    private int					particlesTimer;
+    protected int            searchRange;
+    private int              lastEntityId;
+    private boolean          spawnParticles;
+    private int              particlesTimer;
     
     /**
-     * Stores the next buoy in given direction
-     * (Don't save to nbt)
+     * Stores the next buoy in given direction (Don't save to nbt)
      * 
      * Mapping: NORTH, SOUTH, WEST, EAST
      */
-    protected Vector3[] nextBuoys = new Vector3[4];
-                                                                       
+    protected Vector3[]      nextBuoys               = new Vector3[4];
+    
     /**
      * Default Constructor
      */
@@ -83,8 +82,10 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /**
      * Sets the next Buoy in line
      * 
-     * @param next Next BuoyTileEntity
-     * @param direction Direction of next buoy
+     * @param next
+     *            Next BuoyTileEntity
+     * @param direction
+     *            Direction of next buoy
      */
     public void setNextBuoy(WCTileEntityBuoy next, ForgeDirection direction) {
         nextBuoys[direction.ordinal() - 2] = new Vector3(next.xCoord, next.yCoord, next.zCoord);
@@ -93,17 +94,19 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /**
      * Gets the next Buoy Coordinates in line
      * 
-     * @param direction Direction of next buoy
+     * @param direction
+     *            Direction of next buoy
      * @return nextBuoy
      */
     public Vector3 getNextBuoyCoords(ForgeDirection direction) {
-            return nextBuoys[direction.ordinal() - 2];
+        return nextBuoys[direction.ordinal() - 2];
     }
     
     /**
      * Gets the next Buoy TE in given direction or null
      * 
-     * @param direction Direction to travel
+     * @param direction
+     *            Direction to travel
      * @return Next buoy
      */
     public WCBouyLogic getNextBuoy(ForgeDirection direction) {
@@ -146,7 +149,8 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /**
      * Has Next Buoy
      * 
-     * @param direction Direction of next buoy
+     * @param direction
+     *            Direction of next buoy
      * @return true if has next buoy in given direction
      */
     public boolean hasNextBuoy(ForgeDirection direction) {
@@ -175,7 +179,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     /*public void enableSpawning() {
     	spawnParticles = !spawnParticles;
     }*/
-
+    
     @Override
     public String toString() {
         String result = "Buoy at: " + "[" + xCoord + ", " + yCoord + ", " + zCoord + "] " + getBlockDirection() + "\n";

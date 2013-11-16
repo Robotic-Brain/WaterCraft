@@ -1,14 +1,14 @@
 package dgrxf.watercraft.block;
 
-import cpw.mods.fml.common.network.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.BlockInfo;
@@ -60,9 +60,11 @@ public class WaterFreezerBlock extends WCBlock {
     //temp
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-    	if (world.isRemote) return true;
+        if (world.isRemote) {
+            return true;
+        }
         
-    	FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.FREEZER_GUI_ID, world, x, y, z); 
+        FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.FREEZER_GUI_ID, world, x, y, z);
         return true;
     }
 }

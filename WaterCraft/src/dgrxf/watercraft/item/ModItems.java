@@ -34,7 +34,7 @@ public class ModItems {
     public static Item key;
     
     public static void init() {
-    	boatVanilla = new ItemBoat();
+        boatVanilla = new ItemBoat();
         boatSimple = new ItemDumbBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();

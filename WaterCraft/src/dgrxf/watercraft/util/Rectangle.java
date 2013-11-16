@@ -22,10 +22,14 @@ public class Rectangle {
     /**
      * Creates a rectangle with the specified bounds
      * 
-     * @param x Start x
-     * @param y Start y
-     * @param w Width
-     * @param h Height
+     * @param x
+     *            Start x
+     * @param y
+     *            Start y
+     * @param w
+     *            Width
+     * @param h
+     *            Height
      */
     public Rectangle(float x, float y, float w, float h) {
         this.x = x;
@@ -47,9 +51,12 @@ public class Rectangle {
     /**
      * Creates a rectangle with the specified bounds
      * 
-     * @param s Starting point
-     * @param w Width
-     * @param h Height
+     * @param s
+     *            Starting point
+     * @param w
+     *            Width
+     * @param h
+     *            Height
      */
     public Rectangle(Vector2 s, float w, float h) {
         this(s.x, s.y, w, h);
@@ -58,8 +65,10 @@ public class Rectangle {
     /**
      * Creates a rectangle with the specified bounds
      * 
-     * @param s Starting point
-     * @param b Vector containing the x and y size
+     * @param s
+     *            Starting point
+     * @param b
+     *            Vector containing the x and y size
      */
     public Rectangle(Vector2 s, Vector2 b) {
         this(s, b.x, b.y);
@@ -68,7 +77,8 @@ public class Rectangle {
     /**
      * Moves the rectangle with given offset
      * 
-     * @param o Offset
+     * @param o
+     *            Offset
      * @return Rectangle(position + offset)
      */
     public Rectangle translate(Vector2 o) {
@@ -78,7 +88,8 @@ public class Rectangle {
     /**
      * Scales the rectangle with given factor
      * 
-     * @param a Scaling factor
+     * @param a
+     *            Scaling factor
      * @return Rectangle(size * a)
      */
     public Rectangle scale(float a) {
@@ -88,7 +99,8 @@ public class Rectangle {
     /**
      * Scales the rectangle around its center
      * 
-     * @param a Scaling factor
+     * @param a
+     *            Scaling factor
      * @return scaled rectangle
      */
     /*public Rectangle centeredScale(float a) {
@@ -99,7 +111,8 @@ public class Rectangle {
      * Changes size by given amount
      * 
      * 
-     * @param a Vector of x and y amount
+     * @param a
+     *            Vector of x and y amount
      * @return Rectangle(size + a)
      */
     public Rectangle trim(Vector2 a) {

@@ -25,39 +25,47 @@ public class BoatAITaskList extends BoatAIBase {
         tasks.remove(task);
     }
     
+    @Override
     public void entityInit() {
         for (BoatAITaskBase task : tasks) {
             task.entityInit();
         }
     }
     
+    @Override
     public void preOnUpdate() {
         for (BoatAITaskBase task : tasks) {
             task.preOnUpdate();
         }
     }
     
+    @Override
     public void updateMotion() {
         for (BoatAITaskBase task : tasks) {
             task.updateMotion();
         }
     }
     
+    @Override
     public void postOnUpdate() {
         for (BoatAITaskBase task : tasks) {
             task.postOnUpdate();
         }
     }
     
+    @Override
     public void buoyFound(WCBouyLogic buoy) {
         for (BoatAITaskBase task : tasks) {
             task.buoyFound(buoy);
         }
     }
-
+    
+    @Override
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
         // TODO: make saving work
     }
-
-    public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {}
+    
+    @Override
+    public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {
+    }
 }

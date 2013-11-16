@@ -1,8 +1,7 @@
 package dgrxf.watercraft.util;
 
-
 public class Vector2 {
-	public float          x, y;
+    public float x, y;
     
     /**
      * Creates new Zero Vector
@@ -132,6 +131,5 @@ public class Vector2 {
     public String toString() {
         return "[ " + x + ", " + y + "]";
     }
-    
     
 }

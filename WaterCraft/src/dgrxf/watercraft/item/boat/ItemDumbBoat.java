@@ -30,8 +30,9 @@ public class ItemDumbBoat extends Item {
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         
         if (movingobjectposition == null) {
@@ -45,10 +46,10 @@ public class ItemDumbBoat extends Item {
                 
                 WCEntityBoatBase boat;
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                	//if(!player.isSneaking())
-                		boat = new DumbBoat(world, x1, y1 + 1, z1);
-                	/*else
-                		boat = new WCEntitySmartBoat(world, x1, y1 + 1, z1);*/
+                    //if(!player.isSneaking())
+                    boat = new DumbBoat(world, x1, y1 + 1, z1);
+                    /*else
+                    	boat = new WCEntitySmartBoat(world, x1, y1 + 1, z1);*/
                     
                     world.spawnEntityInWorld(boat);
                     

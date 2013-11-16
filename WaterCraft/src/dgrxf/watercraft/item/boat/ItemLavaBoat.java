@@ -28,8 +28,9 @@ public class ItemLavaBoat extends Item {
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         

@@ -6,19 +6,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class WCModelChest extends ModelBase
-{
+public class WCModelChest extends ModelBase {
     /** The chest lid in the chest's model. */
     public ModelRenderer chestLid = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
-
+    
     /** The model of the bottom of the chest. */
     public ModelRenderer chestBelow;
-
+    
     /** The chest's knob in the chest model. */
     public ModelRenderer chestKnob;
     
     public ModelRenderer lock;
-
+    
     public WCModelChest() {
         this.chestLid.addBox(0.0F, -5.0F, -14.0F, 14, 5, 14, 0.0F);
         this.chestLid.rotationPointX = 1.0F;
@@ -40,13 +39,15 @@ public class WCModelChest extends ModelBase
         this.lock.rotationPointY = 7.0F;
         this.lock.rotationPointZ = 15.0F;
     }
-
-    public void renderAll(boolean locked)
-    {
+    
+    public void renderAll(boolean locked) {
         this.chestKnob.rotateAngleX = this.lock.rotateAngleX = this.chestLid.rotateAngleX;
-        this.chestLid.render(0.0625F); 
-        if (locked) this.lock.render(0.0625F); 
-        else this.chestKnob.render(0.0625F);
+        this.chestLid.render(0.0625F);
+        if (locked) {
+            this.lock.render(0.0625F);
+        } else {
+            this.chestKnob.render(0.0625F);
+        }
         this.chestBelow.render(0.0625F);
     }
 }

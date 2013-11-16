@@ -6,8 +6,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.block.ModBlocks;
 
 public class CreativeTabBuoys extends CreativeTabs {
-	
-	public CreativeTabBuoys(int tabId, String label) {
+    
+    public CreativeTabBuoys(int tabId, String label) {
         super(tabId, label);
     }
     
@@ -16,9 +16,8 @@ public class CreativeTabBuoys extends CreativeTabs {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public int getTabIconItemIndex() {        
+    public int getTabIconItemIndex() {
         return ModBlocks.buoy.blockID;
     }
     
-
 }

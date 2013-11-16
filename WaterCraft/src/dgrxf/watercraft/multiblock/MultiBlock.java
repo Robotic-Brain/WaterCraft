@@ -1,11 +1,9 @@
 package dgrxf.watercraft.multiblock;
 
 import net.minecraft.world.World;
-import dgrxf.watercraft.util.LogHelper;
 
 /**
- * Class Created By: ???
- * Class Last Edited By: xandayn
+ * Class Created By: ??? Class Last Edited By: xandayn
  * 
  * Class Last Edited On: 11/09/2013 MM/DD/YYYY
  * 

@@ -33,7 +33,7 @@ public class ConfigurationHandler {
             ItemInfo.BOATCHEST_ID = config.get(ItemInfo.CATEGORY, ItemInfo.BOATCHEST_KEY, ItemInfo.BOATCHEST_ID_DEFAULT).getInt() - 256;
             ItemInfo.LAVABOAT_ID = config.get(ItemInfo.CATEGORY, ItemInfo.LAVABOAT_KEY, ItemInfo.LAVABOAT_ID_DEFAULT).getInt() - 256;
             ItemInfo.FLAG_ID = config.get(ItemInfo.CATEGORY, ItemInfo.FLAG_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt() - 256;
-            ItemInfo.ICEBOAT_ID = config.get(ItemInfo.CATEGORY,ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt() - 256;
+            ItemInfo.ICEBOAT_ID = config.get(ItemInfo.CATEGORY, ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt() - 256;
             ItemInfo.ROPE_ID = config.get(ItemInfo.CATEGORY, ItemInfo.ROPE_KEY, ItemInfo.ROPE_ID_DEFAULT).getInt() - 256;
             ItemInfo.PADLOCK_ID = config.get(ItemInfo.CATEGORY, ItemInfo.PADLOCK_KEY, ItemInfo.PADLOCK_ID_DEFAULT).getInt() - 256;
             ItemInfo.CALCULATOR_ID = config.get(ItemInfo.CATEGORY, ItemInfo.CALCULATOR_KEY, ItemInfo.CALCULATOR_ID_DEFAULT).getInt() - 256;

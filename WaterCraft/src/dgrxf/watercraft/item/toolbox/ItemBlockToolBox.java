@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -39,37 +38,42 @@ public class ItemBlockToolBox extends ItemBlock {
     //Makes the item call createEntity when the item is dropped
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
-    	return true;
+        return true;
     }
     
     //This is used to stop the toolbox from being rendered open when dropped
     @Override
-    public Entity createEntity(World world, Entity location, ItemStack itemstack) {    	
-    	AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(location.posX - 1, location.posY - 1, location.posZ - 1, location.posX + 1, location.posY + 1, location.posZ + 1);
-    	List list = world.getEntitiesWithinAABB(EntityPlayer.class, bounds);
-    	
-    	for(int i = 0; i < list.size(); i++){
-    		if(list.get(i) instanceof EntityPlayer){
-    			((EntityPlayer)list.get(i)).closeScreen();
-    		}
-    	}
-    	
-    	NBTTagCompound tag;
-    	if(itemstack.getTagCompound() != null) tag = itemstack.getTagCompound();
-    	else tag = new NBTTagCompound();
-    	
-    	tag.setBoolean("isOpen", false);
-    	itemstack.setTagCompound(tag);
-    	return null;
+    public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(location.posX - 1, location.posY - 1, location.posZ - 1, location.posX + 1, location.posY + 1, location.posZ + 1);
+        List list = world.getEntitiesWithinAABB(EntityPlayer.class, bounds);
+        
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) instanceof EntityPlayer) {
+                ((EntityPlayer) list.get(i)).closeScreen();
+            }
+        }
+        
+        NBTTagCompound tag;
+        if (itemstack.getTagCompound() != null) {
+            tag = itemstack.getTagCompound();
+        } else {
+            tag = new NBTTagCompound();
+        }
+        
+        tag.setBoolean("isOpen", false);
+        itemstack.setTagCompound(tag);
+        return null;
     }
     
     @Override
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-        if (world.isRemote) return false;
+        if (world.isRemote) {
+            return false;
+        }
         if (!player.isSneaking()) {
-        	FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
-        	return false;
-    	}
+            FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z);
+            return false;
+        }
         world.setBlock(x, y, z, ModBlocks.toolbox.blockID);
         WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
         if (stack.getTagCompound() != null) {
@@ -98,13 +102,13 @@ public class ItemBlockToolBox extends ItemBlock {
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!player.isSneaking()) {
             if (stack.getTagCompound() == null) {
-            	ItemStack toolbox = stack;
+                ItemStack toolbox = stack;
                 NBTTagCompound tag = new NBTTagCompound();
                 tag.setString("playerName", player.username);
                 toolbox.setTagCompound(tag);
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, toolbox);
             }
-		    Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
+            Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
             FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return stack;

@@ -7,7 +7,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.WCEntitySmartBoat;
 import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
@@ -20,20 +19,21 @@ import dgrxf.watercraft.util.Vector3;
  * 
  */
 
-public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITileEntityInterfaceEvent{
+public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITileEntityInterfaceEvent {
     
     /**
      * Constants
      */
     private static final int UPDATE_COUNT_DOWN = 20;
-    private static final int SECOND_TIMER = 3;
+    private static final int SECOND_TIMER      = 3;
     
-    public int activeTabIndex;
+    public int               activeTabIndex;
     
-    private boolean multiBlockFormed;
-    private int     updateTimer;
-    private int     secondTimer;
-    private ForgeDirection[] directions = {ForgeDirection.NORTH, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH};
+    private boolean          multiBlockFormed;
+    private int              updateTimer;
+    private int              secondTimer;
+    private ForgeDirection[] directions        = { ForgeDirection.NORTH,
+            ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH };
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;
@@ -103,31 +103,31 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     public boolean checkForMultiBlock() {
         return null != NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord, zCoord), getBlockDirection());
     }
-
-	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound) {
-		super.readFromNBT(compound);
-		activeTabIndex = compound.getInteger("activeTab");
-	}
-	
-	@Override
-	public void writeToNBT(NBTTagCompound compound) {
-		super.writeToNBT(compound);
-		compound.setInteger("activeTab", activeTabIndex);
-	}
-
-	@Override
-	public void receiveInterfaceEvent(byte id, byte[] extraInfo) {
-		switch(id) {
-			case 0:
-				activeTabIndex = (int)extraInfo[0];
-				break;
-			default:
-		}
-	}
-	
+    
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        return entityplayer.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64;
+    }
+    
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        activeTabIndex = compound.getInteger("activeTab");
+    }
+    
+    @Override
+    public void writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        compound.setInteger("activeTab", activeTabIndex);
+    }
+    
+    @Override
+    public void receiveInterfaceEvent(byte id, byte[] extraInfo) {
+        switch (id) {
+            case 0:
+                activeTabIndex = extraInfo[0];
+                break;
+            default:
+        }
+    }
+    
 }

@@ -1,7 +1,5 @@
-
 package dgrxf.watercraft.entity;
 
-import dgrxf.watercraft.item.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,12 +10,14 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.item.ModItems;
 
 public class EntityBoatChest extends WCEntityBoat implements IInventory {
     
-    public ItemStack[] items;
+    public ItemStack[]       items;
     
-    private boolean dropContentsWhenDead = true;
+    private boolean          dropContentsWhenDead = true;
     private WCEntityBoatBase followingBoat;
     
     public EntityBoatChest(World par1World) {
@@ -40,33 +40,30 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     @Override
     public void onEntityUpdate() {
         if (!worldObj.isRemote) {
-        	if (followingBoat != null) {
-        		moveToTarget();
-        	}
-        }else{
+            if (followingBoat != null) {
+                moveToTarget();
+            }
+        } else {
             this.rotationPitch = 0.0F;
-            double d5 = (double)this.rotationYaw;
+            double d5 = (double) this.rotationYaw;
             double d11 = this.prevPosX - this.posX;
             double d10 = this.prevPosZ - this.posZ;
-
-            if (d11 * d11 + d10 * d10 > 0.001D)
-            {
-                d5 = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
+            
+            if (d11 * d11 + d10 * d10 > 0.001D) {
+                d5 = ((float) (Math.atan2(d10, d11) * 180.0D / Math.PI));
             }
-
-            double d12 = MathHelper.wrapAngleTo180_double(d5 - (double)this.rotationYaw);
-
-            if (d12 > 20.0D)
-            {
+            
+            double d12 = MathHelper.wrapAngleTo180_double(d5 - (double) this.rotationYaw);
+            
+            if (d12 > 20.0D) {
                 d12 = 20.0D;
             }
-
-            if (d12 < -20.0D)
-            {
+            
+            if (d12 < -20.0D) {
                 d12 = -20.0D;
             }
-
-            this.rotationYaw = (float)((double)this.rotationYaw + d12);
+            
+            this.rotationYaw = (float) ((double) this.rotationYaw + d12);
             this.setRotation(this.rotationYaw, this.rotationPitch);
         }
     }
@@ -76,23 +73,24 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     }
     
     public void setFollowing(WCEntityBoatBase boat) {
-    	followingBoat = boat;
+        followingBoat = boat;
     }
     
+    @Override
     public int getSizeInventory() {
         return items.length;
     }
     
     @Override
     public boolean interactFirst(EntityPlayer player) {
-        if (!this.worldObj.isRemote)
-        {	if (!player.isSneaking()) {
-        		player.displayGUIChest(this);
-        	} else {
-        		//do something with rope
-        	}
+        if (!this.worldObj.isRemote) {
+            if (!player.isSneaking()) {
+                player.displayGUIChest(this);
+            } else {
+                //do something with rope
+            }
         }
-
+        
         return true;
     }
     
@@ -110,46 +108,58 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
                 
                 if (!flag) {
                     this.dropItemWithOffset(ModItems.boatChest.itemID, 1, 0.0F);
-
-                    for (int i = 0; i < this.getSizeInventory(); ++i) { ItemStack
-                    itemstack = this.getStackInSlot(i);
                     
-                    if (itemstack != null) { float f = this.rand.nextFloat() * 0.8F +
-                    0.1F; float f1 = this.rand.nextFloat() * 0.8F + 0.1F; float f2 =
-                    this.rand.nextFloat() * 0.8F + 0.1F;
-                    
-                    while (itemstack.stackSize > 0) { int j = this.rand.nextInt(21) + 10;
-                    
-                    if (j > itemstack.stackSize) { j = itemstack.stackSize; }
-                    
-                    itemstack.stackSize -= j; EntityItem entityitem = new
-                    EntityItem(this.worldObj, this.posX + (double)f, this.posY +
-                    (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.itemID,
-                    j, itemstack.getItemDamage())); float f3 = 0.05F; entityitem.motionX
-                    = (double)((float)this.rand.nextGaussian() * f3); entityitem.motionY
-                    = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
-                    entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
-                    this.worldObj.spawnEntityInWorld(entityitem); } } }
-                }else if (((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode) {
-                	for (int i = 0; i < this.getSizeInventory(); ++i) { ItemStack
-                        itemstack = this.getStackInSlot(i);
+                    for (int i = 0; i < this.getSizeInventory(); ++i) {
+                        ItemStack itemstack = this.getStackInSlot(i);
                         
-                        if (itemstack != null) { float f = this.rand.nextFloat() * 0.8F +
-                        0.1F; float f1 = this.rand.nextFloat() * 0.8F + 0.1F; float f2 =
-                        this.rand.nextFloat() * 0.8F + 0.1F;
+                        if (itemstack != null) {
+                            float f = this.rand.nextFloat() * 0.8F + 0.1F;
+                            float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
+                            float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
+                            
+                            while (itemstack.stackSize > 0) {
+                                int j = this.rand.nextInt(21) + 10;
+                                
+                                if (j > itemstack.stackSize) {
+                                    j = itemstack.stackSize;
+                                }
+                                
+                                itemstack.stackSize -= j;
+                                EntityItem entityitem = new EntityItem(this.worldObj, this.posX + (double) f, this.posY + (double) f1, this.posZ + (double) f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+                                float f3 = 0.05F;
+                                entityitem.motionX = (float) this.rand.nextGaussian() * f3;
+                                entityitem.motionY = (float) this.rand.nextGaussian() * f3 + 0.2F;
+                                entityitem.motionZ = (float) this.rand.nextGaussian() * f3;
+                                this.worldObj.spawnEntityInWorld(entityitem);
+                            }
+                        }
+                    }
+                } else if (((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode) {
+                    for (int i = 0; i < this.getSizeInventory(); ++i) {
+                        ItemStack itemstack = this.getStackInSlot(i);
                         
-                        while (itemstack.stackSize > 0) { int j = this.rand.nextInt(21) + 10;
-                        
-                        if (j > itemstack.stackSize) { j = itemstack.stackSize; }
-                        
-                        itemstack.stackSize -= j; EntityItem entityitem = new
-                        EntityItem(this.worldObj, this.posX + (double)f, this.posY +
-                        (double)f1, this.posZ + (double)f2, new ItemStack(itemstack.itemID,
-                        j, itemstack.getItemDamage())); float f3 = 0.05F; entityitem.motionX
-                        = (double)((float)this.rand.nextGaussian() * f3); entityitem.motionY
-                        = (double)((float)this.rand.nextGaussian() * f3 + 0.2F);
-                        entityitem.motionZ = (double)((float)this.rand.nextGaussian() * f3);
-                        this.worldObj.spawnEntityInWorld(entityitem); } } }
+                        if (itemstack != null) {
+                            float f = this.rand.nextFloat() * 0.8F + 0.1F;
+                            float f1 = this.rand.nextFloat() * 0.8F + 0.1F;
+                            float f2 = this.rand.nextFloat() * 0.8F + 0.1F;
+                            
+                            while (itemstack.stackSize > 0) {
+                                int j = this.rand.nextInt(21) + 10;
+                                
+                                if (j > itemstack.stackSize) {
+                                    j = itemstack.stackSize;
+                                }
+                                
+                                itemstack.stackSize -= j;
+                                EntityItem entityitem = new EntityItem(this.worldObj, this.posX + (double) f, this.posY + (double) f1, this.posZ + (double) f2, new ItemStack(itemstack.itemID, j, itemstack.getItemDamage()));
+                                float f3 = 0.05F;
+                                entityitem.motionX = (float) this.rand.nextGaussian() * f3;
+                                entityitem.motionY = (float) this.rand.nextGaussian() * f3 + 0.2F;
+                                entityitem.motionZ = (float) this.rand.nextGaussian() * f3;
+                                this.worldObj.spawnEntityInWorld(entityitem);
+                            }
+                        }
+                    }
                 }
                 
                 this.setDead();
@@ -160,7 +170,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
             return true;
         }
     }
-       
+    
     @Override
     public ItemStack getStackInSlot(int i) {
         return items[i];
@@ -209,7 +219,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     
     @Override
     public Block getDisplayTile() {
-    	return Block.chest;
+        return Block.chest;
     }
     
     @Override
@@ -229,10 +239,12 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     }
     
     @Override
-    public void openChest() {}
+    public void openChest() {
+    }
     
     @Override
-    public void closeChest() {}
+    public void closeChest() {
+    }
     
     @Override
     public void writeToNBT(NBTTagCompound compound) {

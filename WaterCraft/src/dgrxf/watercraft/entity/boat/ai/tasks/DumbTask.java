@@ -37,24 +37,26 @@ public class DumbTask extends BoatAITaskBase {
         xDist = MathHelper.calculatePointDistance((float) boat.posX, target.x);
         zDist = MathHelper.calculatePointDistance((float) boat.posZ, target.y);
         if (xDist > 1.0F) {
-            if (boat.posX < target.x)
+            if (boat.posX < target.x) {
                 boat.motionX += BOAT_SPEED;
-            else if (boat.posX > target.x)
+            } else if (boat.posX > target.x) {
                 boat.motionX += -BOAT_SPEED;
+            }
         }/* else {
             boat.motionX = 0;
             xDist = 0;
-        }*/
+         }*/
         
         if (zDist > 1.0F) {
-            if (boat.posZ < target.y)
+            if (boat.posZ < target.y) {
                 boat.motionZ += BOAT_SPEED;
-            else if (boat.posZ > target.y)
+            } else if (boat.posZ > target.y) {
                 boat.motionZ += -BOAT_SPEED;
+            }
         }/* else {
             boat.motionZ = 0;
             zDist = 0;
-        }*/
+         }*/
         
         if (zDist <= 1F && xDist <= 1F) {
             target = null;

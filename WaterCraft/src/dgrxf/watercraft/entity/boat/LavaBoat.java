@@ -1,13 +1,13 @@
 package dgrxf.watercraft.entity.boat;
 
-import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 
 public class LavaBoat extends WCEntityBoatBase {
-
+    
     public LavaBoat(World par1World) {
         super(par1World);
         this.isImmuneToFire = true;
@@ -36,7 +36,8 @@ public class LavaBoat extends WCEntityBoatBase {
             return super.attackEntityFrom(src, par2);
         }
     }
-
+    
     @Override
-    protected void setBoatAI(BoatAITaskList list) {}
+    protected void setBoatAI(BoatAITaskList list) {
+    }
 }

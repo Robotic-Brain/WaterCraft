@@ -10,7 +10,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 public abstract class BoatAIBase {
     
     protected WCEntityBoatBase boat;
-
+    
     public BoatAIBase(WCEntityBoatBase boat) {
         this.boat = boat;
     }
@@ -18,30 +18,37 @@ public abstract class BoatAIBase {
     /**
      * Gets called after entityInit()
      */
-    public void entityInit() {}
+    public void entityInit() {
+    }
     
     /**
      * Gets called before onUpdate()
      */
-    public void preOnUpdate() {}
+    public void preOnUpdate() {
+    }
     
     /**
      * Use this to move in new direction
      */
-    public void updateMotion() {}
+    public void updateMotion() {
+    }
     
     /**
      * Gets called after onUpdate()
      */
-    public void postOnUpdate() {}
+    public void postOnUpdate() {
+    }
     
     /**
      * Gets called if boat is near buoy
      */
-    public void buoyFound(WCBouyLogic buoy) {}
-
-    public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {}
-
-    public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {}
+    public void buoyFound(WCBouyLogic buoy) {
+    }
+    
+    public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
+    }
+    
+    public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {
+    }
     
 }

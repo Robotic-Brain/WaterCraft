@@ -22,14 +22,14 @@ import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 public class ModBlocks {
     
     public static BuoyBlock buoy;
-    public static Block controlUnitDock;
-    public static Block freezer;
-    public static Block dropZone;
-    public static Block toolbox;
-    public static Block chest;
+    public static Block     controlUnitDock;
+    public static Block     freezer;
+    public static Block     dropZone;
+    public static Block     toolbox;
+    public static Block     chest;
     
     public static void init() {
-    	//Buoy Blocks
+        //Buoy Blocks
         buoy = new BuoyBlock(BlockInfo.BUOY_ID);
         
         controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);

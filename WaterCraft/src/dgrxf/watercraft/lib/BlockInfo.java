@@ -5,9 +5,9 @@ public class BlockInfo {
     /*************
      * Strings
      *************/
-	
-	public static final String CATEGORY                           = "Blocks";
-	
+    
+    public static final String CATEGORY                           = "Blocks";
+    
     public static final String BUOY_UNLOCALIZED_NAME              = "buoyBlockName";
     public static final String BUOY_KEY                           = "Buoy";
     public static final String BUOY_TE_KEY                        = "WCTileEntityBuoy";
@@ -22,18 +22,18 @@ public class BlockInfo {
     public static final String FREEZER_UNLOCALIZED_NAME           = "freezerBlockName";
     public static final String FREEZER_KEY                        = "Freezer";
     public static final String FREEZER_TE_KEY                     = "WCTileEntityFreezer";
-
+    
     public static final String TOOLBOX_UNLOCALIZED_NAME           = "toolBoxBlockName";
     public static final String TOOLBOX_KEY                        = "ToolBox";
     public static final String TOOLBOX_TE_KEY                     = "WCTileEntityToolBox";
     
-    public static final String BUOY_FILTER_UNLOCALIZED_NAME              = "buoyFilterBlockName";
-    public static final String BUOY_FILTER_KEY                           = "Buoy Filter";
-    public static final String BUOY_FILTER_TE_KEY                        = "WCTileEntityFilterBuoy";
+    public static final String BUOY_FILTER_UNLOCALIZED_NAME       = "buoyFilterBlockName";
+    public static final String BUOY_FILTER_KEY                    = "Buoy Filter";
+    public static final String BUOY_FILTER_TE_KEY                 = "WCTileEntityFilterBuoy";
     
-    public static final String WC_CHEST_UNLOCALIZED_NAME              = "wcChestName";
-    public static final String WC_CHEST_KEY                           = "Chest";
-    public static final String WC_CHEST_TE_KEY                        = "WCTileEntityChest";
+    public static final String WC_CHEST_UNLOCALIZED_NAME          = "wcChestName";
+    public static final String WC_CHEST_KEY                       = "Chest";
+    public static final String WC_CHEST_TE_KEY                    = "WCTileEntityChest";
     
     /*************
      * Integers
@@ -54,9 +54,9 @@ public class BlockInfo {
     public static final int    TOOLBOX_ID_DEFAULT                 = 706;
     public static int          TOOLBOX_ID;
     
-    public static final int    BUOY_FILTER_ID_DEFAULT                    = 707;
+    public static final int    BUOY_FILTER_ID_DEFAULT             = 707;
     public static int          BUOY_FILTER_ID;
     
-    public static final int    WC_CHEST_ID_DEFAULT                    = 708;
+    public static final int    WC_CHEST_ID_DEFAULT                = 708;
     public static int          WC_CHEST_ID;
 }

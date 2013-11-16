@@ -11,6 +11,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.entity.EntityBoatChest;
 import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemBoatChest extends Item {
@@ -23,8 +24,9 @@ public class ItemBoatChest extends Item {
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         

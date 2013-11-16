@@ -75,7 +75,7 @@ public class BuoyBlock extends DirectionalBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
-    	particleIcon = register.registerIcon("Watercraft:buoyParticle");
+        particleIcon = register.registerIcon("Watercraft:buoyParticle");
     }
     
     @SideOnly(Side.CLIENT)
@@ -104,7 +104,7 @@ public class BuoyBlock extends DirectionalBlock {
         
         TileEntity te = world.getBlockTileEntity(x, y, z);
         if (te instanceof WCBouyLogic) {
-            ((WCBouyLogic)world.getBlockTileEntity(x, y, z)).updateBuoys();
+            ((WCBouyLogic) world.getBlockTileEntity(x, y, z)).updateBuoys();
         }
     }
     
@@ -116,7 +116,7 @@ public class BuoyBlock extends DirectionalBlock {
         TileEntity te = par1World.getBlockTileEntity(x, y, z);
         Vector3[] buoys = null;
         if (te instanceof WCBouyLogic) {
-            buoys = ((WCBouyLogic)par1World.getBlockTileEntity(x, y, z)).getNextBuoysCoords();
+            buoys = ((WCBouyLogic) par1World.getBlockTileEntity(x, y, z)).getNextBuoysCoords();
         }
         
         // This removes the TE
@@ -126,9 +126,9 @@ public class BuoyBlock extends DirectionalBlock {
             for (int i = 0; i < buoys.length; i++) {
                 Vector3 p = buoys[i];
                 if (p != null) {
-                    TileEntity te2 = par1World.getBlockTileEntity((int)p.x, (int)p.y, (int)p.z);
+                    TileEntity te2 = par1World.getBlockTileEntity((int) p.x, (int) p.y, (int) p.z);
                     if (te2 instanceof WCBouyLogic) {
-                        ((WCBouyLogic)te2).updateBuoys();
+                        ((WCBouyLogic) te2).updateBuoys();
                     }
                 }
             }
@@ -142,7 +142,7 @@ public class BuoyBlock extends DirectionalBlock {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         TileEntity te = world.getBlockTileEntity(x, y, z);
         if (te instanceof WCBouyLogic) {
-            LogHelper.debug((WCBouyLogic)world.getBlockTileEntity(x, y, z));
+            LogHelper.debug(world.getBlockTileEntity(x, y, z));
         }
         return true;
     }

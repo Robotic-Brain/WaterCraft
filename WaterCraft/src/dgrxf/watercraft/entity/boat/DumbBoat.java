@@ -5,8 +5,8 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
-public class DumbBoat extends WCEntityBoatBase{
-
+public class DumbBoat extends WCEntityBoatBase {
+    
     public DumbBoat(World par1World) {
         super(par1World);
     }
@@ -14,7 +14,7 @@ public class DumbBoat extends WCEntityBoatBase{
     public DumbBoat(World world, double x, double y, double z) {
         super(world, x, y, z);
     }
-
+    
     @Override
     protected void setBoatAI(BoatAITaskList list) {
         list.addTask(new DumbTask(this, 1f));

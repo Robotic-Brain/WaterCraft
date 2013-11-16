@@ -1,10 +1,9 @@
 package dgrxf.watercraft.tileentity;
 
-import dgrxf.watercraft.block.DirectionalBlock;
-import dgrxf.watercraft.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.block.DirectionalBlock;
 
 /**
  * Watercraft TileEntity Baseclass
@@ -18,7 +17,7 @@ public abstract class DirectionalTileEntity extends TileEntity {
      * @param direction
      */
     public void setBlockDirection(ForgeDirection d) {
-        ((DirectionalBlock)Block.blocksList[worldObj.getBlockId(xCoord, yCoord, zCoord)]).setBlockDirection(worldObj, xCoord, yCoord, zCoord, d);
+        ((DirectionalBlock) Block.blocksList[worldObj.getBlockId(xCoord, yCoord, zCoord)]).setBlockDirection(worldObj, xCoord, yCoord, zCoord, d);
     }
     
     /**
@@ -27,7 +26,7 @@ public abstract class DirectionalTileEntity extends TileEntity {
      * @return direction
      */
     public ForgeDirection getBlockDirection() {
-        return ((DirectionalBlock)Block.blocksList[worldObj.getBlockId(xCoord, yCoord, zCoord)]).getBlockDirection(worldObj, xCoord, yCoord, zCoord);
+        return ((DirectionalBlock) Block.blocksList[worldObj.getBlockId(xCoord, yCoord, zCoord)]).getBlockDirection(worldObj, xCoord, yCoord, zCoord);
     }
     
 }

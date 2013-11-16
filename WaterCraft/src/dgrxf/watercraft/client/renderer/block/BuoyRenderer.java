@@ -27,11 +27,11 @@ public class BuoyRenderer extends TileEntitySpecialRenderer {
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
-    	renderBouy(x, y, z);
+        renderBouy(x, y, z);
     }
     
-    public void renderBouy(double x, double y, double z){
-    	GL11.glPushMatrix();
+    public void renderBouy(double x, double y, double z) {
+        GL11.glPushMatrix();
         
         GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F + yLevel, (float) z + 0.5F);
         Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.BUOY_TEXTURE_LOCATION);

@@ -6,8 +6,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.item.ModItems;
 
 public class CreativeTabBoats extends CreativeTabs {
-
-	public CreativeTabBoats(int tabId, String label) {
+    
+    public CreativeTabBoats(int tabId, String label) {
         super(tabId, label);
     }
     
@@ -16,7 +16,7 @@ public class CreativeTabBoats extends CreativeTabs {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public int getTabIconItemIndex() {        
+    public int getTabIconItemIndex() {
         return ModItems.boatSimple.itemID;
     }
     

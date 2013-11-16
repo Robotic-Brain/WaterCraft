@@ -12,20 +12,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class SoundHandler {
-
-	public SoundHandler() {
-		MinecraftForge.EVENT_BUS.register(this);
-	}
-	
-	@ForgeSubscribe
-	public void onSoundsLoad(SoundLoadEvent event) {
-		for (Sounds sound : Sounds.values()) {
-			addSound(event, sound);
-		}
-	}
-	
-	private void addSound(SoundLoadEvent event, Sounds sound) {
-		event.manager.soundPoolSounds.addSound(Sounds.SOUNDS_LOCATION + ":" + sound.getName() + ".ogg");
-	}
-	
+    
+    public SoundHandler() {
+        MinecraftForge.EVENT_BUS.register(this);
+    }
+    
+    @ForgeSubscribe
+    public void onSoundsLoad(SoundLoadEvent event) {
+        for (Sounds sound : Sounds.values()) {
+            addSound(event, sound);
+        }
+    }
+    
+    private void addSound(SoundLoadEvent event, Sounds sound) {
+        event.manager.soundPoolSounds.addSound(Sounds.SOUNDS_LOCATION + ":" + sound.getName() + ".ogg");
+    }
+    
 }

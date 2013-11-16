@@ -17,7 +17,7 @@ import dgrxf.watercraft.lib.ItemInfo;
 
 /**
  * This overwrites the vanilla boat
- *
+ * 
  */
 public class ItemBoat extends Item {
     
@@ -30,13 +30,14 @@ public class ItemBoat extends Item {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister par1IconRegister) {
-    	this.itemIcon = par1IconRegister.registerIcon("boat");
+        this.itemIcon = par1IconRegister.registerIcon("boat");
     }
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         
