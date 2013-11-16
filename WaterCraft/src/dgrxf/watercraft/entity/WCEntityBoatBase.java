@@ -5,7 +5,6 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,12 +15,21 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.entity.boat.BoatAIBase;
+import dgrxf.watercraft.entity.boat.BoatAIVanilla;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
+/**
+ * Boat Base Class
+ * Vanilla functionality
+ * 
+ * when subclassing overwrite this.ai
+ *
+ */
 public class WCEntityBoatBase extends Entity
 {
     protected boolean isEmpty;
-    private double speedMultiplier;
+    public double speedMultiplier;
     private int boatPosRotationIncrements;
     
     // Interpolation helpers
@@ -38,6 +46,9 @@ public class WCEntityBoatBase extends Entity
     @SideOnly(Side.CLIENT)
     private double velocityZ;
     // ==================================
+    
+    private static final String NBT_AI_TAG = "aiValues";
+    protected BoatAIBase ai;
 
     public WCEntityBoatBase(World par1World)
     {
@@ -47,6 +58,10 @@ public class WCEntityBoatBase extends Entity
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
+        this.ai = new BoatAIVanilla(this);
+        
+        // super() calls entityInit so call the external version here
+        this.ai.entityInit();
     }
     
     /**
@@ -65,6 +80,9 @@ public class WCEntityBoatBase extends Entity
         this.dataWatcher.addObject(17, new Integer(0));
         this.dataWatcher.addObject(18, new Integer(1));
         this.dataWatcher.addObject(19, new Float(0.0F));
+        if (ai != null) {
+            this.ai.entityInit();
+        }
     }
 
     /**
@@ -117,6 +135,7 @@ public class WCEntityBoatBase extends Entity
      */
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2)
     {
+        // TODO: add AI hook?
         if (this.isEntityInvulnerable())
         {
             return false;
@@ -328,22 +347,23 @@ public class WCEntityBoatBase extends Entity
      *      this.motionZ
      * </pre>
      */
-    private void h_steer_by_player() {
+    /*private void h_steer_by_player() {
      // ---------- PLAYER STEERING [START]
         if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityLivingBase)
         {
-            double curr_facing_x = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
+            double forwardSpeed = (double)((EntityLivingBase)this.riddenByEntity).moveForward;
+            forwardSpeed = 0.5D;
 
-            if (curr_facing_x > 0.0D)
+            if (forwardSpeed > 0.0D)
             {
-                double curr_facing_y = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                double d11 = Math.cos((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
-                this.motionX += curr_facing_y * this.speedMultiplier * 0.05000000074505806D;
-                this.motionZ += d11 * this.speedMultiplier * 0.05000000074505806D;
+                double facingXcomp = -Math.sin((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
+                double facingZcomp = Math.cos((double)(this.riddenByEntity.rotationYaw * (float)Math.PI / 180.0F));
+                this.motionX += facingXcomp * this.speedMultiplier * 0.05000000074505806D;
+                this.motionZ += facingZcomp * this.speedMultiplier * 0.05000000074505806D;
             }
         }
         // ---------- PLAYER STEERING [END]
-    }
+    }*/
     
     /**
      * Updates the velocity vector
@@ -545,6 +565,7 @@ public class WCEntityBoatBase extends Entity
      */
     public void onUpdate()
     {
+        this.ai.preOnUpdate();
         super.onUpdate();
         
         updateBuoys();
@@ -582,10 +603,11 @@ public class WCEntityBoatBase extends Entity
                 this.motionY += 0.007000000216066837D;
             }
             
-            h_steer_by_player();
+            //h_steer_by_player();
+            this.ai.updateMotion();
 
             h_update_speed(xzSpeed);
-
+            
             this.moveEntity(this.motionX, this.motionY, this.motionZ);
             
             // ---------- COLLISSION BREAKING [START]
@@ -656,6 +678,8 @@ public class WCEntityBoatBase extends Entity
                 // ---------- Set empty if rider dead [END]
             }
         }
+        
+        this.ai.postOnUpdate();
     }
 
     public void updateRiderPosition()
@@ -671,12 +695,19 @@ public class WCEntityBoatBase extends Entity
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
-    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {}
+    protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
+        NBTTagCompound aiTag = new NBTTagCompound();
+        this.ai.writeEntityToNBT(aiTag);
+        par1NBTTagCompound.setCompoundTag(NBT_AI_TAG, aiTag);
+    }
 
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
-    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {}
+    protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
+        NBTTagCompound aiTag = par1NBTTagCompound.getCompoundTag(NBT_AI_TAG);
+        this.ai.readEntityFromNBT(aiTag);
+    }
 
     @SideOnly(Side.CLIENT)
     public float getShadowSize()
@@ -806,5 +837,7 @@ public class WCEntityBoatBase extends Entity
      * 
      * @param buoy
      */
-    protected void buoyFound(WCBouyLogic buoy) {}
+    protected void buoyFound(WCBouyLogic buoy) {
+        this.ai.buoyFound(buoy);
+    }
 }
