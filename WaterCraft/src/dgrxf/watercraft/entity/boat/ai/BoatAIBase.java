@@ -4,6 +4,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
+/**
+ * Use this AI base class for simple boats
+ */
 public abstract class BoatAIBase {
     
     protected WCEntityBoatBase boat;

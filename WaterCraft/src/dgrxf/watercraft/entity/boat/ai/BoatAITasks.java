@@ -8,6 +8,10 @@ import net.minecraft.entity.ai.EntityAITasks;
 import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 
+/**
+ * Use this base class for Vanilla AI task
+ *
+ */
 public class BoatAITasks extends BoatAIBase {
     
     private static final String NBT_TASK_LIST = "taskList";
