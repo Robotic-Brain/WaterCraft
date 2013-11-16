@@ -19,7 +19,7 @@ public class IceBoat extends WCEntityBoatBase {
     protected void setBoatAI() {
         BoatAITaskList list = new BoatAITaskList(this);
         list.addTask(new VanillaTask(this, 1f));
-        list.addTask(new IceTask(this, 0f));
+        list.addTask(new IceTask(this, 1.1f));
         
         this.ai = list;
     }

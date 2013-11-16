@@ -17,6 +17,7 @@ public class BoatAITaskList extends BoatAIBase {
     }
     
     public void addTask(BoatAITaskBase task) {
+        // TDO: NOTE: This implementation only allows one element per priority
         tasks.add(task);
     }
     
