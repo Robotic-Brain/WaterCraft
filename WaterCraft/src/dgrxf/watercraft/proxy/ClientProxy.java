@@ -57,6 +57,6 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.WC_CHEST_ID, new ItemWCChestRenderer());
         
-        MinecraftForgeClient.registerItemRenderer(ItemInfo.PADLOCK_ID + 256, new ItemPadlockRenderer());
+        //MinecraftForgeClient.registerItemRenderer(ItemInfo.PADLOCK_ID + 256, new ItemPadlockRenderer());
     }
 }
