@@ -48,15 +48,11 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityChest.class, new WCChestRenderer());
         
         RenderingRegistry.registerEntityRenderingHandler(WCEntityBoatBase.class, new WCBoatRenderer());
-        RenderingRegistry.registerEntityRenderingHandler(DumbBoat.class, new WCBoatRenderer());
-        //RenderingRegistry.registerEntityRenderingHandler(WCEntitySmartBoat.class, new WCBoatRenderer());
         
         MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_ID, new ItemBuoyRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_FILTER_ID, new ItemBuoyRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.TOOLBOX_ID, new ItemToolBoxRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.WC_CHEST_ID, new ItemWCChestRenderer());
-        
-        //MinecraftForgeClient.registerItemRenderer(ItemInfo.PADLOCK_ID + 256, new ItemPadlockRenderer());
     }
 }
