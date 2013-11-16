@@ -1,23 +1,54 @@
 package dgrxf.watercraft.entity.boat.ai;
 
-import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import net.minecraft.tileentity.TileEntity;
+import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.MathHelper;
 import dgrxf.watercraft.util.Vector2;
-import dgrxf.watercraft.util.Vector3;
 
-public class BoatAIDumb extends BoatAIBase {
+public class BoatAIDumb extends BoatEntityAIBase {
     
+    private DumbBoat boat;
     private Vector2 target;
     
-    public BoatAIDumb(WCEntityBoatBase boat) {
-        super(boat);
+    public BoatAIDumb(DumbBoat boat) {
+        this.boat = boat;
+    }
+
+    @Override
+    public boolean shouldExecute() {
+        return true;
     }
     
-    @Override
-    public void updateMotion() {
+    public void updateTask() {
+        getNewTargetFromBuoy();
+        moveToTarget();
+    }
+    
+    private void getNewTargetFromBuoy() {
+        int myX = (int) boat.posX;
+        int myY = (int) boat.posY;
+        int myZ = (int) boat.posZ;
+        
+        for (int dx = -1; dx <= 1; ++dx) {
+            for (int dy = -1; dy <= 1; ++dy) {
+                for (int dz = -1; dz <= 1; ++dz) {
+                    TileEntity te = boat.worldObj.getBlockTileEntity(myX + dx, myY + dy, myZ + dz);
+                    if (te instanceof WCBouyLogic) {
+                        WCBouyLogic buoy = (WCBouyLogic) te;
+                        
+                        if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
+                            setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
+                            LogHelper.debug("Traget set");
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private void moveToTarget() {
         float xDist, zDist;
         if (target == null || boat.worldObj.isRemote) {
             return;
@@ -49,15 +80,8 @@ public class BoatAIDumb extends BoatAIBase {
         }
     }
     
-    @Override
-    public void buoyFound(WCBouyLogic buoy) {
-        if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
-            setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
-            LogHelper.debug("Traget set");
-        }
-    }
-    
-    public void setTargetLocation(Vector2 target) {
+    private void setTargetLocation(Vector2 target) {
         this.target = target;
     }
+    
 }
