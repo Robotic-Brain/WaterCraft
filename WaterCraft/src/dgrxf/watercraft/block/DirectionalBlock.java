@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.util.RotationHelper;
 
-public abstract class DirectionalBlock extends Block {
+public abstract class DirectionalBlock extends WCBlock {
 
     public DirectionalBlock(int id, Material material) {
         super(id, material);

@@ -1,20 +1,21 @@
 [
 {
-  "modid": "wc",
-  "name": "WaterCraft",
-  "description": "Work in progress",
-  "version": "Pre-Alpha 0.01",
+  "modid": "watercraft",
+  "name": "Water Craft",
+  "description": "Watercraft is a mod that hopes to make the neglected minecraft boat more useful and more fun to build with.",
   "url": "",
   "updateUrl": "",
   "authorList": [
-
+    "Drunk Mafia",
+    "Robotic-Brain",
+    "Xandayn",
+    "FrodCube",
+    "GoryMoon",
+    "Hunter-K13"
   ],
-  "credits": "",
+  "credits": "VSWE (For his amazing courses)",
   "logoFile": "",
   "screenshots": [
-  ],
-  "parent":"",
-  "dependencies": [
   ]
 }
 ]

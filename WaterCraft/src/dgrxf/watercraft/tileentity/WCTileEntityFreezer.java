@@ -26,6 +26,10 @@ public class WCTileEntityFreezer extends TileEntity {
         setCooldown();
     }
     
+    public void setType(int i) {
+    	worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 3);
+    }
+    
     @Override
     public void updateEntity() {
         super.updateEntity();

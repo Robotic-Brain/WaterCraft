@@ -32,7 +32,7 @@ public class BuoyBlock extends DirectionalBlock {
     
     public BuoyBlock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.buoyTab);
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, -1.3F, 0.1F, 0.9F, 0.9F, 0.9F);
         setLightValue(1F);

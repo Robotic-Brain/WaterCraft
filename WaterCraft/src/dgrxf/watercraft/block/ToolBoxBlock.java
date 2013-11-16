@@ -33,11 +33,10 @@ public class ToolBoxBlock extends DirectionalBlock {
    
     public ToolBoxBlock() {
         super(BlockInfo.TOOLBOX_ID, Material.iron);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.miscTab);
         setUnlocalizedName(BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
     }
-    
 
 	@Override
     public boolean hasTileEntity(int metadata) {
@@ -67,12 +66,16 @@ public class ToolBoxBlock extends DirectionalBlock {
     	if(tile.blockMetadata == 4 || tile.blockMetadata == 5)
     		setBlockBounds(0.345F, 0F, 0.1F, 0.645F, 0.5F, 0.9F);
     }
-
     
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
 		if (world.isRemote) return true;
 		
+		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+		if(tile.isLocked() && tile.playerName != player.username){
+			Watercraft.printToPlayer("This is not your Toolbox!");
+			return false;
+		}
 		if(!player.isSneaking()){
 			FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
 			world.markBlockForUpdate(x, y, z);
@@ -112,6 +115,7 @@ public class ToolBoxBlock extends DirectionalBlock {
         }
         compound.setTag("Items", items);
         compound.setString("playerName", tile.getPlayerName());
+        compound.setBoolean("isLocked", tile.isLocked());
         toolBox.setTagCompound(compound);
         
         world.setBlockToAir(x, y, z);
@@ -170,11 +174,19 @@ public class ToolBoxBlock extends DirectionalBlock {
     }
     
     @Override
-    public void onBlockHarvested(World world, int x, int y, int z, int par5, EntityPlayer player) {
+    public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
+    	WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+		if(tile.isLocked() && tile.playerName != player.username){
+			return -1F;
+		}
+		return 5F;
+    }
+    
+    @Override
+    public void onBlockHarvested(World world, int x, int y, int z, int side, EntityPlayer player) {		
         float spawnX = x + world.rand.nextFloat();
         float spawnY = y + world.rand.nextFloat();
         float spawnZ = z + world.rand.nextFloat();
         world.spawnEntityInWorld(new EntityItem(world, spawnX, spawnY, spawnZ, new ItemStack(this)));
     }
-    
 }

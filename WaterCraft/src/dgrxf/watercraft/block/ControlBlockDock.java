@@ -16,7 +16,7 @@ public class ControlBlockDock extends DirectionalBlock {
     
     public ControlBlockDock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.buoyTab);
         setUnlocalizedName(BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
     }
     

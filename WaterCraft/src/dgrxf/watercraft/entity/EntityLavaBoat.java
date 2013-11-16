@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -28,7 +29,7 @@ public class EntityLavaBoat extends WCEntityBoatBase{
     private double boatPitch;
 	private int fire;
 	private boolean firstUpdate;
-    
+	
 	
 	public EntityLavaBoat(World par1World, double par2, double par4, double par6) {
 		super(par1World, par2, par4, par6);
@@ -47,7 +48,7 @@ public class EntityLavaBoat extends WCEntityBoatBase{
 	public void writeToNBT(NBTTagCompound compound) {
 		super.writeToNBT(compound);
 	}
-	    
+	
 	@Override
 	public void readFromNBT(NBTTagCompound compound) {
 		super.readFromNBT(compound);
@@ -58,7 +59,6 @@ public class EntityLavaBoat extends WCEntityBoatBase{
     {
         if (this.riddenByEntity != null)
         {
-        	this.riddenByEntity.extinguish();
             double d0 = Math.cos((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             double d1 = Math.sin((double)this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             this.riddenByEntity.setPosition(this.posX + d0, this.posY + this.getMountedYOffset() + this.riddenByEntity.getYOffset(), this.posZ + d1);
@@ -69,6 +69,12 @@ public class EntityLavaBoat extends WCEntityBoatBase{
 	public void onUpdate()
     {
 		this.onEntityUpdate();
+		if (this.riddenByEntity != null) {
+			this.riddenByEntity.extinguish();
+			if (this.riddenByEntity instanceof EntityLivingBase) {
+				((EntityLivingBase) this.riddenByEntity).addPotionEffect(new PotionEffect(12, 10, 0, true));
+			}
+		}
 		
         if (this.getTimeSinceHit() > 0)
         {

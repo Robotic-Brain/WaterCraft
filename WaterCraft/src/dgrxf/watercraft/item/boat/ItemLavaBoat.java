@@ -1,4 +1,4 @@
-package dgrxf.watercraft.item;
+package dgrxf.watercraft.item.boat;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -8,8 +8,6 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.EntityLavaBoat;
-import dgrxf.watercraft.entity.WCEntityBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**
@@ -24,7 +22,7 @@ public class ItemLavaBoat extends Item {
     public ItemLavaBoat() {
         super(ItemInfo.LAVABOAT_ID);
         setUnlocalizedName(ItemInfo.LAVABOAT_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.boatTab);
     }
     
     @Override

@@ -18,6 +18,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.BlockInfo;
 
 /**
@@ -27,16 +28,19 @@ import dgrxf.watercraft.lib.BlockInfo;
  * 
  */
 
-public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory {
+public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory, ILockableBlock {
     
     private ItemStack[] inventory;
-    private String      playerName;
+    public  String      playerName;
     public  int         playersInInv;
     public  boolean     isOpen;
+    private boolean     isLocked;
+    private int 		code;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
         isOpen = false;
+        isLocked = false;
         playersInInv = 0;
     }
     
@@ -167,6 +171,7 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         }
         compound.setTag("Items", items);
         compound.setString("playerName", playerName);
+        compound.setBoolean("isLocked", isLocked);
     }
     
     @Override
@@ -183,6 +188,7 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
             }
         }
         playerName = compound.getString("playerName");
+        isLocked = compound.getBoolean("isLocked");
     }
     
     @Override
@@ -190,6 +196,8 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         NBTTagCompound tag = pkt.data;
         playerName = tag.getString("playerName");
         isOpen = tag.getBoolean("isOpen");
+        isLocked = tag.getBoolean("isLocked");
+        System.out.println("Client: Packet Recevied");
     }
     
     @Override
@@ -198,6 +206,28 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
         if (playerName != null)
             tag.setString("playerName", playerName);
         tag.setBoolean("isOpen", isOpen);
+        tag.setBoolean("isLocked", isLocked);
+        System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
+
+	@Override
+	public void setLocked(boolean lock) {
+		isLocked = lock;
+	}
+
+	@Override
+	public boolean isLocked() {
+		return isLocked;
+	}
+	
+	@Override
+	public int getCode() {
+		return code;
+	}
+	
+	@Override
+	public void setCode(int code) {
+		this.code = code;
+	}
 }

@@ -1,5 +1,6 @@
 package dgrxf.watercraft.block;
 
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -9,6 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
@@ -23,7 +25,7 @@ public class WaterFreezerBlock extends WCBlock {
     
     public WaterFreezerBlock(int id) {
         super(id, Material.iron);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.miscTab);
         setUnlocalizedName(BlockInfo.FREEZER_UNLOCALIZED_NAME);
     }
     
@@ -57,12 +59,10 @@ public class WaterFreezerBlock extends WCBlock {
     
     //temp
     @Override
-    public boolean onBlockActivated(World w, int x, int y, int z, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+    	if (world.isRemote) return true;
         
-        if (!w.isRemote) {
-            w.setBlockMetadataWithNotify(x, y, z, (w.getBlockMetadata(x, y, z) + 1) % icons.length, 3);
-        }
-        
+    	FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.FREEZER_GUI_ID, world, x, y, z); 
         return true;
     }
 }

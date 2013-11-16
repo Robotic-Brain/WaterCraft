@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBoatChest extends WCEntityBoat implements IInventory {
@@ -17,6 +18,7 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     public ItemStack[] items;
     
     private boolean dropContentsWhenDead = true;
+    private WCEntityBoatBase followingBoat;
     
     public EntityBoatChest(World par1World) {
         super(par1World);
@@ -32,6 +34,49 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
         this.prevPosX = x;
         this.prevPosY = y;
         this.prevPosZ = z;
+        this.ridable = false;
+    }
+    
+    @Override
+    public void onEntityUpdate() {
+        if (!worldObj.isRemote) {
+        	if (followingBoat != null) {
+        		moveToTarget();
+        	}
+        }else{
+            this.rotationPitch = 0.0F;
+            double d5 = (double)this.rotationYaw;
+            double d11 = this.prevPosX - this.posX;
+            double d10 = this.prevPosZ - this.posZ;
+
+            if (d11 * d11 + d10 * d10 > 0.001D)
+            {
+                d5 = (double)((float)(Math.atan2(d10, d11) * 180.0D / Math.PI));
+            }
+
+            double d12 = MathHelper.wrapAngleTo180_double(d5 - (double)this.rotationYaw);
+
+            if (d12 > 20.0D)
+            {
+                d12 = 20.0D;
+            }
+
+            if (d12 < -20.0D)
+            {
+                d12 = -20.0D;
+            }
+
+            this.rotationYaw = (float)((double)this.rotationYaw + d12);
+            this.setRotation(this.rotationYaw, this.rotationPitch);
+        }
+    }
+    
+    public void moveToTarget() {
+        // ROPE CODE
+    }
+    
+    public void setFollowing(WCEntityBoatBase boat) {
+    	followingBoat = boat;
     }
     
     public int getSizeInventory() {
@@ -41,8 +86,11 @@ public class EntityBoatChest extends WCEntityBoat implements IInventory {
     @Override
     public boolean interactFirst(EntityPlayer player) {
         if (!this.worldObj.isRemote)
-        {
-            player.displayGUIChest(this);
+        {	if (!player.isSneaking()) {
+        		player.displayGUIChest(this);
+        	} else {
+        		//do something with rope
+        	}
         }
 
         return true;

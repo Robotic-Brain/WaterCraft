@@ -24,7 +24,7 @@ public class ItemTapeMeasure extends Item {
     public ItemTapeMeasure() {
         super(ItemInfo.TAPE_MEASURE_ID);
         setUnlocalizedName(ItemInfo.TAPE_MEASURE_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.miscTab);
     }
     
     @Override

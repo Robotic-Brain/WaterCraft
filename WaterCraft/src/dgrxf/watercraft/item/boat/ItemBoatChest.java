@@ -1,14 +1,16 @@
-package dgrxf.watercraft.item;
+package dgrxf.watercraft.item.boat;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.EntityBoatChest;
 import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemBoatChest extends Item {
@@ -16,7 +18,7 @@ public class ItemBoatChest extends Item {
     public ItemBoatChest() {
         super(ItemInfo.BOATCHEST_ID);
         setUnlocalizedName(ItemInfo.BOATCHEST_UNLOCALIZED_NAME);
-        setCreativeTab(Watercraft.creativeTab);
+        setCreativeTab(Watercraft.boatTab);
     }
     
     @Override
@@ -48,5 +50,11 @@ public class ItemBoatChest extends Item {
             
             return itemStack;
         }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IconRegister register) {
+        itemIcon = register.registerIcon("Watercraft:boat_chest");
     }
 }

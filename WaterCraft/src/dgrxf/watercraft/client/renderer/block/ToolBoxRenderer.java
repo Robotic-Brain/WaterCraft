@@ -14,7 +14,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 /**
  * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:11/08/2013 MM/DD/YYYYY
+ * Class Last Edited By:Drunk Mafia Class Last Edited On:14/08/2013 MM/DD/YYYYY
  * 
  */
 
@@ -22,15 +22,49 @@ public class ToolBoxRenderer extends TileEntitySpecialRenderer {
 
 	private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
 	private IModelCustom modelToolBox_open = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
-    
+	private IModelCustom modelPadlock_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/padlock.obj");
+	private IModelCustom modelPadlock_open = AdvancedModelLoader.loadModel("/assets/watercraft/models/padlock_open.obj");
+	
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
-        GL11.glPushMatrix();
+    	 WCTileEntityToolBox tile = (WCTileEntityToolBox) tileentity;
+    	 
+    	 renderToolBox(tile, x, y, z);
+    	 if(tile.isLocked()) renderPadlock(tile, x, y, z);
+    }
+    
+    public void renderToolBox(WCTileEntityToolBox tile, double x, double y, double z){
+    	GL11.glPushMatrix();
+
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.3F, (float) z + 0.5F);
+        GL11.glRotatef(getBlockRotation(tile), 0, 1, 0);
         
-        WCTileEntityToolBox tile = (WCTileEntityToolBox) tileentity;
+        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
+        if(tile.isOpen)
+        	modelToolBox_open.renderAll();
+        else
+        	modelToolBox_closed.renderAll();
         
-        float rotation = 0;
-        switch (tileentity.worldObj.getBlockMetadata(tileentity.xCoord, tileentity.yCoord, tileentity.zCoord)-2) {
+        GL11.glPopMatrix();
+    }
+    
+    public void renderPadlock(WCTileEntityToolBox tile, double x, double y, double z){
+    	GL11.glPushMatrix();
+    	
+        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.3F, (float) z + 0.5F);
+        GL11.glRotatef(getBlockRotation(tile), 0, 1, 0);
+        
+        if(tile.isOpen)
+        	modelPadlock_open.renderAll();
+        else
+        	modelPadlock_closed.renderAll();
+    	
+    	GL11.glPopMatrix();
+    }
+    
+    public float getBlockRotation(WCTileEntityToolBox tile){
+    	float rotation = 0;
+        switch (tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord)-2) {
             case 0:
                 rotation = 0;
                 break;
@@ -44,15 +78,6 @@ public class ToolBoxRenderer extends TileEntitySpecialRenderer {
                 rotation = -90;
                 break;
         }
-        GL11.glTranslatef((float) x + 0.5F, (float) y + 0.3F, (float) z + 0.5F);
-        GL11.glRotatef(rotation, 0, 1, 0);
-        
-        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
-        if(tile.isOpen)
-        	modelToolBox_open.renderAll();
-        else
-        	modelToolBox_closed.renderAll();
-        
-        GL11.glPopMatrix();
+        return rotation;
     }
 }

@@ -19,14 +19,18 @@ import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.client.gui.container.ITeContainer;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
+import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.util.LogHelper;
 
 public class PacketHandler implements IPacketHandler {
     
 	public static final int INTERFACE_PACKET_ID = 0;
+	public static final int FREEZER_PACKET_ID = 1;
 	
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -52,8 +56,17 @@ public class PacketHandler implements IPacketHandler {
 					}
 				}
         		break;
+        	case FREEZER_PACKET_ID:
+        		byte data = reader.readByte();
+        		if(container != null && container instanceof FreezerContainer) {
+					TileEntity te = ((FreezerContainer)container).getTileEntity();
+					if(te instanceof WCTileEntityFreezer) {
+						((WCTileEntityFreezer)te).setType(data);
+					}
+				}
+        		break;
             default:
-                System.out.println(ModInfo.getMODID() + " Invalid packet recived!");
+                LogHelper.severe("Invalid packet with ID {" + Byte.toString(packetId) +"} recieved. This is a bug please report this to the mod authors.");
         }
     }
     
@@ -71,6 +84,22 @@ public class PacketHandler implements IPacketHandler {
 			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
 		} catch (IOException e) {
 			System.err.append("Failed to send interface packet");
+		}
+		
+	}
+    
+    public static void sendFreezerPacket(byte data) {
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		DataOutputStream dataStream = new DataOutputStream(byteStream);
+		
+		try {
+			
+			dataStream.writeByte((byte)FREEZER_PACKET_ID);
+			dataStream.writeByte(data);
+			
+			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
+		} catch (IOException e) {
+			System.err.append("Failed to send freezer packet");
 		}
 		
 	}
