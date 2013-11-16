@@ -83,7 +83,7 @@ public class PacketHandler implements IPacketHandler {
 			
 			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
 		} catch (IOException e) {
-			System.err.append("Failed to send interface packet");
+			LogHelper.severe("Failed to send smelter interface packet. This is a bug please report this to the mod auther." + e);
 		}
 		
 	}
@@ -99,7 +99,7 @@ public class PacketHandler implements IPacketHandler {
 			
 			PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
 		} catch (IOException e) {
-			System.err.append("Failed to send freezer packet");
+			LogHelper.severe("Failed to send freezer interface packet. This is a bug please report this to the mod auther." + e);
 		}
 		
 	}
