@@ -1,12 +1,12 @@
-package dgrxf.watercraft.entity.boat.ai;
+package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.entity.EntityLivingBase;
 import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 
-public class BoatAIVanilla extends BoatAIBase {
-    
-    public BoatAIVanilla(WCEntityBoatBase boat) {
-        super(boat);
+public class VanillaTask extends BoatAITaskBase {
+
+    public VanillaTask(WCEntityBoatBase boat, float priority) {
+        super(boat, priority);
     }
     
     @Override
@@ -26,4 +26,5 @@ public class BoatAIVanilla extends BoatAIBase {
         }
         // ---------- PLAYER STEERING [END]
     }
+    
 }

@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity.boat;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
+import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
 public class DumbBoat extends WCEntityBoatBase{
 
@@ -19,6 +20,7 @@ public class DumbBoat extends WCEntityBoatBase{
         //this.ai = new BoatAIDumb(this);
         BoatAITaskList list = new BoatAITaskList(this);
         list.addTask(new DumbTask(this, 1f));
+        list.addTask(new VanillaTask(this, 0f));
         
         this.ai = list;
     }

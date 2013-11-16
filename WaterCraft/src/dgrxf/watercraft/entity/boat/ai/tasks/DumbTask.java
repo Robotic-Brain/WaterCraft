@@ -27,6 +27,8 @@ public class DumbTask extends BoatAITaskBase {
         }
     }
     
+    private static final double BOAT_SPEED = 0.05;
+    
     private void moveToTarget() {
         float xDist, zDist;
         if (target == null || boat.worldObj.isRemote) {
@@ -36,9 +38,9 @@ public class DumbTask extends BoatAITaskBase {
         zDist = MathHelper.calculatePointDistance((float) boat.posZ, target.y);
         if (xDist > 1.0F) {
             if (boat.posX < target.x)
-                boat.motionX += 0.1;
+                boat.motionX += BOAT_SPEED;
             else if (boat.posX > target.x)
-                boat.motionX += -0.1;
+                boat.motionX += -BOAT_SPEED;
         }/* else {
             boat.motionX = 0;
             xDist = 0;
@@ -46,9 +48,9 @@ public class DumbTask extends BoatAITaskBase {
         
         if (zDist > 1.0F) {
             if (boat.posZ < target.y)
-                boat.motionZ += 0.1;
+                boat.motionZ += BOAT_SPEED;
             else if (boat.posZ > target.y)
-                boat.motionZ += -0.1;
+                boat.motionZ += -BOAT_SPEED;
         }/* else {
             boat.motionZ = 0;
             zDist = 0;

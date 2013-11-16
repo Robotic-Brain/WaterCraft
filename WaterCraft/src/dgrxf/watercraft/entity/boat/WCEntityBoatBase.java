@@ -16,7 +16,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
-import dgrxf.watercraft.entity.boat.ai.BoatAIVanilla;
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
@@ -847,6 +848,9 @@ public class WCEntityBoatBase extends Entity
      * Overwrite this to set the boat logic
      */
     protected void setBoatAI() {
-        this.ai = new BoatAIVanilla(this);
+        BoatAITaskList list = new BoatAITaskList(this);
+        list.addTask(new VanillaTask(this, 1f));
+        
+        this.ai = list;
     }
 }
