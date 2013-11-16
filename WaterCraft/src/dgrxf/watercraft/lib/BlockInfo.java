@@ -35,6 +35,10 @@ public class BlockInfo {
     public static final String WC_CHEST_KEY                           = "Chest";
     public static final String WC_CHEST_TE_KEY                        = "WCTileEntityChest";
     
+    public static final String LOCK_ASSEMBLER_UNLOCALIZED_NAME              = "lockAssemblerName";
+    public static final String LOCK_ASSEMBLER_KEY                           = "Lock Assembler";
+    public static final String LOCK_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
+    
     /*************
      * Integers
      *************/
@@ -59,4 +63,7 @@ public class BlockInfo {
     
     public static final int    WC_CHEST_ID_DEFAULT                    = 708;
     public static int          WC_CHEST_ID;
+    
+    public static final int    LOCK_ASSEMBLER_ID_DEFAULT                    = 709;
+    public static int          LOCK_ASSEMBLER_ID;
 }

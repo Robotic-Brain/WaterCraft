@@ -1,7 +1,6 @@
 package dgrxf.watercraft.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.block.buoy.BuoyFilterBlock;
@@ -32,6 +31,7 @@ public class ModBlocks {
     public static Block dropZone;
     public static Block toolbox;
     public static Block chest;
+    public static Block lockAssembler;
     
     public static void init() {
     	//Buoy Blocks
@@ -43,6 +43,9 @@ public class ModBlocks {
         dropZone = new DropZoneBlock();
         toolbox = new ToolBoxBlock();
         chest = new WCChestBlock(BlockInfo.WC_CHEST_ID, 0);
+        //TODO trap chest
+        lockAssembler = new LockAssemblerBlock(BlockInfo.LOCK_ASSEMBLER_ID);
+        
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(filter, ItemBlockBuoyFilter.class, BlockInfo.BUOY_FILTER_UNLOCALIZED_NAME);
@@ -51,6 +54,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(freezer, BlockInfo.FREEZER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(toolbox, ItemBlockToolBox.class, BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(chest, ItemBlockChest.class, BlockInfo.WC_CHEST_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(lockAssembler, BlockInfo.LOCK_ASSEMBLER_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityFilterBuoy.class, BlockInfo.BUOY_FILTER_TE_KEY);
