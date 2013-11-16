@@ -29,7 +29,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  * NOTE: methods starting with "h_" need more cleanup. I figured out what I wanted, so I didn't care to clean up further.
  *
  */
-public class WCEntityBoatBase extends Entity
+public abstract class WCEntityBoatBase extends Entity
 {
     protected boolean isEmpty;
     public double speedMultiplier;
@@ -61,7 +61,10 @@ public class WCEntityBoatBase extends Entity
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
-        this.setBoatAI();
+        
+        BoatAITaskList list = new BoatAITaskList(this);
+        this.setBoatAI(list);
+        this.ai = list;
         
         // super() calls entityInit so call the external version here
         this.ai.entityInit();
@@ -848,10 +851,5 @@ public class WCEntityBoatBase extends Entity
     /**
      * Overwrite this to set the boat logic
      */
-    protected void setBoatAI() {
-        BoatAITaskList list = new BoatAITaskList(this);
-        list.addTask(new VanillaTask(this, 1f));
-        
-        this.ai = list;
-    }
+    protected abstract void setBoatAI(BoatAITaskList list);
 }
