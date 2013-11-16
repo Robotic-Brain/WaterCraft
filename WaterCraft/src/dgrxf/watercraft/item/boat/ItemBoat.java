@@ -14,6 +14,10 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
 import dgrxf.watercraft.lib.ItemInfo;
 
+/**
+ * This overwrites the vanilla boat
+ *
+ */
 public class ItemBoat extends Item {
     
     public ItemBoat() {
