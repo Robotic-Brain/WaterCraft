@@ -1,5 +1,7 @@
 package dgrxf.watercraft.item.toolbox;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.interfaces.ILockableBlock;
@@ -45,5 +47,12 @@ public class ItemPadlock extends Item{
 		}
 
 		return true;
+	}
+	
+	//temporary because the item renderer is poop <3
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons(IconRegister par1IconRegister) {
+		itemIcon = par1IconRegister.registerIcon("Watercraft:lock");
 	}
 }
