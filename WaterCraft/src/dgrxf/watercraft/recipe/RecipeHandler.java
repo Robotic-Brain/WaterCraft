@@ -35,7 +35,7 @@ public class RecipeHandler {
         GameRegistry.addRecipe(new ShapelessOreRecipe(Item.minecartCrate, new Object[]{Item.minecartEmpty, "chest"}));
         GameRegistry.addRecipe(new ShapelessOreRecipe(Block.chestTrapped, new Object[]{"chest", Block.tripWireSource}));
         GameRegistry.addRecipe(new ShapedOreRecipe(Block.hopperBlock, "A A", "ABA", " A ", Character.valueOf('A'), Item.ingotIron, Character.valueOf('B'), "chest"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.boatChest, new Object[]{"chest", "boat"}));
+        //GameRegistry.addRecipe(new ShapelessOreRecipe(ModItems.boatChest, new Object[]{"chest", "boat"}));
 	}
 	
 	public static void blockRecipes(){
