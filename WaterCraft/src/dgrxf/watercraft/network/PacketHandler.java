@@ -25,6 +25,7 @@ import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.util.LogHelper;
 
 public class PacketHandler implements IPacketHandler {
     
@@ -63,9 +64,9 @@ public class PacketHandler implements IPacketHandler {
 						((WCTileEntityFreezer)te).setType(data);
 					}
 				}
-        		
+        		break;
             default:
-                System.out.println(ModInfo.getMODID() + " Invalid packet recived!");
+                LogHelper.severe("Invalid packet with ID {" + Byte.toString(packetId) +"} recieved. This is a bug please report this to the mod authors.");
         }
     }
     
