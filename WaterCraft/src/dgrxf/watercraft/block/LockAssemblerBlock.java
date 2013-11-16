@@ -1,11 +1,12 @@
 package dgrxf.watercraft.block;
 
-import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.lib.BlockInfo;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.lib.BlockInfo;
+import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
 public class LockAssemblerBlock extends BlockContainer {
 
@@ -17,7 +18,7 @@ public class LockAssemblerBlock extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world) {
-		return null;
+		return new WCTileEntityLockAssembler();
 	}
 
 }
