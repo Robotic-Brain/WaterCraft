@@ -1,6 +1,7 @@
 package dgrxf.watercraft.client.renderer.entity;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -15,6 +16,8 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.interfaces.ICustomBoatTexture;
+import dgrxf.watercraft.lib.ModInfo;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
@@ -61,8 +64,12 @@ public class WCBoatRenderer extends Render {
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
         
-        bindEntityTexture(entity);
-        
+        //bindEntityTexture(entity);
+        if(entity instanceof ICustomBoatTexture){
+            Minecraft.getMinecraft().renderEngine.bindTexture(((ICustomBoatTexture)entity).getCustomTexture());
+        }else{
+            Minecraft.getMinecraft().renderEngine.bindTexture(boatTextures);
+        }
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         /*if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
