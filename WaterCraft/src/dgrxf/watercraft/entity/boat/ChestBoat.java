@@ -10,11 +10,17 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
+import dgrxf.watercraft.interfaces.ILockableBlock;
+import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.util.LogHelper;
 
-public class ChestBoat extends AbstractBaseBoat implements IInventory{
+public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockableBlock{
 
     public ItemStack[] items = new ItemStack[27];
 	
+    private int code;
+    private boolean lock;
+    
 	public ChestBoat(World world){
 		super(world);
 	}
@@ -37,15 +43,31 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory{
     public boolean interactFirst(EntityPlayer player) {
         if (!this.worldObj.isRemote) {
             if (!player.isSneaking()) {
-                player.displayGUIChest(this);
+            	if(!isLocked())
+            		player.displayGUIChest(this);
             } else {
-                //do something with rope
+            	LogHelper.debug("Test " + this.isLocked());
+            	ItemStack heldItem = player.inventory.getCurrentItem();
+                if(isLocked()){
+                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
+                		if(heldItem.getItemDamage() == this.getCode()){
+                			this.setLocked(false);
+                		}
+                	}
+                }
+                else{
+                	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
+                		this.setLocked(true);
+                    	LogHelper.debug("Test 2 " + this.isLocked());
+                		this.setCode(heldItem.getItemDamage());
+                	}
+                }
             }
         }
         
         return true;
     }
-	
+    
 	@Override
 	public int getSizeInventory() {
 		return items.length;
@@ -147,6 +169,26 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory{
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+
+	@Override
+	public void setLocked(boolean lock) {
+		this.lock = lock;
+	}
+
+	@Override
+	public boolean isLocked() {
+		return lock;
+	}
+
+	@Override
+	public int getCode() {
+		return code;
+	}
+
+	@Override
+	public void setCode(int code) {
+		this.code = code;
 	}
 
 }

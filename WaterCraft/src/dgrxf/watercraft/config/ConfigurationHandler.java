@@ -54,12 +54,12 @@ public class ConfigurationHandler {
             MiscInfo.DEBUG = config.get(MiscInfo.CATEGORY, MiscInfo.DEBUG_KEY, MiscInfo.DEBUG_DEFAULT).getBoolean(MiscInfo.DEBUG_DEFAULT);
             
         } catch (Exception e) {
-            LogHelper.severe("There was a problem while loading the config, Please report this.");
-            e.printStackTrace();
+            LogHelper.config("There was a problem while loading the config, Please report this to this mod's authors.");
+            LogHelper.severe(e);
         } finally {
             if (config.hasChanged()) {
                 config.save();
-                LogHelper.info("Config saved!");
+                LogHelper.config("Config saved!");
             }
         }
     }

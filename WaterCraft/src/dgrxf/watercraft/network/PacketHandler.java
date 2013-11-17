@@ -100,20 +100,4 @@ public class PacketHandler implements IPacketHandler {
         }
         
     }
-    
-    /*
-     * public static void skeletonPacket(int x, int y, int z, String player){
-     * ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
-     * DataOutputStream dataStream = new DataOutputStream(byteStream);
-     * 
-     * try { dataStream.writeByte((byte)0); dataStream.writeInt(x);
-     * dataStream.writeInt(y); dataStream.writeInt(z);
-     * dataStream.writeUTF(player);
-     * 
-     * PacketDispatcher.sendPacketToAllPlayers(PacketDispatcher.getPacket(ModInfo
-     * .CHANNEL, byteStream.toByteArray())); }catch(IOException e) {
-     * FMLLog.warning(ModInfo.getMODID() +
-     * " Failed to send player name packet for the ToolBox, please report this to the mod Author"
-     * , e); e.printStackTrace(); } }
-     */
 }

@@ -15,17 +15,22 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.client.models.WCModelChest;
+import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
-import dgrxf.watercraft.lib.ModInfo;
+import dgrxf.watercraft.interfaces.ILockableBlock;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
     
     ModelBase                             model;
+    WCModelChest					      chest;
     protected final RenderBlocks          renderBlock;
     
     public WCBoatRenderer() {
+    	chest = new WCModelChest();
         model = new ModelBoat();
         shadowSize = 0.5F;
         renderBlock = new RenderBlocks();
@@ -51,11 +56,24 @@ public class WCBoatRenderer extends Render {
         
         if (block != null) {
             GL11.glPushMatrix();
-            this.bindTexture(TextureMap.locationBlocksTexture);
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);
-            GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
-            this.renderBlockInBoat(entity, par9, Block.chest, 0);
+        	if(block != ModBlocks.chest){
+                this.bindTexture(TextureMap.locationBlocksTexture);
+                GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
+	            this.renderBlockInBoat(entity, par9, Block.chest, 0);
+        	}else if(entity instanceof ILockableBlock){
+                GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
+                GL11.glTranslatef(-0.5F, -0.8F, -0.5F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
+        		if(((ILockableBlock)entity).isLocked()){
+        			chest.renderAll(true);
+        		}
+        		else{
+        			chest.renderAll(false);
+        		}
+        	}
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
@@ -64,7 +82,6 @@ public class WCBoatRenderer extends Render {
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
         
-        //bindEntityTexture(entity);
         if(entity instanceof ICustomBoatTexture){
             Minecraft.getMinecraft().renderEngine.bindTexture(((ICustomBoatTexture)entity).getCustomTexture());
         }else{
