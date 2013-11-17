@@ -54,7 +54,6 @@ public class WCBoatRenderer extends Render {
         }
         
         Block block = entity.getDisplayTile();
-        
         if (block != null) {
             GL11.glPushMatrix();
             float f8 = 1F;
@@ -62,18 +61,22 @@ public class WCBoatRenderer extends Render {
         	if(block != ModBlocks.chest){
                 this.bindTexture(TextureMap.locationBlocksTexture);
                 GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
-	            this.renderBlockInBoat(entity, par9, Block.chest, 0);
-        	}else if(entity instanceof ILockableBlock){
+	            this.renderBlockInBoat(entity, par9, block, 0);
+        	}else if(entity.getDisplayTile() == ModBlocks.chest){
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(-0.5F, -0.85F, -0.5F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
-                if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
-        			chest.renderAll(true);
-        		}
-        		else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
-        			chest.renderAll(false);
-        		}
+                if(entity instanceof ILockableBlock){
+	                if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
+	        			chest.renderAll(true);
+	        		}
+	        		else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
+	        			chest.renderAll(false);
+	        		}
+                }else{
+                	chest.renderAll(false);
+                }
         	}
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
