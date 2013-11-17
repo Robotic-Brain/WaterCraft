@@ -7,8 +7,10 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.util.damage.WCDamageSources;
 
 /**
  * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
@@ -132,9 +134,9 @@ public class ToolboxContainer extends Container {
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
             
-            /*if (stack.getItem().itemID == ModBlocks.toolbox.blockID) {
+            if (stack.getItem().itemID == ModBlocks.toolbox.blockID) {
                 player.attackEntityFrom(WCDamageSources.inception, 1000);
-            }*/
+            }
             
             if (i >= 36 && tile.isItemValidForSlot(0, stack)) {
                 if (!mergeItemStack(stack, 0, 36, false)) {
