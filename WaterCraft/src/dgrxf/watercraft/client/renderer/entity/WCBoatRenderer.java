@@ -21,6 +21,7 @@ import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
 import dgrxf.watercraft.interfaces.ILockableBlock;
+import dgrxf.watercraft.lib.EntityInfo;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
@@ -65,12 +66,12 @@ public class WCBoatRenderer extends Render {
         	}else if(entity instanceof ILockableBlock){
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
-                GL11.glTranslatef(-0.5F, -0.8F, -0.5F);
+                GL11.glTranslatef(-0.5F, -0.85F, -0.5F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
-                if(entity.getDataWatcher().getWatchableObjectByte(20) == 1){
+                if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
         			chest.renderAll(true);
         		}
-        		else if(entity.getDataWatcher().getWatchableObjectByte(20) == 0){
+        		else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
         			chest.renderAll(false);
         		}
         	}

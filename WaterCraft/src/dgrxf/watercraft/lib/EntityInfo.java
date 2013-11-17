@@ -9,4 +9,6 @@ package dgrxf.watercraft.lib;
 
 public class EntityInfo {
     
+	public static int DATAWATCHER_CHEST_LOCK = 20;
+	
 }

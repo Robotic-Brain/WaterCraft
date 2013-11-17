@@ -12,6 +12,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.util.LogHelper;
 
 public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockableBlock{
@@ -32,7 +33,7 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		dataWatcher.addObject(20, new Byte((byte) 0));
+		dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte) 0));
 	}
 	
 	@Override
@@ -56,13 +57,13 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
                 if(this.dataWatcher.getWatchableObjectByte(20) == 1){
                 	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
                 		if(heldItem.getItemDamage() == this.getCode()){
-                			dataWatcher.updateObject(20, new Byte((byte)0));
+                			dataWatcher.updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
                 		}
                 	}
                 }
                 else{
                 	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
-            			dataWatcher.updateObject(20, new Byte((byte)1));
+            			dataWatcher.updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)1));
                 		this.setCode(heldItem.getItemDamage());
                 	}
                 }

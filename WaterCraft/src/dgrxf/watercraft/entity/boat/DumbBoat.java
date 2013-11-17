@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
