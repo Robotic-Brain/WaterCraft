@@ -47,6 +47,7 @@ public class ConfigurationHandler {
             BlockInfo.TOOLBOX_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
             BlockInfo.BUOY_FILTER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_FILTER_KEY, BlockInfo.BUOY_FILTER_ID_DEFAULT).getInt();
             BlockInfo.WC_CHEST_ID = config.get(BlockInfo.CATEGORY, BlockInfo.WC_CHEST_KEY, BlockInfo.WC_CHEST_ID_DEFAULT).getInt();
+            BlockInfo.LOCK_ASSEMBLER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.LOCK_ASSEMBLER_KEY, BlockInfo.LOCK_ASSEMBLER_ID_DEFAULT).getInt();
             
             // Misc
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();
