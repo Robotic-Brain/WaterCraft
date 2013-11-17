@@ -19,11 +19,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
 public class WCChestRenderer extends TileEntitySpecialRenderer {
     
-    public static final ResourceLocation RES_TRAPPED_DOUBLE   = new ResourceLocation("textures/entity/chest/trapped_double.png");
-    public static final ResourceLocation RES_CHRISTMAS_DOUBLE = new ResourceLocation("textures/entity/chest/christmas_double.png");
     public static final ResourceLocation RES_NORMAL_DOUBLE    = new ResourceLocation(ModInfo.MODID, "textures/models/largeChest.png");
-    public static final ResourceLocation RES_TRAPPED_SINGLE   = new ResourceLocation("textures/entity/chest/trapped.png");
-    public static final ResourceLocation RES_CHRISTMAS_SINGLE = new ResourceLocation("textures/entity/chest/christmas.png");
     public static final ResourceLocation RES_NORMAL_SINGLE    = new ResourceLocation(ModInfo.MODID, "textures/models/chest.png");
     
     private WCModelChest                 chestModel           = new WCModelChest();
@@ -65,21 +61,13 @@ public class WCChestRenderer extends TileEntitySpecialRenderer {
             if (par1TileEntityChest.adjacentChestXPos == null && par1TileEntityChest.adjacentChestZPosition == null) {
                 modelchest = this.chestModel;
                 
-                if (par1TileEntityChest.getChestType() == 1) {
-                    this.bindTexture(RES_TRAPPED_SINGLE);
-                } else if (this.isChristmas) {
-                    this.bindTexture(RES_CHRISTMAS_SINGLE);
-                } else {
+                if (par1TileEntityChest.getChestType() == 0) {
                     this.bindTexture(RES_NORMAL_SINGLE);
                 }
             } else {
                 modelchest = this.largeChestModel;
                 
-                if (par1TileEntityChest.getChestType() == 1) {
-                    this.bindTexture(RES_TRAPPED_DOUBLE);
-                } else if (this.isChristmas) {
-                    this.bindTexture(RES_CHRISTMAS_DOUBLE);
-                } else {
+                if (par1TileEntityChest.getChestType() == 0) {
                     this.bindTexture(RES_NORMAL_DOUBLE);
                 }
             }

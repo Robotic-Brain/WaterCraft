@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 
@@ -29,7 +30,7 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory{
 
 	@Override
 	public Block getDisplayTile() {
-		return Block.chest;
+		return ModBlocks.chest;
 	}
 	
     @Override
@@ -145,7 +146,6 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory{
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
