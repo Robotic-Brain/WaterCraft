@@ -1,13 +1,20 @@
 package dgrxf.watercraft.tileentity;
 
+import java.util.Arrays;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public class WCTileEntityLockAssembler extends TileEntity implements IInventory {
 	
-	private ItemStack[] items = new ItemStack[5];
+	private static final int SLOTS = 5;
+	private static final int OUTPUT_SLOTS = 2;
+	private static final int[] INGREDIENTS_ID = {Item.ingotIron.itemID, Item.ingotGold.itemID, Item.goldNugget.itemID};
+	
+	private ItemStack[] items = new ItemStack[SLOTS];
 	
 	public WCTileEntityLockAssembler() {
 		
@@ -84,8 +91,7 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		// TODO Auto-generated method stub
-		return false;
+		return i < SLOTS - OUTPUT_SLOTS && Arrays.asList(INGREDIENTS_ID).contains(itemstack.itemID);
 	}
 
 }
