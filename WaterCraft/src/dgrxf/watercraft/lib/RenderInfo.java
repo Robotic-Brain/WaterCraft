@@ -31,4 +31,6 @@ public class RenderInfo {
     public static int                    FLAG_RENDER_ID;
     
     public static int                    WC_CHEST_RENDER_ID;
+    
+    public static int					 TANK_RENDER_ID;
 }

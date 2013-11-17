@@ -35,6 +35,10 @@ public class BlockInfo {
     public static final String WC_CHEST_KEY                       = "Chest";
     public static final String WC_CHEST_TE_KEY                    = "WCTileEntityChest";
     
+    public static final String TANK_UNLOCALIZED_NAME          	  = "wcLiquidTank";
+    public static final String TANK_KEY                      	  = "Liquid Tank";
+    public static final String TANK_TE_KEY                  	  = "wcLiquidTankTE";
+    
     /*************
      * Integers
      *************/
@@ -59,4 +63,7 @@ public class BlockInfo {
     
     public static final int    WC_CHEST_ID_DEFAULT                = 708;
     public static int          WC_CHEST_ID;
+    
+    public static final int	   TANK_ID_DEFAULT					  = 709;
+    public static int		   TANK_ID;
 }

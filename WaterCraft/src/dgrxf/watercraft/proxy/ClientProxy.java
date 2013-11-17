@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import dgrxf.watercraft.client.renderer.block.BuoyRenderer;
 import dgrxf.watercraft.client.renderer.block.ControlUnitRenderer;
+import dgrxf.watercraft.client.renderer.block.LiquidTankRenderer;
 import dgrxf.watercraft.client.renderer.block.ToolBoxRenderer;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.client.renderer.entity.WCBoatRenderer;
@@ -40,6 +41,7 @@ public class ClientProxy extends CommonProxy {
         RenderInfo.TOOLBOX_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         RenderInfo.BUOY_FILTER_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         RenderInfo.WC_CHEST_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
+        RenderInfo.TANK_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityBuoy.class, new BuoyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
@@ -53,5 +55,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(BlockInfo.TOOLBOX_ID, new ItemToolBoxRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
         MinecraftForgeClient.registerItemRenderer(BlockInfo.WC_CHEST_ID, new ItemWCChestRenderer());
+        
+        RenderingRegistry.registerBlockHandler(new LiquidTankRenderer());
     }
 }
