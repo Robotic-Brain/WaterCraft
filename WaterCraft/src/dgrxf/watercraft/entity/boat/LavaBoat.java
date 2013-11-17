@@ -1,10 +1,9 @@
 package dgrxf.watercraft.entity.boat;
 
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.LavaTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
 public class LavaBoat extends AbstractBaseBoat {
@@ -19,17 +18,6 @@ public class LavaBoat extends AbstractBaseBoat {
     }
     
     @Override
-    public void onUpdate() {
-        if (this.riddenByEntity != null) {
-            this.riddenByEntity.extinguish();
-            if (this.riddenByEntity instanceof EntityLivingBase) {
-                ((EntityLivingBase) this.riddenByEntity).addPotionEffect(new PotionEffect(12, 10, 0, true));
-            }
-        }
-        super.onUpdate();
-    }
-    
-    @Override
     public boolean attackEntityFrom(DamageSource src, float par2) {
         if (src.isFireDamage() == true) {
             return false;
@@ -41,5 +29,6 @@ public class LavaBoat extends AbstractBaseBoat {
     @Override
     protected void setBoatAI(BoatAITaskList list) {
     	list.addTask(new VanillaTask(this, 0.0F));
+    	list.addTask(new LavaTask(this, 1.0F));
     }
 }
