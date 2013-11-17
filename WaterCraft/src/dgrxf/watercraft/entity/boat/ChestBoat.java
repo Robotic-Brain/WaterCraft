@@ -30,6 +30,12 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 	}
 
 	@Override
+	protected void entityInit() {
+		super.entityInit();
+		dataWatcher.addObject(20, new Byte((byte) 0));
+	}
+	
+	@Override
 	protected void setBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0f));
 	}
@@ -42,23 +48,21 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
     @Override
     public boolean interactFirst(EntityPlayer player) {
         if (!this.worldObj.isRemote) {
+        	ItemStack heldItem = player.inventory.getCurrentItem();
             if (!player.isSneaking()) {
-            	if(!isLocked())
+            	if(this.dataWatcher.getWatchableObjectByte(20) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
             		player.displayGUIChest(this);
             } else {
-            	LogHelper.debug("Test " + this.isLocked());
-            	ItemStack heldItem = player.inventory.getCurrentItem();
-                if(isLocked()){
+                if(this.dataWatcher.getWatchableObjectByte(20) == 1){
                 	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
                 		if(heldItem.getItemDamage() == this.getCode()){
-                			this.setLocked(false);
+                			dataWatcher.updateObject(20, new Byte((byte)0));
                 		}
                 	}
                 }
                 else{
                 	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
-                		this.setLocked(true);
-                    	LogHelper.debug("Test 2 " + this.isLocked());
+            			dataWatcher.updateObject(20, new Byte((byte)1));
                 		this.setCode(heldItem.getItemDamage());
                 	}
                 }
@@ -170,25 +174,17 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
 	}
+	//All of these aren't used, only implementing to differentiate from normal boats, using datawatchers instead so you don't have to send packets.
+	@Override
+	public void setLocked(boolean lock) {}
 
 	@Override
-	public void setLocked(boolean lock) {
-		this.lock = lock;
-	}
+	public boolean isLocked() {return false;}
 
 	@Override
-	public boolean isLocked() {
-		return lock;
-	}
+	public int getCode() {return 0;}
 
 	@Override
-	public int getCode() {
-		return code;
-	}
-
-	@Override
-	public void setCode(int code) {
-		this.code = code;
-	}
-
+	public void setCode(int code) {}
+	
 }

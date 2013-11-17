@@ -67,10 +67,10 @@ public class WCBoatRenderer extends Render {
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(-0.5F, -0.8F, -0.5F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
-        		if(((ILockableBlock)entity).isLocked()){
+                if(entity.getDataWatcher().getWatchableObjectByte(20) == 1){
         			chest.renderAll(true);
         		}
-        		else{
+        		else if(entity.getDataWatcher().getWatchableObjectByte(20) == 0){
         			chest.renderAll(false);
         		}
         	}
