@@ -9,16 +9,16 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.container.BoatChestContainer;
-import dgrxf.watercraft.entity.EntityBoatChest;
+import dgrxf.watercraft.entity.boat.ChestBoat;
 
 public class GuiBoatChest extends GuiContainer {
     private int                           invRows;
     private IInventory                    upperChestInventory;
     private IInventory                    lowerChestInventory;
-    private EntityBoatChest               chest;
+    private ChestBoat               	  chest;
     private static final ResourceLocation resloc = new ResourceLocation("textures/gui/container/generic_54.png");
     
-    public GuiBoatChest(InventoryPlayer inv, EntityBoatChest chest) {
+    public GuiBoatChest(InventoryPlayer inv, ChestBoat chest) {
         super(new BoatChestContainer(inv, chest));
         this.chest = chest;
         xSize = 176;

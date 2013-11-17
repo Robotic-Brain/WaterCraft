@@ -1,11 +1,11 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.block.Block;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class IceTask extends BoatAITaskBase {
     
-    public IceTask(WCEntityBoatBase boat, float priority) {
+    public IceTask(AbstractBaseBoat boat, float priority) {
         super(boat, priority);
     }
     

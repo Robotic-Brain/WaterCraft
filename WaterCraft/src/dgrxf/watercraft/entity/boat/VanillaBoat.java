@@ -4,7 +4,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
-public class VanillaBoat extends WCEntityBoatBase {
+public class VanillaBoat extends AbstractBaseBoat {
     
     public VanillaBoat(World par1World) {
         super(par1World);

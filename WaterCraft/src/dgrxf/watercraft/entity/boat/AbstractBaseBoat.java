@@ -28,7 +28,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  * wanted, so I didn't care to clean up further.
  * 
  */
-public abstract class WCEntityBoatBase extends Entity {
+public abstract class AbstractBaseBoat extends Entity {
     protected boolean           isEmpty;
     public double               speedMultiplier;
     private int                 boatPosRotationIncrements;
@@ -51,7 +51,7 @@ public abstract class WCEntityBoatBase extends Entity {
     private static final String NBT_AI_TAG = "aiValues";
     protected BoatAIBase        ai;
     
-    public WCEntityBoatBase(World par1World) {
+    public AbstractBaseBoat(World par1World) {
         super(par1World);
         this.isEmpty = true;
         this.speedMultiplier = 0.07D;
@@ -113,7 +113,7 @@ public abstract class WCEntityBoatBase extends Entity {
         return true;
     }
     
-    public WCEntityBoatBase(World par1World, double par2, double par4, double par6) {
+    public AbstractBaseBoat(World par1World, double par2, double par4, double par6) {
         this(par1World);
         this.setPosition(par2, par4 + this.yOffset, par6);
         this.motionX = 0.0D;
@@ -593,7 +593,7 @@ public abstract class WCEntityBoatBase extends Entity {
                     for (l = 0; l < list.size(); ++l) {
                         Entity entity = (Entity) list.get(l);
                         
-                        if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof WCEntityBoatBase) {
+                        if (entity != this.riddenByEntity && entity.canBePushed() && entity instanceof AbstractBaseBoat) {
                             entity.applyEntityCollision(this);
                         }
                     }

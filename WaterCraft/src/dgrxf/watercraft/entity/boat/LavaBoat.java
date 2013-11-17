@@ -5,8 +5,9 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
-public class LavaBoat extends WCEntityBoatBase {
+public class LavaBoat extends AbstractBaseBoat {
     
     public LavaBoat(World par1World) {
         super(par1World);
@@ -39,5 +40,6 @@ public class LavaBoat extends WCEntityBoatBase {
     
     @Override
     protected void setBoatAI(BoatAITaskList list) {
+    	list.addTask(new VanillaTask(this, 0.0F));
     }
 }

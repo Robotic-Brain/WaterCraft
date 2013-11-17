@@ -1,11 +1,13 @@
-package dgrxf.watercraft.entity;
+//TODO: Redo this class
+
+/*package dgrxf.watercraft.entity;
 
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.util.Vector2;
 
-public class WCEntitySmartBoat extends WCEntityBoatBase {
+public class WCEntitySmartBoat extends AbstractBaseBoat {
     
     private int              iterator = 0;
     private ForgeDirection[] list;
@@ -39,7 +41,7 @@ public class WCEntitySmartBoat extends WCEntityBoatBase {
                 	reverseList[j] = list[i];
                 	++j;
                 }
-                list = reverseList;*/
+                list = reverseList;
             }
         } else {
             //target = null;
@@ -67,3 +69,4 @@ public class WCEntitySmartBoat extends WCEntityBoatBase {
         
     }
 }
+*/

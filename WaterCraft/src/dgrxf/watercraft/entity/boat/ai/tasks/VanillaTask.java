@@ -1,11 +1,11 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.entity.EntityLivingBase;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class VanillaTask extends BoatAITaskBase {
     
-    public VanillaTask(WCEntityBoatBase boat, float priority) {
+    public VanillaTask(AbstractBaseBoat boat, float priority) {
         super(boat, priority);
     }
     

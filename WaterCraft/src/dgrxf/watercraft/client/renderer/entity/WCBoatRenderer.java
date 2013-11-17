@@ -14,7 +14,7 @@ import net.minecraftforge.client.model.IModelCustom;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
@@ -28,7 +28,7 @@ public class WCBoatRenderer extends Render {
         renderBlock = new RenderBlocks();
     }
     
-    public void renderBoat(WCEntityBoatBase entity, double par2, double par4, double par6, float par8, float par9) {
+    public void renderBoat(AbstractBaseBoat entity, double par2, double par4, double par6, float par8, float par9) {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
@@ -71,7 +71,7 @@ public class WCBoatRenderer extends Render {
         GL11.glPopMatrix();
     }
     
-    protected void renderBlockInBoat(WCEntityBoatBase entity, float par2, Block par3Block, int par4) {
+    protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4) {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
         this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
@@ -80,7 +80,7 @@ public class WCBoatRenderer extends Render {
     
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
-        renderBoat((WCEntityBoatBase) entity, x, y, z, yaw, partialTickTime);
+        renderBoat((AbstractBaseBoat) entity, x, y, z, yaw, partialTickTime);
     }
     
     private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
