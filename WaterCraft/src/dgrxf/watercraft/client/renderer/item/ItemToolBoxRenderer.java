@@ -13,8 +13,8 @@ import dgrxf.watercraft.lib.RenderInfo;
 
 public class ItemToolBoxRenderer implements IItemRenderer {
     
-	private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
-	private IModelCustom modelToolBox_open = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
+    private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
+    private IModelCustom modelToolBox_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
     
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
@@ -32,9 +32,9 @@ public class ItemToolBoxRenderer implements IItemRenderer {
         NBTTagCompound tag;
         boolean isOpen = false;
         
-        if(item.getTagCompound() != null){
-        	tag = item.getTagCompound();
-        	isOpen = tag.getBoolean("isOpen");
+        if (item.getTagCompound() != null) {
+            tag = item.getTagCompound();
+            isOpen = tag.getBoolean("isOpen");
         }
         
         Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
@@ -49,22 +49,23 @@ public class ItemToolBoxRenderer implements IItemRenderer {
                 GL11.glScalef(1.5F, 1.5F, 1.5F);
                 break;
             case INVENTORY:
-            	if(isOpen){
-            		GL11.glTranslatef(-0.2F, 0.1F, 0.0F);
+                if (isOpen) {
+                    GL11.glTranslatef(-0.2F, 0.1F, 0.0F);
                     GL11.glScalef(1.6F, 1.6F, 1.6F);
-            	}else{
-            		GL11.glTranslatef(0.0F, 0.3F, 0.0F);
-            		GL11.glScalef(1.8F, 1.8F, 1.8F);
-            	}
-	                GL11.glRotatef(180, 0F, 1F, 0);
+                } else {
+                    GL11.glTranslatef(0.0F, 0.3F, 0.0F);
+                    GL11.glScalef(1.8F, 1.8F, 1.8F);
+                }
+                GL11.glRotatef(180, 0F, 1F, 0);
                 break;
             default:
         }
         
-        if(isOpen)
-        	modelToolBox_open.renderAll();
-        else
-        	modelToolBox_closed.renderAll();
+        if (isOpen) {
+            modelToolBox_open.renderAll();
+        } else {
+            modelToolBox_closed.renderAll();
+        }
         
         GL11.glPopMatrix();
     }

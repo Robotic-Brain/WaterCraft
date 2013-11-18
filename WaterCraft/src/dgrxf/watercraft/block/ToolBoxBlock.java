@@ -13,11 +13,8 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
@@ -30,15 +27,15 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  */
 
 public class ToolBoxBlock extends DirectionalBlock {
-   
+    
     public ToolBoxBlock() {
         super(BlockInfo.TOOLBOX_ID, Material.iron);
         setCreativeTab(Watercraft.miscTab);
         setUnlocalizedName(BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
     }
-
-	@Override
+    
+    @Override
     public boolean hasTileEntity(int metadata) {
         return true;
     }
@@ -50,42 +47,49 @@ public class ToolBoxBlock extends DirectionalBlock {
     
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return;
+        }
         world.markBlockForUpdate(x, y, z);
     }
     
     /**
-     * This can't access the metadata of the block, so It gets it from the tile entity
+     * This can't access the metadata of the block, so It gets it from the tile
+     * entity
      */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-    	WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-    	if(tile.blockMetadata == 2 || tile.blockMetadata == 3)
-    		setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
-    	if(tile.blockMetadata == 4 || tile.blockMetadata == 5)
-    		setBlockBounds(0.345F, 0F, 0.1F, 0.645F, 0.5F, 0.9F);
+        WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+        if (tile.blockMetadata == 2 || tile.blockMetadata == 3) {
+            setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
+        }
+        if (tile.blockMetadata == 4 || tile.blockMetadata == 5) {
+            setBlockBounds(0.345F, 0F, 0.1F, 0.645F, 0.5F, 0.9F);
+        }
     }
     
     @Override
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if (world.isRemote) return true;
-		
-		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-		if(tile.isLocked() && tile.playerName != player.username){
-			Watercraft.printToPlayer("This is not your Toolbox!");
-			return false;
-		}
-		if(!player.isSneaking()){
-			FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z); 
-			world.markBlockForUpdate(x, y, z);
-		}else{
-			if(player.getCurrentEquippedItem() == null) pickUpToolBox(world, x, y, z, player);
-		}
-		return true;
-	}
-
-
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+        if (world.isRemote) {
+            return true;
+        }
+        
+        WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+        if (tile.isLocked() && tile.playerName != player.username) {
+            Watercraft.printToPlayer("This is not your Toolbox!");
+            return false;
+        }
+        if (!player.isSneaking()) {
+            FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z);
+            world.markBlockForUpdate(x, y, z);
+        } else {
+            if (player.getCurrentEquippedItem() == null) {
+                pickUpToolBox(world, x, y, z, player);
+            }
+        }
+        return true;
+    }
+    
     private void pickUpToolBox(World world, int x, int y, int z, EntityPlayer player) {
         WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
         
@@ -175,15 +179,15 @@ public class ToolBoxBlock extends DirectionalBlock {
     
     @Override
     public float getPlayerRelativeBlockHardness(EntityPlayer player, World world, int x, int y, int z) {
-    	WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-		if(tile.isLocked() && tile.playerName != player.username){
-			return -1F;
-		}
-		return 5F;
+        WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+        if (tile.isLocked() && tile.playerName != player.username) {
+            return -1F;
+        }
+        return 5F;
     }
     
     @Override
-    public void onBlockHarvested(World world, int x, int y, int z, int side, EntityPlayer player) {		
+    public void onBlockHarvested(World world, int x, int y, int z, int side, EntityPlayer player) {
         float spawnX = x + world.rand.nextFloat();
         float spawnY = y + world.rand.nextFloat();
         float spawnZ = z + world.rand.nextFloat();

@@ -19,6 +19,7 @@ public enum GuiColor {
     WHITE(0xFFFFFF);
     
     private int rgb;
+    
     private GuiColor(int rgb) {
         this.rgb = rgb;
     }

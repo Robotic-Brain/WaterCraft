@@ -9,7 +9,6 @@ import net.minecraftforge.client.model.IModelCustom;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.lib.RenderInfo;
-import dgrxf.watercraft.tileentity.buoy.WCTileEntityFilterBuoy;
 
 /**
  * Class Made By: Drunk Mafia
@@ -28,14 +27,11 @@ public class BuoyRenderer extends TileEntitySpecialRenderer {
     
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double x, double y, double z, float partialTickTime) {
-    	renderBouy(x, y, z);
-    	if(tileentity instanceof WCTileEntityFilterBuoy){
-    		System.out.println("HELLO!");
-    	}
+        renderBouy(x, y, z);
     }
     
-    public void renderBouy(double x, double y, double z){
-    	GL11.glPushMatrix();
+    public void renderBouy(double x, double y, double z) {
+        GL11.glPushMatrix();
         
         GL11.glTranslatef((float) x + 0.5F, (float) y - 0.5F + yLevel, (float) z + 0.5F);
         Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.BUOY_TEXTURE_LOCATION);
@@ -43,9 +39,5 @@ public class BuoyRenderer extends TileEntitySpecialRenderer {
         modelBuoy.renderAll();
         
         GL11.glPopMatrix();
-    }
-    
-    public void renderFlags(WCTileEntityFilterBuoy tile, double x, double y, double z){
-    	System.out.println("This is a filter");
     }
 }

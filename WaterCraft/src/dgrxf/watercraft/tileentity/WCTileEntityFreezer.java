@@ -1,7 +1,5 @@
 package dgrxf.watercraft.tileentity;
 
-import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.util.Vector3;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -27,7 +25,7 @@ public class WCTileEntityFreezer extends TileEntity {
     }
     
     public void setType(int i) {
-    	worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 3);
+        worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, i, 3);
     }
     
     @Override
@@ -50,8 +48,8 @@ public class WCTileEntityFreezer extends TileEntity {
         int range = getRange();
         
         for (int i = 0; i < range; i++) {
-        	set = false;
-        	
+            set = false;
+            
             for (int x = 0; x <= i; x++) {
                 int z = i - x;
                 set |= changeBlock(xCoord + x, yCoord - 1, zCoord + z) | changeBlock(xCoord - x, yCoord - 1, zCoord + z) | changeBlock(xCoord + x, yCoord - 1, zCoord - z) | changeBlock(xCoord - x, yCoord - 1, zCoord - z);

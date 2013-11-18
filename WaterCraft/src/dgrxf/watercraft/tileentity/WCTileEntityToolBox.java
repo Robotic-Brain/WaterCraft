@@ -1,6 +1,5 @@
 package dgrxf.watercraft.tileentity;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBow;
@@ -17,9 +16,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
-import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.interfaces.ILockableBlock;
-import dgrxf.watercraft.lib.BlockInfo;
 
 /**
  * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
@@ -31,11 +28,11 @@ import dgrxf.watercraft.lib.BlockInfo;
 public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory, ILockableBlock {
     
     private ItemStack[] inventory;
-    public  String      playerName;
-    public  int         playersInInv;
-    public  boolean     isOpen;
+    public String       playerName;
+    public int          playersInInv;
+    public boolean      isOpen;
     private boolean     isLocked;
-    private int 		code;
+    private int         code;
     
     public WCTileEntityToolBox() {
         inventory = new ItemStack[getSizeInventory()];
@@ -115,41 +112,44 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
     
     @Override
     public void openChest() {
-    	if(worldObj.isRemote)
-    		return;
-    	playersInInv++;
-    	System.out.println(playersInInv);
+        if (worldObj.isRemote) {
+            return;
+        }
+        playersInInv++;
+        System.out.println(playersInInv);
     }
     
     @Override
     public void closeChest() {
-    	if(worldObj.isRemote)
-    		return;
-    	playersInInv--;
-    	if(playersInInv == 0){
-	    	isOpen = false;
-	    	worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-    	}
+        if (worldObj.isRemote) {
+            return;
+        }
+        playersInInv--;
+        if (playersInInv == 0) {
+            isOpen = false;
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        }
     }
     
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-        if (itemstack.getItem() instanceof ItemTool)
+        if (itemstack.getItem() instanceof ItemTool) {
             return true;
-        else if (itemstack.getItem() instanceof ItemHoe)
-        	return true;
-        else if (itemstack.getItem() instanceof ItemBow)
+        } else if (itemstack.getItem() instanceof ItemHoe) {
             return true;
-        else if (itemstack.getItem() instanceof ItemBucket)
+        } else if (itemstack.getItem() instanceof ItemBow) {
             return true;
-        else if (itemstack.getItem() instanceof ItemSword)
+        } else if (itemstack.getItem() instanceof ItemBucket) {
             return true;
-        else if (itemstack.getItem() instanceof ItemShears)
+        } else if (itemstack.getItem() instanceof ItemSword) {
             return true;
-        else if (itemstack.getItem() instanceof ItemFlintAndSteel)
+        } else if (itemstack.getItem() instanceof ItemShears) {
             return true;
-        else if (itemstack.getItem() instanceof ItemFishingRod)
+        } else if (itemstack.getItem() instanceof ItemFlintAndSteel) {
             return true;
+        } else if (itemstack.getItem() instanceof ItemFishingRod) {
+            return true;
+        }
         
         return false;
     }
@@ -203,31 +203,32 @@ public class WCTileEntityToolBox extends DirectionalTileEntity implements IInven
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
-        if (playerName != null)
+        if (playerName != null) {
             tag.setString("playerName", playerName);
+        }
         tag.setBoolean("isOpen", isOpen);
         tag.setBoolean("isLocked", isLocked);
         System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
-
-	@Override
-	public void setLocked(boolean lock) {
-		isLocked = lock;
-	}
-
-	@Override
-	public boolean isLocked() {
-		return isLocked;
-	}
-	
-	@Override
-	public int getCode() {
-		return code;
-	}
-	
-	@Override
-	public void setCode(int code) {
-		this.code = code;
-	}
+    
+    @Override
+    public void setLocked(boolean lock) {
+        isLocked = lock;
+    }
+    
+    @Override
+    public boolean isLocked() {
+        return isLocked;
+    }
+    
+    @Override
+    public int getCode() {
+        return code;
+    }
+    
+    @Override
+    public void setCode(int code) {
+        this.code = code;
+    }
 }

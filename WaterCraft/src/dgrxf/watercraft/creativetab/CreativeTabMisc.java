@@ -1,11 +1,8 @@
 package dgrxf.watercraft.creativetab;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.item.ModItems;
 
 /**
@@ -27,7 +24,7 @@ public class CreativeTabMisc extends CreativeTabs {
      */
     @Override
     @SideOnly(Side.CLIENT)
-    public int getTabIconItemIndex() {        
+    public int getTabIconItemIndex() {
         return ModItems.telescope.itemID;
     }
     

@@ -142,8 +142,7 @@ public class Vector3 {
     }
     
     /**
-     * Swizzle x and y
-     * (See GLSL swizzle)
+     * Swizzle x and y (See GLSL swizzle)
      * 
      * @return [x, y]
      */
@@ -152,8 +151,7 @@ public class Vector3 {
     }
     
     /**
-     * Swizzle x and z
-     * (See GLSL swizzle)
+     * Swizzle x and z (See GLSL swizzle)
      * 
      * @return [x, z]
      */
@@ -162,8 +160,7 @@ public class Vector3 {
     }
     
     /**
-     * Swizzle y and z
-     * (See GLSL swizzle)
+     * Swizzle y and z (See GLSL swizzle)
      * 
      * @return [y, z]
      */

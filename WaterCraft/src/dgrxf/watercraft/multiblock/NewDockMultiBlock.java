@@ -10,14 +10,14 @@ import dgrxf.watercraft.util.Vector3;
 
 /**
  * WARNING: Mess ahead!
- *
+ * 
  */
 public class NewDockMultiBlock {
     
-    private static final int BOUNDING_BLOCK = Block.woodSingleSlab.blockID;
-    private static final int WATER_BLOCK = Block.waterStill.blockID;
-    private static final int MAX_SIZE = 10;
-    private static final int MIN_SIDE_EXTEND = 1;
+    private static final int BOUNDING_BLOCK   = Block.woodSingleSlab.blockID;
+    private static final int WATER_BLOCK      = Block.waterStill.blockID;
+    private static final int MAX_SIZE         = 10;
+    private static final int MIN_SIDE_EXTEND  = 1;
     private static final int MIN_FRONT_EXTEND = 2;
     
     /**
@@ -94,7 +94,7 @@ public class NewDockMultiBlock {
         Rectangle interior = rect.trim(new Vector2(-2)).translate(new Vector2(1.0f));
         
         /********************* Check for Water ********************/
-        if (!searchFilledRect(world, interior, (int)start.y - 1)) {
+        if (!searchFilledRect(world, interior, (int) start.y - 1)) {
             return null;
         }
         
@@ -114,15 +114,17 @@ public class NewDockMultiBlock {
     }
     
     private static boolean checkBlock(World world, Vector3 p, int blockId) {
-        return checkBlock(world, (int)p.x, (int)p.y, (int)p.z, blockId);
+        return checkBlock(world, (int) p.x, (int) p.y, (int) p.z, blockId);
     }
     
     /**
      * Searches for a continuous line from start in inc direction
      * 
      * @param world
-     * @param s Block to start from
-     * @param inc Direction to increment 
+     * @param s
+     *            Block to start from
+     * @param inc
+     *            Direction to increment
      * @return length of line
      */
     private static int searchLine(World world, Vector3 s, Vector3 inc) {
@@ -132,26 +134,27 @@ public class NewDockMultiBlock {
             //LogHelper.debug("Search at: " + sPos);
             sPos = s.add(inc.scalarMult(i));
         }
-        int result = i-2;
+        int result = i - 2;
         result = ((result > 0) ? result : 0);
         //LogHelper.debug("Result Extend: " + result);
         return result;
     }
     
-    
     /**
      * This method checks if the given rect is filled with water
      * 
      * @param world
-     * @param r         Rectangle to search in
-     * @param yOffset   Y level to search on
+     * @param r
+     *            Rectangle to search in
+     * @param yOffset
+     *            Y level to search on
      * @return
      */
     private static boolean searchFilledRect(World world, Rectangle r, int yOffset) {
         Vector3 start = new Vector3(r.x, yOffset, r.y);
         
-        for(int dx = 0; dx <= r.w; ++dx) {
-            for(int dz = 0; dz <= r.h; ++dz) {
+        for (int dx = 0; dx <= r.w; ++dx) {
+            for (int dz = 0; dz <= r.h; ++dz) {
                 if (!checkBlock(world, start.add(new Vector3(dx, 0, dz)), WATER_BLOCK)) {
                     return false;
                 }

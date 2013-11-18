@@ -6,26 +6,26 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityBoat;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.DirectionalBlock;
-import dgrxf.watercraft.entity.WCEntityBoat;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
+import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
+import dgrxf.watercraft.util.LogHelper;
+import dgrxf.watercraft.util.Vector3;
 
 /**
  * Buoy Block
- * 
- * @author Robotic-Brain
- * @author xandayn (re-created)
- * @author Drunk Mafia (modified)
  * 
  */
 public class BuoyBlock extends DirectionalBlock {
@@ -75,7 +75,7 @@ public class BuoyBlock extends DirectionalBlock {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
-    	particleIcon = register.registerIcon("Watercraft:buoyParticle");
+        particleIcon = register.registerIcon("Watercraft:buoyParticle");
     }
     
     @SideOnly(Side.CLIENT)
@@ -83,11 +83,67 @@ public class BuoyBlock extends DirectionalBlock {
         return particleIcon;
     }
     
+    /****************************************** END of Boilerplate ******************************************/
+    
+    /**
+     * Ignore Boat/Buoy collisions
+     */
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
-        if (!(entity instanceof WCEntityBoat)) {
+        if (!(entity instanceof AbstractBaseBoat) && !(entity instanceof EntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
         }
     }
     
+    /**
+     * Initial update if buoy placed
+     */
+    @Override
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te instanceof WCBouyLogic) {
+            ((WCBouyLogic) world.getBlockTileEntity(x, y, z)).updateBuoys();
+        }
+    }
+    
+    /**
+     * Update connected buoys if buoy destroyed
+     */
+    @Override
+    public void breakBlock(World par1World, int x, int y, int z, int id, int meta) {
+        TileEntity te = par1World.getBlockTileEntity(x, y, z);
+        Vector3[] buoys = null;
+        if (te instanceof WCBouyLogic) {
+            buoys = ((WCBouyLogic) par1World.getBlockTileEntity(x, y, z)).getNextBuoysCoords();
+        }
+        
+        // This removes the TE
+        super.breakBlock(par1World, x, y, z, id, meta);
+        
+        if (buoys != null) {
+            for (int i = 0; i < buoys.length; i++) {
+                Vector3 p = buoys[i];
+                if (p != null) {
+                    TileEntity te2 = par1World.getBlockTileEntity((int) p.x, (int) p.y, (int) p.z);
+                    if (te2 instanceof WCBouyLogic) {
+                        ((WCBouyLogic) te2).updateBuoys();
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Debug Code!
+     */
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        TileEntity te = world.getBlockTileEntity(x, y, z);
+        if (te instanceof WCBouyLogic) {
+            LogHelper.debug(world.getBlockTileEntity(x, y, z));
+        }
+        return true;
+    }
 }

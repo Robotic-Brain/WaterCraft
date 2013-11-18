@@ -5,7 +5,7 @@ import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.util.DamageSource;
 
 public class InceptionSource extends DamageSource {
-
+    
     public InceptionSource() {
         super("inception");
     }

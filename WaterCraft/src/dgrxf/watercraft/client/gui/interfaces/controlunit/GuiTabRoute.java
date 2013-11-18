@@ -1,16 +1,12 @@
 package dgrxf.watercraft.client.gui.interfaces.controlunit;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
-import cpw.mods.fml.client.GuiScrollingList;
-import dgrxf.watercraft.client.gui.interfaces.GuiBase;
+import net.minecraft.client.gui.GuiButton;
 import dgrxf.watercraft.client.gui.interfaces.GuiExtra;
 import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
 import dgrxf.watercraft.client.gui.interfaces.GuiScrollList;
-import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
-import net.minecraft.client.gui.GuiButton;
 
 public class GuiTabRoute extends GuiTab {
     
@@ -31,7 +27,7 @@ public class GuiTabRoute extends GuiTab {
     
     private GuiExtra[]        menu           = new GuiExtra[4];
     
-    public GuiTabRoute(String name, int id) { 
+    public GuiTabRoute(String name, int id) {
         super(name, id);
         
         scrollList = new GuiScrollList(19, 65, 84, 55, 11) {
@@ -58,32 +54,32 @@ public class GuiTabRoute extends GuiTab {
                     itemSelected = true;
                 }
             }
-
+            
             @Override
             public Vector2 getScrollItemBackgroundPos() {
                 return new Vector2(172, 223);
             }
-
+            
             @Override
             public Vector2 getScrollItemHoverBackgroundPos() {
                 return new Vector2(172, 234);
             }
-
+            
             @Override
             public Vector2 getScrollItemSelectedBackgroundPos() {
                 return new Vector2(172, 245);
             }
-
+            
             @Override
             public Vector2 getScrollBarSize() {
                 return new Vector2(9, 8);
             }
-
+            
             @Override
             public Vector2 getScrollBarTexturePos() {
                 return new Vector2(157, 218);
             }
-
+            
             @Override
             public Vector2 getScrollBarTextureDisabledPos() {
                 return new Vector2(157, 226);
@@ -101,7 +97,7 @@ public class GuiTabRoute extends GuiTab {
         
         if (itemSelected) {
             gui.removeButton.enabled = true;
-        } else if (gui.removeButton.enabled == true){
+        } else if (gui.removeButton.enabled == true) {
             gui.removeButton.enabled = false;
         } else if (!itemSelected) {
             int i = scrollList.getSize();
@@ -111,7 +107,9 @@ public class GuiTabRoute extends GuiTab {
         }
         
         if (drawMenu) {
-            for (GuiExtra extra: menu) extra.drawBackground(gui, x, y);
+            for (GuiExtra extra : menu) {
+                extra.drawBackground(gui, x, y);
+            }
         }
         
         if (drawMenu) {
@@ -129,7 +127,9 @@ public class GuiTabRoute extends GuiTab {
     public void drawForeground(ControlUnitGUI gui, int x, int y) {
         
         if (drawMenu) {
-            for (GuiExtra extra: menu) extra.drawForeground(gui, x, y);
+            for (GuiExtra extra : menu) {
+                extra.drawForeground(gui, x, y);
+            }
         } else {
             scrollList.drawForeground(gui, x, y);
             gui.getFontRenderer().drawString(selectedString, 22, 43, 0);
@@ -143,7 +143,9 @@ public class GuiTabRoute extends GuiTab {
             if (dropDownButton.inRect(gui, x, y) || dropDownFirst.inRect(gui, x, y)) {
                 drawMenu = false;
             }
-            for (GuiExtra extra: menu) extra.mouseClick(gui, x, y, button);
+            for (GuiExtra extra : menu) {
+                extra.mouseClick(gui, x, y, button);
+            }
         } else {
             scrollList.mouseClick(gui, x, y, button);
             if (dropDownButton.inRect(gui, x, y) || dropDownFirst.inRect(gui, x, y)) {
@@ -156,15 +158,19 @@ public class GuiTabRoute extends GuiTab {
     public void mouseMoveClick(ControlUnitGUI gui, int x, int y, int button, long timeSinceClicked) {
         scrollList.mouseMoveClick(gui, x, y, button, timeSinceClicked);
         if (drawMenu) {
-            for (GuiExtra extra: menu) extra.mouseMoveClick(gui, x, y, button, timeSinceClicked);
+            for (GuiExtra extra : menu) {
+                extra.mouseMoveClick(gui, x, y, button, timeSinceClicked);
+            }
         }
     }
     
     @Override
-    public void mouseReleased(ControlUnitGUI gui, int x, int y, int  button) {
+    public void mouseReleased(ControlUnitGUI gui, int x, int y, int button) {
         scrollList.mouseReleased(gui, x, y, button);
         if (drawMenu) {
-            for (GuiExtra extra: menu) extra.mouseReleased(gui, x, y, button);
+            for (GuiExtra extra : menu) {
+                extra.mouseReleased(gui, x, y, button);
+            }
         }
     }
     

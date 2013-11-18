@@ -23,7 +23,7 @@ public class MathHelper {
     }*/
     
     public static float calculatePointDistance(float positionOne, float positionTwo) {
-    	return Math.abs(positionOne - positionTwo);
+        return Math.abs(positionOne - positionTwo);
     }
     
     /**

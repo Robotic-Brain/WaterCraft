@@ -8,11 +8,8 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.EntityIceBoat;
-import dgrxf.watercraft.entity.EntityLavaBoat;
-import dgrxf.watercraft.entity.WCEntityBoat;
+import dgrxf.watercraft.entity.boat.IceBoat;
 import dgrxf.watercraft.lib.ItemInfo;
-
 
 public class ItemIceBoat extends Item {
     
@@ -24,8 +21,9 @@ public class ItemIceBoat extends Item {
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         
@@ -39,7 +37,7 @@ public class ItemIceBoat extends Item {
                 int z1 = movingobjectposition.blockZ;
                 
                 if ((world.getBlockMaterial(x1, y1, z1) == Material.water) && world.isAirBlock(x1, y1 + 1, z1)) {
-                	EntityIceBoat boat = new EntityIceBoat(world, x1, y1 + 1, z1);
+                    IceBoat boat = new IceBoat(world, x1, y1 + 1, z1);
                     
                     world.spawnEntityInWorld(boat);
                     

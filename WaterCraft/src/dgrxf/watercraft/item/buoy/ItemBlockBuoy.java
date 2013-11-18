@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
@@ -27,6 +26,7 @@ public class ItemBlockBuoy extends ItemBlock {
         super(id);
     }
     
+    @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
@@ -40,10 +40,12 @@ public class ItemBlockBuoy extends ItemBlock {
                 int y = movingobjectposition.blockY;
                 int z = movingobjectposition.blockZ;
                 
-                if (!world.canMineBlock(player, x, y, z))
+                if (!world.canMineBlock(player, x, y, z)) {
                     return itemStack;
-                if (!player.canPlayerEdit(x, y, z, movingobjectposition.sideHit, itemStack))
+                }
+                if (!player.canPlayerEdit(x, y, z, movingobjectposition.sideHit, itemStack)) {
                     return itemStack;
+                }
                 
                 if (world.getBlockMaterial(x, y, z) == Material.water && world.getBlockMetadata(x, y, z) == 0 && world.isAirBlock(x, y + 1, z)) {
                     world.setBlock(x, y + 1, z, ModBlocks.buoy.blockID);

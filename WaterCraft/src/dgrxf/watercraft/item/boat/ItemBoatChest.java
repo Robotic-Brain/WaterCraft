@@ -1,7 +1,5 @@
 package dgrxf.watercraft.item.boat;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,8 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.EntityBoatChest;
+import dgrxf.watercraft.entity.boat.ChestBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemBoatChest extends Item {
@@ -24,8 +24,9 @@ public class ItemBoatChest extends Item {
     
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        if (world.isRemote)
+        if (world.isRemote) {
             return itemStack;
+        }
         
         MovingObjectPosition movingobjectposition = this.getMovingObjectPositionFromPlayer(world, player, true);
         
@@ -39,7 +40,7 @@ public class ItemBoatChest extends Item {
                 int z1 = movingobjectposition.blockZ;
                 
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                    EntityBoatChest boat = new EntityBoatChest(world, x1, y1 + 1, z1);
+                    ChestBoat boat = new ChestBoat(world, x1, y1 + 1, z1);
                     
                     world.spawnEntityInWorld(boat);
                     
