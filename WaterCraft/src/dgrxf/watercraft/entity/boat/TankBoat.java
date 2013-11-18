@@ -37,7 +37,7 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if(firstRun && !worldObj.isRemote){
+		if(firstRun && worldObj.isRemote){
 			if(tank != null){
 				if(tank.getFluid() != null){
 					dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
@@ -51,7 +51,6 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		if(worldObj.isRemote) return;
 		if(tank != null){
 			if(tank.getFluid() != null){
 				dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
