@@ -41,10 +41,14 @@ public class DumbTask extends BoatAITaskBase {
         
         if (distance.length2() > 25.0) {
             LogHelper.debug("Distance " + distance);
-            /*LogHelper.debug("Normalized " + distance.normalize());*/
-            newMotion = distance.normalize().scalarMult(BOAT_SPEED*2);
+            //LogHelper.debug("Normalized " + distance.normalize());
+            newMotion = distance.normalize().scalarMult(BOAT_SPEED*2.0);
         } else {
-            newMotion = distance.normalize().scalarMult(BOAT_SPEED);
+            newMotion = distance.normalize().scalarMult(BOAT_SPEED/2.0);
+        }
+        
+        if (distance.dot(new Vector2(boat.motionX, boat.motionZ)) < 0) {
+            newMotion = distance.normalize().scalarMult(1);
         }
         
         /*LogHelper.debug("Boat AI " + newMotion);
