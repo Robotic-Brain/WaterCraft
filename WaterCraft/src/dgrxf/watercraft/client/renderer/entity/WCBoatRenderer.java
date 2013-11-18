@@ -134,11 +134,12 @@ public class WCBoatRenderer extends Render {
     }*/
     
     private void renderLiquidInTank(AbstractBaseBoat entity, Block block){
-    	FluidStack flu;
-    	if(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME) != "none")
-    		flu = FluidRegistry.getFluidStack(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)).getName(), 1);
-    	else
-    		flu = null;
+    	FluidStack flu = null;
+    	if(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME) != "none"){
+    		if(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)) != null){
+    			flu = FluidRegistry.getFluidStack(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)).getName(), 1);
+    		}
+    	}
     	
     	Icon icon = block.getIcon(0, 0);
 		Tessellator tessellator = Tessellator.instance;

@@ -37,7 +37,7 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	@Override
 	public void onUpdate() {
 		super.onUpdate();
-		if(firstRun && worldObj.isRemote){
+		if(firstRun){
 			if(tank != null){
 				if(tank.getFluid() != null){
 					dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
@@ -51,16 +51,8 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	@Override
 	protected void entityInit() {
 		super.entityInit();
-		if(tank != null){
-			if(tank.getFluid() != null){
-				dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
-				dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, FluidRegistry.getFluid(tank.getFluid().fluidID).getName());
-			}
-		}
-		else{
-			dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
-			dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
-		}
+		dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
+		dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
 	}
 
 	@Override
@@ -90,9 +82,6 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 
 					return true;
 				}
-				else{
-					return true;
-				}
 			}
 			else if (FluidContainerRegistry.isBucket(playerItem)){
 				FluidTankInfo[] tankInfo = this.getTankInfo(ForgeDirection.UNKNOWN);
@@ -115,14 +104,10 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 					}
 					return true;
 				}
-				else
-				{
-					return true;
-				}
 			}
 		}
 		
-		return false;
+		return true;
 	}
 	
 	private ItemStack removeItem(ItemStack playerItem) {
@@ -165,7 +150,6 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 		FluidStack amount = tank.drain(maxDrain, doDrain);
 		if(amount != null && doDrain){
 			dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) - amount.amount));
-			dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, new String(amount.getFluid().getName()));
 		}else if(amount == null && doDrain){
 			dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, new String("none"));
 		}
@@ -192,35 +176,4 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 		
 		return new FluidTankInfo[]{ new FluidTankInfo(fluidStack, tank.getCapacity()) };
 	}
-	
-	@Override
-	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
-		super.writeToNBT(par1nbtTagCompound);
-		writeCustomNBT(par1nbtTagCompound);
-	}
-	
-	@Override
-	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
-		super.readFromNBT(par1nbtTagCompound);
-		readCustomNBT(par1nbtTagCompound);
-	}
-	
-    public void readCustomNBT (NBTTagCompound tags)
-    {
-        if (tags.getBoolean("hasFluid"))
-            tank.setFluid(new FluidStack(tags.getInteger("itemID"), tags.getInteger("Amount")));
-        else
-            tank.setFluid(null);
-    }
-
-    public void writeCustomNBT (NBTTagCompound tags)
-    {
-        FluidStack liquid = tank.getFluid();
-        tags.setBoolean("hasFluid", liquid != null);
-        if (liquid != null)
-        {
-            tags.setInteger("itemID", liquid.fluidID);
-            tags.setInteger("Amount", liquid.amount);
-        }
-    }
 }
