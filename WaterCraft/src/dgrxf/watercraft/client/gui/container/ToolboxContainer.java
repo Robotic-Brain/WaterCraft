@@ -1,5 +1,6 @@
 package dgrxf.watercraft.client.gui.container;
 
+import cpw.mods.fml.common.network.Player;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -9,6 +10,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
+import dgrxf.watercraft.client.sound.Sounds;
+import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.damage.WCDamageSources;
 
@@ -136,6 +139,7 @@ public class ToolboxContainer extends Container {
             
             if (stack.getItem().itemID == ModBlocks.toolbox.blockID) {
                 player.attackEntityFrom(WCDamageSources.inception, 1000);
+                PacketHandler.sendSoundPackage(Sounds.INCEPTION.ordinal(), (Player) player, (int)player.posX, (int)player.posY, (int)player.posZ);
             }
             
             if (i >= 36 && tile.isItemValidForSlot(0, stack)) {

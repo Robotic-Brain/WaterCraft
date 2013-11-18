@@ -11,8 +11,8 @@ public class WCEventHandler {
     
     @ForgeSubscribe
     public void onEntityDeath(LivingDeathEvent event) {
-        if (event.source instanceof InceptionSource && event.entity != null) {
-            Sounds.INCEPTION.play(event.entity.posX, event.entity.posY, event.entity.posZ, 1.0f, 1.0f);
+        if (event.source instanceof InceptionSource && event.entity != null && event.entity.worldObj.isRemote) {
+            //Sounds.INCEPTION.play(event.entity.posX, event.entity.posY, event.entity.posZ, 1.0f, 1.0f);
         }
     }
     

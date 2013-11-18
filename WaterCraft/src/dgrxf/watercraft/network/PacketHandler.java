@@ -18,6 +18,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.client.gui.container.ITeContainer;
+import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
@@ -27,6 +28,7 @@ public class PacketHandler implements IPacketHandler {
     
     public static final int INTERFACE_PACKET_ID = 0;
     public static final int FREEZER_PACKET_ID   = 1;
+    public static final int SOUND_PACKET_ID     = 2;
     
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -60,6 +62,16 @@ public class PacketHandler implements IPacketHandler {
                     if (te instanceof WCTileEntityFreezer) {
                         ((WCTileEntityFreezer) te).setType(data);
                     }
+                }
+                break;
+            case SOUND_PACKET_ID:
+                byte sound = reader.readByte();
+                int x = reader.readInt();
+                int y = reader.readInt();
+                int z = reader.readInt();
+                
+                if (player != null ) {
+                    Sounds.values()[sound].play(x, y, z, 1.0F, 1.0F);
                 }
                 break;
             default:
@@ -99,5 +111,23 @@ public class PacketHandler implements IPacketHandler {
             LogHelper.severe("Failed to send freezer interface packet. This is a bug please report this to the mod auther." + e);
         }
         
+    }
+
+    public static void sendSoundPackage(int data, Player player, int x, int y, int z) {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        DataOutputStream dataStream = new DataOutputStream(byteStream);
+        
+        try {
+            
+            dataStream.writeByte((byte) SOUND_PACKET_ID);
+            dataStream.writeByte((byte)data);
+            dataStream.writeInt(x);
+            dataStream.writeInt(y);
+            dataStream.writeInt(z);
+            
+            PacketDispatcher.sendPacketToPlayer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()), player);
+        } catch (IOException e) {
+            LogHelper.severe("Failed to send sound interface packet. This is a bug please report this to the mod auther." + e);
+        }
     }
 }

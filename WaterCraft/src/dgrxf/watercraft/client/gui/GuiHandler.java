@@ -14,12 +14,14 @@ import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
 import dgrxf.watercraft.client.gui.interfaces.GuiLockAssembler;
 import dgrxf.watercraft.client.gui.interfaces.ToolBoxGUI;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.ControlUnitGUI;
+import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.util.LogHelper;
 
 public class GuiHandler implements IGuiHandler {
     
@@ -80,6 +82,8 @@ public class GuiHandler implements IGuiHandler {
             case TOOLBOX_GUI_ID:
                 
                 if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
+                    Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
+                    LogHelper.debug("SOUND");
                     return new ToolBoxGUI(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);
                 }
@@ -103,6 +107,7 @@ public class GuiHandler implements IGuiHandler {
             	break;
             case LOCK_ASSEMBLER_GUI_ID:
             	if (te instanceof WCTileEntityLockAssembler) {
+            	    System.out.println("LOCK");
             		return new GuiLockAssembler(player.inventory, (WCTileEntityLockAssembler)te);
             	}
             	break;
