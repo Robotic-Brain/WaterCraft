@@ -59,11 +59,11 @@ public class ToolBoxBlock extends DirectionalBlock {
      */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-        WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
-        if (tile.blockMetadata == 2 || tile.blockMetadata == 3) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == 2 || meta == 3) {
             setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
         }
-        if (tile.blockMetadata == 4 || tile.blockMetadata == 5) {
+        if (meta == 4 || meta == 5) {
             setBlockBounds(0.345F, 0F, 0.1F, 0.645F, 0.5F, 0.9F);
         }
     }
