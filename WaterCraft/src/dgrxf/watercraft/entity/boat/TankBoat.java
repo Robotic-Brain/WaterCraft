@@ -176,4 +176,36 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 		
 		return new FluidTankInfo[]{ new FluidTankInfo(fluidStack, tank.getCapacity()) };
 	}
+	
+
+    @Override
+   	public void writeToNBT(NBTTagCompound par1nbtTagCompound) {
+          super.writeToNBT(par1nbtTagCompound);
+          writeCustomNBT(par1nbtTagCompound);
+    }
+   
+    @Override
+    public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
+         super.readFromNBT(par1nbtTagCompound);
+         readCustomNBT(par1nbtTagCompound);
+    }
+   
+    public void readCustomNBT (NBTTagCompound tags)
+    {
+    	if (tags.getBoolean("hasFluid"))
+    		tank.setFluid(new FluidStack(tags.getInteger("itemID"), tags.getInteger("Amount")));
+    	else
+    		tank.setFluid(null);
+    }
+ 
+     public void writeCustomNBT (NBTTagCompound tags)
+     {
+         FluidStack liquid = tank.getFluid();
+         tags.setBoolean("hasFluid", liquid != null);
+         if (liquid != null)
+         {
+             tags.setInteger("itemID", liquid.fluidID);
+             tags.setInteger("Amount", liquid.amount);
+         }
+     }
 }
