@@ -92,7 +92,7 @@ public abstract class GuiScrollList extends GuiExtra {
         float total = list.size() * itemHeight;
         float avalible = getHeight();
         float overflow = total - avalible;
-        float lenght = getScrollBar()[3] - getScrollBarSize().y;
+        float lenght = (float) (getScrollBar()[3] - getScrollBarSize().y);
         return (int) (overflow * (scrollPos / lenght));
     }
     

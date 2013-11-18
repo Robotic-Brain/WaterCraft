@@ -22,7 +22,7 @@ public class MathHelper {
         return (float) Math.sqrt(calculateVector2SquareDistance(positionOne, positionTwo));
     }*/
     
-    public static float calculatePointDistance(float positionOne, float positionTwo) {
+    public static double calculatePointDistance(double positionOne, double positionTwo) {
         return Math.abs(positionOne - positionTwo);
     }
     

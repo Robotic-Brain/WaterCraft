@@ -5,12 +5,12 @@ public class Rectangle {
     /**
      * Starting point
      */
-    public float x, y;
+    public double x, y;
     
     /**
      * (W)idth and (h)eight
      */
-    public float w, h;
+    public double w, h;
     
     /**
      * Creates an empty rectangle
@@ -31,7 +31,7 @@ public class Rectangle {
      * @param h
      *            Height
      */
-    public Rectangle(float x, float y, float w, float h) {
+    public Rectangle(double x, double y, double w, double h) {
         this.x = x;
         this.y = y;
         this.w = w;
@@ -58,7 +58,7 @@ public class Rectangle {
      * @param h
      *            Height
      */
-    public Rectangle(Vector2 s, float w, float h) {
+    public Rectangle(Vector2 s, double w, double h) {
         this(s.x, s.y, w, h);
     }
     
@@ -92,7 +92,7 @@ public class Rectangle {
      *            Scaling factor
      * @return Rectangle(size * a)
      */
-    public Rectangle scale(float a) {
+    public Rectangle scale(double a) {
         return new Rectangle(x, y, w * a, h * a);
     }
     
@@ -103,7 +103,7 @@ public class Rectangle {
      *            Scaling factor
      * @return scaled rectangle
      */
-    /*public Rectangle centeredScale(float a) {
+    /*public Rectangle centeredScale(double a) {
         return scale(a).translate(new Vector2(a / 2.0f));
     }*/
     

@@ -4,7 +4,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class Vector3 {
     
-    public float x, y, z;
+    public double x, y, z;
     
     /**
      * Creates new Zero Vector
@@ -20,7 +20,7 @@ public class Vector3 {
      * @param y
      * @param z
      */
-    public Vector3(float x, float y, float z) {
+    public Vector3(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -60,7 +60,7 @@ public class Vector3 {
      * @param a
      * @return this + a
      */
-    public Vector3 add(float a) {
+    public Vector3 add(double a) {
         return new Vector3(this.x + a, this.y + a, this.z + a);
     }
     
@@ -80,7 +80,7 @@ public class Vector3 {
      * @param a
      * @return this - a
      */
-    public Vector3 sub(float a) {
+    public Vector3 sub(double a) {
         return this.add(-a);
     }
     
@@ -90,7 +90,7 @@ public class Vector3 {
      * @param a
      * @return this * a
      */
-    public Vector3 scalarMult(float a) {
+    public Vector3 scalarMult(double a) {
         return new Vector3(a * this.x, a * this.y, a * this.z);
     }
     
@@ -109,7 +109,7 @@ public class Vector3 {
      * @param v
      * @return this . V
      */
-    public float dot(Vector3 v) {
+    public double dot(Vector3 v) {
         return this.x * v.x + this.y * v.y + this.z * v.z;
     }
     
@@ -118,7 +118,7 @@ public class Vector3 {
      * 
      * @return |this| * |this|
      */
-    public float length2() {
+    public double length2() {
         return this.dot(this);
     }
     
@@ -127,8 +127,8 @@ public class Vector3 {
      * 
      * @return |this|
      */
-    public float length() {
-        return (float) Math.sqrt(this.length2());
+    public double length() {
+        return Math.sqrt(this.length2());
     }
     
     /**

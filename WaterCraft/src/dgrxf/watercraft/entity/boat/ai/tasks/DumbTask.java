@@ -30,22 +30,38 @@ public class DumbTask extends BoatAITaskBase {
     private static final double BOAT_SPEED = 0.05;
     
     private void moveToTarget() {
-        float xDist, zDist;
+        //double xDist, zDist;
         if (target == null || boat.worldObj.isRemote) {
             return;
         }
-        xDist = MathHelper.calculatePointDistance((float) boat.posX, target.x);
-        zDist = MathHelper.calculatePointDistance((float) boat.posZ, target.y);
+        
+        Vector2 boatPos = new Vector2(boat.posX, boat.posZ);
+        Vector2 distance = target.sub(boatPos);
+        Vector2 newMotion = new Vector2();
+        
+        if (distance.length2() > 4.0) {
+            /*LogHelper.debug("Distance " + distance);
+            LogHelper.debug("Normalized " + distance.normalize());*/
+            newMotion = distance.normalize().scalarMult(BOAT_SPEED);
+        }
+        
+        /*LogHelper.debug("Boat AI " + newMotion);
+        LogHelper.debug("Target " + target);*/
+        
+        //newMotion.add(new Vector2(boat.motionX, boat.motionZ));
+        
+        boat.motionX += newMotion.x;
+        boat.motionZ += newMotion.y;
+        
+        /*xDist = MathHelper.calculatePointDistance(boat.posX, target.x);
+        zDist = MathHelper.calculatePointDistance(boat.posZ, target.y);
         if (xDist > 1.0F) {
             if (boat.posX < target.x) {
                 boat.motionX += BOAT_SPEED;
             } else if (boat.posX > target.x) {
                 boat.motionX += -BOAT_SPEED;
             }
-        }/* else {
-            boat.motionX = 0;
-            xDist = 0;
-         }*/
+        }
         
         if (zDist > 1.0F) {
             if (boat.posZ < target.y) {
@@ -53,14 +69,11 @@ public class DumbTask extends BoatAITaskBase {
             } else if (boat.posZ > target.y) {
                 boat.motionZ += -BOAT_SPEED;
             }
-        }/* else {
-            boat.motionZ = 0;
-            zDist = 0;
-         }*/
+        }
         
         if (zDist <= 1F && xDist <= 1F) {
             target = null;
-        }
+        }*/
     }
     
     private void setTargetLocation(Vector2 target) {

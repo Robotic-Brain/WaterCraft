@@ -1,7 +1,7 @@
 package dgrxf.watercraft.util;
 
 public class Vector2 {
-    public float x, y;
+    public double x, y;
     
     /**
      * Creates new Zero Vector
@@ -16,7 +16,7 @@ public class Vector2 {
      * @param x
      * @param y
      */
-    public Vector2(float x, float y) {
+    public Vector2(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -26,7 +26,7 @@ public class Vector2 {
      * 
      * @param a
      */
-    public Vector2(float a) {
+    public Vector2(double a) {
         this.x = a;
         this.y = a;
     }
@@ -56,7 +56,7 @@ public class Vector2 {
      * @param a
      * @return this + a
      */
-    public Vector2 add(float a) {
+    public Vector2 add(double a) {
         return new Vector2(this.x + a, this.y + a);
     }
     
@@ -76,7 +76,7 @@ public class Vector2 {
      * @param a
      * @return this - a
      */
-    public Vector2 sub(float a) {
+    public Vector2 sub(double a) {
         return this.add(-a);
     }
     
@@ -86,7 +86,7 @@ public class Vector2 {
      * @param a
      * @return this * a
      */
-    public Vector2 scalarMult(float a) {
+    public Vector2 scalarMult(double a) {
         return new Vector2(a * this.x, a * this.y);
     }
     
@@ -96,7 +96,7 @@ public class Vector2 {
      * @return this * -1
      */
     public Vector2 negate() {
-        return scalarMult(-1);
+        return scalarMult(-1.0D);
     }
     
     /**
@@ -105,7 +105,7 @@ public class Vector2 {
      * @param v
      * @return this . V
      */
-    public float dot(Vector2 v) {
+    public double dot(Vector2 v) {
         return this.x * v.x + this.y * v.y;
     }
     
@@ -114,7 +114,7 @@ public class Vector2 {
      * 
      * @return |this| * |this|
      */
-    public float length2() {
+    public double length2() {
         return this.dot(this);
     }
     
@@ -123,7 +123,7 @@ public class Vector2 {
      * 
      * @return |this|
      */
-    public float length() {
+    public double length() {
         return (float) Math.sqrt(this.length2());
     }
     
