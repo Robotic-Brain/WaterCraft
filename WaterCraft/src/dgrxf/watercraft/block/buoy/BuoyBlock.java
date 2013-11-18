@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.DirectionalBlock;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -90,7 +90,7 @@ public class BuoyBlock extends DirectionalBlock {
      */
     @Override
     public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
-        if (!(entity instanceof WCEntityBoatBase) && !(entity instanceof EntityBoat)) {
+        if (!(entity instanceof AbstractBaseBoat) && !(entity instanceof EntityBoat)) {
             super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
         }
     }

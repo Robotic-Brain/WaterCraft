@@ -1,34 +1,49 @@
 package dgrxf.watercraft.client.renderer.entity;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.client.models.WCModelChest;
+import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.TankBoat;
+import dgrxf.watercraft.interfaces.ICustomBoatTexture;
+import dgrxf.watercraft.interfaces.ILockableBlock;
+import dgrxf.watercraft.lib.EntityInfo;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
     
     ModelBase                             model;
+    WCModelChest					      chest;
     protected final RenderBlocks          renderBlock;
     
     public WCBoatRenderer() {
+    	chest = new WCModelChest();
         model = new ModelBoat();
         shadowSize = 0.5F;
         renderBlock = new RenderBlocks();
     }
     
-    public void renderBoat(WCEntityBoatBase entity, double par2, double par4, double par6, float par8, float par9) {
+    public void renderBoat(AbstractBaseBoat entity, double par2, double par4, double par6, float par8, float par9) {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
@@ -45,14 +60,31 @@ public class WCBoatRenderer extends Render {
         }
         
         Block block = entity.getDisplayTile();
-        
         if (block != null) {
             GL11.glPushMatrix();
-            this.bindTexture(TextureMap.locationBlocksTexture);
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);
-            GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
-            this.renderBlockInBoat(entity, par9, Block.chest, 0);
+        	if(block != ModBlocks.chest){
+                this.bindTexture(TextureMap.locationBlocksTexture);
+                GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
+	            this.renderBlockInBoat(entity, par9, block, 0);
+        	}else if(entity.getDisplayTile() == ModBlocks.chest){
+                GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
+                GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
+                GL11.glTranslatef(-0.5F, -0.85F, -0.5F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
+                if(entity instanceof ILockableBlock){
+	                if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
+	        			chest.renderAll(true);
+	        		}
+	        		else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
+	        			chest.renderAll(false);
+	        		}
+                }else{
+                	chest.renderAll(false);
+                }
+        	}
+        	
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
@@ -61,8 +93,11 @@ public class WCBoatRenderer extends Render {
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
         
-        bindEntityTexture(entity);
-        
+        if(entity instanceof ICustomBoatTexture){
+            Minecraft.getMinecraft().renderEngine.bindTexture(((ICustomBoatTexture)entity).getCustomTexture());
+        }else{
+            Minecraft.getMinecraft().renderEngine.bindTexture(boatTextures);
+        }
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         /*if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
@@ -71,16 +106,19 @@ public class WCBoatRenderer extends Render {
         GL11.glPopMatrix();
     }
     
-    protected void renderBlockInBoat(WCEntityBoatBase entity, float par2, Block par3Block, int par4) {
+    protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4) {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
         this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        if(par3Block == ModBlocks.tank){
+        	renderLiquidInTank(entity, par3Block);
+        }
         GL11.glPopMatrix();
     }
     
     @Override
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
-        renderBoat((WCEntityBoatBase) entity, x, y, z, yaw, partialTickTime);
+        renderBoat((AbstractBaseBoat) entity, x, y, z, yaw, partialTickTime);
     }
     
     private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
@@ -94,6 +132,88 @@ public class WCBoatRenderer extends Render {
     	flagModel.renderAll();
     	GL11.glPopMatrix();		
     }*/
+    
+    private void renderLiquidInTank(AbstractBaseBoat entity, Block block){
+    	FluidStack flu = null;
+    	if(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME) != "none"){
+    		if(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)) != null){
+    			flu = FluidRegistry.getFluidStack(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)).getName(), 1);
+    		}
+    	}
+    	
+    	Icon icon = block.getIcon(0, 0);
+		Tessellator tessellator = Tessellator.instance;
+		if(flu != null){
+			ItemStack stack = new ItemStack(flu.getFluid().getBlockID(), 1, 0);
+			if(stack.getIconIndex() != null)
+				icon = stack.getIconIndex();
+			int amount = entity.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) / 1000;
+			switch(amount){
+			case 0:
+				block.setBlockBounds(0, 0, 0, 0, 0, 0);
+				break;
+			case 1:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.21875f, 0.874f);
+				break;
+			case 2:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.3125f, 0.874f);
+				break;
+			case 3:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.40625f, 0.874f);
+				break;
+			case 4:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.5f, 0.874f);
+				break;
+			case 5:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.59375f, 0.874f);
+				break;
+			case 6:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.6875f, 0.874f);
+				break;
+			case 7: 
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.78125f, 0.874f);
+				break;
+			case 8:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.874f, 0.874f);
+				break;
+			}
+			
+			renderBlock.setRenderBoundsFromBlock(block);
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 1F, 0.0F);
+			renderBlock.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 0F, 1.0F);
+			renderBlock.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+			
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(1.0F, 0F, 0.0F);
+			renderBlock.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, -1F, 0.0F);
+			renderBlock.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 0F, -1.0F);
+			renderBlock.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(-1.0F, 0F, 0.0F);
+			renderBlock.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+			block.setBlockBounds(0, 0, 0, 1, 1, 1);
+			
+		}
+		
+    }
     
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {

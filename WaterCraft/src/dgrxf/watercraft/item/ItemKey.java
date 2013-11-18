@@ -62,6 +62,6 @@ public class ItemKey extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
-        itemIcon = par1IconRegister.registerIcon("Watercraft:key");
+        itemIcon = par1IconRegister.registerIcon("watercraft:key");
     }
 }

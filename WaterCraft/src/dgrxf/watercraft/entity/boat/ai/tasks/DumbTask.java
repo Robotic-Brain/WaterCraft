@@ -1,6 +1,6 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.MathHelper;
@@ -10,7 +10,7 @@ public class DumbTask extends BoatAITaskBase {
     
     private Vector2 target;
     
-    public DumbTask(WCEntityBoatBase boat, float priority) {
+    public DumbTask(AbstractBaseBoat boat, float priority) {
         super(boat, priority);
     }
     

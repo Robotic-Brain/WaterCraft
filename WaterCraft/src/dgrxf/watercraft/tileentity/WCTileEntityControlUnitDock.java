@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.Vector3;
@@ -81,7 +81,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
      * list. Haven't bothered yet though for testing purposes.
      * TODO: Update this to work with the new dock code
      */
-    public WCEntityBoatBase findEntityBoat(ForgeDirection d, Class<? extends WCEntityBoatBase> entC) {
+    public AbstractBaseBoat findEntityBoat(ForgeDirection d, Class<? extends AbstractBaseBoat> entC) {
         int tempX = xCoord + d.offsetX * 3;
         int tempY = yCoord;
         int tempZ = zCoord + d.offsetZ * 3;
@@ -92,8 +92,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
         
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
-            if (e instanceof WCEntityBoatBase) {
-                return (WCEntityBoatBase) e;
+            if (e instanceof AbstractBaseBoat) {
+                return (AbstractBaseBoat) e;
             }
         }
         

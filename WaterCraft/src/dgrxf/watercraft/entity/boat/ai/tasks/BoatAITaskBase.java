@@ -1,6 +1,6 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 
 public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<BoatAITaskBase> {
@@ -10,7 +10,7 @@ public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<Bo
      */
     private float priority;
     
-    public BoatAITaskBase(WCEntityBoatBase boat, float priority) {
+    public BoatAITaskBase(AbstractBaseBoat boat, float priority) {
         super(boat);
         this.priority = priority;
     }

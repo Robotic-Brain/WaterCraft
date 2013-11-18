@@ -38,6 +38,7 @@ public class ConfigurationHandler {
             ItemInfo.PADLOCK_ID = config.get(ItemInfo.CATEGORY, ItemInfo.PADLOCK_KEY, ItemInfo.PADLOCK_ID_DEFAULT).getInt() - 256;
             ItemInfo.CALCULATOR_ID = config.get(ItemInfo.CATEGORY, ItemInfo.CALCULATOR_KEY, ItemInfo.CALCULATOR_ID_DEFAULT).getInt() - 256;
             ItemInfo.KEY_ID = config.get(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt() - 256;
+            ItemInfo.TANK_BOAT_ID = config.get(ItemInfo.CATEGORY, ItemInfo.TANK_BOAT_KEY, ItemInfo.TANK_BOAT_ID_DEFAULT).getInt() - 256;
             
             // Blocks
             BlockInfo.BUOY_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
@@ -47,6 +48,7 @@ public class ConfigurationHandler {
             BlockInfo.TOOLBOX_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
             BlockInfo.BUOY_FILTER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_FILTER_KEY, BlockInfo.BUOY_FILTER_ID_DEFAULT).getInt();
             BlockInfo.WC_CHEST_ID = config.get(BlockInfo.CATEGORY, BlockInfo.WC_CHEST_KEY, BlockInfo.WC_CHEST_ID_DEFAULT).getInt();
+            BlockInfo.TANK_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TANK_KEY, BlockInfo.TANK_ID_DEFAULT).getInt();
             
             // Misc
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();
@@ -54,12 +56,12 @@ public class ConfigurationHandler {
             MiscInfo.DEBUG = config.get(MiscInfo.CATEGORY, MiscInfo.DEBUG_KEY, MiscInfo.DEBUG_DEFAULT).getBoolean(MiscInfo.DEBUG_DEFAULT);
             
         } catch (Exception e) {
-            LogHelper.severe("There was a problem while loading the config, Please report this.");
-            e.printStackTrace();
+            LogHelper.config("There was a problem while loading the config, Please report this to this mod's authors.");
+            LogHelper.severe(e);
         } finally {
             if (config.hasChanged()) {
                 config.save();
-                LogHelper.info("Config saved!");
+                LogHelper.config("Config saved!");
             }
         }
     }

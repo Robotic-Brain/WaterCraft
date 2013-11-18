@@ -4,7 +4,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import net.minecraft.nbt.NBTTagCompound;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
@@ -12,7 +12,7 @@ public class BoatAITaskList extends BoatAIBase {
     
     Set<BoatAITaskBase> tasks = new TreeSet<BoatAITaskBase>();
     
-    public BoatAITaskList(WCEntityBoatBase boat) {
+    public BoatAITaskList(AbstractBaseBoat boat) {
         super(boat);
     }
     

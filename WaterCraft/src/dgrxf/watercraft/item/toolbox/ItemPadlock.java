@@ -32,7 +32,6 @@ public class ItemPadlock extends Item {
         if (world.isRemote) {
             return false;
         }
-        System.out.println("Right click");
         TileEntity tile = world.getBlockTileEntity(x, y, z);
         
         if (tile instanceof ILockableBlock && !((ILockableBlock) tile).isLocked()) {
@@ -48,7 +47,6 @@ public class ItemPadlock extends Item {
         
         return true;
     }
-    
     //temporary because the item renderer is poop <3
     @Override
     @SideOnly(Side.CLIENT)

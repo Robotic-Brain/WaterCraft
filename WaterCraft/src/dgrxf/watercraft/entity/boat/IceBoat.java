@@ -5,7 +5,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.IceTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
-public class IceBoat extends WCEntityBoatBase {
+public class IceBoat extends AbstractBaseBoat {
     
     public IceBoat(World par1World) {
         super(par1World);

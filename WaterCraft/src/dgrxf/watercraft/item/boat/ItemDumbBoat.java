@@ -9,7 +9,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.DumbBoat;
-import dgrxf.watercraft.entity.boat.WCEntityBoatBase;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**
@@ -44,7 +44,7 @@ public class ItemDumbBoat extends Item {
                 int y1 = movingobjectposition.blockY;
                 int z1 = movingobjectposition.blockZ;
                 
-                WCEntityBoatBase boat;
+                AbstractBaseBoat boat;
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
                     //if(!player.isSneaking())
                     boat = new DumbBoat(world, x1, y1 + 1, z1);

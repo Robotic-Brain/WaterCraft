@@ -11,6 +11,8 @@ package dgrxf.watercraft.item;
 
 import net.minecraft.item.Item;
 import dgrxf.watercraft.item.boat.ItemBoat;
+import dgrxf.watercraft.item.boat.ItemBoatChest;
+import dgrxf.watercraft.item.boat.ItemBoatTank;
 import dgrxf.watercraft.item.boat.ItemDumbBoat;
 import dgrxf.watercraft.item.boat.ItemIceBoat;
 import dgrxf.watercraft.item.boat.ItemLavaBoat;
@@ -25,6 +27,7 @@ public class ModItems {
     public static Item boatChest;
     public static Item lavaBoat;
     public static Item boatVanilla;
+    public static Item tankBoat;
     public static Item flag;
     public static Item iceBoat;
     public static Item blockPlacer;
@@ -38,7 +41,7 @@ public class ModItems {
         boatSimple = new ItemDumbBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();
-        //boatChest = new ItemBoatChest();
+        boatChest = new ItemBoatChest();
         lavaBoat = new ItemLavaBoat();
         flag = new ItemFlag();
         iceBoat = new ItemIceBoat();
@@ -46,5 +49,6 @@ public class ModItems {
         padlock = new ItemPadlock();
         calculator = new ItemCalculator();
         key = new ItemKey();
+        tankBoat = new ItemBoatTank();
     }
 }
