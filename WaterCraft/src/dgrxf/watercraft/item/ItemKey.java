@@ -33,8 +33,6 @@ public class ItemKey extends Item {
             if (te instanceof ILockableBlock && ((ILockableBlock) te).isLocked()) {
                 int code = ((ILockableBlock) te).getCode();
                 
-                Watercraft.printToPlayer(Integer.toString(code));
-                
                 if (code == stack.getItemDamage()) {
                     if (player.isSneaking()) {
                         ((ILockableBlock) te).setLocked(false);
