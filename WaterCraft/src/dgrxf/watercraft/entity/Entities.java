@@ -6,6 +6,7 @@ import dgrxf.watercraft.entity.boat.ChestBoat;
 import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.entity.boat.IceBoat;
 import dgrxf.watercraft.entity.boat.LavaBoat;
+import dgrxf.watercraft.entity.boat.TankBoat;
 import dgrxf.watercraft.entity.boat.VanillaBoat;
 
 /**
@@ -23,6 +24,7 @@ public class Entities {
         EntityRegistry.registerModEntity(ChestBoat.class, "EntityBoatChest", 2, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(LavaBoat.class, "EntityLavaBoat", 3, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(IceBoat.class, "EntityIceBoat", 4, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(TankBoat.class, "EntityTankBoat", 5, Watercraft.instance, 80, 3, true);
         /*EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);*/
     }
     

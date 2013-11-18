@@ -10,5 +10,6 @@ package dgrxf.watercraft.lib;
 public class EntityInfo {
     
 	public static int DATAWATCHER_CHEST_LOCK = 20;
+	public static int DATAWATCHER_TANK_AMOUNT = 21;
 	
 }

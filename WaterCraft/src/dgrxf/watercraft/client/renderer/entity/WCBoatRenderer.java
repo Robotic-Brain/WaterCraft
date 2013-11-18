@@ -5,13 +5,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.IFluidHandler;
 
 import org.lwjgl.opengl.GL11;
 
@@ -19,6 +24,7 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.TankBoat;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.EntityInfo;
@@ -53,12 +59,15 @@ public class WCBoatRenderer extends Render {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * entity.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
         
+        System.out.println(TextureMap.locationBlocksTexture.getResourcePath());
+        System.out.println(boatTextures.getResourceDomain());
+        
         Block block = entity.getDisplayTile();
         if (block != null) {
             GL11.glPushMatrix();
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);
-        	if(block != ModBlocks.chest){
+        	if(block != ModBlocks.chest && block != ModBlocks.tank){
                 this.bindTexture(TextureMap.locationBlocksTexture);
                 GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
 	            this.renderBlockInBoat(entity, par9, block, 0);
@@ -77,6 +86,8 @@ public class WCBoatRenderer extends Render {
                 }else{
                 	chest.renderAll(false);
                 }
+        	}else if(entity.getDisplayTile() == ModBlocks.tank){
+        		renderLiquidTank(entity, block);
         	}
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -122,6 +133,10 @@ public class WCBoatRenderer extends Render {
     	flagModel.renderAll();
     	GL11.glPopMatrix();		
     }*/
+    
+    private void renderLiquidTank(AbstractBaseBoat entity, Block block){
+    	
+    }
     
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
