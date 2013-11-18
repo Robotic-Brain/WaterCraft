@@ -669,15 +669,8 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     public boolean interactFirst(EntityPlayer par1EntityPlayer) {
-        if (this.riddenByEntity != null && this.riddenByEntity instanceof EntityPlayer && this.riddenByEntity != par1EntityPlayer) {
-            return true;
-        } else {
-            if (!this.worldObj.isRemote) {
-                par1EntityPlayer.mountEntity(this);
-            }
-            
-            return true;
-        }
+    	this.ai.onInteractFirst(par1EntityPlayer);
+    	return true;
     }
     
     /**

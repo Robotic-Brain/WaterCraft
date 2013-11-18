@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity.boat.ai;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
@@ -58,6 +59,13 @@ public class BoatAITaskList extends BoatAIBase {
         for (BoatAITaskBase task : tasks) {
             task.buoyFound(buoy);
         }
+    }
+    
+    @Override
+    public void onInteractFirst(EntityPlayer player) {
+    	for(BoatAITaskBase task : tasks){
+    		task.onInteractFirst(player);
+    	}
     }
     
     @Override

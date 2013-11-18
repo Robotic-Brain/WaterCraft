@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
+import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
@@ -39,6 +40,7 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 	@Override
 	protected void setBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0f));
+		list.addTask(new InventoryTask(this, 1.0f));
 	}
 
 	@Override
@@ -46,33 +48,6 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 		return ModBlocks.chest;
 	}
 	
-    @Override
-    public boolean interactFirst(EntityPlayer player) {
-        if (!this.worldObj.isRemote) {
-        	ItemStack heldItem = player.inventory.getCurrentItem();
-            if (!player.isSneaking()) {
-            	if(this.dataWatcher.getWatchableObjectByte(20) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
-            		player.displayGUIChest(this);
-            } else {
-                if(this.dataWatcher.getWatchableObjectByte(20) == 1){
-                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
-                		if(heldItem.getItemDamage() == this.getCode()){
-                			dataWatcher.updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
-                		}
-                	}
-                }
-                else{
-                	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
-            			dataWatcher.updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)1));
-                		this.setCode(heldItem.getItemDamage());
-                	}
-                }
-            }
-        }
-        
-        return true;
-    }
-    
 	@Override
 	public int getSizeInventory() {
 		return items.length;

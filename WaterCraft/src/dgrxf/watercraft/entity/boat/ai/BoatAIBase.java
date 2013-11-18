@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat.ai;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -43,6 +44,12 @@ public abstract class BoatAIBase {
      * Gets called if boat is near buoy
      */
     public void buoyFound(WCBouyLogic buoy) {
+    }
+    
+    /**
+     * Gets called when the player right clicks a boat
+     */
+    public void onInteractFirst(EntityPlayer player){
     }
     
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {

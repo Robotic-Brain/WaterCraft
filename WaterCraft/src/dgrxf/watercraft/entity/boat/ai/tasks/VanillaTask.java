@@ -1,6 +1,7 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class VanillaTask extends BoatAITaskBase {
@@ -23,6 +24,15 @@ public class VanillaTask extends BoatAITaskBase {
             }
         }
         // ---------- PLAYER STEERING [END]
+    }
+    
+    @Override
+    public void onInteractFirst(EntityPlayer player) {
+        if (boat.riddenByEntity == null) {
+            if (!boat.worldObj.isRemote) {
+                player.mountEntity(boat);
+            }
+        }
     }
     
 }

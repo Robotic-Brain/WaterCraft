@@ -1,8 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
@@ -16,8 +14,8 @@ import net.minecraftforge.fluids.IFluidHandler;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
+import dgrxf.watercraft.entity.boat.ai.tasks.TankTask;
 import dgrxf.watercraft.lib.EntityInfo;
-import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
 public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 
@@ -58,74 +56,12 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	@Override
 	protected void setBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0.0F));
+		list.addTask(new TankTask(this, 1.0F));
 	}
 	
 	@Override
 	public Block getDisplayTile() {
 		return ModBlocks.tank;
-	}
-
-	@Override
-	public boolean interactFirst(EntityPlayer player) {
-		if(worldObj.isRemote) return true;
-		ItemStack playerItem = player.inventory.getCurrentItem();
-		if(playerItem != null){
-			FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(player.getCurrentEquippedItem());
-			if(liquid != null){
-				int amount = this.fill(ForgeDirection.UNKNOWN, liquid, false);
-				if(amount == liquid.amount){
-					this.fill(ForgeDirection.UNKNOWN, liquid, true);
-					if(!player.capabilities.isCreativeMode){
-						player.inventory.setInventorySlotContents(player.inventory.currentItem, removeItem(playerItem));
-						return true;
-					}
-
-					return true;
-				}
-			}
-			else if (FluidContainerRegistry.isBucket(playerItem)){
-				FluidTankInfo[] tankInfo = this.getTankInfo(ForgeDirection.UNKNOWN);
-				FluidStack fillFluid = tankInfo[0].fluid;
-				ItemStack stack = FluidContainerRegistry.fillFluidContainer(fillFluid, playerItem);
-				if(stack != null){
-					this.drain(ForgeDirection.UNKNOWN, FluidContainerRegistry.getFluidForFilledItem(stack).amount, true);
-					if(!player.capabilities.isCreativeMode){
-						if(playerItem.stackSize == 1){
-							player.inventory.setInventorySlotContents(player.inventory.currentItem, stack);
-						}
-						else
-						{
-							player.inventory.setInventorySlotContents(player.inventory.currentItem, removeItem(playerItem));
-							
-							if(!player.inventory.addItemStackToInventory(stack)){
-								player.dropPlayerItem(stack);
-							}
-						}
-					}
-					return true;
-				}
-			}
-		}
-		
-		return true;
-	}
-	
-	private ItemStack removeItem(ItemStack playerItem) {
-		if(playerItem.stackSize == 1){
-			if(playerItem.getItem().hasContainerItem()){
-				return playerItem.getItem().getContainerItemStack(playerItem);
-			}
-			else
-			{
-				return null;
-			}
-		}
-		else
-		{
-			playerItem.splitStack(1);
-			
-			return playerItem;
-		}
 	}
 	
 	@Override
