@@ -76,7 +76,8 @@ public abstract class GuiScrollList extends GuiExtra{
     }
     
     private void doScroll(int y) {
-        scrollPos = (y - (getScrollBar()[1]) - (int) (getScrollBarSize().y * 2));
+        System.out.println("Y: " + y);
+        scrollPos = ((y  )- (getScrollBar()[1]) - (int) (getScrollBarSize().y / 2));
         int maxScroll = getScrollBar()[3] - (int) getScrollBarSize().y;
         if (scrollPos < 0) scrollPos = 0;
         else if (scrollPos > maxScroll) scrollPos = maxScroll;
@@ -162,6 +163,7 @@ public abstract class GuiScrollList extends GuiExtra{
     @Override
     public void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked) {
         if (!isActive()) return;
+        y -= gui.getTop();
         
         if (isScrolling) {
             if (button == -1)
@@ -189,6 +191,7 @@ public abstract class GuiScrollList extends GuiExtra{
         }
         int[] pos = {getScrollBar()[0], getScrollBar()[1], getScrollBar()[2], getScrollBar()[3]};
         if ((list.size() >= maxItemDisplayed) && (inRect(gui, x, y, pos))) {
+            y -= gui.getTop();
             doScroll(y);
             isScrolling = true;
         }

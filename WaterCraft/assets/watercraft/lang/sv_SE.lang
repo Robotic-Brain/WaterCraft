@@ -1,5 +1,6 @@
 ﻿
-itemGroup.watercraft=WaterCraft
+
+itemGroup.WaterCraft=WaterCraft
 
 tile.buoyBlockName.name=Boj
 tile.controlUnitDock.name=Styrenhet
@@ -11,9 +12,20 @@ item.boatChest.name=Kist Båt
 item.TelescopeName.name=Teleskop
 item.TapeItemName.name=Måttband
 item.wcboat.name=Båt
+item.dumbBoat.name=Simpel Båt
+item.iceBoat.name=Isbrytare
+item.rope.name=Rep
+item.padlock.name=Hänglås
+item.calculator.name=Miniräknare
 
 strings.watercraft:tape_measure_start=Startad mätning vid: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Avslutad mätning vid: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Avstånd: %s
 
-death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox. NEEDS LOCALIZATION
+strings.watercraft:toolbox_contains=Denna Verktygslåda innehåller för tillfället:
+strings.watercraft:toolbox_contains_nothing=Ingenting
+strings.watercraft:toolbox_empty=En tom Verktygslåda
+strings.watercraft:toolbox_owner=Denna Verktygslådan tillhör: %s
+strings.watercraft:toolbox_no_owner=En Verktygslåda utan ägare
+
+death.attack.inception=%s fastnade i Limbo när man försökte lägga en Verktygslåda i en Verktygslåda.
