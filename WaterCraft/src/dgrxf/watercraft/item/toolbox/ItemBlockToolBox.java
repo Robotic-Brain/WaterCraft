@@ -48,7 +48,7 @@ public class ItemBlockToolBox extends ItemBlock {
         List list = world.getEntitiesWithinAABB(EntityPlayer.class, bounds);
         
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) instanceof EntityPlayer) {
+            if (list.get(i) != null && list.get(i) instanceof EntityPlayer) {
                 ((EntityPlayer) list.get(i)).closeScreen();
             }
         }
