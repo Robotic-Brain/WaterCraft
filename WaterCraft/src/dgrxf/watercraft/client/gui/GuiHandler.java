@@ -83,7 +83,6 @@ public class GuiHandler implements IGuiHandler {
                 
                 if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
-                    LogHelper.debug("SOUND");
                     return new ToolBoxGUI(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);
                 }
@@ -107,7 +106,6 @@ public class GuiHandler implements IGuiHandler {
             	break;
             case LOCK_ASSEMBLER_GUI_ID:
             	if (te instanceof WCTileEntityLockAssembler) {
-            	    System.out.println("LOCK");
             		return new GuiLockAssembler(player.inventory, (WCTileEntityLockAssembler)te);
             	}
             	break;
