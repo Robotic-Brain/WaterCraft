@@ -23,6 +23,8 @@ public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
 		
 		Tessellator tessellator = Tessellator.instance;
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        block.setBlockBounds(0.0f, 0.0f, 0.0f, 1f, 1f, 1f);
+        renderer.setRenderBoundsFromBlock(block);
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0F, -1F, 0.0F);
         renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 0));
@@ -46,6 +48,33 @@ public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
         tessellator.startDrawingQuads();
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
         renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 0));
+        tessellator.draw();
+        
+        block.setBlockBounds(0.125f, 0.125f, 0.125f, 0.875f, 0.875f, 0.875f);
+        renderer.setRenderBoundsFromBlock(block);
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 1F, 0.0F);
+		renderer.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 0));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0F, 1.0F);
+		renderer.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 1));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(1.0F, 0F, 0.0F);
+		renderer.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 1));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, -1F, 0.0F);
+		renderer.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 0));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0F, -1.0F);
+		renderer.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 1));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(-1.0F, 0F, 0.0F);
+		renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 1));
         tessellator.draw();
 	}
 

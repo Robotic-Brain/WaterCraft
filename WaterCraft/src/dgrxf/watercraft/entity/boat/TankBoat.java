@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -20,7 +21,8 @@ import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
 public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 
-	public FluidTank tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * 8);
+	public FluidTank tank;
+	private boolean firstRun = true;
 	
 	public TankBoat(World world){
 		super(world);
@@ -33,9 +35,32 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	}
 	
 	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		if(firstRun){
+			if(tank != null){
+				if(tank.getFluid() != null){
+					dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
+					dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, FluidRegistry.getFluid(tank.getFluid().fluidID).getName());
+					firstRun = false;
+				}
+			}
+		}
+	}
+	
+	@Override
 	protected void entityInit() {
 		super.entityInit();
-		dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
+		if(tank != null){
+			if(tank.getFluid() != null){
+				dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
+				dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, FluidRegistry.getFluid(tank.getFluid().fluidID).getName());
+			}
+		}
+		else{
+			dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
+			dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
+		}
 	}
 
 	@Override
@@ -122,6 +147,7 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 		int amount = tank.fill(resource, doFill);
 		if(amount > 0 && doFill){
 			dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) + amount));
+			dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, new String(resource.getFluid().getName()));
 		}
 
 		return amount;
@@ -138,6 +164,9 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 		FluidStack amount = tank.drain(maxDrain, doDrain);
 		if(amount != null && doDrain){
 			dataWatcher.updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) - amount.amount));
+			dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, new String(amount.getFluid().getName()));
+		}else if(amount == null && doDrain){
+			dataWatcher.updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, new String("none"));
 		}
 		
 		return amount;

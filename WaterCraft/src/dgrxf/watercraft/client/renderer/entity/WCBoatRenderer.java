@@ -15,8 +15,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidHandler;
 
 import org.lwjgl.opengl.GL11;
 
@@ -59,15 +59,12 @@ public class WCBoatRenderer extends Render {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * entity.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
         
-        System.out.println(TextureMap.locationBlocksTexture.getResourcePath());
-        System.out.println(boatTextures.getResourceDomain());
-        
         Block block = entity.getDisplayTile();
         if (block != null) {
             GL11.glPushMatrix();
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);
-        	if(block != ModBlocks.chest && block != ModBlocks.tank){
+        	if(block != ModBlocks.chest){
                 this.bindTexture(TextureMap.locationBlocksTexture);
                 GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
 	            this.renderBlockInBoat(entity, par9, block, 0);
@@ -86,9 +83,8 @@ public class WCBoatRenderer extends Render {
                 }else{
                 	chest.renderAll(false);
                 }
-        	}else if(entity.getDisplayTile() == ModBlocks.tank){
-        		renderLiquidTank(entity, block);
         	}
+        	
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
@@ -114,6 +110,9 @@ public class WCBoatRenderer extends Render {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
         this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        if(par3Block == ModBlocks.tank){
+        	renderLiquidInTank(entity, par3Block);
+        }
         GL11.glPopMatrix();
     }
     
@@ -134,8 +133,85 @@ public class WCBoatRenderer extends Render {
     	GL11.glPopMatrix();		
     }*/
     
-    private void renderLiquidTank(AbstractBaseBoat entity, Block block){
+    private void renderLiquidInTank(AbstractBaseBoat entity, Block block){
+    	FluidStack flu;
+    	if(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME) != "none")
+    		flu = FluidRegistry.getFluidStack(FluidRegistry.getFluid(entity.getDataWatcher().getWatchableObjectString(EntityInfo.DATAWATCHER_LIQUID_NAME)).getName(), 1);
+    	else
+    		flu = null;
     	
+    	Icon icon = block.getIcon(0, 0);
+		Tessellator tessellator = Tessellator.instance;
+		if(flu != null){
+			ItemStack stack = new ItemStack(flu.getFluid().getBlockID(), 1, 0);
+			if(stack.getIconIndex() != null)
+				icon = stack.getIconIndex();
+			int amount = entity.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) / 1000;
+			switch(amount){
+			case 0:
+				block.setBlockBounds(0, 0, 0, 0, 0, 0);
+				break;
+			case 1:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.21875f, 0.874f);
+				break;
+			case 2:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.3125f, 0.874f);
+				break;
+			case 3:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.40625f, 0.874f);
+				break;
+			case 4:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.5f, 0.874f);
+				break;
+			case 5:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.59375f, 0.874f);
+				break;
+			case 6:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.6875f, 0.874f);
+				break;
+			case 7: 
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.78125f, 0.874f);
+				break;
+			case 8:
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.874f, 0.874f);
+				break;
+			}
+			
+			renderBlock.setRenderBoundsFromBlock(block);
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 1F, 0.0F);
+			renderBlock.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 0F, 1.0F);
+			renderBlock.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+			
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(1.0F, 0F, 0.0F);
+			renderBlock.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, -1F, 0.0F);
+			renderBlock.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(0.0F, 0F, -1.0F);
+			renderBlock.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+	        tessellator.startDrawingQuads();
+	        tessellator.setNormal(-1.0F, 0F, 0.0F);
+			renderBlock.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
+	        tessellator.draw();
+	        
+			block.setBlockBounds(0, 0, 0, 1, 1, 1);
+			
+		}
+		
     }
     
     @Override
