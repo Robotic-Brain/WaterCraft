@@ -23,16 +23,19 @@ public class ItemFlag extends Item {
     }
     
     @SideOnly(Side.CLIENT)
-    private Icon[] flags = new Icon[15];
+    private Icon[] flags;
     
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister icon) {
+    	flags = new Icon[15];
         for (int i = 0; i < flags.length; i++) {
             flags[i] = icon.registerIcon(ModInfo.MODID + ":" + "flags/flag_" + (i + 1));
         }
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int dmg) {
         return flags[dmg];
     }
