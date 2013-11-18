@@ -108,7 +108,8 @@ public class ItemBlockToolBox extends ItemBlock {
                 toolbox.setTagCompound(tag);
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, toolbox);
             }
-            Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
+            if(world.isRemote)
+            	Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
             FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return stack;
