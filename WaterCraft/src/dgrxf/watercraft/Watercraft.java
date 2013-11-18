@@ -11,6 +11,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
@@ -66,6 +68,7 @@ public class Watercraft {
         RecipeHandler.init();
     }
     
+    @SideOnly(Side.CLIENT)
     public static void printToPlayer(String txt) {
         Minecraft.getMinecraft().thePlayer.sendChatMessage("" + txt);
     }
