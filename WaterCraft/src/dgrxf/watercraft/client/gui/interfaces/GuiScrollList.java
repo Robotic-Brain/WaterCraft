@@ -76,7 +76,6 @@ public abstract class GuiScrollList extends GuiExtra{
     }
     
     private void doScroll(int y) {
-        System.out.println("Y: " + y);
         scrollPos = ((y  )- (getScrollBar()[1]) - (int) (getScrollBarSize().y / 2));
         int maxScroll = getScrollBar()[3] - (int) getScrollBarSize().y;
         if (scrollPos < 0) scrollPos = 0;
