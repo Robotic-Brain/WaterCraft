@@ -57,6 +57,9 @@ public class ItemInfo {
     public static final String TANK_BOAT_UNLOCALIZED_NAME    = "tankBoat";
     public static final String TANK_BOAT_KEY                  = "Tank Boat";
     
+    public static final String UPGRADE_UNLOCALIZED_NAME         = "upgrade";
+    public static final String UPGRADE_KEY                      = "Upgrades";
+    
     /*************
      * Integers
      *************/
@@ -104,4 +107,7 @@ public class ItemInfo {
     
     public static final int    TANK_BOAT_ID_DEFAULT          = 1719;
     public static int          TANK_BOAT_ID;
+    
+    public static final int    UPGRADE_ID_DEFAULT          = 1720;
+    public static int          UPGRADE_ID;
 }

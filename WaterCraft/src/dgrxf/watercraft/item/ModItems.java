@@ -37,6 +37,7 @@ public class ModItems {
     public static Item calculator;
     public static Item key;
     public static Item moduleBoat;
+    public static Item upgrades;
     
     public static void init() {
         boatVanilla = new ItemBoat();
@@ -53,5 +54,6 @@ public class ModItems {
         key = new ItemKey();
         tankBoat = new ItemBoatTank();
         moduleBoat = new ItemModularBoat();
+        upgrades = new ItemUpgrades();
     }
 }
