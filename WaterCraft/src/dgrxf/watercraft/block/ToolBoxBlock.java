@@ -15,6 +15,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -64,11 +65,11 @@ public class ToolBoxBlock extends DirectionalBlock {
      */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta == 2 || meta == 3) {
+        
+        ForgeDirection dir = getBlockDirection(world, x, y, z);
+        if (dir == ForgeDirection.NORTH || dir == ForgeDirection.SOUTH) {
             setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
-        }
-        if (meta == 4 || meta == 5) {
+        } else if (dir == ForgeDirection.EAST || dir == ForgeDirection.WEST) {
             setBlockBounds(0.345F, 0F, 0.1F, 0.645F, 0.5F, 0.9F);
         }
     }
