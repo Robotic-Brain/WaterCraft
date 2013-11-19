@@ -12,14 +12,19 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.ModInfo;
+import dgrxf.watercraft.util.TranslationHelper;
 
 public class ItemFlag extends Item {
     public ItemFlag() {
         super(ItemInfo.FLAG_ID);
-        setUnlocalizedName(ItemInfo.FLAG_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.boatTab);
         hasSubtypes = true;
         maxStackSize = 1;
+    }
+    
+    @Override
+    public String getUnlocalizedName(ItemStack stack) {
+    	return ItemInfo.FLAG_UNLOCALIZED_NAME + "." + TranslationHelper.FLAGS[stack.getItemDamage()];
     }
     
     @SideOnly(Side.CLIENT)
@@ -43,7 +48,9 @@ public class ItemFlag extends Item {
     @Override
     public void getSubItems(int val, CreativeTabs tab, List subItems) {
         for (int i = 0; i < 15; i++) {
-            subItems.add(new ItemStack(this, 1, i));
+        	ItemStack stack = new ItemStack(this, 1, i);
+        	stack.setItemName(TranslationHelper.translate(stack.getUnlocalizedName(), 0));
+            subItems.add(stack);
         }
     }
 }

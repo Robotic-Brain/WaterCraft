@@ -18,6 +18,22 @@ item.rope.name=Rope
 item.padlock.name=Padlock
 item.calculator.name=Calculator
 
+flag.white=White Flag
+flag.orange=Orange Flag
+flag.magenta=Magenta Flag
+flag.light_blue=Light Blue Flag
+flag.yellow=Yellow Flag
+flag.pink=Pink Flag
+flag.grey=Grey Flag
+flag.light_grey=Light Grey Flag
+flag.cyan=Cyan Flag
+flag.purple=Purple Flag
+flag.blue=Blue Flag
+flag.brown=Brown Flag
+flag.green=Green Flag
+flag.red=Red Flag
+flag.black=Black Flag
+
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Distance: %s

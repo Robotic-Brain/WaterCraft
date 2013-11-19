@@ -26,6 +26,8 @@ public class TranslationHelper {
     public static final String TOOLBOX_OWNER           = BASE_KEY + "toolbox_owner";
     public static final String TOOLBOX_NO_OWNER        = BASE_KEY + "toolbox_no_owner";
     
+    public static final String[] FLAGS = {"white", "orange", "magenta", "light_blue", "yellow", "pink", "grey", "light_grey", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+    
     /**
      * Simple Wrapper
      * 
