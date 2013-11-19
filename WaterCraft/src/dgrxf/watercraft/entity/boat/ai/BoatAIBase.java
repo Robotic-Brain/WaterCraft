@@ -2,6 +2,7 @@ package dgrxf.watercraft.entity.boat.ai;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
@@ -44,6 +45,9 @@ public abstract class BoatAIBase {
      * Gets called if boat is near buoy
      */
     public void buoyFound(WCBouyLogic buoy) {
+    }
+    
+    public void attackEntityFrom(DamageSource source, float damage){
     }
     
     /**

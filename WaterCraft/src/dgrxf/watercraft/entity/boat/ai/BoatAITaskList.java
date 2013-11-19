@@ -5,6 +5,7 @@ import java.util.TreeSet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -65,6 +66,13 @@ public class BoatAITaskList extends BoatAIBase {
     public void onInteractFirst(EntityPlayer player) {
     	for(BoatAITaskBase task : tasks){
     		task.onInteractFirst(player);
+    	}
+    }
+    
+    @Override
+    public void attackEntityFrom(DamageSource source, float damage) {
+    	for(BoatAITaskBase task : tasks){
+    		task.attackEntityFrom(source, damage);
     	}
     }
     
