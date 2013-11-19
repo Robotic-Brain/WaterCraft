@@ -138,26 +138,27 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
-        // TODO: add AI hook?
         if (this.isEntityInvulnerable()) {
             return false;
         } else if (!this.worldObj.isRemote && !this.isDead) {
-            this.setForwardDirection(-this.getForwardDirection());
-            this.setTimeSinceHit(10);
-            this.setDamageTaken(this.getDamageTaken() + par2 * 10.0F);
-            this.setBeenAttacked();
-            boolean flag = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode;
-            
-            if (flag || this.getDamageTaken() > 40.0F) {
-                if (this.riddenByEntity != null) {
-                    this.riddenByEntity.mountEntity(this);
-                }
+            if (this.ai.attackEntityFrom(par1DamageSource, par2)) {
+                this.setForwardDirection(-this.getForwardDirection());
+                this.setTimeSinceHit(10);
+                this.setDamageTaken(this.getDamageTaken() + par2 * 10.0F);
+                this.setBeenAttacked();
+                boolean flag = par1DamageSource.getEntity() instanceof EntityPlayer && ((EntityPlayer) par1DamageSource.getEntity()).capabilities.isCreativeMode;
                 
-                if (!flag) {
-                    this.dropItemWithOffset(Item.boat.itemID, 1, 0.0F);
+                if (flag || this.getDamageTaken() > 40.0F) {
+                    if (this.riddenByEntity != null) {
+                        this.riddenByEntity.mountEntity(this);
+                    }
+                    
+                    if (!flag) {
+                        this.dropItemWithOffset(Item.boat.itemID, 1, 0.0F);
+                    }
+                    
+                    this.setDead();
                 }
-                
-                this.setDead();
             }
             
             return true;

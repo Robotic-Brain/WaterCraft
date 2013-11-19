@@ -47,7 +47,11 @@ public abstract class BoatAIBase {
     public void buoyFound(WCBouyLogic buoy) {
     }
     
-    public void attackEntityFrom(DamageSource source, float damage){
+    /**
+     * Gets called
+     */
+    public boolean attackEntityFrom(DamageSource source, float damage) {
+        return true;
     }
     
     /**

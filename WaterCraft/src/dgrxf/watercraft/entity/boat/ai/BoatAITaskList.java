@@ -70,10 +70,15 @@ public class BoatAITaskList extends BoatAIBase {
     }
     
     @Override
-    public void attackEntityFrom(DamageSource source, float damage) {
-    	for(BoatAITaskBase task : tasks){
-    		task.attackEntityFrom(source, damage);
+    public boolean attackEntityFrom(DamageSource source, float damage) {
+    	boolean result = true;
+        for(BoatAITaskBase task : tasks){
+    		if (!task.attackEntityFrom(source, damage)) {
+    		    result = false;
+    		}
     	}
+        
+        return result;
     }
     
     @Override
