@@ -2,7 +2,8 @@ package dgrxf.watercraft.enumeration;
 
 public enum ModifierType {
     //TODO: Add more modifier types.
-    ENGINE;
+    ENGINE,
+    ACCESSORY;
     
     public final int modSlot;
     
