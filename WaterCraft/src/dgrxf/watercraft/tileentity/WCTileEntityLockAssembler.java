@@ -2,6 +2,8 @@ package dgrxf.watercraft.tileentity;
 
 import java.util.Arrays;
 
+import dgrxf.watercraft.item.ModItems;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -12,12 +14,30 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 	
 	private static final int SLOTS = 5;
 	private static final int OUTPUT_SLOTS = 2;
-	private static final int[] INGREDIENTS_ID = {Item.ingotIron.itemID, Item.ingotGold.itemID, Item.goldNugget.itemID};
+	private static final int[] INGREDIENTS_ID = {Item.ingotIron.itemID, Item.ingotGold.itemID, Item.goldNugget.itemID}; //maybe...
+	
+	private int code;
 	
 	private ItemStack[] items = new ItemStack[SLOTS];
 	
 	public WCTileEntityLockAssembler() {
 		
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
+	public void setCode(int code) {
+		this.code = code;
+	}
+	
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		
+		items[3] = new ItemStack(ModItems.padlock.itemID, 1, getCode());
+		items[4] = new ItemStack(ModItems.key.itemID, 1, getCode());
 	}
 
 	@Override

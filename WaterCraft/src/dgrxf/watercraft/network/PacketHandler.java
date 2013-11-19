@@ -18,17 +18,20 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.client.gui.container.ITeContainer;
+import dgrxf.watercraft.client.gui.container.LockAssemblerContainer;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
+import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.util.LogHelper;
 
 public class PacketHandler implements IPacketHandler {
     
-    public static final int INTERFACE_PACKET_ID = 0;
-    public static final int FREEZER_PACKET_ID   = 1;
-    public static final int SOUND_PACKET_ID     = 2;
+    public static final int INTERFACE_PACKET_ID 	 = 0;
+    public static final int FREEZER_PACKET_ID   	 = 1;
+    public static final int SOUND_PACKET_ID    		 = 2;
+    public static final int LOCK_ASSEMBLER_PACKET_ID = 3;
     
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
@@ -72,6 +75,15 @@ public class PacketHandler implements IPacketHandler {
                 
                 if (player != null ) {
                     Sounds.values()[sound].play(x, y, z, 1.0F, 1.0F);
+                }
+                break;
+            case LOCK_ASSEMBLER_PACKET_ID:
+                short code = reader.readShort();
+                if (container != null && container instanceof LockAssemblerContainer) {
+                    TileEntity te = ((LockAssemblerContainer)container).getTileEntity();
+                    if (te instanceof WCTileEntityLockAssembler) {
+                        ((WCTileEntityLockAssembler) te).setCode(code);
+                    }
                 }
                 break;
             default:
@@ -129,5 +141,21 @@ public class PacketHandler implements IPacketHandler {
         } catch (IOException e) {
             LogHelper.severe("Failed to send sound interface packet. This is a bug please report this to the mod auther." + e);
         }
+    }
+    
+    public static void sendLockAssemblerPacket(short code) {
+        ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+        DataOutputStream dataStream = new DataOutputStream(byteStream);
+        
+        try {
+            
+            dataStream.writeByte((byte) LOCK_ASSEMBLER_PACKET_ID);
+            dataStream.writeShort(code);
+            
+            PacketDispatcher.sendPacketToServer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
+        } catch (IOException e) {
+            LogHelper.severe("Failed to send lock assembler interface packet. This is a bug please report this to the mod auther." + e);
+        }
+        
     }
 }

@@ -3,6 +3,7 @@ package dgrxf.watercraft.client.gui.interfaces;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.container.LockAssemblerContainer;
+import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 public class GuiLockAssembler extends GuiBase {
 	
 	private WCTileEntityLockAssembler lock;
-	private KeySlider[] sliders = new KeySlider[6];
+	private KeySlider[] sliders = new KeySlider[5];
 	private int code;
 	
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/lockassembler.png"); 
@@ -23,7 +24,7 @@ public class GuiLockAssembler extends GuiBase {
 		this.ySize = 182;
 		
 		for (int i = 0; i < sliders.length; i++) {
-			sliders [i] = new KeySlider(46 + 8*i, 72, 7, 5);
+			sliders [i] = new KeySlider(46 + 8*i, 78, 7, 5);
 		}
 	}
 
@@ -39,7 +40,7 @@ public class GuiLockAssembler extends GuiBase {
         		srcY += 5;
         	}
         	
-        	drawTexturedModalRect(sliders[i].getX() + guiLeft, guiTop + sliders[i].getY(), xSize, 21, 7, 72 - sliders[i].getY());
+        	drawTexturedModalRect(sliders[i].getX() + guiLeft, guiTop + sliders[i].getY(), xSize, 21, 7, 78 - sliders[i].getY());
         	sliders[i].draw(this, xSize, srcY);
         }
 	}
@@ -61,7 +62,7 @@ public class GuiLockAssembler extends GuiBase {
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
 		super.drawGuiContainerForegroundLayer(par1, par2);
 		
-		fontRenderer.drawString(Integer.toString(code), 7, 5, 0x404040);
+		fontRenderer.drawString("Code: " + Integer.toString(code), 7, 5, 0x404040);
 	}
 	
 	@Override
@@ -70,10 +71,10 @@ public class GuiLockAssembler extends GuiBase {
 		if (button == 0) {
 			for (KeySlider slid : sliders) {
 				 if(slid.clicked) {
-					 int y = (72 - mouseY + guiTop) / 8;
-					 y = 72 - 5 * y;
-					 if (y > 72) y = 72;
-					 if (y < 42) y = 42;
+					 int y = (83 - mouseY + guiTop) / 5 + 1;
+					 y = 83 - 5 * y;
+					 if (y > 78) y = 78;
+					 if (y < 48) y = 48;
 					 slid.setY(y);
 				 }
 			 }
@@ -86,10 +87,16 @@ public class GuiLockAssembler extends GuiBase {
 		code = 0;
 		for (KeySlider slid : sliders) {
 			slid.clicked = false;
-			int i = (72 - slid.getY()) / 5;
+			int i = (78 - slid.getY()) / 5;
 			code += i;
 			code *= 10;
 		}
+		code /= 10;
+		
+		System.out.println(code);
+		
+		short codeToSend = Short.valueOf(Integer.toString(code), 8);
+		PacketHandler.sendLockAssemblerPacket(codeToSend);
 	}
 
 }
