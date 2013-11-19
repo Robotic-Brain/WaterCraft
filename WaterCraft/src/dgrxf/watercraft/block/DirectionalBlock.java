@@ -1,5 +1,6 @@
 package dgrxf.watercraft.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -8,7 +9,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.util.RotationHelper;
 
-public abstract class DirectionalBlock extends WCBlock {
+public abstract class DirectionalBlock extends Block {
     
     public DirectionalBlock(int id, Material material) {
         super(id, material);

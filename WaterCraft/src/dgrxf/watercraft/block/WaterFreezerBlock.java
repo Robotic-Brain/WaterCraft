@@ -1,5 +1,6 @@
 package dgrxf.watercraft.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +22,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
  * 
  */
 
-public class WaterFreezerBlock extends WCBlock {
+public class WaterFreezerBlock extends Block {
     
     public WaterFreezerBlock(int id) {
         super(id, Material.iron);

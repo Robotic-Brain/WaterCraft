@@ -1,5 +1,6 @@
 package dgrxf.watercraft.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import dgrxf.watercraft.lib.BlockInfo;
 
@@ -10,7 +11,7 @@ import dgrxf.watercraft.lib.BlockInfo;
  * 
  */
 
-public class DropZoneBlock extends WCBlock {
+public class DropZoneBlock extends Block {
     public DropZoneBlock() {
         super(BlockInfo.DROPZONE_ID, Material.rock);
         setUnlocalizedName(BlockInfo.BUOY_UNLOCALIZED_NAME);
