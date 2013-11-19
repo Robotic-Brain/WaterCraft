@@ -76,6 +76,8 @@ public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
         tessellator.setNormal(-1.0F, 0F, 0.0F);
 		renderer.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, 1));
         tessellator.draw();
+        
+		block.setBlockBounds(0, 0, 0, 1, 1, 1);
 	}
 
 	@Override
