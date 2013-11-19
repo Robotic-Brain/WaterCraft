@@ -1,8 +1,12 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
@@ -10,12 +14,14 @@ import dgrxf.watercraft.lib.EntityInfo;
 
 public class InventoryTask extends BoatAITaskBase{
 
-	public InventoryTask(AbstractBaseBoat boat, float priority) {
+	private int guiID;
+	
+	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID) {
 		super(boat, priority);
+		this.guiID = guiID;
 	}
 
-	
-	//TODO: Update this to accept different types of GUIs
+
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
 		if(!(boat instanceof IInventory)) return;
@@ -25,7 +31,11 @@ public class InventoryTask extends BoatAITaskBase{
 	        	ItemStack heldItem = player.inventory.getCurrentItem();
 	            if (!player.isSneaking()) {
 	            	if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == ((ILockableBlock)boat).getCode()))
-	            		player.displayGUIChest((IInventory)boat);
+	            		if(guiID < 0){
+	            			openVanillaGUI(player);
+	            		}
+	            		else
+	            			FMLNetworkHandler.openGui(player, Watercraft.instance, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
 	            } else {
 	                if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
 	                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
@@ -45,10 +55,22 @@ public class InventoryTask extends BoatAITaskBase{
         	else
         	{
         		if(!player.isSneaking()){
-        			player.displayGUIChest((IInventory)boat);
+        			if(guiID < 0){
+        				openVanillaGUI(player);
+        			}
+        			else
+            			FMLNetworkHandler.openGui(player, Watercraft.instance, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
         		}
         	}
         }
+	}
+	
+	private void openVanillaGUI(EntityPlayer player){
+		switch(guiID){
+		case GuiHandler.VANILLA_CHEST_ID:
+			player.displayGUIChest((IInventory)boat);
+			break;
+		}
 	}
 	
 }
