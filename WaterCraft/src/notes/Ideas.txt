@@ -2,10 +2,6 @@
 **** Ideas ****
 ***************
 
-Just needed to place this for future ref:
-# 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# File Created: 07.11.2013 15:29:34
-
     - Boats
         - Chest Boat
         - Tank Boat
@@ -57,3 +53,29 @@ Just needed to place this for future ref:
 	   - automatic fishing poles that you stick next to water
     - Pirates (Can someone elaborate on this one?)
 
+****************************
+**** Control unit Ideas ****
+****************************
+
+	- When you first place the unit down, you get a basic setup. Inside the GUI you will only have a single tab,
+	in which you can set a few parameters. These parameters will then do things to the boat, see below for more. You
+	will also be able to upgrade the units, to unlock more tabs, IE: Chest boat upgrade will unlock the Tab for that
+	boat, which will contain more advance parameters for that boat.
+	
+	Tabs:
+		- Basic Tab
+			- Parameters:
+			-> Leave on Redstone
+			-> Leave after certain amount of ticks
+			-> Leave when player gets in boat
+		- Chest Tab
+			- Parameters:
+			-> Leave when full
+			-> Leave when Empty
+			-> Empty  (Will be in an secound dropdown, if there is a unloader type block nearby(
+			-> Fill (Read above)
+			-> Emit Redstone signal when full
+			-> Emit Redstone signal when empty
+		- Tank Tab
+			- Parameters:
+			-> more or less similar to the chest Tab
