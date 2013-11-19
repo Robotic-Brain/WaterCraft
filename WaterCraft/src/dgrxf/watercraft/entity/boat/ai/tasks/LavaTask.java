@@ -30,4 +30,9 @@ public class LavaTask extends BoatAITaskBase {
         }
 	}
 	
+	@Override
+	public boolean breakBoat() {
+	    return false;
+	}
+	
 }

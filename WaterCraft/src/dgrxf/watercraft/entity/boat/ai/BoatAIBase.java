@@ -60,10 +60,16 @@ public abstract class BoatAIBase {
     public void onInteractFirst(EntityPlayer player){
     }
     
+    /**
+     * Return false to prevent boat breaking from collisions
+     */
+    public boolean breakBoat() {
+        return true;
+    }
+    
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
     }
     
     public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {
     }
-    
 }

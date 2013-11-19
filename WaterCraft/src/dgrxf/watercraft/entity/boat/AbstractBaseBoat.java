@@ -410,15 +410,17 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     private void h_break_boat() {
         if (!this.worldObj.isRemote && !this.isDead) {
-            this.setDead();
-            int k;
-            
-            for (k = 0; k < 3; ++k) {
-                this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
-            }
-            
-            for (k = 0; k < 2; ++k) {
-                this.dropItemWithOffset(Item.stick.itemID, 1, 0.0F);
+            if (this.ai.breakBoat()) {
+                this.setDead();
+                int k;
+                
+                for (k = 0; k < 3; ++k) {
+                    this.dropItemWithOffset(Block.planks.blockID, 1, 0.0F);
+                }
+                
+                for (k = 0; k < 2; ++k) {
+                    this.dropItemWithOffset(Item.stick.itemID, 1, 0.0F);
+                }
             }
         }
     }
