@@ -74,7 +74,7 @@ public class GuiLockAssembler extends GuiBase {
 					 int y = (83 - mouseY + guiTop) / 5 + 1;
 					 y = 83 - 5 * y;
 					 if (y > 78) y = 78;
-					 if (y < 48) y = 48;
+					 if (y < 43) y = 43;
 					 slid.setY(y);
 				 }
 			 }

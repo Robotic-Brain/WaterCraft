@@ -1,5 +1,7 @@
 package dgrxf.watercraft.item.toolbox;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -52,5 +54,11 @@ public class ItemPadlock extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
         itemIcon = par1IconRegister.registerIcon("Watercraft:lock");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
+    	info.add("CODE: " + itemstack.getItemDamage());
     }
 }

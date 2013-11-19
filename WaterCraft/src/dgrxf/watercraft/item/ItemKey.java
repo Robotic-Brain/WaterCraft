@@ -1,5 +1,6 @@
 package dgrxf.watercraft.item;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -61,5 +62,11 @@ public class ItemKey extends Item {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister par1IconRegister) {
         itemIcon = par1IconRegister.registerIcon("watercraft:key");
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
+    	info.add("CODE: " + itemstack.getItemDamage());
     }
 }
