@@ -37,6 +37,11 @@ public class ControlBlockDock extends BuoyBlock {
         return true;
     }
     
+   @Override
+	public boolean hasTileEntity(int metadata) {
+		return true;
+	}
+    
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
         return new WCTileEntityControlUnitDock();
