@@ -18,6 +18,5 @@ public class CreativeTabBuoys extends CreativeTabs {
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {
         return ModBlocks.buoy.blockID;
-    }
-    
+    }    
 }

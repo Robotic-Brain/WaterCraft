@@ -1,6 +1,8 @@
 ﻿
 
-itemGroup.WaterCraft=WaterCraft
+itemGroup.wcmisc=WaterCraft Miscellaneous
+itemGroup.wcboats=WaterCraft Boats
+itemGroup.wcbouys=WaterCraft Bouys
 
 tile.buoyBlockName.name=Buoy
 tile.controlUnitDock.name=Control Unit
@@ -17,6 +19,7 @@ item.iceBoat.name=Ice Boat
 item.rope.name=Rope
 item.padlock.name=Padlock
 item.calculator.name=Calculator
+item.wcboatmodular.name=Modular Boat
 
 flag.white=White Flag
 flag.orange=Orange Flag

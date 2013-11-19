@@ -18,6 +18,9 @@ public class ItemInfo {
     public static final String BOAT_UNLOCALIZED_NAME         = "wcboat";
     public static final String BOAT_KEY                      = "wc boat";
     
+    public static final String BOAT_MODULAR_UNLOCALIZED_NAME = "wcboatmodular";
+    public static final String BOAT_MODULAR_KEY              = "wc boat modular";
+    
     public static final String DUMB_BOAT_UNLOCALIZED_NAME    = "dumbBoat";
     public static final String DUMB_BOAT_KEY                 = "Dumb Boat";
     
@@ -68,6 +71,7 @@ public class ItemInfo {
     public static int          BOAT_ID;
     
     public static final int	   MODULAR_BOAT_ID_DEFAULT		 = 1720;
+    public static int	   MODULAR_BOAT_ID;
     
     public static final int    TAPE_MEASURE_ID_DEFAULT       = 1707;
     public static int          TAPE_MEASURE_ID;

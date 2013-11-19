@@ -7,6 +7,7 @@ import dgrxf.watercraft.item.ModItems;
 
 public class CreativeTabBoats extends CreativeTabs {
     
+	
     public CreativeTabBoats(int tabId, String label) {
         super(tabId, label);
     }

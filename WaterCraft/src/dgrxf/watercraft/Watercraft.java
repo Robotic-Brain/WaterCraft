@@ -50,7 +50,7 @@ public class Watercraft {
     
     public static CreativeTabMisc  miscTab = new CreativeTabMisc(CreativeTabs.getNextID(), ModInfo.MISC_TAB);
     public static CreativeTabBoats boatTab = new CreativeTabBoats(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
-    public static CreativeTabBuoys buoyTab = new CreativeTabBuoys(CreativeTabs.getNextID(), ModInfo.BOATS_TAB);
+    public static CreativeTabBuoys buoyTab = new CreativeTabBuoys(CreativeTabs.getNextID(), ModInfo.BUOYS_TAB);
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
