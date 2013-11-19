@@ -61,7 +61,6 @@ public class WCBoatRenderer extends Render {
 
         Block block = entity.getDisplayTile();
         if (block != null) {
-            System.out.println(block.blockID);
             GL11.glPushMatrix();
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);

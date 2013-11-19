@@ -20,13 +20,16 @@ import dgrxf.watercraft.creativetab.CreativeTabBoats;
 import dgrxf.watercraft.creativetab.CreativeTabBuoys;
 import dgrxf.watercraft.creativetab.CreativeTabMisc;
 import dgrxf.watercraft.entity.Entities;
+import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.event.WCEventHandler;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
+import dgrxf.watercraft.module.TestModule;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
+import dgrxf.watercraft.util.ModuleHelper;
 
 /**
  * Class Made By: Drunk Mafia
@@ -66,6 +69,9 @@ public class Watercraft {
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
+        ModuleHelper.registrterModuler(new TestModule());
+        ModuleType m = ModuleHelper.getModuleType(TestModule.class);
+        System.out.println(m);
     }
     
     @SideOnly(Side.CLIENT)

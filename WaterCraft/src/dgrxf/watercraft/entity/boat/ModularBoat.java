@@ -14,15 +14,20 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
+import dgrxf.watercraft.lib.EntityInfo;
 
 public class ModularBoat extends AbstractBaseBoat implements IInventory{
 
 	ItemStack[] items = new ItemStack[27];
 	
-	Block blockDisplay = null;
-	
 	public ModularBoat(World world){
 		super(world);
+	}
+	
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
 	}
 	
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {
@@ -39,7 +44,6 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 		if(tagOne != null){
 			for(int i = 0; x < 10; x++){
 				if(tagOne.hasKey("AI"+x)){
-					//par3List.add(tagOne.getString("AI"+i));
 					try {
 						if(Class.forName(tagOne.getString("AI"+x)) == DumbTask.class){
 							list.addTask(new DumbTask(this, (float)x));
@@ -55,24 +59,21 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 				}
 			}
 			if(tagOne.hasKey("Type")){
-				//par3List.add(tagOne.getString("Type"));
+				
 			}
 			if(tagOne.hasKey("Block")){
-				//TODO: send packet to client to tell it that the block inside has changed.
-				blockDisplay = ModBlocks.chest;
+				this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, tagOne.getInteger("Block"));
 			}
 		}
 		
 		if(tagTwo != null){
 			for(int i = 0; i < 10; i++){
 				if(tagTwo.hasKey("AI"+i)){
-					//par3List.add(tagTwo.getString("AI"+i));
 					try {
 						if(Class.forName(tagTwo.getString("AI"+i)) == DumbTask.class){
 							list.addTask(new DumbTask(this, (float)i));
 						}
 						else if(Class.forName(tagTwo.getString("AI"+i)) == InventoryTask.class){
-							System.out.println("test");
 							list.addTask(new InventoryTask(this, (float)i+x, GuiHandler.VANILLA_CHEST_ID));
 						}
 					} catch (ClassNotFoundException e) {
@@ -83,11 +84,9 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 				}
 			}
 			if(tagTwo.hasKey("Type")){
-				//par3List.add(tagTwo.getString("Type"));
 			}
 			if(tagTwo.hasKey("Block")){
-				//TODO: send packet to client to tell it that the block inside has changed.
-				blockDisplay = ModBlocks.chest;
+				this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, tagTwo.getInteger("Block"));
 			}
 		}
 		
@@ -100,7 +99,11 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 
 	@Override
 	public Block getDisplayTile() {
-		return blockDisplay;
+		if(this.dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TILE_ID) != -1){
+			return Block.blocksList[this.dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TILE_ID)];
+		}else{
+			return null;
+		}
 	}
 	
 	@Override
@@ -166,16 +169,10 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
     }
 
 	@Override
-	public void openChest() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void openChest() {}
 
 	@Override
-	public void closeChest() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void closeChest() {}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
