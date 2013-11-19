@@ -1,9 +1,7 @@
 package dgrxf.watercraft.item.boat;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,13 +16,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ModularBoat;
-import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
-import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
-import dgrxf.watercraft.enumeration.ModuleType;
+import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.interfaces.IItemModule;
 import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.module.DumbModule;
 
-public class ItemModularBoat extends Item{
+public class ItemModularBoat extends Item implements IItemModule{
 
 	public ItemModularBoat() {
         super(ItemInfo.MODULAR_BOAT_ID_DEFAULT);
@@ -72,42 +70,19 @@ public class ItemModularBoat extends Item{
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		if(par1ItemStack.hasTagCompound()){
+			NBTTagCompound tag = par1ItemStack.getTagCompound().getCompoundTag("Modules");
 			
-			NBTTagCompound tagOne = par1ItemStack.getTagCompound().getCompoundTag("Tag One");
-			NBTTagCompound tagTwo = par1ItemStack.getTagCompound().getCompoundTag("Tag Two");
-			
-			if(tagOne != null){
-				for(int i = 0; i < 10; i++){
-					if(tagOne.hasKey("AI"+i)){
-						par3List.add(tagOne.getString("AI"+i));
-					}else{
-						break;
-					}
-				}
-				if(tagOne.hasKey("Type")){
-					par3List.add(tagOne.getString("Type"));
-				}
-				if(tagOne.hasKey("Block")){
-					par3List.add(Integer.toString(tagOne.getInteger("Block")));
-				}
-			}
-			
-			if(tagTwo != null){
-				for(int i = 0; i < 10; i++){
-					if(tagTwo.hasKey("AI"+i)){
-						par3List.add(tagTwo.getString("AI"+i));
-					}else{
-						break;
-					}
-				}
-				if(tagTwo.hasKey("Type")){
-					par3List.add(tagTwo.getString("Type"));
-				}
-				if(tagTwo.hasKey("Block")){
-					par3List.add(Integer.toString(tagTwo.getInteger("Block")));
+			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
+				if(tag.hasKey(Alphabet.values()[i].toString())){
+					par3List.add(tag.getString(Alphabet.values()[i].toString()));
 				}
 			}
 			
 		}
     }
+
+	@Override
+	public Class<? extends IBoatModule> getBoatModule() {
+		return DumbModule.class;
+	}
 }

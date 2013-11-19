@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
@@ -38,7 +39,7 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 	}
 	
 	public void readTagInformation(NBTTagCompound tag, BoatAITaskList list){
-		NBTTagCompound tagOne = tag.getCompoundTag("Tag One");
+		/*NBTTagCompound tagOne = tag.getCompoundTag("Tag One");
 		NBTTagCompound tagTwo = tag.getCompoundTag("Tag Two");
 		int x = 0;
 		if(tagOne != null){
@@ -49,7 +50,7 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 							list.addTask(new DumbTask(this, (float)x));
 						}
 						else if(Class.forName(tagOne.getString("AI"+x)) == InventoryTask.class){
-							list.addTask(new InventoryTask(this, (float)x, GuiHandler.VANILLA_CHEST_ID));
+							list.addTask(new InventoryTask(this, (float)x, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27));
 						}
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
@@ -74,7 +75,7 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 							list.addTask(new DumbTask(this, (float)i));
 						}
 						else if(Class.forName(tagTwo.getString("AI"+i)) == InventoryTask.class){
-							list.addTask(new InventoryTask(this, (float)i+x, GuiHandler.VANILLA_CHEST_ID));
+							list.addTask(new InventoryTask(this, (float)i+x, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27));
 						}
 					} catch (ClassNotFoundException e) {
 						e.printStackTrace();
@@ -88,7 +89,7 @@ public class ModularBoat extends AbstractBaseBoat implements IInventory{
 			if(tagTwo.hasKey("Block")){
 				this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, tagTwo.getInteger("Block"));
 			}
-		}
+		}*/
 		
 	}
 

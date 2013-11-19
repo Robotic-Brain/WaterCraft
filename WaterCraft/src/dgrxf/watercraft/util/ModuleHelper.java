@@ -18,6 +18,9 @@ public class ModuleHelper {
 	public static void registrterModuler(IBoatModule module){
 		IBoatModule[] temp = modules.clone();
 		IBoatModule[] tempArray = new IBoatModule[temp.length+1];
+		for(int i = 0; i < temp.length; i++){
+			tempArray[i] = temp[i];
+		}
 		tempArray[tempArray.length-1] = module;
 		modules = tempArray;
 	}
@@ -129,18 +132,16 @@ public class ModuleHelper {
 	 * @param clazz the class of the module you wish to call writeModuleInfoToNBT from
 	 * @param tag the NBT tag compound you wish to write to
 	 */
-	public static void writeModuleInforToNBT(Class<? extends IBoatModule> clazz, NBTTagCompound tag){
-		int x = 0;
-		for(IBoatModule mods : modules){
+	public static int writeModuleInforToNBT(Class<? extends IBoatModule> clazz, NBTTagCompound tag, int startingPos){
+		for(int x = 0; x < modules.length; x++){
 			if(modules[x].getClass() == clazz){
-				modules[x].writeModuleInfoToNBT(tag);;
-				break;
+				return modules[x].writeModuleInfoToNBT(tag, startingPos);
 			}
 			if(x == modules.length){
-				return;
+				break;
 			}
-			x++;
 		}
+		return 0;
 	}
 	
 }

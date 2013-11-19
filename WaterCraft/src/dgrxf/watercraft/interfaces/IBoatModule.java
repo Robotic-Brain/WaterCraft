@@ -21,5 +21,5 @@ public interface IBoatModule {
 	 */
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f, Object... obj);
 	
-	public void writeModuleInfoToNBT(NBTTagCompound tag);
+	public int writeModuleInfoToNBT(NBTTagCompound tag, int startingPos);
 }

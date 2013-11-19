@@ -1,6 +1,8 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -12,19 +14,22 @@ import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
 
-public class InventoryTask extends BoatAITaskBase{
+public class InventoryTask extends BoatAITaskBase implements IInventory{
 
 	private int guiID;
+	private ItemStack[] items;
+	private Object modID;
 	
-	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID) {
+	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID, Object modID, int invSize) {
 		super(boat, priority);
 		this.guiID = guiID;
+		this.modID = modID;
+		this.items = new ItemStack[invSize];
 	}
 
 
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
-		if(!(boat instanceof IInventory)) return;
 		
         if (!boat.worldObj.isRemote) {
         	if(boat instanceof ILockableBlock){
@@ -35,7 +40,7 @@ public class InventoryTask extends BoatAITaskBase{
 	            			openVanillaGUI(player);
 	            		}
 	            		else
-	            			FMLNetworkHandler.openGui(player, Watercraft.instance, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+	            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
 	            } else {
 	                if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
 	                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
@@ -54,13 +59,12 @@ public class InventoryTask extends BoatAITaskBase{
 	        }
         	else
         	{
-				System.out.println("test3");
         		if(!player.isSneaking()){
         			if(guiID < 0){
         				openVanillaGUI(player);
         			}
         			else
-            			FMLNetworkHandler.openGui(player, Watercraft.instance, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
         		}
         	}
         }
@@ -69,9 +73,83 @@ public class InventoryTask extends BoatAITaskBase{
 	private void openVanillaGUI(EntityPlayer player){
 		switch(guiID){
 		case GuiHandler.VANILLA_CHEST_ID:
-			player.displayGUIChest((IInventory)boat);
+			player.displayGUIChest(this);
 			break;
 		}
+	}
+
+
+	@Override
+	public int getSizeInventory() {
+		return items.length;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int i) {
+        return items[i];
+	}
+
+    @Override
+    public ItemStack decrStackSize(int i, int j) {
+        ItemStack item = getStackInSlot(i);
+        if (item != null) {
+            if (item.stackSize <= j) {
+                setInventorySlotContents(i, null);
+            } else {
+                item = item.splitStack(j);
+                onInventoryChanged();
+            }
+        }
+        return item;
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int i) {
+        ItemStack item = getStackInSlot(i);
+        setInventorySlotContents(i, null);
+        return item;
+    }
+
+    public void setInventorySlotContents(int i, ItemStack item) {
+        items[i] = item;
+        if (item != null && item.stackSize > getInventoryStackLimit()) {
+            item.stackSize = getInventoryStackLimit();
+        }
+        onInventoryChanged();
+    }
+
+    @Override
+    public String getInvName() {
+        return "invetoryTask";
+    }
+
+	@Override
+	public boolean isInvNameLocalized() {
+		return false;
+	}
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 64;
+    }
+
+	@Override
+	public void onInventoryChanged() {}
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityplayer) {
+        return entityplayer.getDistanceSq(boat.posX + 0.5, boat.posY + 0.5, boat.posZ + 0.5) <= 64;
+    }
+
+	@Override
+	public void openChest() {}
+
+	@Override
+	public void closeChest() {}
+
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+		return true;
 	}
 	
 }
