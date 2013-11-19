@@ -27,4 +27,22 @@ public class IceTask extends BoatAITaskBase {
             }
         }
     }
+    
+    @Override
+    public boolean breakBoat() {
+        for (int int1 = -2; int1 < 2; int1++) {
+            for (int int2 = -2; int2 < 1; int2++) {
+                for (int int3 = -2; int3 < 2; int3++) {
+                    if (boat.worldObj.getBlockId(((int) boat.posX + int1), ((int) boat.posY + int2), ((int) boat.posZ + int3)) != Block.ice.blockID
+                            && (boat.worldObj.getBlockId(((int) boat.posX + int1), ((int) boat.posY + int2), ((int) boat.posZ + int3)) != Block.waterMoving.blockID)
+                            && (boat.worldObj.getBlockId(((int) boat.posX + int1), ((int) boat.posY + int2), ((int) boat.posZ + int3)) != Block.waterStill.blockID)
+                            && (boat.worldObj.getBlockId(((int) boat.posX + int1), ((int) boat.posY + int2), ((int) boat.posZ + int3)) != 0))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 }
