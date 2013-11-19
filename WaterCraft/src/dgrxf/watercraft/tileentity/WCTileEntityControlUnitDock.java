@@ -4,10 +4,13 @@ import java.util.List;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.Vector3;
@@ -28,6 +31,7 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     private static final int SECOND_TIMER      = 3;
     
     public int               activeTabIndex;
+    public boolean           basicTab, chestTab, tankTab;
     
     private boolean          multiBlockFormed;
     private int              updateTimer;
@@ -37,6 +41,9 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;
+        basicTab = true;
+        chestTab = false;
+        tankTab = false;
     }
     
     // TODO: redo code for this
@@ -111,6 +118,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
+        tankTab = compound.getBoolean("tankTab");
+        chestTab = compound.getBoolean("chestTab");
         activeTabIndex = compound.getInteger("activeTab");
     }
     
@@ -118,6 +127,8 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
     public void writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("activeTab", activeTabIndex);
+        compound.setBoolean("tankTab", tankTab);
+        compound.setBoolean("chestTab", chestTab);
     }
     
     @Override
@@ -129,5 +140,30 @@ public class WCTileEntityControlUnitDock extends WCTileEntityBuoy implements ITi
             default:
         }
     }
+    
+    public void printTabs(){
+    	System.out.println("Upgrades, Chest: " + chestTab + ", Tank: " + tankTab);
+    }
+
+	public boolean canBeUpgraded(ItemStack stack) {
+		System.out.println("Tile");
+		if(stack.getItem().itemID == ModItems.upgrades.itemID){
+			switch(stack.getItemDamage()){
+				case 1:
+					if(!chestTab){
+						chestTab = true;
+						return true;
+					}
+					break;
+				case 2:
+					if(!tankTab){
+						tankTab = true;
+						return true;
+					}
+					break;
+			}
+		}
+		return false;
+	}
     
 }
