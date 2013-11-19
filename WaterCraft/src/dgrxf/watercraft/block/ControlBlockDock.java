@@ -27,9 +27,11 @@ public class ControlBlockDock extends BuoyBlock {
     
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote) {
+        if (world.isRemote)
             return true;
-        }
+        
+        WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
+        tile.printTabs();
         
         FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.CONTROLUNIT_GUI_ID, world, x, y, z);
         return true;
