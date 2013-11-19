@@ -58,9 +58,10 @@ public class WCBoatRenderer extends Render {
         if (f2 > 0.0F) {
             GL11.glRotatef(MathHelper.sin(f2) * f2 * f3 / 10.0F * entity.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
-        
+
         Block block = entity.getDisplayTile();
         if (block != null) {
+            System.out.println(block.blockID);
             GL11.glPushMatrix();
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);

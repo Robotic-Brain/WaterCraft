@@ -1,5 +1,9 @@
 package dgrxf.watercraft.item.boat;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -8,8 +12,13 @@ import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.DumbBoat;
+import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
+import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
+import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
+import dgrxf.watercraft.enumeration.ModuleType;
+import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**
@@ -19,7 +28,7 @@ import dgrxf.watercraft.lib.ItemInfo;
  * 
  */
 
-public class ItemDumbBoat extends Item {
+public class ItemDumbBoat extends Item{
     
     public ItemDumbBoat() {
         super(ItemInfo.DUMB_BOAT_ID);
@@ -46,10 +55,7 @@ public class ItemDumbBoat extends Item {
                 
                 AbstractBaseBoat boat;
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                    //if(!player.isSneaking())
                     boat = new DumbBoat(world, x1, y1 + 1, z1);
-                    /*else
-                    	boat = new WCEntitySmartBoat(world, x1, y1 + 1, z1);*/
                     
                     world.spawnEntityInWorld(boat);
                     

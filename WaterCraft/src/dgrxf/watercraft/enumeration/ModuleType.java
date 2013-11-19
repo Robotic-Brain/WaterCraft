@@ -1,13 +1,15 @@
 package dgrxf.watercraft.enumeration;
 
-public enum ModifierType {
+public enum ModuleType {
     //TODO: Add more modifier types.
+	BOAT,
     ENGINE,
-    ACCESSORY;
+    ACCESSORY, //Not sure what will use this yet.
+    BLOCK;
     
     public final int modSlot;
     
-    private ModifierType() {
+    private ModuleType() {
         modSlot = ordinal();
     }
 }

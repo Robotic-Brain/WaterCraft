@@ -25,8 +25,10 @@ public class InventoryTask extends BoatAITaskBase{
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
 		if(!(boat instanceof IInventory)) return;
+		System.out.println("test1");
 		
         if (!boat.worldObj.isRemote) {
+			System.out.println("test2");
         	if(boat instanceof ILockableBlock){
 	        	ItemStack heldItem = player.inventory.getCurrentItem();
 	            if (!player.isSneaking()) {
@@ -54,6 +56,7 @@ public class InventoryTask extends BoatAITaskBase{
 	        }
         	else
         	{
+				System.out.println("test3");
         		if(!player.isSneaking()){
         			if(guiID < 0){
         				openVanillaGUI(player);

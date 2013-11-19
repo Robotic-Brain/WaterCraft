@@ -16,6 +16,7 @@ import dgrxf.watercraft.item.boat.ItemBoatTank;
 import dgrxf.watercraft.item.boat.ItemDumbBoat;
 import dgrxf.watercraft.item.boat.ItemIceBoat;
 import dgrxf.watercraft.item.boat.ItemLavaBoat;
+import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.item.buoy.ItemFlag;
 import dgrxf.watercraft.item.toolbox.ItemPadlock;
 
@@ -35,6 +36,7 @@ public class ModItems {
     public static Item padlock;
     public static Item calculator;
     public static Item key;
+    public static Item moduleBoat;
     
     public static void init() {
         boatVanilla = new ItemBoat();
@@ -50,5 +52,6 @@ public class ModItems {
         calculator = new ItemCalculator();
         key = new ItemKey();
         tankBoat = new ItemBoatTank();
+        moduleBoat = new ItemModularBoat();
     }
 }

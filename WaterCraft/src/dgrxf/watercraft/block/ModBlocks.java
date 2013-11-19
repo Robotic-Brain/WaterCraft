@@ -8,6 +8,7 @@ import dgrxf.watercraft.item.ItemBlockLiquidTank;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
 import dgrxf.watercraft.item.toolbox.ItemBlockToolBox;
 import dgrxf.watercraft.lib.BlockInfo;
+import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
@@ -33,7 +34,8 @@ public class ModBlocks {
     public static Block     chest;
     public static Block		tank;
     public static Block     lockAssembler;
-
+    public static Block 	boatAssembler;
+    
     public static void init() {
         //Buoy Blocks
         buoy = new BuoyBlock(BlockInfo.BUOY_ID);
@@ -47,6 +49,7 @@ public class ModBlocks {
         //TODO trap chest
         tank = new LiquidTankBlock(BlockInfo.TANK_ID);
         lockAssembler = new LockAssemblerBlock(BlockInfo.LOCK_ASSEMBLER_ID);
+        boatAssembler = new BoatModuleAssemblerBlock(2000);
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         
@@ -56,6 +59,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(chest, ItemBlockChest.class, BlockInfo.WC_CHEST_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(lockAssembler, BlockInfo.LOCK_ASSEMBLER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(tank, ItemBlockLiquidTank.class, BlockInfo.TANK_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(boatAssembler, "TestBlock");
 
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
@@ -64,6 +68,7 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(WCTileEntityChest.class, BlockInfo.WC_CHEST_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityLockAssembler.class, BlockInfo.LOCK_ASSEMBLER_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityLiquidStorageTank.class, BlockInfo.TANK_TE_KEY);
+        GameRegistry.registerTileEntity(WCTileEntityBoatAssembler.class, "TestBlockTE");
 
     }
 }

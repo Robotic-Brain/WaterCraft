@@ -777,4 +777,6 @@ public abstract class AbstractBaseBoat extends Entity {
      * Overwrite this to set the boat logic
      */
     protected abstract void setBoatAI(BoatAITaskList list);
+    
+    
 }

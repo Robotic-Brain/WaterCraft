@@ -64,6 +64,8 @@ public class ItemInfo {
     public static final int    BOAT_ID_DEFAULT               = 1700;
     public static int          BOAT_ID;
     
+    public static final int	   MODULAR_BOAT_ID_DEFAULT		 = 1720;
+    
     public static final int    TAPE_MEASURE_ID_DEFAULT       = 1707;
     public static int          TAPE_MEASURE_ID;
     
