@@ -16,7 +16,7 @@ import dgrxf.watercraft.client.gui.interfaces.GuiBoatAssembler;
 import dgrxf.watercraft.client.gui.interfaces.GuiCalculator;
 import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
 import dgrxf.watercraft.client.gui.interfaces.GuiLockAssembler;
-import dgrxf.watercraft.client.gui.interfaces.ToolBoxGUI;
+import dgrxf.watercraft.client.gui.interfaces.GuiToolBox;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.ControlUnitGUI;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.item.ModItems;
@@ -100,7 +100,7 @@ public class GuiHandler implements IGuiHandler {
                 
                 if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
                     Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
-                    return new ToolBoxGUI(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
+                    return new GuiToolBox(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);
                 }
                 break;

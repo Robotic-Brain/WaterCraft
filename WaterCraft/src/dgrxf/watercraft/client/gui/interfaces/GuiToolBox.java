@@ -18,13 +18,13 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
  * 
  */
 
-public class ToolBoxGUI extends GuiContainer {
+public class GuiToolBox extends GuiContainer {
     
     private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/toolbox.png");
     private WCTileEntityToolBox           tile;
     private ItemStack                     stack;
     
-    public ToolBoxGUI(InventoryPlayer inventory, WCTileEntityToolBox te) {
+    public GuiToolBox(InventoryPlayer inventory, WCTileEntityToolBox te) {
         super(new ToolboxContainer(inventory, te));
         tile = te;
         stack = inventory.getCurrentItem();
