@@ -1,6 +1,8 @@
 ﻿
 
-itemGroup.WaterCraft=WaterCraft
+itemGroup.wcmisc=WaterCraft Övrigt
+itemGroup.wcboats=WaterCraft Båtar
+itemGroup.wcbouys=WaterCraft Bojar
 
 tile.buoyBlockName.name=Boj
 tile.controlUnitDock.name=Styrenhet
@@ -17,6 +19,23 @@ item.iceBoat.name=Isbrytare
 item.rope.name=Rep
 item.padlock.name=Hänglås
 item.calculator.name=Miniräknare
+item.wcboatmodular.name=Modulär Båt
+
+flag.white=Vit Flagga
+flag.orange=Orange Flagga
+flag.magenta=Magenta Flagga
+flag.light_blue=Ljust Blå Flagga
+flag.yellow=Gul Flagga
+flag.pink=Råsa Flagga
+flag.grey=Grå Flagga
+flag.light_grey=Ljus Grå Flagga
+flag.cyan=Turkos Flagga
+flag.purple=Lila Flagga
+flag.blue=Blå Flagga
+flag.brown=Brun Flagga
+flag.green=Grön Flagga
+flag.red=Rod Flagga
+flag.black=Svart Flagga
 
 strings.watercraft:tape_measure_start=Startad mätning vid: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Avslutad mätning vid: [%s, %s, %s]
