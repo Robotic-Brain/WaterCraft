@@ -1,11 +1,11 @@
 package dgrxf.watercraft.client.gui.container;
 
-import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
-import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
+import dgrxf.watercraft.client.gui.interfaces.OutputSlot;
+import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
 public class LockAssemblerContainer extends Container {
 	WCTileEntityLockAssembler lock;
@@ -20,6 +20,10 @@ public class LockAssemblerContainer extends Container {
         for (int i = 0; i < 27; i++) {
             addSlotToContainer(new Slot(inv, i + 9, 18 + 18 * (i % 9), 100 + 18 * (i / 9)));
         }
+        
+
+        addSlotToContainer(new OutputSlot(te, 3, 131, 21));
+        addSlotToContainer(new OutputSlot(te, 4, 152, 21));
 	}
 	
 	public WCTileEntityLockAssembler getTileEntity() {

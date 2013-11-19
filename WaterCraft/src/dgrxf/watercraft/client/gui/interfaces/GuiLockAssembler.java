@@ -12,19 +12,84 @@ import net.minecraft.util.ResourceLocation;
 public class GuiLockAssembler extends GuiBase {
 	
 	private WCTileEntityLockAssembler lock;
+	private KeySlider[] sliders = new KeySlider[6];
+	private int code;
+	
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/lockassembler.png"); 
 
 	public GuiLockAssembler(InventoryPlayer inventory, WCTileEntityLockAssembler lock) {
 		super(new LockAssemblerContainer(inventory, lock));
 		this.xSize = 196;
 		this.ySize = 182;
+		
+		for (int i = 0; i < sliders.length; i++) {
+			sliders [i] = new KeySlider(46 + 8*i, 72, 7, 5);
+		}
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+	protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY) {
 		GL11.glColor4f(1, 1, 1, 1);
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+        
+        for (int i = 0; i < sliders.length; i++) {
+        	int srcY = 11; 
+        	if (sliders[i].inRect(this, mouseX, mouseY) || sliders[i].clicked) {
+        		srcY += 5;
+        	}
+        	
+        	drawTexturedModalRect(sliders[i].getX() + guiLeft, guiTop + sliders[i].getY(), xSize, 21, 7, 72 - sliders[i].getY());
+        	sliders[i].draw(this, xSize, srcY);
+        }
+	}
+	
+	@Override
+	protected void mouseClicked(int x, int y, int mouseButton) {
+		super.mouseClicked(x, y, mouseButton);
+		
+		if (mouseButton == 0) {
+			for (int i = 0; i < sliders.length; i++) {
+				if (sliders[i].inRect(this, x, y)) {
+					sliders[i].clicked = true;
+				}
+			}
+		}
+	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
+		super.drawGuiContainerForegroundLayer(par1, par2);
+		
+		fontRenderer.drawString(Integer.toString(code), 7, 5, 0x404040);
+	}
+	
+	@Override
+	protected void mouseClickMove(int mouseX, int mouseY, int button, long time) {
+		super.mouseClickMove(mouseX, mouseY, button, time);
+		if (button == 0) {
+			for (KeySlider slid : sliders) {
+				 if(slid.clicked) {
+					 int y = (72 - mouseY + guiTop) / 8;
+					 y = 72 - 5 * y;
+					 if (y > 72) y = 72;
+					 if (y < 42) y = 42;
+					 slid.setY(y);
+				 }
+			 }
+		}
+	}
+	
+	@Override
+	protected void mouseMovedOrUp(int par1, int par2, int par3) {
+		super.mouseMovedOrUp(par1, par2, par3);
+		code = 0;
+		for (KeySlider slid : sliders) {
+			slid.clicked = false;
+			int i = (72 - slid.getY()) / 5;
+			code += i;
+			code *= 10;
+		}
 	}
 
 }
