@@ -30,6 +30,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  */
 public abstract class AbstractBaseBoat extends Entity {
     protected boolean           isEmpty;
+    private boolean             isIdle;
     public double               speedMultiplier;
     private int                 boatPosRotationIncrements;
     
