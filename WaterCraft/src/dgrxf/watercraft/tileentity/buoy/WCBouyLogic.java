@@ -26,6 +26,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
     private int              lastEntityId;
     private boolean          spawnParticles;
     private int              particlesTimer;
+    protected boolean        needsUpdating;
     
     /**
      * Stores the next buoy in given direction (Don't save to nbt)
@@ -41,6 +42,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         searchRange = DEFAULT_RANGE;
         particlesTimer = PARTICLES_SPAWNING_TIME;
         spawnParticles = false;
+        needsUpdating = false;
     }
     
     /**
@@ -162,7 +164,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
      */
     @Override
     public boolean canUpdate() {
-        return false;
+        return needsUpdating;
     };
     
     /*private void spawnParticle() {
