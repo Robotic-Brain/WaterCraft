@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
@@ -40,7 +41,7 @@ public class ChestBoat extends AbstractBaseBoat implements IInventory, ILockable
 	@Override
 	protected void setBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0f));
-		list.addTask(new InventoryTask(this, 1.0f));
+		list.addTask(new InventoryTask(this, 1.0f, GuiHandler.VANILLA_CHEST_ID));
 	}
 
 	@Override

@@ -25,6 +25,7 @@ import dgrxf.watercraft.util.LogHelper;
 
 public class GuiHandler implements IGuiHandler {
     
+	public static final int VANILLA_CHEST_ID   = -1;
     public static final int TOOLBOX_GUI_ID     = 0;
     public static final int CONTROLUNIT_GUI_ID = 1;
     public static final int CALCULATOR_GUI_ID = 2;
