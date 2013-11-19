@@ -1,11 +1,9 @@
 package dgrxf.watercraft.util;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.List;
-
 import net.minecraft.block.Block;
-import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
+import net.minecraft.nbt.NBTTagCompound;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
@@ -36,12 +34,31 @@ public class ModuleHelper {
 		return -1;
 	}
 	
+	/**
+	 * @return the amount of registered modules
+	 */
+	public static int getModuleListLength(){
+		return modules.length;
+	}
+	
+	/**
+	 * @return an array of classes containing the registered modules
+	 */
+	public static Class<? extends IBoatModule>[] getRegisteredModules(){
+		Class<? extends IBoatModule>[] toReturn = new Class[modules.length];
+		
+		for(int i = 0; i < modules.length; ++i){
+			toReturn[i] = modules[i].getClass();
+		}
+		
+		return toReturn;
+	}
 	
 	/**
 	 * @param clazz is the class of the module you're looking for.
 	 * @return the class of the module associated with the class you pass in, or null if that class is not registered.
 	 */
-	public static IBoatModule getModuleClass(Class<? extends IBoatModule> clazz){
+	private static IBoatModule getModule(Class<? extends IBoatModule> clazz){
 		
 		return getModuleInstance(getModuleID(clazz));
 	}
@@ -91,15 +108,32 @@ public class ModuleHelper {
 	
 	/**
 	 * 
-	 * @param clazz clazz the class of the module you wish to call addBoatAI from
+	 * @param clazz the class of the module you wish to call addBoatAI from
 	 * @param list the class of the AI list you wish to add the AI to.
 	 */
 	
-	public static void addBoatAI(Class<? extends IBoatModule> clazz, List<Class<? extends BoatAITaskBase>> list){
+	public static void addBoatAI(Class<? extends IBoatModule> clazz, BoatAITaskList list, AbstractBaseBoat boat, float f, Object... params){
 		int x = 0;
 		for(IBoatModule mods : modules){
 			if(modules[x].getClass() == clazz){
-				modules[x].addBoatAI(list);
+				modules[x].addBoatAI(list, boat, f, params);
+				break;
+			}
+			if(x == modules.length){
+				return;
+			}
+			x++;
+		}
+	}
+	/**
+	 * @param clazz the class of the module you wish to call writeModuleInfoToNBT from
+	 * @param tag the NBT tag compound you wish to write to
+	 */
+	public static void writeModuleInforToNBT(Class<? extends IBoatModule> clazz, NBTTagCompound tag){
+		int x = 0;
+		for(IBoatModule mods : modules){
+			if(modules[x].getClass() == clazz){
+				modules[x].writeModuleInfoToNBT(tag);;
 				break;
 			}
 			if(x == modules.length){

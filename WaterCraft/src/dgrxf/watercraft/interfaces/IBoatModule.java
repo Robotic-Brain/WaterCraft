@@ -1,9 +1,9 @@
 package dgrxf.watercraft.interfaces;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.enumeration.ModuleType;
 
@@ -19,7 +19,7 @@ public interface IBoatModule {
 	/**
 	 * If your module adds custom AI add it with this.
 	 */
-	public void addBoatAI(List<Class<? extends BoatAITaskBase>> list);
+	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f, Object... obj);
 	
 	public void writeModuleInfoToNBT(NBTTagCompound tag);
 }

@@ -24,7 +24,7 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.ItemInfo;
 
-public class ItemModularBoat extends Item implements IBoatModule{
+public class ItemModularBoat extends Item{
 
 	public ItemModularBoat() {
         super(ItemInfo.MODULAR_BOAT_ID_DEFAULT);
@@ -110,33 +110,4 @@ public class ItemModularBoat extends Item implements IBoatModule{
 			
 		}
     }
-
-	@Override
-	public ModuleType getModuleType() {
-		return ModuleType.BOAT;
-	}
-
-	@Override
-	public Block getBlockType() {
-		return null;
-	}
-
-	@Override
-	public void addBoatAI(List<Class<? extends BoatAITaskBase>> list) {
-		list.add(DumbTask.class);
-	}
-
-	@Override
-	public void writeModuleInfoToNBT(NBTTagCompound tag) {
-		List<Class<? extends BoatAITaskBase>> list = new ArrayList();
-		addBoatAI(list);
-		ModuleType type = getModuleType();
-		int i = 0;
-		for(Class<? extends BoatAITaskBase> inList : list){
-			tag.setString("AI" + i, inList.getName());
-			++i;
-		}
-		
-		tag.setString("Type", type.toString());
-	}
 }

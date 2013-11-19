@@ -1,5 +1,6 @@
 package dgrxf.watercraft;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -69,9 +70,6 @@ public class Watercraft {
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
-        ModuleHelper.registrterModuler(new TestModule());
-        ModuleType m = ModuleHelper.getModuleType(TestModule.class);
-        System.out.println(m);
     }
     
     @SideOnly(Side.CLIENT)

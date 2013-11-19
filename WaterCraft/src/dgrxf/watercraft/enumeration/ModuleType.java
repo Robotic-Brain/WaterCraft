@@ -5,7 +5,8 @@ public enum ModuleType {
 	BOAT,
     ENGINE,
     ACCESSORY, //Not sure what will use this yet.
-    BLOCK;
+    BLOCK,
+    INVENTORY;
     
     public final int modSlot;
     
