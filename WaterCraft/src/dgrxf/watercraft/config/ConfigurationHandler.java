@@ -40,6 +40,7 @@ public class ConfigurationHandler {
             ItemInfo.KEY_ID = config.get(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt() - 256;
             ItemInfo.TANK_BOAT_ID = config.get(ItemInfo.CATEGORY, ItemInfo.TANK_BOAT_KEY, ItemInfo.TANK_BOAT_ID_DEFAULT).getInt() - 256;
             ItemInfo.UPGRADE_ID = config.get(ItemInfo.CATEGORY, ItemInfo.UPGRADE_KEY, ItemInfo.UPGRADE_ID_DEFAULT).getInt() - 256;
+            ItemInfo.MODULAR_BOAT_ID = config.get(ItemInfo.CATEGORY, ItemInfo.BOAT_MODULAR_KEY, ItemInfo.MODULAR_BOAT_ID_DEFAULT).getInt() - 256;
             
             // Blocks
             BlockInfo.BUOY_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
