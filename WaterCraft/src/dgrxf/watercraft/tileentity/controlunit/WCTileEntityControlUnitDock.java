@@ -9,10 +9,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
+import dgrxf.watercraft.tileentity.controlunit.logic.ControlUnitLogic;
 import dgrxf.watercraft.util.Vector3;
 
 /**
@@ -32,11 +34,15 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     public int               activeTabIndex;
     public boolean           basicTab, chestTab, tankTab;
     
-    private boolean          multiBlockFormed;
+    private boolean          multiBlockFormed, holdBoat;
     private int              updateTimer;
-    private int              secondTimer;
     private ForgeDirection[] directions        = { ForgeDirection.NORTH,
             ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH };
+    
+    //Logic
+    private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnRedstone;
+    
+    
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;
@@ -44,6 +50,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         basicTab = true;
         chestTab = false;
         tankTab = false;
+        holdBoat = true;
     }
     
     @Override
@@ -64,13 +71,23 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         		
         		if(e != null){
         			if(!isBoatInCenter(e)) positionBoatInCenter(e);
+        			e.isIdle = holdBoat;
+        			getLoadedLogic(e);
         		}
         	}
         	updateTimer = 20;
         }
     }
 
-    public AbstractBaseBoat findEntityBoat(ForgeDirection d, Class<? extends AbstractBaseBoat> entC) {
+    private void getLoadedLogic(AbstractBaseBoat e) {
+		if(e instanceof DumbBoat){
+			if(basicLogic != null){
+				basicLogic.runLogic(worldObj, xCoord, yCoord, zCoord);
+			}
+		}
+	}
+
+	public AbstractBaseBoat findEntityBoat(ForgeDirection d, Class<? extends AbstractBaseBoat> entC) {
         int tempX = xCoord + d.offsetX * 3;
         int tempY = yCoord;
         int tempZ = zCoord + d.offsetZ * 3;
