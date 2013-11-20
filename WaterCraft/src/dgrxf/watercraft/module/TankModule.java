@@ -9,7 +9,7 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
 public class TankModule implements IBoatModule {
-
+	
 	@Override
 	public ModuleType getModuleType() {
 		return ModuleType.BLOCK;

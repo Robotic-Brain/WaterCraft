@@ -2,7 +2,9 @@ package dgrxf.watercraft.module;
 
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
+import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
@@ -12,15 +14,6 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
 public class ChestModule implements IBoatModule {
-	
-	private int invSize, guiID;
-	private Object modID;
-	
-	public ChestModule(int guiID, Object modID, int invSize) {
-		this.invSize = invSize;
-		this.guiID = guiID;
-		this.modID = modID;
-	}
 	
 	@Override
 	public ModuleType getModuleType() {
@@ -34,7 +27,7 @@ public class ChestModule implements IBoatModule {
 
 	@Override
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
-		list.addTask(new InventoryTask(boat, f, guiID, modID, invSize, true));
+		list.addTask(new InventoryTask(boat, f, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27, true));
 	}
 
 }

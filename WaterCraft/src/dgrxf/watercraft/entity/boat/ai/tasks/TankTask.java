@@ -6,6 +6,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -16,12 +17,27 @@ import dgrxf.watercraft.lib.EntityInfo;
 public class TankTask extends BoatAITaskBase implements IFluidHandler{
 
 	public FluidTank tank;
+	private boolean firstRun = true;
 	
 	public TankTask(AbstractBaseBoat boat, float priority, int tankSize) {
 		super(boat, priority);
 		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * tankSize);
 	}
 
+	@Override
+	public void preOnUpdate() {
+		super.preOnUpdate();
+		if(firstRun){
+			if(tank != null){
+				if(tank.getFluid() != null){
+					boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(tank.getFluidAmount()));
+					boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_LIQUID_NAME, FluidRegistry.getFluid(tank.getFluid().fluidID).getName());
+					firstRun = false;
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
 		if(boat.worldObj.isRemote) return;

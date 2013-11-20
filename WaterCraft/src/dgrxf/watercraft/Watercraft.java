@@ -25,9 +25,7 @@ import dgrxf.watercraft.event.WCEventHandler;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
-import dgrxf.watercraft.module.ChestModule;
-import dgrxf.watercraft.module.DumbModule;
-import dgrxf.watercraft.module.TankModule;
+import dgrxf.watercraft.module.Modules;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
@@ -71,14 +69,12 @@ public class Watercraft {
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
-        ModuleHelper.registerModule(new DumbModule());
-        ModuleHelper.registerModule(new ChestModule(GuiHandler.VANILLA_CHEST_ID, this.instance, 27));
-        ModuleHelper.registerModule(new TankModule());
+        Modules.init();
     }
     
     @EventHandler
     public void interMod(FMLInterModComms e){
-    	//e.
+    	//Potentially using this later on
     }
     
     @SideOnly(Side.CLIENT)
