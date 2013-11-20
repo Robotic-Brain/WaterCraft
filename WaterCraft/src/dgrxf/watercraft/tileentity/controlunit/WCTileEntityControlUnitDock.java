@@ -34,14 +34,14 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     public int               activeTabIndex;
     public boolean           basicTab, chestTab, tankTab;
     
+    public AbstractBaseBoat dockedBoat;
     private boolean          multiBlockFormed, holdBoat;
     private int              updateTimer;
     private ForgeDirection[] directions        = { ForgeDirection.NORTH,
             ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH };
     
     //Logic
-    private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnRedstone;
-    
+    private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnInteraction;
     
     
     public WCTileEntityControlUnitDock() {
@@ -50,7 +50,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         basicTab = true;
         chestTab = false;
         tankTab = false;
-        holdBoat = true;
+        setHoldBoat(true);
     }
     
     @Override
@@ -70,8 +70,13 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         		AbstractBaseBoat e = findEntityBoat(getBlockDirection(), AbstractBaseBoat.class);
         		
         		if(e != null){
-        			if(!isBoatInCenter(e)) positionBoatInCenter(e);
-        			e.isIdle = holdBoat;
+        			//This is ran only once when the boat enters the ABB of the controlUnit
+        			if(!isBoatInCenter(e)){
+        				dockedBoat = e;
+        				setHoldBoat(true);
+        				positionBoatInCenter(e);
+        			}
+        			e.isIdle = getHoldBoat();
         			getLoadedLogic(e);
         		}
         	}
@@ -186,10 +191,6 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
             default:
         }
     }
-    
-    public void printTabs(){
-    	System.out.println("Upgrades, Chest: " + chestTab + ", Tank: " + tankTab);
-    }
 
 	public boolean canBeUpgraded(ItemStack stack) {
 		System.out.println("Tile");
@@ -211,5 +212,16 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
 		}
 		return false;
 	}
-    
+		
+	public void setBasicLogic(ControlUnitLogic basicLogic) {
+		this.basicLogic = basicLogic;
+	}
+
+	public boolean getHoldBoat() {
+		return holdBoat;
+	}
+
+	public void setHoldBoat(boolean holdBoat) {
+		this.holdBoat = holdBoat;
+	}
 }
