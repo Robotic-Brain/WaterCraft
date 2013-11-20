@@ -43,7 +43,11 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         basicTab = true;
         chestTab = false;
         tankTab = false;
-        needsUpdating = true;
+    }
+    
+    @Override
+    public boolean canUpdate() {
+        return true;
     }
     
     
