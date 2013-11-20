@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
@@ -130,10 +131,8 @@ public class ModuleHelper {
 	public static int writeModuleInforToNBT(Class<? extends IBoatModule> clazz, NBTTagCompound tag, int startingPos){
 		for(int x = 0; x < modules.length; x++){
 			if(modules[x].getClass() == clazz){
-				return modules[x].writeModuleInfoToNBT(tag, startingPos);
-			}
-			if(x == modules.length){
-				break;
+				tag.setString(Alphabet.values()[startingPos].toString(), modules[x].getClass().getName());
+				return 1;
 			}
 		}
 		return 0;

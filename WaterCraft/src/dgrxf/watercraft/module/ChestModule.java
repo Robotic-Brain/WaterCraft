@@ -33,12 +33,6 @@ public class ChestModule implements IBoatModule {
 	}
 
 	@Override
-	public int writeModuleInfoToNBT(NBTTagCompound tag, int startingPos) {
-		tag.setString(Alphabet.values()[startingPos].toString(), this.getClass().getName());
-		return 1;
-	}
-
-	@Override
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
 		list.addTask(new InventoryTask(boat, f, guiID, modID, invSize));
 	}

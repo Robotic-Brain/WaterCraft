@@ -14,8 +14,6 @@ import dgrxf.watercraft.util.ModuleHelper;
 
 public class ModularBoat extends AbstractBaseBoat{
 	
-	NBTTagCompound tag;
-	Object modID;
 	ArrayList strings = new ArrayList<String>();
 	private BoatAITaskList list;
 	
@@ -31,10 +29,8 @@ public class ModularBoat extends AbstractBaseBoat{
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
 	}
 	
-	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag, Object modID) {
+	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {
 		super(par1World, par2, par4, par6);
-		this.tag = tag;
-		this.modID = modID;
 		strings = (ArrayList)readTagInformation(tag);
 	}
 	

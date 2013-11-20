@@ -25,11 +25,4 @@ public class DumbModule implements IBoatModule{
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
 		list.addTask(new DumbTask(boat, f));
 	}
-
-	@Override
-	public int writeModuleInfoToNBT(NBTTagCompound tag, int startingPos) {
-		tag.setString(Alphabet.values()[startingPos].toString(), this.getClass().getName());
-		return 1;
-	}
-
 }

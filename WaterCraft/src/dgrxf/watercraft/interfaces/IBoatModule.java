@@ -9,6 +9,10 @@ import dgrxf.watercraft.enumeration.ModuleType;
 
 public interface IBoatModule {
 
+	/**
+	 * Currently unused
+	 * @return the type of module youre adding
+	 */
 	public ModuleType getModuleType();
 	
 	/**
@@ -20,6 +24,4 @@ public interface IBoatModule {
 	 * If your module adds custom AI add it with this.
 	 */
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f);
-	
-	public int writeModuleInfoToNBT(NBTTagCompound tag, int startingPos);
 }
