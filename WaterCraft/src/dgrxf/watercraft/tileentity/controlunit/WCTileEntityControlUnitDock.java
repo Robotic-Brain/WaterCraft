@@ -42,7 +42,8 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     
     //Logic
     private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnInteraction;
-    
+    private ControlUnitLogic chestLogic;
+    private ControlUnitLogic tankLogic;
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;
@@ -57,7 +58,6 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     public boolean canUpdate() {
         return true;
     }
-    
     
     @Override
     public void updateEntity() {
