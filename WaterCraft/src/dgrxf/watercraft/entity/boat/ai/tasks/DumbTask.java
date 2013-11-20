@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
+import net.minecraft.entity.player.EntityPlayer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.LogHelper;
@@ -18,6 +19,11 @@ public class DumbTask extends BoatAITaskBase {
     @Override
     public void updateMotion() {
     	moveToTarget();
+    }
+    
+    @Override
+    public void onInteractFirst(EntityPlayer player) {
+    	boat.playerHasInteractedWith = true;
     }
     
     @Override
