@@ -93,8 +93,6 @@ public class GuiLockAssembler extends GuiBase {
 		}
 		code /= 10;
 		
-		System.out.println(code);
-		
 		short codeToSend = Short.valueOf(Integer.toString(code), 8);
 		PacketHandler.sendLockAssemblerPacket(codeToSend);
 	}
