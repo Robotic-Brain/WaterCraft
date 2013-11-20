@@ -16,8 +16,8 @@ public class GuiCalculator extends GuiContainer {
     
     public GuiCalculator() {
         super(new CalculatorContainer());
-        xSize = 196;
-        ySize = 218;
+        xSize = 151;
+        ySize = 138;
     }
     
     private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/calculator.png");
@@ -44,18 +44,18 @@ public class GuiCalculator extends GuiContainer {
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 5; x++) {
                 if (id != 10) {
-                    id++;
                     buttonList.add(new GuiButton(id, guiLeft + 12 + 19 * x, guiTop + 41 + y * 22, 18, 20, "" + id));
+                    id++;
                 }
             }
         }
-        buttonList.add(new GuiButton((id + 1), guiLeft + 12, 118, 18, 20, "+"));
-        buttonList.add(new GuiButton((id + 2), guiLeft + 31, 118, 18, 20, "-"));
-        buttonList.add(new GuiButton((id + 3), guiLeft + 50, 118, 18, 20, "/"));
-        buttonList.add(new GuiButton((id + 2), guiLeft + 69, 118, 18, 20, "*"));
-        buttonList.add(new GuiButton((id + 3), guiLeft + 12, 96, 57, 20, "="));
-        buttonList.add(new GuiButton((id + 4), guiLeft + 88, 118, 18, 20, "C"));
-        buttonList.add(new GuiButton((id + 5), guiLeft + 69, 96, 38, 20, "<="));
+        buttonList.add(new GuiButton(10, guiLeft + 12, guiTop + 105, 18, 20, "+"));
+        buttonList.add(new GuiButton(11, guiLeft + 31, guiTop + 105, 18, 20, "-"));
+        buttonList.add(new GuiButton(12, guiLeft + 50, guiTop + 105, 18, 20, "/"));
+        buttonList.add(new GuiButton(13, guiLeft + 69, guiTop + 105, 18, 20, "*"));
+        buttonList.add(new GuiButton(14, guiLeft + 12, guiTop + 84, 57, 20, "="));
+        buttonList.add(new GuiButton(15, guiLeft + 88, guiTop + 105, 18, 20, "C"));
+        buttonList.add(new GuiButton(16, guiLeft + 69, guiTop + 84, 38, 20, "<="));
     }
     
     @Override
