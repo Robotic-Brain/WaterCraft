@@ -648,9 +648,7 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
-        //NBTTagCompound aiTag = new NBTTagCompound();
         this.ai.writeEntityToNBT(par1NBTTagCompound);
-        //par1NBTTagCompound.setCompoundTag(NBT_AI_TAG, aiTag);
     }
     
     /**
@@ -658,7 +656,6 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
-        //NBTTagCompound aiTag = par1NBTTagCompound.getCompoundTag(NBT_AI_TAG);
         this.ai.readEntityFromNBT(par1NBTTagCompound);
     }
     

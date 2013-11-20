@@ -97,10 +97,15 @@ public class BoatAITaskList extends BoatAIBase {
     
     @Override
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
-        // TODO: make saving work
+        for(BoatAITaskBase task : tasks){
+        	task.writeEntityToNBT(par1nbtTagCompound);
+    	}
     }
     
     @Override
     public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {
+        for(BoatAITaskBase task : tasks){
+        	task.readEntityFromNBT(par1nbtTagCompound);
+    	}
     }
 }
