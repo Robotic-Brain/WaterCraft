@@ -7,6 +7,8 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
@@ -150,6 +152,42 @@ public class InventoryTask extends BoatAITaskBase implements IInventory{
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		return true;
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound tag) {
+		super.writeEntityToNBT(tag);
+		
+		NBTTagList items = new NBTTagList();
+		
+		for (int i = 0; i < getSizeInventory(); i++){
+			ItemStack stack = getStackInSlot(i);
+			
+			if (stack != null){
+				NBTTagCompound item = new NBTTagCompound();
+				
+				item.setInteger("Slot", i);
+				stack.writeToNBT(item);
+				items.appendTag(item);
+			}
+		}
+		tag.setTag("Items", items);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		NBTTagList items = compound.getTagList("Items");
+		
+		for (int i = 0; i < items.tagCount(); i++){
+			NBTTagCompound item = (NBTTagCompound)items.tagAt(i);
+			int slot = item.getInteger("Slot");
+			
+			if(slot >= 0 && slot < getSizeInventory()){
+				setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+			}
+			
+		}
 	}
 	
 }

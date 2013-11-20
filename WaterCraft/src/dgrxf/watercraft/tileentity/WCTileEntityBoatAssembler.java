@@ -47,8 +47,8 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 			tagTwo = slotOne.getTagCompound().getCompoundTag("Modules");
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				startingPosTwo = i;
-				if(nbtHasKey(tagOne, i)){
-					writeOldTagsToNBT(tagReturn, tagOne, i + startingPosOne, i);
+				if(nbtHasKey(tagTwo, i)){
+					writeOldTagsToNBT(tagReturn, tagTwo, i + startingPosOne, i);
 					continue;
 				}
 				else{
@@ -58,7 +58,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		}
 		
 		totalOrigTags = startingPosOne + startingPosTwo;
-
+		
 		ItemStack newItem = new ItemStack(ModItems.moduleBoat);
 		if(slotZero.getItem() instanceof IItemModule){
 			IItemModule modZero = (IItemModule)slotZero.getItem();

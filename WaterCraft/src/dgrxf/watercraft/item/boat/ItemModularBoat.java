@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
@@ -54,7 +55,7 @@ public class ItemModularBoat extends Item implements IItemModule{
                 int z1 = movingobjectposition.blockZ;
                 
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                    AbstractBaseBoat boat = new ModularBoat(world, x1, y1 + 1, z1, itemStack.stackTagCompound);
+                    AbstractBaseBoat boat = new ModularBoat(world, x1, y1 + 1, z1, itemStack.getTagCompound(), Watercraft.instance);
                     world.spawnEntityInWorld(boat);
                     
                     if (!player.capabilities.isCreativeMode) {

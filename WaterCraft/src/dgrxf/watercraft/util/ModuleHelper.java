@@ -115,17 +115,12 @@ public class ModuleHelper {
 	 * @param list the class of the AI list you wish to add the AI to.
 	 */
 	
-	public static void addBoatAI(Class<? extends IBoatModule> clazz, BoatAITaskList list, AbstractBaseBoat boat, float f, Object... params){
-		int x = 0;
-		for(IBoatModule mods : modules){
-			if(modules[x].getClass() == clazz){
-				modules[x].addBoatAI(list, boat, f, params);
-				break;
+	public static void addBoatAI(Class<? extends IBoatModule> clazz, BoatAITaskList list, AbstractBaseBoat boat, float f){
+
+		for(int i = 0; i < modules.length; ++i){
+			if(modules[i].getClass() == clazz){
+				modules[i].addBoatAI(list, boat, f);
 			}
-			if(x == modules.length){
-				return;
-			}
-			x++;
 		}
 	}
 	/**

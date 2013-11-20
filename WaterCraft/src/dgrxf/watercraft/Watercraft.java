@@ -8,6 +8,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -70,7 +71,12 @@ public class Watercraft {
         Entities.init();
         RecipeHandler.init();
         ModuleHelper.registrterModuler(new DumbModule());
-        ModuleHelper.registrterModuler(new ChestModule());
+        ModuleHelper.registrterModuler(new ChestModule(GuiHandler.VANILLA_CHEST_ID, this.instance, 27));
+    }
+    
+    @EventHandler
+    public void interMod(FMLInterModComms e){
+    	//e.
     }
     
     @SideOnly(Side.CLIENT)

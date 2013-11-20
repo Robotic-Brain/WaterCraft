@@ -22,7 +22,7 @@ public class DumbModule implements IBoatModule{
 	}
 
 	@Override
-	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f, Object... obj) {
+	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
 		list.addTask(new DumbTask(boat, f));
 	}
 

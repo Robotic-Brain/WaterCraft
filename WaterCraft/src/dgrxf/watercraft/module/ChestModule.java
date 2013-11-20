@@ -12,7 +12,16 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
 public class ChestModule implements IBoatModule {
-
+	
+	private int invSize, guiID;
+	private Object modID;
+	
+	public ChestModule(int guiID, Object modID, int invSize) {
+		this.invSize = invSize;
+		this.guiID = guiID;
+		this.modID = modID;
+	}
+	
 	@Override
 	public ModuleType getModuleType() {
 		return ModuleType.INVENTORY;
@@ -30,8 +39,8 @@ public class ChestModule implements IBoatModule {
 	}
 
 	@Override
-	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f, Object... params) {
-		list.addTask(new InventoryTask(boat, f, (Integer)params[0], params[1], (Integer)params[2]));
+	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
+		list.addTask(new InventoryTask(boat, f, guiID, modID, invSize));
 	}
 
 }
