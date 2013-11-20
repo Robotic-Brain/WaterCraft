@@ -43,9 +43,9 @@ public class BlockInfo {
     public static final String LOCK_ASSEMBLER_KEY                           = "Lock Assembler";
     public static final String LOCK_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
     
-    public static final String BOAT_ASSEMBLER_UNLOCALIZED_NAME              = "lockAssemblerName";
-    public static final String BOAT_ASSEMBLER_KEY                           = "Lock Assembler";
-    public static final String BOAT_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
+    public static final String BOAT_ASSEMBLER_UNLOCALIZED_NAME              = "boatAssemblerName";
+    public static final String BOAT_ASSEMBLER_KEY                           = "Boat Assembler";
+    public static final String BOAT_ASSEMBLER_TE_KEY         				= "WCTileEntityBoatAssembler";
     
     /*************
      * Integers
@@ -77,5 +77,8 @@ public class BlockInfo {
     
     public static final int	   TANK_ID_DEFAULT					  = 710;
     public static int		   TANK_ID;
+    
+    public static final int    BOAT_ASSEMBLER_ID_DEFAULT          = 711;
+    public static int          BOAT_ASSEMBLER_ID;
 
 }

@@ -52,6 +52,7 @@ public class ConfigurationHandler {
             BlockInfo.WC_CHEST_ID = config.get(BlockInfo.CATEGORY, BlockInfo.WC_CHEST_KEY, BlockInfo.WC_CHEST_ID_DEFAULT).getInt();
             BlockInfo.LOCK_ASSEMBLER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.LOCK_ASSEMBLER_KEY, BlockInfo.LOCK_ASSEMBLER_ID_DEFAULT).getInt();
             BlockInfo.TANK_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TANK_KEY, BlockInfo.TANK_ID_DEFAULT).getInt();
+            BlockInfo.BOAT_ASSEMBLER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BOAT_ASSEMBLER_KEY, BlockInfo.BOAT_ASSEMBLER_ID_DEFAULT).getInt();
 
             
             // Misc

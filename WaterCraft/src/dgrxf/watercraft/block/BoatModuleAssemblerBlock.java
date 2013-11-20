@@ -9,14 +9,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
+import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
 public class BoatModuleAssemblerBlock extends Block{
 
 	public BoatModuleAssemblerBlock(int id) {
 		super(id, Material.rock);
+		setCreativeTab(Watercraft.miscTab);
+		setUnlocalizedName(BlockInfo.BOAT_ASSEMBLER_UNLOCALIZED_NAME);
 	}
-
 	@Override
 	public boolean hasTileEntity(int metadata) {
 		return true;
