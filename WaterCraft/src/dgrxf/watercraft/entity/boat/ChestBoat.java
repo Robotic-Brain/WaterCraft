@@ -32,12 +32,6 @@ public class ChestBoat extends AbstractBaseBoat{
 	public ChestBoat(World par1World, double par2, double par4, double par6) {
 		super(par1World, par2, par4, par6);
 	}
-
-	@Override
-	protected void entityInit() {
-		super.entityInit();
-		dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte) 0));
-	}
 	
 	@Override
 	protected void updateBoatAI(BoatAITaskList list) {

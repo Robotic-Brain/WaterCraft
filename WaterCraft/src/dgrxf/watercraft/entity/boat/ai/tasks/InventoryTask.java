@@ -28,6 +28,11 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
 		this.items = new ItemStack[invSize];
 	}
 
+	@Override
+	public void entityInit() {
+		super.entityInit();
+		boat.getDataWatcher().addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
+	}
 
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
@@ -35,14 +40,14 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
         	if(lockable){
 	        	ItemStack heldItem = player.inventory.getCurrentItem();
 	            if (!player.isSneaking()) {
-	            	if(boat.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
+	            	if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == (byte)0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
 	            		if(guiID < 0){
 	            			openVanillaGUI(player);
 	            		}
 	            		else
 	            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, boat.entityId, 0, 0);
 	            } else {
-	                if(boat.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
+	                if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
 	                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
 	                		if(heldItem.getItemDamage() == this.getCode()){
 	                			boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
