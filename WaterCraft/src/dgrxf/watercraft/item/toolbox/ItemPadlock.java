@@ -13,6 +13,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.util.MD5Generator;
 
 /**
  * Class Made By: Drunk Mafia
@@ -59,6 +60,6 @@ public class ItemPadlock extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
-    	info.add("CODE: " + itemstack.getItemDamage());
+    	info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
     }
 }
