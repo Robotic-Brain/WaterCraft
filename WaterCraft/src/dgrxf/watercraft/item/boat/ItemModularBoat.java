@@ -55,7 +55,7 @@ public class ItemModularBoat extends Item implements IItemModule{
                 int z1 = movingobjectposition.blockZ;
                 
                 if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
-                    AbstractBaseBoat boat = new ModularBoat(world, x1, y1 + 1, z1, itemStack.getTagCompound(), Watercraft.instance);
+                    AbstractBaseBoat boat = new ModularBoat(world, x1, y1 + 1, z1, itemStack.getTagCompound());
                     world.spawnEntityInWorld(boat);
                     
                     if (!player.capabilities.isCreativeMode) {
