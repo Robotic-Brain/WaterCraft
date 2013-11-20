@@ -22,7 +22,7 @@ public class TankModule implements IBoatModule {
 
 	@Override
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
-		list.addTask(new TankTask(boat, f));
+		list.addTask(new TankTask(boat, f, 8));
 	}
 
 }

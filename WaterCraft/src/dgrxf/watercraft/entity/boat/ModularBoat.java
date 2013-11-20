@@ -26,6 +26,8 @@ public class ModularBoat extends AbstractBaseBoat{
 	@Override
 	protected void entityInit() {
 		super.entityInit();
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Integer(0));
 	}

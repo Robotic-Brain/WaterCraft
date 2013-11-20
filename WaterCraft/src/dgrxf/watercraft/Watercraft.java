@@ -27,6 +27,7 @@ import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
 import dgrxf.watercraft.module.ChestModule;
 import dgrxf.watercraft.module.DumbModule;
+import dgrxf.watercraft.module.TankModule;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
@@ -70,8 +71,9 @@ public class Watercraft {
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
-        ModuleHelper.registrterModuler(new DumbModule());
-        ModuleHelper.registrterModuler(new ChestModule(GuiHandler.VANILLA_CHEST_ID, this.instance, 27));
+        ModuleHelper.registerModule(new DumbModule());
+        ModuleHelper.registerModule(new ChestModule(GuiHandler.VANILLA_CHEST_ID, this.instance, 27));
+        ModuleHelper.registerModule(new TankModule());
     }
     
     @EventHandler

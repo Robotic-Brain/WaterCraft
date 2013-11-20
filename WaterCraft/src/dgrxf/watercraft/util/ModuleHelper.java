@@ -16,7 +16,7 @@ public class ModuleHelper {
 	/**
 	 * Register your boat modules with this method.
 	 */
-	public static void registrterModuler(IBoatModule module){
+	public static void registerModule(IBoatModule module){
 		IBoatModule[] temp = modules.clone();
 		IBoatModule[] tempArray = new IBoatModule[temp.length+1];
 		for(int i = 0; i < temp.length; i++){

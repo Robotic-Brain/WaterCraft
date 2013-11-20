@@ -7,8 +7,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.interfaces.IItemModule;
+import dgrxf.watercraft.module.TankModule;
 
-public class ItemBlockLiquidTank extends ItemBlock{
+public class ItemBlockLiquidTank extends ItemBlock implements IItemModule{
 
 	public ItemBlockLiquidTank(int par1) {
 		super(par1);
@@ -27,5 +30,10 @@ public class ItemBlockLiquidTank extends ItemBlock{
 			}
 			
 		}
+	}
+
+	@Override
+	public Class<? extends IBoatModule> getBoatModule() {
+		return TankModule.class;
 	}
 }

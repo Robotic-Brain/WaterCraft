@@ -2,6 +2,7 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -16,8 +17,9 @@ public class TankTask extends BoatAITaskBase implements IFluidHandler{
 
 	public FluidTank tank;
 	
-	public TankTask(AbstractBaseBoat boat, float priority) {
+	public TankTask(AbstractBaseBoat boat, float priority, int tankSize) {
 		super(boat, priority);
+		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * tankSize);
 	}
 
 	@Override
@@ -131,5 +133,34 @@ public class TankTask extends BoatAITaskBase implements IFluidHandler{
 		
 		return new FluidTankInfo[]{ new FluidTankInfo(fluidStack, tank.getCapacity()) };
 	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
+		writeCustomNBT(par1nbtTagCompound);
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound par1nbtTagCompound) {
+		readCustomNBT(par1nbtTagCompound);
+	}
+	
+    public void readCustomNBT (NBTTagCompound tags)
+    {
+    	if (tags.getBoolean("hasFluid"))
+    		tank.setFluid(new FluidStack(tags.getInteger("itemID"), tags.getInteger("Amount")));
+    	else
+    		tank.setFluid(null);
+    }
+ 
+     public void writeCustomNBT (NBTTagCompound tags)
+     {
+         FluidStack liquid = tank.getFluid();
+         tags.setBoolean("hasFluid", liquid != null);
+         if (liquid != null)
+         {
+             tags.setInteger("itemID", liquid.fluidID);
+             tags.setInteger("Amount", liquid.amount);
+         }
+     }
 	
 }
