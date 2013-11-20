@@ -31,7 +31,6 @@ public class ControlBlockDock extends BuoyBlock {
             return true;
         
         WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
-        tile.printTabs();
         
         FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.CONTROLUNIT_GUI_ID, world, x, y, z);
         return true;
