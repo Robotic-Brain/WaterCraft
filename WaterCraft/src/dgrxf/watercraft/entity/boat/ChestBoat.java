@@ -40,7 +40,7 @@ public class ChestBoat extends AbstractBaseBoat implements ILockableBlock{
 	}
 	
 	@Override
-	protected void setBoatAI(BoatAITaskList list) {
+	protected void updateBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0f));
 		list.addTask(new InventoryTask(this, 1.0f, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27));
 	}

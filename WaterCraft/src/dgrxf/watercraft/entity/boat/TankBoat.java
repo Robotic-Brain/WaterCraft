@@ -54,7 +54,7 @@ public class TankBoat extends AbstractBaseBoat implements IFluidHandler{
 	}
 
 	@Override
-	protected void setBoatAI(BoatAITaskList list) {
+	protected void updateBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0.0F));
 		list.addTask(new TankTask(this, 1.0F));
 	}

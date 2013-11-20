@@ -16,7 +16,7 @@ public class IceBoat extends AbstractBaseBoat {
     }
     
     @Override
-    protected void setBoatAI(BoatAITaskList list) {
+    protected void updateBoatAI(BoatAITaskList list) {
         list.addTask(new VanillaTask(this, 1f));
         list.addTask(new IceTask(this, 1.1f));
     }

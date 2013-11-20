@@ -17,7 +17,7 @@ public class DumbBoat extends AbstractBaseBoat {
     }
     
     @Override
-    protected void setBoatAI(BoatAITaskList list) {
+    protected void updateBoatAI(BoatAITaskList list) {
         list.addTask(new DumbTask(this, 1f));
         list.addTask(new VanillaTask(this, 0f));
     }

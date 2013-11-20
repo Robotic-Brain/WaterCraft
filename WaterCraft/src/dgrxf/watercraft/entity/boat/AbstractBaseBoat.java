@@ -61,7 +61,7 @@ public abstract class AbstractBaseBoat extends Entity {
         this.yOffset = this.height / 2.0F;
         
         BoatAITaskList list = new BoatAITaskList(this);
-        this.setBoatAI(list);
+        this.updateBoatAI(list);
         this.ai = list;
         
         // super() calls entityInit so call the external version here
@@ -774,7 +774,11 @@ public abstract class AbstractBaseBoat extends Entity {
     /**
      * Overwrite this to set the boat logic
      */
-    protected abstract void setBoatAI(BoatAITaskList list);
+    protected abstract void updateBoatAI(BoatAITaskList list);
+    
+    protected void updateBoatAI() {
+        this.updateBoatAI((BoatAITaskList)this.ai);
+    }
     
     
 }

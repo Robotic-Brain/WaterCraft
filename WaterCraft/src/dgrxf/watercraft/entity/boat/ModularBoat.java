@@ -49,7 +49,7 @@ public class ModularBoat extends AbstractBaseBoat{
 	}
 
 	@Override
-	protected void setBoatAI(BoatAITaskList list) {
+	protected void updateBoatAI(BoatAITaskList list) {
 		if(strings != null){
 			for(int i = 0; i < strings.size(); i++){
 				Class<? extends IBoatModule> tempClass = null;
@@ -102,7 +102,7 @@ public class ModularBoat extends AbstractBaseBoat{
 				System.out.println(strings.get(i).toString());
 				i++;
 			}
-			this.setBoatAI(list);
+			this.updateBoatAI();
 			super.readEntityFromNBT(tag);
 		}
 	}

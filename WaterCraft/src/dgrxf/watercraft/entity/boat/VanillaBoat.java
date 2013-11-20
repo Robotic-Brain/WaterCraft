@@ -15,7 +15,7 @@ public class VanillaBoat extends AbstractBaseBoat {
     }
     
     @Override
-    protected void setBoatAI(BoatAITaskList list) {
+    protected void updateBoatAI(BoatAITaskList list) {
         list.addTask(new VanillaTask(this, 1f));
     }
     

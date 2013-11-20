@@ -21,7 +21,7 @@ public class LavaBoat extends AbstractBaseBoat implements ICustomBoatTexture{
     }
     
     @Override
-    protected void setBoatAI(BoatAITaskList list) {
+    protected void updateBoatAI(BoatAITaskList list) {
     	list.addTask(new VanillaTask(this, 0.0F));
     	list.addTask(new LavaTask(this, 1.0F));
     }
