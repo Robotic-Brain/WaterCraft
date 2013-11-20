@@ -727,6 +727,7 @@ public abstract class AbstractBaseBoat extends Entity {
     }
     
     private int              buoyUpdateTimer;
+	public  boolean          playerHasInteractedWith;
     private static final int BUOY_UPDATE_INTERVAL = 10;
     
     /**
