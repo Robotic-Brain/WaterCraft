@@ -116,7 +116,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     	int tempZ = getBoatTempZ();
     	boat.posX = tempX;
     	boat.posZ = tempZ;
-    	boat.setPosition(boat.posX, boat.posY, boat.posZ);
+        boat.setPositionAndRotation(boat.posX, boat.posY, boat.posZ, 180, 0);
     }
     
     public boolean isBoatInCenter(AbstractBaseBoat boat){
