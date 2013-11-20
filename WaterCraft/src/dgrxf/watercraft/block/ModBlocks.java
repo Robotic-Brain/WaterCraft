@@ -35,6 +35,7 @@ public class ModBlocks {
     public static Block		tank;
     public static Block     lockAssembler;
     public static Block 	boatAssembler;
+    public static Block     dockPlatform;
     
     public static void init() {
         //Buoy Blocks
@@ -50,6 +51,7 @@ public class ModBlocks {
         tank = new LiquidTankBlock(BlockInfo.TANK_ID);
         lockAssembler = new LockAssemblerBlock(BlockInfo.LOCK_ASSEMBLER_ID);
         boatAssembler = new BoatModuleAssemblerBlock(BlockInfo.BOAT_ASSEMBLER_ID);
+        dockPlatform  = new DockPlatformBlock();
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         
@@ -60,7 +62,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(lockAssembler, BlockInfo.LOCK_ASSEMBLER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(tank, ItemBlockLiquidTank.class, BlockInfo.TANK_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(boatAssembler, BlockInfo.BOAT_ASSEMBLER_UNLOCALIZED_NAME);
-
+        GameRegistry.registerBlock(dockPlatform, BlockInfo.PLATFORM_UNLOCALIZED_NAME);
+        
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityFreezer.class, BlockInfo.FREEZER_TE_KEY);

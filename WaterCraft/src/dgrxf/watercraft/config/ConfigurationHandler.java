@@ -53,7 +53,7 @@ public class ConfigurationHandler {
             BlockInfo.LOCK_ASSEMBLER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.LOCK_ASSEMBLER_KEY, BlockInfo.LOCK_ASSEMBLER_ID_DEFAULT).getInt();
             BlockInfo.TANK_ID = config.get(BlockInfo.CATEGORY, BlockInfo.TANK_KEY, BlockInfo.TANK_ID_DEFAULT).getInt();
             BlockInfo.BOAT_ASSEMBLER_ID = config.get(BlockInfo.CATEGORY, BlockInfo.BOAT_ASSEMBLER_KEY, BlockInfo.BOAT_ASSEMBLER_ID_DEFAULT).getInt();
-
+            BlockInfo.PLATFORM_ID = config.get(BlockInfo.CATEGORY, BlockInfo.PLATFORM_KEY, BlockInfo.PLATFORM_ID_DEFAULT).getInt();
             
             // Misc
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();

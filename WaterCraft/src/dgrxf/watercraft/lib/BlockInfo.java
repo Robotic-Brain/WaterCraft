@@ -39,6 +39,9 @@ public class BlockInfo {
     public static final String TANK_KEY                      	  = "Liquid Tank";
     public static final String TANK_TE_KEY                  	  = "wcLiquidTankTE";
     
+    public static final String PLATFORM_UNLOCALIZED_NAME          	  = "wcPlatFrom";
+    public static final String PLATFORM_KEY                      	  = "Platform";
+    
     public static final String LOCK_ASSEMBLER_UNLOCALIZED_NAME              = "lockAssemblerName";
     public static final String LOCK_ASSEMBLER_KEY                           = "Lock Assembler";
     public static final String LOCK_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
@@ -80,5 +83,8 @@ public class BlockInfo {
     
     public static final int    BOAT_ASSEMBLER_ID_DEFAULT          = 711;
     public static int          BOAT_ASSEMBLER_ID;
+    
+    public static final int    PLATFORM_ID_DEFAULT                = 712;
+    public static int          PLATFORM_ID;
 
 }
