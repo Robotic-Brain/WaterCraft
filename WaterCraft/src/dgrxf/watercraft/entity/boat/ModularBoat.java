@@ -19,6 +19,7 @@ public class ModularBoat extends AbstractBaseBoat{
 	NBTTagCompound tag;
 	Object modID;
 	ArrayList strings = new ArrayList<String>();
+	BoatAITaskList list;
 	
 	public ModularBoat(World world){
 		super(world);
@@ -35,7 +36,7 @@ public class ModularBoat extends AbstractBaseBoat{
 		this.tag = tag;
 		this.modID = modID;
 		strings = (ArrayList)readTagInformation(tag);
-		this.setBoatAI(new BoatAITaskList(null));
+		this.setBoatAI(list);
 	}
 	
 	private List readTagInformation(NBTTagCompound tag){
@@ -54,7 +55,7 @@ public class ModularBoat extends AbstractBaseBoat{
 
 	@Override
 	protected void setBoatAI(BoatAITaskList list) {
-		BoatAITaskList temp = new BoatAITaskList(this);
+		this.list = list;
 		if(strings != null){
 			for(int i = 0; i < strings.size(); i++){
 				Class<? extends IBoatModule> tempClass = null;
@@ -63,13 +64,12 @@ public class ModularBoat extends AbstractBaseBoat{
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
-				ModuleHelper.addBoatAI(tempClass, temp, this, (float)i);
+				ModuleHelper.addBoatAI(tempClass, list, this, (float)i);
 				Block block = ModuleHelper.getBlockType(tempClass);
 				if(block != null){
 					this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, block.blockID);
 				}
 			}
-			this.ai = temp;
 		}
 	}
 
@@ -108,7 +108,7 @@ public class ModularBoat extends AbstractBaseBoat{
 				System.out.println(strings.get(i).toString());
 				i++;
 			}
-			this.setBoatAI(new BoatAITaskList(null));
+			this.setBoatAI(list);
 			super.readEntityFromNBT(tag);
 		}
 	}
