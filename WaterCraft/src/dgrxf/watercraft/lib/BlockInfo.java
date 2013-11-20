@@ -43,6 +43,10 @@ public class BlockInfo {
     public static final String LOCK_ASSEMBLER_KEY                           = "Lock Assembler";
     public static final String LOCK_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
     
+    public static final String BOAT_ASSEMBLER_UNLOCALIZED_NAME              = "lockAssemblerName";
+    public static final String BOAT_ASSEMBLER_KEY                           = "Lock Assembler";
+    public static final String BOAT_ASSEMBLER_TE_KEY         				= "WCTileEntityLockAssembler";
+    
     /*************
      * Integers
      *************/

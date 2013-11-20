@@ -1,52 +1,50 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.ModContainer;
-import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import dgrxf.watercraft.Watercraft;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
 
-public class InventoryTask extends BoatAITaskBase implements IInventory{
+public class InventoryTask extends BoatAITaskBase implements IInventory, ILockableBlock{
 
 	private int guiID;
 	private ItemStack[] items;
 	private Object modID;
+	private boolean lockable;
+	private int code;
 	
-	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID, Object modID, int invSize) {
+	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID, Object modID, int invSize, boolean lockable) {
 		super(boat, priority);
 		this.guiID = guiID;
 		this.modID = modID;
+		this.lockable = lockable;
 		this.items = new ItemStack[invSize];
 	}
 
 
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
-		
         if (!boat.worldObj.isRemote) {
-        	if(boat instanceof ILockableBlock){
+        	if(lockable){
 	        	ItemStack heldItem = player.inventory.getCurrentItem();
 	            if (!player.isSneaking()) {
-	            	if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == ((ILockableBlock)boat).getCode()))
+	            	if(boat.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
 	            		if(guiID < 0){
 	            			openVanillaGUI(player);
 	            		}
 	            		else
-	            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+	            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, boat.entityId, 0, 0);
 	            } else {
-	                if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
+	                if(boat.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
 	                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
-	                		if(heldItem.getItemDamage() == ((ILockableBlock)boat).getCode()){
+	                		if(heldItem.getItemDamage() == this.getCode()){
 	                			boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
 	                		}
 	                	}
@@ -54,7 +52,7 @@ public class InventoryTask extends BoatAITaskBase implements IInventory{
 	                else{
 	                	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
 	            			boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)1));
-	            			((ILockableBlock)boat).setCode(heldItem.getItemDamage());
+	            			this.setCode(heldItem.getItemDamage());
 	                	}
 	                }
 	            }
@@ -66,7 +64,7 @@ public class InventoryTask extends BoatAITaskBase implements IInventory{
         				openVanillaGUI(player);
         			}
         			else
-            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
+            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, boat.entityId, 0, 0);
         		}
         	}
         }
@@ -188,6 +186,29 @@ public class InventoryTask extends BoatAITaskBase implements IInventory{
 			}
 			
 		}
+	}
+
+
+	@Override
+	public void setLocked(boolean lock) {
+	}
+
+
+	@Override
+	public boolean isLocked() {
+		return false;
+	}
+
+
+	@Override
+	public int getCode() {
+		return code;
+	}
+
+
+	@Override
+	public void setCode(int code) {
+		this.code = code;
 	}
 	
 }

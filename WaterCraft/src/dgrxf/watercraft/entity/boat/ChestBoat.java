@@ -18,7 +18,7 @@ import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.util.LogHelper;
 
-public class ChestBoat extends AbstractBaseBoat implements ILockableBlock{
+public class ChestBoat extends AbstractBaseBoat{
 
     public ItemStack[] items = new ItemStack[27];
 	
@@ -42,25 +42,12 @@ public class ChestBoat extends AbstractBaseBoat implements ILockableBlock{
 	@Override
 	protected void updateBoatAI(BoatAITaskList list) {
 		list.addTask(new DumbTask(this, 0f));
-		list.addTask(new InventoryTask(this, 1.0f, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27));
+		list.addTask(new InventoryTask(this, 1.0f, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27, true));
 	}
 
 	@Override
 	public Block getDisplayTile() {
 		return ModBlocks.chest;
 	}
-	
-	//All of these aren't used, only implementing to differentiate from normal boats, using datawatchers instead so you don't have to send packets.
-	@Override
-	public void setLocked(boolean lock) {}
-
-	@Override
-	public boolean isLocked() {return false;}
-
-	@Override
-	public int getCode() {return 0;}
-
-	@Override
-	public void setCode(int code) {}
 	
 }

@@ -34,7 +34,7 @@ public class ChestModule implements IBoatModule {
 
 	@Override
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
-		list.addTask(new InventoryTask(boat, f, guiID, modID, invSize));
+		list.addTask(new InventoryTask(boat, f, guiID, modID, invSize, true));
 	}
 
 }

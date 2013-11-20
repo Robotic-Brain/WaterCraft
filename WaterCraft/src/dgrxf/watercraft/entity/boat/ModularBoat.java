@@ -27,11 +27,13 @@ public class ModularBoat extends AbstractBaseBoat{
 	protected void entityInit() {
 		super.entityInit();
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Integer(0));
 	}
 	
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {
 		super(par1World, par2, par4, par6);
 		strings = (ArrayList)readTagInformation(tag);
+		updateBoatAI(this.list);
 	}
 	
 	private List readTagInformation(NBTTagCompound tag){
@@ -50,6 +52,7 @@ public class ModularBoat extends AbstractBaseBoat{
 
 	@Override
 	protected void updateBoatAI(BoatAITaskList list) {
+		this.list = list;
 		if(strings != null){
 			for(int i = 0; i < strings.size(); i++){
 				Class<? extends IBoatModule> tempClass = null;
