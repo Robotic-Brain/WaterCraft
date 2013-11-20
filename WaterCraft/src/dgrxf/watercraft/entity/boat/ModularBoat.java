@@ -64,6 +64,10 @@ public class ModularBoat extends AbstractBaseBoat{
 					e.printStackTrace();
 				}
 				ModuleHelper.addBoatAI(tempClass, temp, this, (float)i);
+				Block block = ModuleHelper.getBlockType(tempClass);
+				if(block != null){
+					this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, block.blockID);
+				}
 			}
 			this.ai = temp;
 		}
