@@ -9,7 +9,7 @@ import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
-import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class ControlBlockDock extends BuoyBlock {
     

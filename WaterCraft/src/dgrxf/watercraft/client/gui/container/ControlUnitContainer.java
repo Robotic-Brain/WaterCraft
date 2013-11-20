@@ -6,7 +6,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.tileentity.TileEntity;
-import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class ControlUnitContainer extends Container implements ITeContainer {
     

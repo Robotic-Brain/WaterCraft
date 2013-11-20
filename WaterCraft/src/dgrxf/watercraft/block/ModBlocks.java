@@ -11,11 +11,11 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
-import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
+import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 /**
  * Mod Blocks

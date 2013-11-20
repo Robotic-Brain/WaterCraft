@@ -22,10 +22,10 @@ import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
-import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class GuiHandler implements IGuiHandler {
     

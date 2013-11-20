@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.container.ControlUnitContainer;
 import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.network.PacketHandler;
-import dgrxf.watercraft.tileentity.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.util.LogHelper;
 
 @SideOnly(Side.CLIENT)
