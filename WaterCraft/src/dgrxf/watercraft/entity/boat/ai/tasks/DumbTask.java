@@ -8,19 +8,21 @@ import dgrxf.watercraft.util.Vector2;
 public class DumbTask extends BoatAITaskBase {
     
     private Vector2 target;
+    private AbstractBaseBoat boat;
     
     public DumbTask(AbstractBaseBoat boat, float priority) {
         super(boat, priority);
+        this.boat = boat;
     }
     
     @Override
     public void updateMotion() {
-        moveToTarget();
+    	moveToTarget();
     }
     
     @Override
     public void buoyFound(WCBouyLogic buoy) {
-        if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
+        if (buoy.hasNextBuoy(buoy.getBlockDirection())&& !boat.isIdle) {
             setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
             LogHelper.debug("Traget set");
         }
