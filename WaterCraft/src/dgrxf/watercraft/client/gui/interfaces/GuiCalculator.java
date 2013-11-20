@@ -11,7 +11,7 @@ import dgrxf.watercraft.client.gui.container.CalculatorContainer;
 
 public class GuiCalculator extends GuiContainer {
     
-    private String screenText;
+    private String screenText = "";
     private String temp;
     
     public GuiCalculator() {
