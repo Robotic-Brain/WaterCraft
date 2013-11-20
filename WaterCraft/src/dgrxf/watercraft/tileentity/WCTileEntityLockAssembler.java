@@ -35,7 +35,6 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		System.out.println(code);
 		
 		setInventorySlotContents(3, new ItemStack(ModItems.padlock.itemID, 1, getCode()));
 		setInventorySlotContents(4, new ItemStack(ModItems.key.itemID, 1, getCode()));
