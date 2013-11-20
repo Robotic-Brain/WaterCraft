@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.ControlUnitLogicTabs;
 import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveAfter;
+import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveOnInteraction;
 import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveOnRedstone;
 
 public class ControlUnitLogic {
 	
 	public static ControlUnitLogic basicLeaveAfter = new LeaveAfter();
 	public static ControlUnitLogic basicOnRedstone = new LeaveOnRedstone();
-	public static ControlUnitLogic basicOnInteraction = new LeaveAfter();
+	public static ControlUnitLogic basicOnInteraction = new LeaveOnInteraction();
 	
 	private int logicID;
 	private ControlUnitLogicTabs tab;
