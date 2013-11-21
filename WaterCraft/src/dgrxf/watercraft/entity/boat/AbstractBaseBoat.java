@@ -17,6 +17,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
@@ -81,6 +82,7 @@ public abstract class AbstractBaseBoat extends Entity {
         this.dataWatcher.addObject(17, new Integer(0));
         this.dataWatcher.addObject(18, new Integer(1));
         this.dataWatcher.addObject(19, new Float(0.0F));
+        this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TARTEG_BOAT_ID, -1);
         if (ai != null) {
             this.ai.entityInit();
         }
