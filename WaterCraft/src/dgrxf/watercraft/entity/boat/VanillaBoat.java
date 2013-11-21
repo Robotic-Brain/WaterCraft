@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
@@ -13,6 +14,11 @@ public class VanillaBoat extends AbstractBaseBoat {
     
     public VanillaBoat(World par1World, double par2, double par4, double par6) {
         super(par1World, par2, par4, par6);
+    }
+    
+    @Override
+    public AxisAlignedBB getBoundingBox() {
+        return null;
     }
     
     @Override

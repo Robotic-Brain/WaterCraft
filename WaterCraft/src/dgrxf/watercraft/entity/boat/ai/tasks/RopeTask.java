@@ -49,6 +49,7 @@ public class RopeTask extends BoatAITaskBase {
 		if (stack.getItemDamage() == 0) {
 			stack.setItemDamage(1);
 			tag.setInteger("id", boat.entityId);
+			stack.setTagCompound(tag);
 			
 			Watercraft.printToPlayer("ID set to " + Integer.toString(boat.entityId));
 			
@@ -97,7 +98,6 @@ public class RopeTask extends BoatAITaskBase {
 	@Override
     public void updateMotion() {
 		if (target != null) {
-			Watercraft.printToPlayer("target not null!");
 			moveToTarget();
 		}
     }
@@ -110,13 +110,19 @@ public class RopeTask extends BoatAITaskBase {
 		Vector2 distance = targetBack.sub(boatFront);
 		
 		if (distance.length() < ROPE_LENGTH) {
+			boat.motionX *= 0.4;
+			boat.motionZ *= 0.4;
 			return;
 		}
 		
 		distance = distance.normalize();
 		
-		boat.motionX = boat.speedMultiplier * distance.x;
-		boat.motionZ = boat.speedMultiplier * distance.y;
+		double d = 0.3;
+		
+		boat.motionX = d * distance.x;
+		boat.motionZ = d * distance.y;
+		
+		
 	}
 
 }
