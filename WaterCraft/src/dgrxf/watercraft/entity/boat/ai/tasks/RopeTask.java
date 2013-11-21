@@ -76,9 +76,8 @@ public class RopeTask extends BoatAITaskBase {
 			
 			if (list != null) {
 				Iterator iterator = list.iterator();
-				//boolean found = false;
 
-	            while (iterator.hasNext() /*&& !found*/) {	     
+	            while (iterator.hasNext()) {	     
 	            	Entity e = (Entity)iterator.next();
 	            	AbstractBaseBoat foundBoat;
 	            	
@@ -96,15 +95,11 @@ public class RopeTask extends BoatAITaskBase {
 	            		target = foundBoat;
 	            		stack.stackSize--;
 	            		break;
-	            		//found = true;
 	            	}
 	            }
 			}
-			
 			stack.setItemDamage(0);
 		}
-
-
 	}
 	
 	@Override
@@ -114,15 +109,6 @@ public class RopeTask extends BoatAITaskBase {
 		}
     }
     
-	@Override
-	public void postOnUpdate() {
-		System.out.println(boat.worldObj.isRemote && target != null);
-		if (boat.worldObj.isRemote && target != null) {
-			System.out.println("updating");
-			updateRenderingRopePoints();
-		}
-	}
-	
 	private void moveToTarget() {
 		Vector2 targetBack = new Vector2(target.posX + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, target.posZ + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F);
 		Vector2 boatFront = new Vector2(boat.posX - boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F, boat.posZ - boat.width * Math.sin(boat.rotationYaw * Math.PI / 180.0) / 2.0F);
@@ -139,12 +125,6 @@ public class RopeTask extends BoatAITaskBase {
 		
 		boat.motionX = SPEED_MULTIPLIER * distance.x;
 		boat.motionZ = SPEED_MULTIPLIER * distance.y;	
-	}
-	
-	private void updateRenderingRopePoints() {
-		backRopePoint.setNewCoordinates(target.posX + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, 0.7, target.posZ + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F);
-		frontRopePoint.setNewCoordinates(boat.posX - boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F, 0.7, boat.posZ - boat.width * Math.sin(boat.rotationYaw * Math.PI / 180.0) / 2.0F);
-		System.out.println(backRopePoint.toString());
 	}
 
 }
