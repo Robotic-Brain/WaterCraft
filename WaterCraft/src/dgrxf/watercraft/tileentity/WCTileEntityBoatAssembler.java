@@ -55,7 +55,8 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	}
 	
 	private boolean addModuleToSet(ItemStack boat, IItemModule mod, HashSet<String> set){
-		set = ((IModularBoat)boat.getItem()).getModuleList(boat);
+		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
+		set.addAll(temp);
 		return set.add(mod.getBoatModule().getName());
 	}
 	
