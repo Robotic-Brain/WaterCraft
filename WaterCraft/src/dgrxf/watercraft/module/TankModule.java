@@ -12,7 +12,7 @@ public class TankModule implements IBoatModule {
 	
 	@Override
 	public ModuleType getModuleType() {
-		return ModuleType.BLOCK;
+		return ModuleType.INVENTORY;
 	}
 
 	@Override

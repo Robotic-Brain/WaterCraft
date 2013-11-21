@@ -11,6 +11,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.interfaces.IItemModule;
 
 public class ModuleHelper {
 	
@@ -128,13 +129,34 @@ public class ModuleHelper {
 	public static void writeSetToItemStackNBT(HashSet<String> set, ItemStack item) {
 		
 		NBTTagCompound tag = new NBTTagCompound();
+		NBTTagCompound innerTag = new NBTTagCompound();
 		int i = 0;
 		for(String s : set){
-			tag.setString(Alphabet.values()[i].toString(), s);
+			innerTag.setString(Alphabet.values()[i].toString(), s);
 			i++;
 		}
-		
+		tag.setCompoundTag("Modules", innerTag);
 		item.setTagCompound(tag);
+	}
+
+	public static boolean doTasksConflict(IItemModule mod, HashSet<String> temp) {
+		
+		for(String s : temp){
+			if(isModuleRegistered(mod.getBoatModule())){
+				try {
+					if(getModuleType((Class<? extends IBoatModule>) Class.forName(s)) == getModuleType(mod.getBoatModule())){
+						return true;
+					}
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+			else{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 }

@@ -27,24 +27,23 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		ItemStack slotOne = getStackInSlot(1);
 		
 		if(slotZero != null && slotOne != null){
-			HashSet<String> modules = new HashSet();
 			ItemStack item = null;
 			NBTTagCompound tag;
 			if(((slotZero.getItem() instanceof IModularBoat) && (slotOne.getItem() instanceof IItemModule))){
-				createAndReturnItem(slotZero, item, (IItemModule)slotOne.getItem(), modules);
+				createAndReturnItem(slotZero, item, (IItemModule)slotOne.getItem());
 			}else if(((slotZero.getItem() instanceof IItemModule) && (slotOne.getItem() instanceof IModularBoat))){
-				createAndReturnItem(slotOne, item, (IItemModule)slotZero.getItem(), modules);
+				createAndReturnItem(slotOne, item, (IItemModule)slotZero.getItem());
 			}
 		}
 	}
 	
-	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod, HashSet<String> strings){
-		if(addModuleToSet(slot, mod, strings)){
-			if(strings.size() != 0){
-				item = new ItemStack(slot.getItem());
-				ModuleHelper.writeSetToItemStackNBT(strings, item);
-				returnItem(item);
-			}
+	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod){
+		HashSet<String> strings = addModuleToSetOrReturnModules(slot, mod, true);
+		HashSet<String> temp = addModuleToSetOrReturnModules(slot, mod, false);
+		if(!strings.equals(temp)){
+			item = new ItemStack(slot.getItem());
+			ModuleHelper.writeSetToItemStackNBT(strings, item);
+			returnItem(item);
 		}
 	}
 	
@@ -54,9 +53,11 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		setInventorySlotContents(2, item);
 	}
 	
-	private boolean addModuleToSet(ItemStack boat, IItemModule mod, HashSet<String> set){
-		set = ((IModularBoat)boat.getItem()).getModuleList(boat);
-		return set.add(mod.getBoatModule().getName());
+	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, IItemModule mod, boolean addNewMods){
+		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
+		if(addNewMods && !ModuleHelper.doTasksConflict(mod, temp))
+			temp.add(new String(mod.getBoatModule().getName()));
+		return temp;
 	}
 	
 	@Override
