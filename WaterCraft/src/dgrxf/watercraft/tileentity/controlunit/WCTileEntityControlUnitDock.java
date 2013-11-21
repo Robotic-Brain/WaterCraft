@@ -134,6 +134,8 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     /**
      * This will check to see what boat is inside the AAB and will run the set Logic depending on it's type
      * 
+     * This is no good, this isn't generic, we'd have to change this every time we were to add more logic.
+     * 
      * @param Boat inside the AAB
      */
     private void runLogic(AbstractBaseBoat e) {

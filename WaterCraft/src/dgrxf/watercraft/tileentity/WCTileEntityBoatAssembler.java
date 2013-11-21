@@ -1,104 +1,62 @@
 package dgrxf.watercraft.tileentity;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import dgrxf.watercraft.enumeration.Alphabet;
-import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.interfaces.IItemModule;
-import dgrxf.watercraft.item.ModItems;
-import dgrxf.watercraft.item.boat.ItemModularBoat;
+import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.util.ModuleHelper;
 
 public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 
 	private ItemStack[] items = new ItemStack[3];
+
 	
-	
-	/*
-	 * This method updates the entity, it checks the first two slots to see if there are IItemModules in the slots.
-	 * It calls getOldTagsFromNBT, it then writes the new NBT data to a tag to be put onto an itemstack and places the new
-	 * item in the third slot, with the custom NBT.
-	 */
 	@Override
 	public void updateEntity() {
+		if(this.worldObj.isRemote) return;
 		ItemStack slotZero = getStackInSlot(0);
 		ItemStack slotOne = getStackInSlot(1);
 		
-		if(slotZero == null || slotOne == null ||
-				!(slotZero.getItem() instanceof IItemModule) || !(slotOne.getItem() instanceof IItemModule)) return;
-		
-		NBTTagCompound tagOne = new NBTTagCompound();
-		NBTTagCompound tagTwo = new NBTTagCompound();
-		NBTTagCompound tagReturn = new NBTTagCompound();
-		NBTTagCompound tag = new NBTTagCompound();
-		
-		int startingPosOne = getOldTagsFromNBT(tagOne, tagReturn, slotZero, 0);
-		int startingPosTwo = getOldTagsFromNBT(tagTwo, tagReturn, slotOne, startingPosOne);
-		
-		int totalOrigTags = startingPosOne + startingPosTwo;
-		
-		ItemStack newItem = new ItemStack(ModItems.moduleBoat);
-		
-		IItemModule modZero = (IItemModule)slotZero.getItem();
-		IItemModule modOne = (IItemModule)slotOne.getItem();
-		
-		Class zero = modZero.getBoatModule();
-		Class one = modOne.getBoatModule();
-		
-		int tagsAdded = ModuleHelper.writeModuleInforToNBT(zero, tagReturn, totalOrigTags);
-		ModuleHelper.writeModuleInforToNBT(one, tagReturn, totalOrigTags + tagsAdded);
-		
-		tag.setCompoundTag("Modules", tagReturn);
-		newItem.setTagCompound(tag);
-		
+		if(slotZero != null && slotOne != null){
+			HashSet<String> modules = new HashSet();
+			ItemStack item = null;
+			NBTTagCompound tag;
+			if(((slotZero.getItem() instanceof IModularBoat) && (slotOne.getItem() instanceof IItemModule))){
+				createAndReturnItem(slotZero, item, (IItemModule)slotOne.getItem(), modules);
+			}else if(((slotZero.getItem() instanceof IItemModule) && (slotOne.getItem() instanceof IModularBoat))){
+				createAndReturnItem(slotOne, item, (IItemModule)slotZero.getItem(), modules);
+			}
+		}
+	}
+	
+	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod, HashSet<String> strings){
+		if(addModuleToSet(slot, mod, strings)){
+			if(strings.size() != 0){
+				item = new ItemStack(slot.getItem());
+				ModuleHelper.writeSetToItemStackNBT(strings, item);
+				returnItem(item);
+			}
+		}
+	}
+	
+	private void returnItem(ItemStack item){
 		decrStackSize(0, 1);
 		decrStackSize(1, 1);
-		setInventorySlotContents(2, newItem);
-			
-		
+		setInventorySlotContents(2, item);
 	}
 	
-	
-	/*
-	 * This method checks to see if an item has NBT data on it, if it doesn't it returns a 0, but if it does it enters
-	 * a for loop where it loops through to see how much data is in the tag and returns that amount.
-	 */
-	private int getOldTagsFromNBT(NBTTagCompound tag, NBTTagCompound returnTag, ItemStack stack, int startingOffset){
-		if(stack.hasTagCompound()){
-			tag = stack.getTagCompound().getCompoundTag("Modules");
-			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
-				startingOffset = i;
-				if(nbtHasKey(tag, i)){
-					writeOldTagsToNBT(returnTag, tag, i + startingOffset, i);
-					continue;
-				}
-				else{
-					return startingOffset;
-				}
-			}
-			return startingOffset;
-		}
-		return 0;
-	}
-	
-	
-	/*
-	 * THis method writes a value from the old NBT it's given at position i2 and places it in the new NBT's position i.
-	 */
-	private void writeOldTagsToNBT(NBTTagCompound newTag, NBTTagCompound oldTag, int i, int i2){
-		newTag.setString(Alphabet.values()[i].toString(), oldTag.getString(Alphabet.values()[i2].toString()));
-	}
-	
-	/*
-	 * This method just returns whether or not a tag has a key at the the position given.
-	 */
-	private boolean nbtHasKey(NBTTagCompound tag, int i){
-		return tag.hasKey(Alphabet.values()[i].toString());
+	private boolean addModuleToSet(ItemStack boat, IItemModule mod, HashSet<String> set){
+		set = ((IModularBoat)boat.getItem()).getModuleList(boat);
+		return set.add(mod.getBoatModule().getName());
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package dgrxf.watercraft.item.boat;
 
+import java.util.HashSet;
 import java.util.List;
 
 import net.minecraft.block.material.Material;
@@ -11,19 +12,16 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.enumeration.Alphabet;
-import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.interfaces.IItemModule;
+import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.module.DumbModule;
 
-public class ItemModularBoat extends Item implements IItemModule{
+public class ItemModularBoat extends Item implements IModularBoat{
 
 	public ItemModularBoat() {
         super(ItemInfo.TANK_BOAT_ID);
@@ -81,9 +79,20 @@ public class ItemModularBoat extends Item implements IItemModule{
 			
 		}
     }
-
-	@Override
-	public Class<? extends IBoatModule> getBoatModule() {
-		return DumbModule.class;
-	}
+    
+    @Override
+    public HashSet getModuleList(ItemStack stack) {
+    	if(stack.getTagCompound() == null)
+    		return new HashSet<String>();
+    	else{
+			NBTTagCompound tag = stack.getTagCompound().getCompoundTag("Modules");
+    		HashSet returnList = new HashSet<String>();
+			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
+				if(tag.hasKey(Alphabet.values()[i].toString())){
+					returnList.add(tag.getString(Alphabet.values()[i].toString()));
+				}
+			}
+    		return returnList;
+    	}
+    }
 }

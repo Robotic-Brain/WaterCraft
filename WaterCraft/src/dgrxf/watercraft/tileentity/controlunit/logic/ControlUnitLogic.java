@@ -8,7 +8,7 @@ import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveAfter;
 import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveOnInteraction;
 import dgrxf.watercraft.tileentity.controlunit.logic.basic.LeaveOnRedstone;
 
-public class ControlUnitLogic {
+public abstract class ControlUnitLogic {
 	
 	public static ControlUnitLogic basicLeaveAfter = new LeaveAfter();
 	public static ControlUnitLogic basicOnRedstone = new LeaveOnRedstone();
