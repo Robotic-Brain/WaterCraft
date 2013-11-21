@@ -23,9 +23,9 @@ import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector3;
 
 /**
- * Class Created By: ??? Class Last Edited By: xandayn
+ * Class Created By: ??? Class Last Edited By: DrunkMafia
  * 
- * Class Last Edited On: 11/07/2013 MM/DD/YYYY
+ * Class Last Edited On: 21/07/2013 MM/DD/YYYY
  * 
  */
 
