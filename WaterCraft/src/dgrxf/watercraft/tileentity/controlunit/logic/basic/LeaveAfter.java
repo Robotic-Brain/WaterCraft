@@ -20,8 +20,12 @@ public class LeaveAfter extends ControlUnitLogic{
 		tick--;
         if(tick <= 0){
         	WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
-			tile.setHoldBoat(false);
+			tile.holdBoat =false;
 			tick = countDown;
 		}
+	}
+	
+	public void setCountDown(int countDown) {
+		this.countDown = countDown;
 	}
 }

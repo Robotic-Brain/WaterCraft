@@ -16,7 +16,7 @@ public class LeaveOnRedstone extends ControlUnitLogic{
 	public void runLogic(World world, int x, int y, int z) {
 		if(world.isBlockIndirectlyGettingPowered(x, y, z)){
 			WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
-			tile.setHoldBoat(false);
+			tile.holdBoat = false;
 		}
 	}
 }
