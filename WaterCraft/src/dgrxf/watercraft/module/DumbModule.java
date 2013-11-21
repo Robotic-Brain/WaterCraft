@@ -12,8 +12,8 @@ import dgrxf.watercraft.interfaces.IBoatModule;
 public class DumbModule implements IBoatModule{
 
 	@Override
-	public ModuleType getModuleType() {
-		return ModuleType.BOAT;
+	public ModuleType[] getModuleType() {
+		return new ModuleType[]{ModuleType.BOAT};
 	}
 
 	@Override

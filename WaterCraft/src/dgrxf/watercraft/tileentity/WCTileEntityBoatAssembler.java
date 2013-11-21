@@ -13,7 +13,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IItemModule;
 import dgrxf.watercraft.interfaces.IModularBoat;
-import dgrxf.watercraft.util.ModuleHelper;
+import dgrxf.watercraft.util.ModuleRegistry;
 
 public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 
@@ -42,7 +42,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, mod, false);
 		if(!strings.equals(temp)){
 			item = new ItemStack(slot.getItem());
-			ModuleHelper.writeSetToItemStackNBT(strings, item);
+			ModuleRegistry.writeSetToItemStackNBT(strings, item);
 			returnItem(item);
 		}
 	}
@@ -55,7 +55,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	
 	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, IItemModule mod, boolean addNewMods){
 		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-		if(addNewMods && !ModuleHelper.doTasksConflict(mod, temp))
+		if(addNewMods && !ModuleRegistry.doTasksConflict(mod, temp))
 			temp.add(new String(mod.getBoatModule().getName()));
 		return temp;
 	}

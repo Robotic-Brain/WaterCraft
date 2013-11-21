@@ -9,7 +9,7 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.ItemInfo;
 
-public class ItemCalculator extends Item {
+public class ItemCalculator extends Item{
     public ItemCalculator() {
         super(ItemInfo.CALCULATOR_ID);
         setCreativeTab(Watercraft.miscTab);

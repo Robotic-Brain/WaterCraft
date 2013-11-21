@@ -24,12 +24,11 @@ import dgrxf.watercraft.entity.Entities;
 import dgrxf.watercraft.event.WCEventHandler;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.ModInfo;
+import dgrxf.watercraft.lib.ModuleInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
-import dgrxf.watercraft.module.Modules;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
-import dgrxf.watercraft.util.ModuleHelper;
 
 /**
  * Class Made By: Drunk Mafia
@@ -69,7 +68,7 @@ public class Watercraft {
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
-        Modules.init();
+        ModuleInfo.init();
     }
     
     @EventHandler

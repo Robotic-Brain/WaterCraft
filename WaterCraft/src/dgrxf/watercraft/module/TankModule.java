@@ -11,8 +11,8 @@ import dgrxf.watercraft.interfaces.IBoatModule;
 public class TankModule implements IBoatModule {
 	
 	@Override
-	public ModuleType getModuleType() {
-		return ModuleType.INVENTORY;
+	public ModuleType[] getModuleType() {
+		return new ModuleType[]{ModuleType.INVENTORY, ModuleType.BLOCK};
 	}
 
 	@Override

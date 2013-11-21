@@ -11,9 +11,9 @@ public interface IBoatModule {
 
 	/**
 	 * Currently unused
-	 * @return the type of module youre adding
+	 * @return the types of modules you're adding
 	 */
-	public ModuleType getModuleType();
+	public ModuleType[] getModuleType();
 	
 	/**
 	 * If your module type is BLOCK return the block here, if not return null

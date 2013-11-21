@@ -13,7 +13,7 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.interfaces.IItemModule;
 
-public class ModuleHelper {
+public class ModuleRegistry {
 	
 	private static HashSet<IBoatModule> modules = new HashSet();
 	
@@ -76,7 +76,7 @@ public class ModuleHelper {
 	 * @param clazz the class of the module you wish to call getModuleType from
 	 * @return the getModuleType for the class, null if the class is not registered.
 	 */
-	public static ModuleType getModuleType(Class<? extends IBoatModule> clazz){
+	public static ModuleType[] getModuleTypes(Class<? extends IBoatModule> clazz){
 		for(IBoatModule mods : modules){
 			if(mods.getClass() == clazz){
 				return mods.getModuleType();
@@ -144,9 +144,16 @@ public class ModuleHelper {
 		for(String s : temp){
 			if(isModuleRegistered(mod.getBoatModule())){
 				try {
-					if(getModuleType((Class<? extends IBoatModule>) Class.forName(s)) == getModuleType(mod.getBoatModule())){
-						return true;
+					ModuleType[] mods1 = getModuleTypes((Class<? extends IBoatModule>) Class.forName(s));
+					ModuleType[] mods2 = getModuleTypes(mod.getBoatModule());
+					for(ModuleType mod1 : mods1){
+						for(ModuleType mod2 : mods2){
+							if(mod1 == mod2){
+								return true;
+							}
+						}
 					}
+					
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				}
