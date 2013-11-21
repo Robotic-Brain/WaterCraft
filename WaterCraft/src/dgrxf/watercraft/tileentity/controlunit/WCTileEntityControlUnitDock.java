@@ -10,7 +10,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.ChestBoat;
 import dgrxf.watercraft.entity.boat.DumbBoat;
+import dgrxf.watercraft.entity.boat.TankBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
@@ -29,21 +31,24 @@ import dgrxf.watercraft.util.Vector3;
 
 public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEntityInterfaceEvent {
     
-    /**
-     * Constants
-     */
+    /** Constants **/
     private static final int UPDATE_COUNT_DOWN = 20;
-    
-    public int               activeTabIndex;
-    public boolean           basicTab, chestTab, tankTab;
-    
-    public AbstractBaseBoat dockedBoat;
-    private boolean          multiBlockFormed, holdBoat;
-    private int              updateTimer;
     private ForgeDirection[] directions        = { ForgeDirection.NORTH,
             ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH };
     
-    //Logic
+    /** Fields **/
+    private boolean          multiBlockFormed;
+    private int              updateTimer;
+    
+    /** Tabs **/
+    public int               activeTabIndex;
+    public boolean           basicTab, chestTab, tankTab;
+    
+    /** Boats **/
+    public AbstractBaseBoat dockedBoat;
+    public boolean          holdBoat;
+    
+    /**Logic **/
     private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnInteraction;
     private ControlUnitLogic chestLogic;
     private ControlUnitLogic tankLogic;
@@ -54,7 +59,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         basicTab = true;
         chestTab = false;
         tankTab = false;
-        setHoldBoat(true);
+        holdBoat = true;
     }
     
     @Override
@@ -66,30 +71,38 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     public void updateEntity() {
     	if(worldObj.isRemote) return;
     	updateTimer--;
+    	
         if(updateTimer <= 0){
-        	if(!multiBlockFormed){
-        		multiBlockFormed = checkForMultiBlock();
-        	}else if(multiBlockFormed){
+        	/** Checks to see if there is a multiblock and also if it still exists **/
+        	multiBlockFormed = checkForMultiBlock();
+        	
+        	if(multiBlockFormed){
         		AbstractBaseBoat e = findEntityBoat(getBlockDirection(), AbstractBaseBoat.class);
-        		
         		if(e != null){
-        			//This is ran only once when the boat enters the ABB of the controlUnit
+        			/** This is only ran once (When the boat enters the ABB **/
         			if(!isBoatInCenter(e)){
         				dockedBoat = e;
-        				setHoldBoat(true);
+        				holdBoat = true;
         				positionBoatInCenter(e);
         			}
+        			/** Runs the Logic **/
+        			runLogic(e);
+        			
+        			/** Runs when the Logic that is set by the user is finished **/
         			if(!holdBoat){
         				updateBuoys();
         				e.isIdle = false;
         				e.ai.buoyFound(this);;
         			}
-        			getLoadedLogic(e);
         		}
         	}
         	updateTimer = 20;
         }
     }
+    
+    /**
+     * This is Overridden as it is needs to check one Y level below it's current yCoord 
+     */
     
     @Override
     protected void findNewBuoys() {
@@ -107,14 +120,52 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         }
     }
 
-    private void getLoadedLogic(AbstractBaseBoat e) {
-		if(e instanceof DumbBoat){
-			if(basicLogic != null){
-				basicLogic.runLogic(worldObj, xCoord, yCoord, zCoord);
-			}
-		}
+    /**
+     * 
+     * This will check to see what boat is inside the AAB and will run the set Logic depending on it's type
+     * 
+     * @param Boat inside the AAB
+     */
+    
+    private void runLogic(AbstractBaseBoat e) {
+    	switch(e.boatType){
+	    	case simpleBoat:
+	    		logic(basicLogic);
+	    		break;
+			case LavaBoat:
+				logic(basicLogic);
+				break;
+			case ModularBoat:
+				logic(basicLogic);
+				break;
+			case chestBoat:
+				if(chestTab) logic(chestLogic); else logic(basicLogic);
+				break;
+			case iceBoat:
+				logic(basicLogic);
+				break;
+			case tankBoat:
+				if(tankTab) logic(tankLogic); else logic(basicLogic);
+				break;
+    	}
 	}
-
+    /**
+     * Runs the logic
+     * 
+     * @param Logic you want it to run
+     */
+    public void logic(ControlUnitLogic logic){
+    	if(logic != null){
+    		logic.runLogic(worldObj, xCoord, yCoord, zCoord);
+		}
+    }
+    /**
+     * Gets any boats inside the AAB
+     * 
+     * @param The Direction the block is facing
+     * @param The boat it's looking for
+     * @return Returns the boat inside the AAB
+     */
 	public AbstractBaseBoat findEntityBoat(ForgeDirection d, Class<? extends AbstractBaseBoat> entC) {
         int tempX = xCoord + d.offsetX * 3;
         int tempY = yCoord;
@@ -133,15 +184,26 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         
         return null;
     }
-    
+	
+	/**
+     * Checks to see if the boat is in the centre of the dock
+     * 
+     * @param Boat inside the AAB
+     */  
     public void positionBoatInCenter(AbstractBaseBoat boat){
     	int tempX = getBoatTempX();
     	int tempZ = getBoatTempZ();
     	boat.posX = tempX;
     	boat.posZ = tempZ;
-        boat.setPositionAndRotation(boat.posX, boat.posY, boat.posZ, 180, 0);
+        boat.setPosition(boat.posX, boat.posY, boat.posZ);
     }
     
+    /**
+     * Checks to see if the boat is in the centre of the dock
+     * 
+     * @param Boat inside the AAB
+     * @return True if the boat is in the centre
+     */
     public boolean isBoatInCenter(AbstractBaseBoat boat){
     	int tempX = getBoatTempX();
     	int tempZ = getBoatTempZ();
@@ -151,6 +213,11 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     		return false;
     }
     
+    /**
+     * Gets the X depending on the direction
+     * 
+     * @return X Coord
+     */
     public int getBoatTempX(){
     	int tempX = xCoord;
     	switch(getBlockDirection()){
@@ -166,6 +233,11 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     	return tempX;
     }
     
+  /**
+   * Gets the Z depending on the direction
+   * 
+   * @return Z Coord
+   */
     public int getBoatTempZ(){
     	int tempZ = zCoord;
     	switch(getBlockDirection()){
@@ -238,13 +310,5 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
 		
 	public void setBasicLogic(ControlUnitLogic basicLogic) {
 		this.basicLogic = basicLogic;
-	}
-
-	public boolean getHoldBoat() {
-		return holdBoat;
-	}
-
-	public void setHoldBoat(boolean holdBoat) {
-		this.holdBoat = holdBoat;
 	}
 }
