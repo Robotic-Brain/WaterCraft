@@ -38,8 +38,9 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	}
 	
 	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod){
-		HashSet<String> strings = addModuleToSet(slot, mod);
-		if(strings.size() != 0){
+		HashSet<String> strings = addModuleToSetOrReturnModules(slot, mod, true);
+		HashSet<String> temp = addModuleToSetOrReturnModules(slot, mod, false);
+		if(!strings.equals(temp)){
 			item = new ItemStack(slot.getItem());
 			ModuleHelper.writeSetToItemStackNBT(strings, item);
 			returnItem(item);
@@ -52,9 +53,10 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		setInventorySlotContents(2, item);
 	}
 	
-	private HashSet addModuleToSet(ItemStack boat, IItemModule mod){
+	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, IItemModule mod, boolean addNewMods){
 		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-		temp.add(mod.getBoatModule().getName());
+		if(addNewMods && !ModuleHelper.doTasksConflict(mod, temp))
+			temp.add(new String(mod.getBoatModule().getName()));
 		return temp;
 	}
 	

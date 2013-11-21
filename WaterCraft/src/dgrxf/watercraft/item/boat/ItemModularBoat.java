@@ -81,7 +81,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
     }
     
     @Override
-    public HashSet getModuleList(ItemStack stack) {
+    public HashSet<String> getModuleList(ItemStack stack) {
     	if(stack.getTagCompound() == null)
     		return new HashSet<String>();
     	else{
@@ -89,7 +89,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
     		HashSet returnList = new HashSet<String>();
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					returnList.add(tag.getString(Alphabet.values()[i].toString()));
+					returnList.add(new String(tag.getString(Alphabet.values()[i].toString())));
 				}
 			}
     		return returnList;
