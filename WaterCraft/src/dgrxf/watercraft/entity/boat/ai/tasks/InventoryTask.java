@@ -31,7 +31,6 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
 	@Override
 	public void entityInit() {
 		super.entityInit();
-		boat.getDataWatcher().addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
 	}
 
 	@Override

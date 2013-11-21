@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.EntityInfo;
@@ -29,7 +30,7 @@ public class ModularBoat extends AbstractBaseBoat{
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TANK_AMOUNT, new Integer(0));
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
-		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Integer(0));
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
 	}
 	
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {

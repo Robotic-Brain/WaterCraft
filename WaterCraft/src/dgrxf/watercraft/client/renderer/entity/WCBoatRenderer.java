@@ -24,9 +24,8 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.entity.boat.TankBoat;
+import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
-import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.EntityInfo;
 
 public class WCBoatRenderer extends Render {
@@ -73,14 +72,13 @@ public class WCBoatRenderer extends Render {
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(-0.5F, -0.85F, -0.5F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(WCChestRenderer.RES_NORMAL_SINGLE);
-                if(entity instanceof ILockableBlock){
-	                if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
-	        			chest.renderAll(true);
-	        		}
-	        		else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
-	        			chest.renderAll(false);
-	        		}
-                }else{
+	            if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
+	        		chest.renderAll(true);
+	        	}
+	        	else if(entity.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 0){
+	        		chest.renderAll(false);
+	        	}
+                else{
                 	chest.renderAll(false);
                 }
         	}
