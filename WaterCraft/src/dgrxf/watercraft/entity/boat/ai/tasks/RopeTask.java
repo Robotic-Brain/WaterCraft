@@ -31,6 +31,10 @@ public class RopeTask extends BoatAITaskBase {
 		this.target = target;
 	}
 	
+	public AbstractBaseBoat getTarget() {
+		return target;
+	}
+	
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
 		ItemStack stack = player.inventory.getCurrentItem();
@@ -104,8 +108,8 @@ public class RopeTask extends BoatAITaskBase {
     
 	
 	private void moveToTarget() {
-		Vector2 targetBack = new Vector2(target.posX - target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, target.posZ - target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F);
-		Vector2 boatFront = new Vector2(boat.posX + boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F, boat.posZ + boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F);
+		Vector2 targetBack = new Vector2(target.posX + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, target.posZ + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F);
+		Vector2 boatFront = new Vector2(boat.posX - boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F, boat.posZ - boat.width * Math.sin(boat.rotationYaw * Math.PI / 180.0) / 2.0F);
 		
 		Vector2 distance = targetBack.sub(boatFront);
 		
@@ -117,12 +121,10 @@ public class RopeTask extends BoatAITaskBase {
 		
 		distance = distance.normalize();
 		
-		double d = 0.3;
+		double d = 0.5;
 		
 		boat.motionX = d * distance.x;
-		boat.motionZ = d * distance.y;
-		
-		
+		boat.motionZ = d * distance.y;	
 	}
 
 }
