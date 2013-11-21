@@ -28,7 +28,7 @@ public class DumbTask extends BoatAITaskBase {
     
     @Override
     public void buoyFound(WCBouyLogic buoy) {
-        if (buoy.hasNextBuoy(buoy.getBlockDirection())&& !boat.isIdle) {
+        if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
             setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
             LogHelper.debug("Traget set");
         }
