@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.LavaTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
+import dgrxf.watercraft.enumeration.BoatType;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
 import dgrxf.watercraft.lib.RenderInfo;
 
@@ -30,4 +31,9 @@ public class LavaBoat extends AbstractBaseBoat implements ICustomBoatTexture{
 	public ResourceLocation getCustomTexture() {
 		return RenderInfo.IRON_BOAT_TEXTURE_LOCATION;
 	}
+	
+	@Override
+    public BoatType getBoatType() {
+    	return BoatType.LavaBoat;
+    }
 }

@@ -9,6 +9,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.enumeration.Alphabet;
+import dgrxf.watercraft.enumeration.BoatType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.util.ModuleHelper;
@@ -112,4 +113,9 @@ public class ModularBoat extends AbstractBaseBoat{
 			super.readEntityFromNBT(tag);
 		}
 	}
+	
+	@Override
+    public BoatType getBoatType() {
+    	return BoatType.ModularBoat;
+    }
 }

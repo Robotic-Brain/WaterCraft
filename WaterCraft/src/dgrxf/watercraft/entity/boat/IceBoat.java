@@ -4,6 +4,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.IceTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
+import dgrxf.watercraft.enumeration.BoatType;
 
 public class IceBoat extends AbstractBaseBoat {
     
@@ -21,4 +22,8 @@ public class IceBoat extends AbstractBaseBoat {
         list.addTask(new IceTask(this, 1.1f));
     }
     
+    @Override
+    public BoatType getBoatType() {
+    	return BoatType.iceBoat;
+    }
 }

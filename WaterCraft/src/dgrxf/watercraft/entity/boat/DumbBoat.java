@@ -4,6 +4,7 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
+import dgrxf.watercraft.enumeration.BoatType;
 
 public class DumbBoat extends AbstractBaseBoat {
 	
@@ -20,5 +21,10 @@ public class DumbBoat extends AbstractBaseBoat {
     protected void updateBoatAI(BoatAITaskList list) {
         list.addTask(new DumbTask(this, 1f));
         list.addTask(new VanillaTask(this, 0f));
+    }
+    
+    @Override
+    public BoatType getBoatType() {
+    	return BoatType.simpleBoat;
     }
 }

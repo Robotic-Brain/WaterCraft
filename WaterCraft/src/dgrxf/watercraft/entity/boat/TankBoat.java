@@ -15,6 +15,7 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.TankTask;
+import dgrxf.watercraft.enumeration.BoatType;
 import dgrxf.watercraft.lib.EntityInfo;
 
 public class TankBoat extends AbstractBaseBoat{
@@ -44,4 +45,9 @@ public class TankBoat extends AbstractBaseBoat{
 	public Block getDisplayTile() {
 		return ModBlocks.tank;
 	}
+	
+	@Override
+    public BoatType getBoatType() {
+    	return BoatType.tankBoat;
+    }
 }
