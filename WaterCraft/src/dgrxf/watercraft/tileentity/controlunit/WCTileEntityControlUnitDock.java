@@ -39,6 +39,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     /** Fields **/
     private boolean          multiBlockFormed;
     private int              updateTimer;
+    private int              multiBlockTimer;
     
     /** Tabs **/
     public int               activeTabIndex;
@@ -55,6 +56,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     
     public WCTileEntityControlUnitDock() {
         updateTimer = UPDATE_COUNT_DOWN;
+        multiBlockTimer = 0;
         multiBlockFormed = false;
         basicTab = true;
         chestTab = false;
@@ -73,8 +75,17 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     	updateTimer--;
     	
         if(updateTimer <= 0){
-        	/** Checks to see if there is a multiblock and also if it still exists **/
-        	multiBlockFormed = checkForMultiBlock();
+        	
+        	/** 
+        	 * Checks to see if there is a multiblock and also if it still exists 
+        	 * 
+        	 * Runs once on start up and then ever 40 ticks.
+        	 **/
+        	multiBlockTimer--;
+        	if(multiBlockTimer <= 0){
+        		multiBlockFormed = checkForMultiBlock();
+        		multiBlockTimer = UPDATE_COUNT_DOWN;
+        	}
         	
         	if(multiBlockFormed){
         		AbstractBaseBoat e = findEntityBoat(getBlockDirection(), AbstractBaseBoat.class);
@@ -96,7 +107,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         			}
         		}
         	}
-        	updateTimer = 20;
+        	updateTimer = UPDATE_COUNT_DOWN;
         }
     }
     
@@ -121,14 +132,12 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     }
 
     /**
-     * 
      * This will check to see what boat is inside the AAB and will run the set Logic depending on it's type
      * 
      * @param Boat inside the AAB
      */
-    
     private void runLogic(AbstractBaseBoat e) {
-    	switch(e.boatType){
+    	switch(e.getBoatType()){
 	    	case simpleBoat:
 	    		logic(basicLogic);
 	    		break;

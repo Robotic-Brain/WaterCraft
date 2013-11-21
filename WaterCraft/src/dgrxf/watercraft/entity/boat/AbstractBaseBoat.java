@@ -34,7 +34,6 @@ public abstract class AbstractBaseBoat extends Entity {
     public boolean              isIdle;
     public double               speedMultiplier;
     private int                 boatPosRotationIncrements;
-    public BoatType             boatType;
     
     // Interpolation helpers
     // ==================================
@@ -784,7 +783,7 @@ public abstract class AbstractBaseBoat extends Entity {
     }
     
     public BoatType getBoatType() {
-		return boatType;
+		return BoatType.simpleBoat;
 	}
     
 }
