@@ -31,7 +31,6 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  */
 public abstract class AbstractBaseBoat extends Entity {
     protected boolean           isEmpty;
-    public boolean              isIdle;
     public double               speedMultiplier;
     private int                 boatPosRotationIncrements;
     
@@ -644,20 +643,17 @@ public abstract class AbstractBaseBoat extends Entity {
         }
     }
     
-    /**
-     * (abstract) Protected helper method to write subclass entity data to NBT.
-     */
     @Override
     protected void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
-        this.ai.writeEntityToNBT(par1NBTTagCompound);
+        NBTTagCompound aiCompound = new NBTTagCompound();
+        this.ai.writeEntityToNBT(aiCompound);
+        par1NBTTagCompound.setTag(NBT_AI_TAG, aiCompound);
     }
     
-    /**
-     * (abstract) Protected helper method to read subclass entity data from NBT.
-     */
     @Override
     protected void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
-        this.ai.readEntityFromNBT(par1NBTTagCompound);
+        NBTTagCompound aiCompound = par1NBTTagCompound.getCompoundTag(NBT_AI_TAG);
+        this.ai.readEntityFromNBT(aiCompound);
     }
     
     @Override
