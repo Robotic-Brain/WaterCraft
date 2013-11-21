@@ -82,7 +82,7 @@ public abstract class AbstractBaseBoat extends Entity {
         this.dataWatcher.addObject(17, new Integer(0));
         this.dataWatcher.addObject(18, new Integer(1));
         this.dataWatcher.addObject(19, new Float(0.0F));
-        this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TARGET_BOAT_ID, new Integer(0));
+        this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TARGET_BOAT_ID, new Integer(-1));
         if (ai != null) {
             this.ai.entityInit();
         }
@@ -726,6 +726,7 @@ public abstract class AbstractBaseBoat extends Entity {
     
     private int              buoyUpdateTimer;
 	public  boolean          playerHasInteractedWith;
+	public boolean isIdle;
     private static final int BUOY_UPDATE_INTERVAL = 10;
     
     /**

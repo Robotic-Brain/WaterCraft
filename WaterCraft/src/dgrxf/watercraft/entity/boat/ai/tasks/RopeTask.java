@@ -27,6 +27,8 @@ public class RopeTask extends BoatAITaskBase {
 	
 	private Vector3 backRopePoint = new Vector3(0, 0, 0);
 	private Vector3 frontRopePoint = new Vector3(0, 0, 0);
+	
+	//TODO clear linking when a boat is destroyed (set -1 to target ID)
 
 	public RopeTask(AbstractBaseBoat boat, float priority) {
 		super(boat, priority);
