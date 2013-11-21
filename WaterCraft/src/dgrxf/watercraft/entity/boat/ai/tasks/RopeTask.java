@@ -4,7 +4,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,14 +12,20 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.Vector2;
+import dgrxf.watercraft.util.Vector3;
 
 public class RopeTask extends BoatAITaskBase {
 	
 	public static final float ROPE_LENGTH = 4.0F;
 	public static final float SEARCH_RADIOUS = 5.0F;
+	public static final double SPEED_MULTIPLIER = 0.5;
+	public static final double FRICTION = 0.6;
 	
 	private AbstractBaseBoat boat;
 	private AbstractBaseBoat target;
+	
+	private Vector3 backRopePoint = new Vector3(0, 0, 0);
+	private Vector3 frontRopePoint = new Vector3(0, 0, 0);
 
 	public RopeTask(AbstractBaseBoat boat, float priority) {
 		super(boat, priority);
@@ -37,9 +42,12 @@ public class RopeTask extends BoatAITaskBase {
 	
 	@Override
 	public void onInteractFirst(EntityPlayer player) {
+		if (boat.worldObj.isRemote) {
+			return;
+		}
 		ItemStack stack = player.inventory.getCurrentItem();
 		
-		if (boat.worldObj.isRemote || stack == null || stack.itemID != ModItems.rope.itemID) {
+		if (stack == null || stack.itemID != ModItems.rope.itemID) {
 			return;
 		}
 		
@@ -106,6 +114,14 @@ public class RopeTask extends BoatAITaskBase {
 		}
     }
     
+	@Override
+	public void postOnUpdate() {
+		System.out.println(boat.worldObj.isRemote && target != null);
+		if (boat.worldObj.isRemote && target != null) {
+			System.out.println("updating");
+			updateRenderingRopePoints();
+		}
+	}
 	
 	private void moveToTarget() {
 		Vector2 targetBack = new Vector2(target.posX + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, target.posZ + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F);
@@ -114,17 +130,21 @@ public class RopeTask extends BoatAITaskBase {
 		Vector2 distance = targetBack.sub(boatFront);
 		
 		if (distance.length() < ROPE_LENGTH) {
-			boat.motionX *= 0.4;
-			boat.motionZ *= 0.4;
+			boat.motionX *= FRICTION;
+			boat.motionZ *= FRICTION;
 			return;
 		}
 		
 		distance = distance.normalize();
 		
-		double d = 0.5;
-		
-		boat.motionX = d * distance.x;
-		boat.motionZ = d * distance.y;	
+		boat.motionX = SPEED_MULTIPLIER * distance.x;
+		boat.motionZ = SPEED_MULTIPLIER * distance.y;	
+	}
+	
+	private void updateRenderingRopePoints() {
+		backRopePoint.setNewCoordinates(target.posX + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F, 0.7, target.posZ + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F);
+		frontRopePoint.setNewCoordinates(boat.posX - boat.width * Math.cos(boat.rotationYaw * Math.PI / 180.0) / 2.0F, 0.7, boat.posZ - boat.width * Math.sin(boat.rotationYaw * Math.PI / 180.0) / 2.0F);
+		System.out.println(backRopePoint.toString());
 	}
 
 }

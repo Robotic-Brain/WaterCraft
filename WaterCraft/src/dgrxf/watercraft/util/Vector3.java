@@ -168,6 +168,19 @@ public class Vector3 {
         return new Vector2(y, z);
     }
     
+    /**
+     * Sets new coordinates to the vector
+     * 
+     * @param x x
+     * @param y y
+     * @param z z
+     */    
+    public void setNewCoordinates(double x, double y, double z) {
+    	this.x = x;
+    	this.y = y;
+    	this.z = z;
+    }
+    
     @Override
     public String toString() {
         return "[ " + x + ", " + y + ", " + z + " ]";

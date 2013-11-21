@@ -127,6 +127,17 @@ public class Vector2 {
         return (float) Math.sqrt(this.length2());
     }
     
+    /**
+     * Sets new coordinates to the vector
+     * 
+     * @param x x
+     * @param y y
+     */    
+    public void setNewCoordinates(double x, double y) {
+    	this.x = x;
+    	this.y = y;
+    }
+    
     @Override
     public String toString() {
         return "[ " + x + ", " + y + "]";
