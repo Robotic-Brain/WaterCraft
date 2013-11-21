@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -92,6 +93,7 @@ public class RopeTask extends BoatAITaskBase {
 	            	
 	            	if (id == foundBoat.entityId) {
 	            		Watercraft.printToPlayer("target found!");
+	            		boat.setRopeTargetId(id);
 	            		target = foundBoat;
 	            		stack.stackSize--;
 	            		break;

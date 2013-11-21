@@ -17,6 +17,6 @@ public class EntityInfo {
 	public static final int DATAWATCHER_TILE_ID = 23;
 	
 	//used in rope code
-	public static final int DATAWATCHER_TARTEG_BOAT_ID = 24;
+	public static final int DATAWATCHER_TARGET_BOAT_ID = 24;
 	
 }
