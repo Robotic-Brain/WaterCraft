@@ -50,7 +50,7 @@ public abstract class AbstractBaseBoat extends Entity {
     // ==================================
     
     private static final String NBT_AI_TAG = "aiValues";
-    private BoatAIBase        ai;
+    public BoatAIBase        ai;
     
     public AbstractBaseBoat(World par1World) {
         super(par1World);
