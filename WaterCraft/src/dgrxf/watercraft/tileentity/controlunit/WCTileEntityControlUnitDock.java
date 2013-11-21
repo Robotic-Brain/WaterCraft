@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
@@ -14,7 +15,9 @@ import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.controlunit.logic.ControlUnitLogic;
+import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector3;
 
 /**
@@ -76,11 +79,31 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         				setHoldBoat(true);
         				positionBoatInCenter(e);
         			}
-        			e.isIdle = getHoldBoat();
+        			if(!holdBoat){
+        				updateBuoys();
+        				e.isIdle = false;
+        				e.ai.buoyFound(this);;
+        			}
         			getLoadedLogic(e);
         		}
         	}
         	updateTimer = 20;
+        }
+    }
+    
+    @Override
+    protected void findNewBuoys() {
+        for (int d = ForgeDirection.NORTH.ordinal(); d <= ForgeDirection.EAST.ordinal(); ++d) {
+            ForgeDirection dir = ForgeDirection.getOrientation(d);
+            
+            for (int i = 1; !hasNextBuoy(dir) && i <= searchRange; ++i) {
+                TileEntity te = worldObj.getBlockTileEntity(xCoord + dir.offsetX * i, (yCoord - 1) + dir.offsetY * i, zCoord + dir.offsetZ * i);
+                if (te instanceof WCTileEntityBuoy) {
+                    setNextBuoy((WCTileEntityBuoy) te, dir);
+                    ((WCTileEntityBuoy) te).updateBuoys();
+                    LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
+                }
+            }
         }
     }
 
