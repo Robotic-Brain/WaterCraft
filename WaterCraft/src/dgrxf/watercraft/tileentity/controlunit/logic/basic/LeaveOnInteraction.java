@@ -16,8 +16,7 @@ public class LeaveOnInteraction extends ControlUnitLogic{
 	public void runLogic(World world, int x, int y, int z) {
 		WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
 		if(tile.dockedBoat != null && tile.dockedBoat.playerHasInteractedWith){
-			System.out.println("Player has interacted with boat");
-			tile.setHoldBoat(true);
+			tile.setHoldBoat(false);
 		}
 	}
 }
