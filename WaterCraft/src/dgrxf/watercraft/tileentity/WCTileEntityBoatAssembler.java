@@ -27,24 +27,22 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		ItemStack slotOne = getStackInSlot(1);
 		
 		if(slotZero != null && slotOne != null){
-			HashSet<String> modules = new HashSet();
 			ItemStack item = null;
 			NBTTagCompound tag;
 			if(((slotZero.getItem() instanceof IModularBoat) && (slotOne.getItem() instanceof IItemModule))){
-				createAndReturnItem(slotZero, item, (IItemModule)slotOne.getItem(), modules);
+				createAndReturnItem(slotZero, item, (IItemModule)slotOne.getItem());
 			}else if(((slotZero.getItem() instanceof IItemModule) && (slotOne.getItem() instanceof IModularBoat))){
-				createAndReturnItem(slotOne, item, (IItemModule)slotZero.getItem(), modules);
+				createAndReturnItem(slotOne, item, (IItemModule)slotZero.getItem());
 			}
 		}
 	}
 	
-	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod, HashSet<String> strings){
-		if(addModuleToSet(slot, mod, strings)){
-			if(strings.size() != 0){
-				item = new ItemStack(slot.getItem());
-				ModuleHelper.writeSetToItemStackNBT(strings, item);
-				returnItem(item);
-			}
+	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod){
+		HashSet<String> strings = addModuleToSet(slot, mod);
+		if(strings.size() != 0){
+			item = new ItemStack(slot.getItem());
+			ModuleHelper.writeSetToItemStackNBT(strings, item);
+			returnItem(item);
 		}
 	}
 	
@@ -54,10 +52,10 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		setInventorySlotContents(2, item);
 	}
 	
-	private boolean addModuleToSet(ItemStack boat, IItemModule mod, HashSet<String> set){
+	private HashSet addModuleToSet(ItemStack boat, IItemModule mod){
 		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-		set.addAll(temp);
-		return set.add(mod.getBoatModule().getName());
+		temp.add(mod.getBoatModule().getName());
+		return temp;
 	}
 	
 	@Override
