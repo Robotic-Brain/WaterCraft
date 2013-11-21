@@ -17,7 +17,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
-import dgrxf.watercraft.enumeration.BoatType;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
@@ -777,9 +776,4 @@ public abstract class AbstractBaseBoat extends Entity {
     protected void updateBoatAI() {
         this.updateBoatAI((BoatAITaskList)this.ai);
     }
-    
-    public BoatType getBoatType() {
-		return BoatType.simpleBoat;
-	}
-    
 }

@@ -12,6 +12,9 @@ import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ChestBoat;
 import dgrxf.watercraft.entity.boat.DumbBoat;
+import dgrxf.watercraft.entity.boat.IceBoat;
+import dgrxf.watercraft.entity.boat.LavaBoat;
+import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.entity.boat.TankBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
@@ -33,8 +36,6 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     
     /** Constants **/
     private static final int UPDATE_COUNT_DOWN = 20;
-    private ForgeDirection[] directions        = { ForgeDirection.NORTH,
-            ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.SOUTH };
     
     /** Fields **/
     private boolean          multiBlockFormed;
@@ -139,26 +140,19 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
      * @param Boat inside the AAB
      */
     private void runLogic(AbstractBaseBoat e) {
-    	switch(e.getBoatType()){
-	    	case simpleBoat:
-	    		logic(basicLogic);
-	    		break;
-			case LavaBoat:
-				logic(basicLogic);
-				break;
-			case ModularBoat:
-				logic(basicLogic);
-				break;
-			case chestBoat:
-				if(chestTab) logic(chestLogic); else logic(basicLogic);
-				break;
-			case iceBoat:
-				logic(basicLogic);
-				break;
-			case tankBoat:
-				if(tankTab) logic(tankLogic); else logic(basicLogic);
-				break;
-    	}
+        if (e instanceof DumbBoat) {
+            logic(basicLogic);
+        } else if (e instanceof ModularBoat) {
+            logic(basicLogic);
+        } else if (e instanceof LavaBoat) {
+            logic(basicLogic);
+        } else if (e instanceof ChestBoat) {
+            if(chestTab) logic(chestLogic); else logic(basicLogic);
+        } else if (e instanceof IceBoat) {
+            logic(basicLogic);
+        } else if (e instanceof TankBoat) {
+            if(tankTab) logic(tankLogic); else logic(basicLogic);
+        }
 	}
     /**
      * Runs the logic
