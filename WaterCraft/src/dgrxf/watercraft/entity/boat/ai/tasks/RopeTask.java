@@ -35,6 +35,11 @@ public class RopeTask extends BoatAITaskBase {
 		this.boat = boat;
 	}
 	
+	@Override
+	public void postOnUpdate() {
+		
+	}
+	
 	public void setTarget(AbstractBaseBoat target) {
 		this.target = target;
 	}

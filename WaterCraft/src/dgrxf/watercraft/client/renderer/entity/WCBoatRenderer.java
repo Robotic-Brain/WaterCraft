@@ -253,26 +253,51 @@ public class WCBoatRenderer extends Render {
         	double targetY = ty;
         	double targetZ = - tx * Math.sin(boatYaw) + tz * Math.cos(boatYaw);
         	
-        	
-        	GL11.glDisable(GL11.GL_TEXTURE_2D);
-            GL11.glDisable(GL11.GL_LIGHTING);
-            tessellator.startDrawing(3);
-            tessellator.setColorOpaque_I(0);
-            
             double relativeBoatX = - boat.width * 0.5;
             double relativeBoatY = - boat.height * 0.25;
             double relativeBoatZ = 0;
             
-            byte vertices = 16;
-
+        	GL11.glDisable(GL11.GL_TEXTURE_2D);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            GL11.glDisable(GL11.GL_CULL_FACE);
+            //tessellator.setColorOpaque_I(0);
+    
+            byte vertices = 24;
+            double ropeWidth = 0.03;
+            
+            tessellator.startDrawing(5);
             for (int i = 0; i <= vertices; i++) {
                 double perc = (double)i / (double)vertices;
+                
+                if (i % 2 == 0) {
+                    tessellator.setColorRGBA_F(0.5F, 0.4F, 0.3F, 1.0F);
+                } else {
+                    tessellator.setColorRGBA_F(0.35F, 0.28F, 0.21F, 1.0F);
+                }
+                
                 tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc, relativeBoatY - (targetY - relativeBoatY) * perc, relativeBoatZ - (targetZ - relativeBoatZ) * perc);
+                tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc + ropeWidth, relativeBoatY - (targetY - relativeBoatY) * perc + ropeWidth, relativeBoatZ - (targetZ - relativeBoatZ) * perc);
             }
-
             tessellator.draw();
+            
+            tessellator.startDrawing(5);
+            for (int i = 0; i <= vertices; i++) {
+                double perc = (double)i / (double)vertices;
+                
+                if (i % 2 == 0) {
+                    tessellator.setColorRGBA_F(0.5F, 0.4F, 0.3F, 1.0F);
+                } else {
+                    tessellator.setColorRGBA_F(0.35F, 0.28F, 0.21F, 1.0F);
+                }
+                
+                tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc, relativeBoatY - (targetY - relativeBoatY) * perc + ropeWidth, relativeBoatZ - (targetZ - relativeBoatZ) * perc);
+                tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc + ropeWidth, relativeBoatY - (targetY - relativeBoatY) * perc, relativeBoatZ - (targetZ - relativeBoatZ) * perc + ropeWidth);
+            }
+            tessellator.draw();
+            
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glEnable(GL11.GL_TEXTURE_2D);
+            GL11.glEnable(GL11.GL_CULL_FACE);
         	
     	} else {
     		return;
