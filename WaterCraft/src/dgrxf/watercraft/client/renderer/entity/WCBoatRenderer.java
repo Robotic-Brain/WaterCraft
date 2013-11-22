@@ -232,9 +232,9 @@ public class WCBoatRenderer extends Render {
     	
     	Tessellator tessellator = Tessellator.instance;
     	
-    	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick + boat.width; 
-    	double boatY = (boat.prevPosY + (boat.posY - boat.prevPosY) * partialTick) + boat.height * 0.5;
-    	double boatZ = boat.prevPosZ + (boat.posZ - boat.prevPosZ) * partialTick + boat.width;
+    	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick; 
+    	double boatY = boat.prevPosY + (boat.posY - boat.prevPosY) * partialTick;
+    	double boatZ = boat.prevPosZ + (boat.posZ - boat.prevPosZ) * partialTick;
     	
     	Entity e = boat.worldObj.getEntityByID(id);
     	
@@ -242,7 +242,7 @@ public class WCBoatRenderer extends Render {
     		AbstractBaseBoat target = (AbstractBaseBoat)e;
     		
     		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatX; 
-        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) + target.height * 0.5 - boatY;
+        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) - target.height * 0.5 - boatY;
         	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatZ;
     		
         	System.out.println(new Vector3(boatX, boatY, boatZ).toString());
@@ -253,8 +253,8 @@ public class WCBoatRenderer extends Render {
             tessellator.startDrawing(3);
             tessellator.setColorOpaque_I(0);
             
-            double relativeBoatX = -boat.width / 2;
-            double relativeBoatY = -boat.height / 2;
+            double relativeBoatX = - boat.width * 0.5;
+            double relativeBoatY = - boat.height * 0.25;
             double relativeBoatZ = 0;
             
             byte vertices = 16;
