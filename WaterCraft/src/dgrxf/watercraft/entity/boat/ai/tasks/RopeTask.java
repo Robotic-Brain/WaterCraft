@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -26,6 +27,8 @@ public class RopeTask extends BoatAITaskBase {
 	
 	private Vector3 backRopePoint = new Vector3(0, 0, 0);
 	private Vector3 frontRopePoint = new Vector3(0, 0, 0);
+	
+	//TODO clear linking when a boat is destroyed (set -1 to target ID)
 
 	public RopeTask(AbstractBaseBoat boat, float priority) {
 		super(boat, priority);
@@ -92,6 +95,7 @@ public class RopeTask extends BoatAITaskBase {
 	            	
 	            	if (id == foundBoat.entityId) {
 	            		Watercraft.printToPlayer("target found!");
+	            		boat.setRopeTargetId(id);
 	            		target = foundBoat;
 	            		stack.stackSize--;
 	            		break;

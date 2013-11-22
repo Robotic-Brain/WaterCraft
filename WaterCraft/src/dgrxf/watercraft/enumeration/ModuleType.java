@@ -4,7 +4,6 @@ public enum ModuleType {
     //TODO: Add more modifier types.
 	BOAT,
     ENGINE,
-    ACCESSORY, //Not sure what will use this yet.
     BLOCK,
     INVENTORY;
     

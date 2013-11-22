@@ -24,9 +24,9 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
 import dgrxf.watercraft.lib.EntityInfo;
+import dgrxf.watercraft.util.Vector3;
 
 public class WCBoatRenderer extends Render {
     private static final ResourceLocation boatTextures = new ResourceLocation("textures/entity/boat.png");
@@ -101,6 +101,9 @@ public class WCBoatRenderer extends Render {
         /*if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
         	renderFlag(((WCEntityBoat)entity), par2, par4, par6, par8, par9);
         }*/
+        
+        renderRope(entity, par2, par4, par6, par8, par9);
+        
         GL11.glPopMatrix();
     }
     
@@ -216,6 +219,43 @@ public class WCBoatRenderer extends Render {
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
         return boatTextures;
+    }
+    
+    private void renderRope(AbstractBaseBoat boat, double x, double y, double z, float yaw, float partialTick) {
+    	int id = boat.getRopeTargetId();
+    	
+    	if (id < 0) {
+    		return;
+    	}
+    	
+    	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick; 
+    	double boatY = (boat.prevPosY + (boat.posY - boat.prevPosY) * partialTick) + boat.height * 0.5;
+    	double boatZ = boat.prevPosZ + (boat.posZ - boat.prevPosZ) * partialTick;
+    	
+    	Entity e = boat.worldObj.getEntityByID(id);
+    	
+    	if (e instanceof AbstractBaseBoat) {
+    		AbstractBaseBoat target = (AbstractBaseBoat)e;
+    		
+    		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick; 
+        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) + target.height * 0.5;
+        	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick;
+    		
+        	System.out.println(new Vector3(boatX, boatY, boatZ).toString());
+        	System.out.println(new Vector3(targetX, targetY, targetZ).toString());
+        	
+        	GL11.glLineWidth(6);
+        	GL11.glTranslated(-boatX, -boatY, -boatZ);
+        	GL11.glColor3ub((byte)255,(byte)0,(byte)0);
+        	GL11.glBegin(GL11.GL_LINE_STRIP);
+        	GL11.glVertex3f(0F,0F,0F);
+        	GL11.glVertex3f((float)(targetX - boatX), (float)(targetY - boatY), (float)(targetZ - boatZ));
+        	GL11.glEnd();
+        	
+    	} else {
+    		return;
+    	}
+    		
     }
     
 }
