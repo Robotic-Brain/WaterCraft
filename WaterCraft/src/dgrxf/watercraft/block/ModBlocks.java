@@ -8,10 +8,11 @@ import dgrxf.watercraft.item.ItemBlockLiquidTank;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
 import dgrxf.watercraft.item.toolbox.ItemBlockToolBox;
 import dgrxf.watercraft.lib.BlockInfo;
+import dgrxf.watercraft.tileentity.TEMultiblockPhantom;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
-import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
+import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
@@ -36,6 +37,7 @@ public class ModBlocks {
     public static Block     lockAssembler;
     public static Block 	boatAssembler;
     public static Block     dockPlatform;
+    public static Block     phantomMultiBlock;
     
     public static void init() {
         //Buoy Blocks
@@ -53,6 +55,8 @@ public class ModBlocks {
         boatAssembler = new BoatModuleAssemblerBlock(BlockInfo.BOAT_ASSEMBLER_ID);
         dockPlatform  = new DockPlatformBlock();
         
+        phantomMultiBlock = new MultiblockPhantom(BlockInfo.PHANTOM_MULTIBLOCK_ID);
+        
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         
         GameRegistry.registerBlock(controlUnitDock, BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
@@ -64,6 +68,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(boatAssembler, BlockInfo.BOAT_ASSEMBLER_UNLOCALIZED_NAME);
         GameRegistry.registerBlock(dockPlatform, BlockInfo.PLATFORM_UNLOCALIZED_NAME);
         
+        GameRegistry.registerBlock(phantomMultiBlock, BlockInfo.PHANTOM_MULTIBLOCK_UNLOCALIZED_NAME);
+        
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityFreezer.class, BlockInfo.FREEZER_TE_KEY);
@@ -72,6 +78,8 @@ public class ModBlocks {
         GameRegistry.registerTileEntity(WCTileEntityLockAssembler.class, BlockInfo.LOCK_ASSEMBLER_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityLiquidStorageTank.class, BlockInfo.TANK_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityBoatAssembler.class, BlockInfo.BOAT_ASSEMBLER_TE_KEY);
+        
+        GameRegistry.registerTileEntity(TEMultiblockPhantom.class, BlockInfo.PHANTOM_MULTIBLOCK_TE_KEY);
 
     }
 }
