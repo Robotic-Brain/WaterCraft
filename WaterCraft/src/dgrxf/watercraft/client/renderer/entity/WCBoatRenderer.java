@@ -228,29 +228,47 @@ public class WCBoatRenderer extends Render {
     		return;
     	}
     	
-    	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick; 
+    	System.out.println("Rendering ROPE");
+    	
+    	Tessellator tessellator = Tessellator.instance;
+    	
+    	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick + boat.width; 
     	double boatY = (boat.prevPosY + (boat.posY - boat.prevPosY) * partialTick) + boat.height * 0.5;
-    	double boatZ = boat.prevPosZ + (boat.posZ - boat.prevPosZ) * partialTick;
+    	double boatZ = boat.prevPosZ + (boat.posZ - boat.prevPosZ) * partialTick + boat.width;
     	
     	Entity e = boat.worldObj.getEntityByID(id);
     	
     	if (e instanceof AbstractBaseBoat) {
     		AbstractBaseBoat target = (AbstractBaseBoat)e;
     		
-    		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick; 
-        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) + target.height * 0.5;
-        	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick;
+    		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatX; 
+        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) + target.height * 0.5 - boatY;
+        	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatZ;
     		
         	System.out.println(new Vector3(boatX, boatY, boatZ).toString());
         	System.out.println(new Vector3(targetX, targetY, targetZ).toString());
         	
-        	GL11.glLineWidth(6);
-        	GL11.glTranslated(-boatX, -boatY, -boatZ);
-        	GL11.glColor3ub((byte)255,(byte)0,(byte)0);
-        	GL11.glBegin(GL11.GL_LINE_STRIP);
-        	GL11.glVertex3f(0F,0F,0F);
-        	GL11.glVertex3f((float)(targetX - boatX), (float)(targetY - boatY), (float)(targetZ - boatZ));
-        	GL11.glEnd();
+        	GL11.glDisable(GL11.GL_TEXTURE_2D);
+            GL11.glDisable(GL11.GL_LIGHTING);
+            tessellator.startDrawing(3);
+            tessellator.setColorOpaque_I(0);
+            
+            double relativeBoatX = -boat.width / 2;
+            double relativeBoatY = -boat.height / 2;
+            double relativeBoatZ = 0;
+            
+            byte vertices = 16;
+
+            for (int i = 0; i <= vertices; i++)
+            {
+                double perc = (double)i / (double)vertices;
+            	tessellator.setColorRGBA_F((float)perc, (float)perc, (float)perc, 1.0F);
+                tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc, relativeBoatY - (targetY - relativeBoatY) * perc, relativeBoatZ - (targetZ - relativeBoatZ) * perc);
+            }
+
+            tessellator.draw();
+            GL11.glEnable(GL11.GL_LIGHTING);
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
         	
     	} else {
     		return;
