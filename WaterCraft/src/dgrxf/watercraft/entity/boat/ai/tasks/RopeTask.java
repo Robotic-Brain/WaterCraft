@@ -2,8 +2,8 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
-import net.minecraft.entity.DataWatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -18,7 +18,7 @@ import dgrxf.watercraft.util.Vector3;
 public class RopeTask extends BoatAITaskBase {
 	
 	public static final float ROPE_LENGTH = 4.0F;
-	public static final float SEARCH_RADIOUS = 5.0F;
+	public static final float SEARCH_RADIUS = 5.0F;
 	public static final double SPEED_MULTIPLIER = 0.5;
 	public static final double FRICTION = 0.6;
 	
@@ -28,16 +28,24 @@ public class RopeTask extends BoatAITaskBase {
 	private Vector3 backRopePoint = new Vector3(0, 0, 0);
 	private Vector3 frontRopePoint = new Vector3(0, 0, 0);
 	
+	private UUID targetID;
+	
 	//TODO clear linking when a boat is destroyed (set -1 to target ID)
 
 	public RopeTask(AbstractBaseBoat boat, float priority) {
 		super(boat, priority);
 		this.boat = boat;
+		this.targetID = null;
 	}
 	
 	@Override
 	public void postOnUpdate() {
-		
+		if (target == null && targetID != null) {			
+			if (!searchForBoat(targetID)) {
+				targetID = null;
+				boat.setRopeTargetId(-1);
+			}
+		}
 	}
 	
 	public void setTarget(AbstractBaseBoat target) {
@@ -68,47 +76,58 @@ public class RopeTask extends BoatAITaskBase {
 		
 		if (stack.getItemDamage() == 0) {
 			stack.setItemDamage(1);
-			tag.setInteger("id", boat.entityId);
+			tag.setLong("idLeast", boat.getUniqueID().getLeastSignificantBits());
+			tag.setLong("idMost", boat.getUniqueID().getMostSignificantBits());
 			stack.setTagCompound(tag);
 			
-			Watercraft.printToPlayer("ID set to " + Integer.toString(boat.entityId));
+			Watercraft.printToPlayer("ID set to " + boat.getUniqueID().toString());
 			
 		} else if (stack.getItemDamage() == 1 && target == null) {
 			
 			Watercraft.printToPlayer("searching target");
 			
-			int id = tag.getInteger("id");		
-			double d = boat.width + SEARCH_RADIOUS;
+			long idLeast = tag.getLong("idLeast");
+			long idMost = tag.getLong("idMost");
 			
-			List list = boat.worldObj.getEntitiesWithinAABBExcludingEntity(boat, AxisAlignedBB.getAABBPool().getAABB(boat.posX - d, boat.posY - d, boat.posZ - d, boat.posX + d, boat.posY + d, boat.posZ + d));
-			
-			if (list != null) {
-				Iterator iterator = list.iterator();
-
-	            while (iterator.hasNext()) {	     
-	            	Entity e = (Entity)iterator.next();
-	            	AbstractBaseBoat foundBoat;
-	            	
-	            	if (e instanceof AbstractBaseBoat) {
-	            		foundBoat = (AbstractBaseBoat)e;
-	            	} else {
-	            		continue;
-	            	}
-	            	
-	            	Watercraft.printToPlayer("processing boat with ID " + Integer.toString(foundBoat.entityId));
-	            	Watercraft.printToPlayer("my ID is " + Integer.toString(id));
-	            	
-	            	if (id == foundBoat.entityId) {
-	            		Watercraft.printToPlayer("target found!");
-	            		boat.setRopeTargetId(id);
-	            		target = foundBoat;
-	            		stack.stackSize--;
-	            		break;
-	            	}
-	            }
+			if (searchForBoat(new UUID(idMost, idLeast))) {
+				stack.stackSize--;
 			}
+			
 			stack.setItemDamage(0);
 		}
+	}
+	
+	private boolean searchForBoat(UUID id) {
+		double d = boat.width + SEARCH_RADIUS;			
+		List list = boat.worldObj.getEntitiesWithinAABBExcludingEntity(boat, AxisAlignedBB.getAABBPool().getAABB(boat.posX - d, boat.posY - d, boat.posZ - d, boat.posX + d, boat.posY + d, boat.posZ + d));
+		
+		if (list != null) {
+			Iterator iterator = list.iterator();
+
+            while (iterator.hasNext()) {	     
+            	Entity e = (Entity)iterator.next();
+            	AbstractBaseBoat foundBoat;
+            	
+            	if (e instanceof AbstractBaseBoat) {
+            		foundBoat = (AbstractBaseBoat)e;
+            	} else {
+            		continue;
+            	}
+            	
+            	Watercraft.printToPlayer("I found a boat with ID " + foundBoat.getUniqueID().toString());
+            	Watercraft.printToPlayer("I'm searching for a boat with ID " + id.toString());
+            	
+            	if (id.equals(foundBoat.getUniqueID())) {
+            		Watercraft.printToPlayer("I found my boat! Linked!");
+            		boat.setRopeTargetId(foundBoat.entityId);
+            		target = foundBoat;
+            		targetID = id;            		
+            		return true;            		
+            	}
+            }
+		}
+		
+		return false;
 	}
 	
 	@Override
@@ -134,6 +153,23 @@ public class RopeTask extends BoatAITaskBase {
 		
 		boat.motionX = SPEED_MULTIPLIER * distance.x;
 		boat.motionZ = SPEED_MULTIPLIER * distance.y;	
+	}
+	
+	@Override
+	public void writeEntityToNBT(NBTTagCompound compound) {
+		super.writeEntityToNBT(compound);
+		
+		if (target!= null && !target.isDead) {
+			compound.setLong("targetIDleast", target.getUniqueID().getLeastSignificantBits());
+			compound.setLong("targetIDmost", target.getUniqueID().getMostSignificantBits());
+		}
+	}
+	
+	@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		
+		targetID = new UUID(compound.getLong("targetIDmost"), compound.getLong("targedIDleast"));
 	}
 
 }
