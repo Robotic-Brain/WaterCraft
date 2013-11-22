@@ -67,51 +67,51 @@ public class ItemInfo {
      * Integers
      *************/
     
-    public static final int    BOAT_ID_DEFAULT               = 1700;
+    public static final int    BOAT_ID_DEFAULT               = 11700;
     public static int          BOAT_ID;
     
-    public static final int	   MODULAR_BOAT_ID_DEFAULT		 = 1720;
+    public static final int	   MODULAR_BOAT_ID_DEFAULT		 = 11720;
     public static int	   MODULAR_BOAT_ID;
     
-    public static final int    TAPE_MEASURE_ID_DEFAULT       = 1707;
+    public static final int    TAPE_MEASURE_ID_DEFAULT       = 11707;
     public static int          TAPE_MEASURE_ID;
     
-    public static final int    TELESCOPE_ID_DEFAULT          = 1708;
+    public static final int    TELESCOPE_ID_DEFAULT          = 11708;
     public static int          TELESCOPE_ID;
     
-    public static final int    ENGINE_ID_DEFAULT             = 1709;
+    public static final int    ENGINE_ID_DEFAULT             = 11709;
     public static int          ENGINE_ID;
     
-    public static final int    BOATCHEST_ID_DEFAULT          = 1710;
+    public static final int    BOATCHEST_ID_DEFAULT          = 11710;
     public static int          BOATCHEST_ID;
     
-    public static final int    LAVABOAT_ID_DEFAULT           = 1711;
+    public static final int    LAVABOAT_ID_DEFAULT           = 11711;
     public static int          LAVABOAT_ID;
     
-    public static final int    DUMB_BOAT_ID_DEFAULT          = 1712;
+    public static final int    DUMB_BOAT_ID_DEFAULT          = 11712;
     public static int          DUMB_BOAT_ID;
     
-    public static final int    FLAG_ID_DEFAULT               = 1713;
+    public static final int    FLAG_ID_DEFAULT               = 11713;
     public static int          FLAG_ID;
     
-    public static final int    ICEBOAT_ID_DEFAULT            = 1714;
+    public static final int    ICEBOAT_ID_DEFAULT            = 11714;
     public static int          ICEBOAT_ID;
     
-    public static final int    ROPE_ID_DEFAULT               = 1715;
+    public static final int    ROPE_ID_DEFAULT               = 11715;
     public static int          ROPE_ID;
     
-    public static final int    PADLOCK_ID_DEFAULT            = 1716;
+    public static final int    PADLOCK_ID_DEFAULT            = 11716;
     public static int          PADLOCK_ID;
     
-    public static final int    CALCULATOR_ID_DEFAULT         = 1717;
+    public static final int    CALCULATOR_ID_DEFAULT         = 11717;
     public static int          CALCULATOR_ID;
     
-    public static final int    KEY_ID_DEFAULT                = 1718;
+    public static final int    KEY_ID_DEFAULT                = 11718;
     public static int          KEY_ID;
     
-    public static final int    TANK_BOAT_ID_DEFAULT          = 1719;
+    public static final int    TANK_BOAT_ID_DEFAULT          = 11719;
     public static int          TANK_BOAT_ID;
     
-    public static final int    UPGRADE_ID_DEFAULT          = 1720;
+    public static final int    UPGRADE_ID_DEFAULT          = 11720;
     public static int          UPGRADE_ID;
 }
