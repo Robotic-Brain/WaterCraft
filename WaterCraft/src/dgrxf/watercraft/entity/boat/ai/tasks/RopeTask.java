@@ -25,9 +25,6 @@ public class RopeTask extends BoatAITaskBase {
 	private AbstractBaseBoat boat;
 	private AbstractBaseBoat target;
 	
-	private Vector3 backRopePoint = new Vector3(0, 0, 0);
-	private Vector3 frontRopePoint = new Vector3(0, 0, 0);
-	
 	private UUID targetID;
 	
 	//TODO clear linking when a boat is destroyed (set -1 to target ID)
@@ -44,6 +41,7 @@ public class RopeTask extends BoatAITaskBase {
 			System.out.println("OMG I lost my partner!");
 			if (!searchForBoat(targetID)) {
 				targetID = null;
+				target = null;
 				boat.setRopeTargetId(-1);
 			}
 		}
