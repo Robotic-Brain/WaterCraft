@@ -19,9 +19,9 @@ public class TankTask extends BoatAITaskBase implements IFluidHandler{
 	public FluidTank tank;
 	private boolean firstRun = true;
 	
-	public TankTask(AbstractBaseBoat boat, float priority, int tankSize) {
+	public TankTask(AbstractBaseBoat boat, float priority, Object... args) {
 		super(boat, priority);
-		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * tankSize);
+		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * (Integer)args[0]);
 	}
 
 	@Override

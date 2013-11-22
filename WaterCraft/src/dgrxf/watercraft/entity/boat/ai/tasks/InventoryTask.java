@@ -20,12 +20,12 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
 	private boolean lockable;
 	private int code;
 	
-	public InventoryTask(AbstractBaseBoat boat, float priority, int guiID, Object modID, int invSize, boolean lockable) {
+	public InventoryTask(AbstractBaseBoat boat, Float priority, Object... args) {
 		super(boat, priority);
-		this.guiID = guiID;
-		this.modID = modID;
-		this.lockable = lockable;
-		this.items = new ItemStack[invSize];
+		this.guiID = (Integer) args[0];
+		this.modID = args[1];
+		this.items = new ItemStack[(Integer)args[2]];
+		this.lockable = (Boolean)args[3];
 	}
 
 	@Override

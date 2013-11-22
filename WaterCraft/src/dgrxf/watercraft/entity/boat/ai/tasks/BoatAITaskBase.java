@@ -10,9 +10,12 @@ public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<Bo
      */
     private float priority;
     
-    public BoatAITaskBase(AbstractBaseBoat boat, float priority) {
-        super(boat);
-        this.priority = priority;
+    /**
+     * If you need more than two parameters use Object...
+     */
+    public BoatAITaskBase(AbstractBaseBoat boat, float priority, Object... obj){
+    	super(boat);
+    	this.priority = priority;
     }
     
     @Override
