@@ -16,6 +16,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 
 	private ItemStack[] items = new ItemStack[3];
 
+	//TODO: Comment the class
 	
 	@Override
 	public void updateEntity() {

@@ -11,16 +11,16 @@ import dgrxf.watercraft.entity.boat.ai.tasks.LavaTask;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.module.ChestModule;
 import dgrxf.watercraft.module.TankModule;
-import dgrxf.watercraft.module.VanillaItemModule;
+import dgrxf.watercraft.module.CustomModule;
 import dgrxf.watercraft.util.ModuleRegistry;
 
 public class ModuleInfo {
 	public static void init(){
-		ModuleRegistry.registerModule(Block.ice, new VanillaItemModule(new ModuleType[]{ModuleType.BOAT}, null, IceTask.class));
-		ModuleRegistry.registerModule(Item.bucketLava, new VanillaItemModule(new ModuleType[]{ModuleType.BOAT}, null, LavaTask.class));
+		ModuleRegistry.registerModule(Block.ice, new CustomModule(new ModuleType[]{ModuleType.BOAT}, null, IceTask.class));
+		ModuleRegistry.registerModule(Item.bucketLava, new CustomModule(new ModuleType[]{ModuleType.BOAT}, null, LavaTask.class));
 		ModuleRegistry.registerModule(ModBlocks.chest, new ChestModule());
 		ModuleRegistry.registerModule(ModBlocks.tank, new TankModule());
-		ModuleRegistry.registerModule(Block.dirt, new VanillaItemModule(new ModuleType[]{ModuleType.BLOCK}, Block.dirt, null));
-		ModuleRegistry.registerModule(Block.chest, new VanillaItemModule(new ModuleType[]{ModuleType.INVENTORY}, null, InventoryTask.class, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27, true));
+		ModuleRegistry.registerModule(Block.dirt, new CustomModule(new ModuleType[]{}, Block.dirt, null));
+		ModuleRegistry.registerModule(Block.chest, new CustomModule(new ModuleType[]{ModuleType.INVENTORY}, null, InventoryTask.class, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27, true));
 	}
 }

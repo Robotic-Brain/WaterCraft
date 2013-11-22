@@ -9,7 +9,6 @@ import dgrxf.watercraft.enumeration.ModuleType;
 public interface IBoatModule {
 	
 	/**
-	 * Currently unused
 	 * @return the types of modules you're adding
 	 */
 	public ModuleType[] getModuleType();

@@ -12,8 +12,9 @@ public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<Bo
     
     /**
      * If you need more than two parameters use Object...
+     * Make sure you do not use primitives such as int, float, boolean ect. Instead use Integer, Float, Boolean ect.
      */
-    public BoatAITaskBase(AbstractBaseBoat boat, float priority, Object... obj){
+    public BoatAITaskBase(AbstractBaseBoat boat, Float priority, Object... obj){
     	super(boat);
     	this.priority = priority;
     }

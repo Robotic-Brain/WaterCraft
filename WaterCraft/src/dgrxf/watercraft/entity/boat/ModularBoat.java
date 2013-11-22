@@ -10,7 +10,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.EntityInfo;
-import dgrxf.watercraft.module.VanillaItemModule;
+import dgrxf.watercraft.module.CustomModule;
 import dgrxf.watercraft.util.ModuleRegistry;
 
 public class ModularBoat extends AbstractBaseBoat{
