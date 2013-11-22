@@ -228,8 +228,6 @@ public class WCBoatRenderer extends Render {
     		return;
     	}
     	
-    	System.out.println("Rendering ROPE");
-    	
     	Tessellator tessellator = Tessellator.instance;
     	
     	double boatX = boat.prevPosX + (boat.posX - boat.prevPosX) * partialTick; 
@@ -241,12 +239,20 @@ public class WCBoatRenderer extends Render {
     	if (e instanceof AbstractBaseBoat) {
     		AbstractBaseBoat target = (AbstractBaseBoat)e;
     		
-    		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatX; 
-        	double targetY = target.prevPosY + (target.posY - target.prevPosY) * partialTick - target.height * 0.25 - boatY;
-        	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatZ;
+    		double targetYaw = target.prevRotationYaw + (target.rotationYaw - target.prevRotationYaw) * partialTick;
+    		targetYaw = targetYaw * Math.PI / 180.0;
     		
-        	System.out.println(new Vector3(boatX, boatY, boatZ).toString());
-        	System.out.println(new Vector3(targetX, targetY, targetZ).toString());
+    		double tx = target.prevPosX + (target.posX - target.prevPosX) * partialTick + target.width * Math.cos(targetYaw) / 2.0F - boatX; 
+        	double ty = target.prevPosY + (target.posY - target.prevPosY) * partialTick - target.height * 0.25 - boatY;
+        	double tz = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick + target.width * Math.sin(targetYaw) / 2.0F - boatZ;
+    		
+        	double boatYaw = boat.prevRotationYaw + (boat.rotationYaw - boat.prevRotationYaw) * partialTick;
+        	boatYaw = boatYaw * Math.PI / 180.0;
+        	
+        	double targetX = tx * Math.cos(boatYaw) + tz * Math.sin(boatYaw);
+        	double targetY = ty;
+        	double targetZ = - tx * Math.sin(boatYaw) + tz * Math.cos(boatYaw);
+        	
         	
         	GL11.glDisable(GL11.GL_TEXTURE_2D);
             GL11.glDisable(GL11.GL_LIGHTING);
@@ -259,10 +265,8 @@ public class WCBoatRenderer extends Render {
             
             byte vertices = 16;
 
-            for (int i = 0; i <= vertices; i++)
-            {
+            for (int i = 0; i <= vertices; i++) {
                 double perc = (double)i / (double)vertices;
-            	tessellator.setColorRGBA_F((float)perc, (float)perc, (float)perc, 1.0F);
                 tessellator.addVertex(relativeBoatX + (targetX - relativeBoatX) * perc, relativeBoatY - (targetY - relativeBoatY) * perc, relativeBoatZ - (targetZ - relativeBoatZ) * perc);
             }
 
