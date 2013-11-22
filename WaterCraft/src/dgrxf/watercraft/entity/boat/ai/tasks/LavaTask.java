@@ -7,7 +7,7 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class LavaTask extends BoatAITaskBase {
 
-	public LavaTask(AbstractBaseBoat boat, float priority) {
+	public LavaTask(AbstractBaseBoat boat, Float priority, Object... args) {
 		super(boat, priority);
 	}
 

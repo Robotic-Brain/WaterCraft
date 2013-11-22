@@ -71,11 +71,6 @@ public class Watercraft {
         ModuleInfo.init();
     }
     
-    @EventHandler
-    public void interMod(FMLInterModComms e){
-    	//Potentially using this later on
-    }
-    
     @SideOnly(Side.CLIENT)
     public static void printToPlayer(String txt) {
         Minecraft.getMinecraft().thePlayer.sendChatMessage("" + txt);

@@ -1,14 +1,11 @@
 package dgrxf.watercraft.module;
 
-import java.lang.reflect.InvocationTargetException;
-
 import net.minecraft.block.Block;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.util.LogHelper;
 
 public class VanillaItemModule implements IBoatModule {
 
@@ -36,13 +33,14 @@ public class VanillaItemModule implements IBoatModule {
 
 	@Override
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
-		BoatAITaskBase b = null;
-		try{
-			b = (BoatAITaskBase) task.getDeclaredConstructor(AbstractBaseBoat.class, Float.class, args.getClass()).newInstance(boat, f, args);
-			list.addTask(b);
-		}catch(Exception e){
-			e.printStackTrace();
+		if(task != null){
+			BoatAITaskBase b = null;
+			try{
+				b = (BoatAITaskBase) task.getDeclaredConstructor(AbstractBaseBoat.class, Float.class, args.getClass()).newInstance(boat, f, args);
+				list.addTask(b);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 	}
-
 }

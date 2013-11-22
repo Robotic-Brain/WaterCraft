@@ -11,7 +11,7 @@ public class DumbTask extends BoatAITaskBase {
     private Vector2 target;
     private AbstractBaseBoat boat;
     
-    public DumbTask(AbstractBaseBoat boat, float priority) {
+    public DumbTask(AbstractBaseBoat boat, Float priority, Object... args) {
         super(boat, priority);
         this.boat = boat;
     }

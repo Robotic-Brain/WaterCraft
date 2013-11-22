@@ -16,11 +16,4 @@ public class WCEventHandler {
         }
     }
     
-    /*@ForgeSubscribe
-    public void onPlayerInteract(PlayerInteractEvent event){
-    	if(event.action == Action.RIGHT_CLICK_AIR){
-    		//event.entityPlayer.
-    	}
-    }*/
-    
 }

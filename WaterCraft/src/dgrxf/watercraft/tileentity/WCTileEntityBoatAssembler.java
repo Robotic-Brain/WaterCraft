@@ -9,8 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.interfaces.IItemModule;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.util.ModuleRegistry;
 
@@ -28,34 +26,22 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		if(slotZero != null && slotOne != null){
 			ItemStack item = null;
 			NBTTagCompound tag;
-			if(((slotZero.getItem() instanceof IModularBoat) && (slotOne.getItem() instanceof IItemModule))){
-				createAndReturnItem(slotZero, item, slotOne.getItem(), false);
-			}else if(((slotZero.getItem() instanceof IItemModule) && (slotOne.getItem() instanceof IModularBoat))){
-				createAndReturnItem(slotOne, item, slotZero.getItem(), false);
-			}else if(ModuleRegistry.isItemAVanillaModule(slotZero.getItem()) && (slotOne.getItem() instanceof IModularBoat)){
-				createAndReturnItem(slotOne, item, slotZero.getItem(), true);
-			}else if(ModuleRegistry.isItemAVanillaModule(slotOne.getItem()) && (slotZero.getItem() instanceof IModularBoat)){
-				createAndReturnItem(slotZero, item, slotOne.getItem(), true);
+			if(slotZero.getItem() instanceof IModularBoat && ModuleRegistry.isItemRegistered(slotOne.getItem())){
+				createAndReturnItem(slotZero, item, slotOne.getItem());
+			}else if(ModuleRegistry.isItemRegistered(slotZero.getItem()) && (slotOne.getItem() instanceof IModularBoat)){
+				createAndReturnItem(slotOne, item, slotZero.getItem());
 			}
 		}
 	}
 	
-	private void createAndReturnItem(ItemStack slot, ItemStack item, Item modItem, boolean isVanilla){
+	private void createAndReturnItem(ItemStack slot, ItemStack item, Item modItem){
 		HashSet<String> strings = addModuleToSetOrReturnModules(slot, modItem, true);
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, modItem, false);
-		if(!isVanilla){
-			if(!strings.equals(temp) && ModuleRegistry.isModuleRegistered(((IItemModule)modItem).getBoatModule())){
+			if(!strings.equals(temp)){
 				item = new ItemStack(slot.getItem());
 				ModuleRegistry.writeSetToItemStackNBT(strings, item);
 				returnItem(item);
 			}
-		}else{
-			if(!strings.equals(temp) && ModuleRegistry.isItemAVanillaModule(modItem)){
-				item = new ItemStack(slot.getItem());
-				ModuleRegistry.writeSetToItemStackNBT(strings, item);
-				returnItem(item);
-			}
-		}
 	}
 	
 	private void returnItem(ItemStack item){
@@ -66,16 +52,9 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	
 	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, Item modItem, boolean addNewMods){
 		HashSet<String> temp = new HashSet();
-		if(modItem instanceof IItemModule){
-			temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-			if(addNewMods && !ModuleRegistry.doTasksConflict(modItem, temp))
-				temp.add(new String(((IItemModule)modItem).getBoatModule().getName()));
-		}else if (ModuleRegistry.isItemAVanillaModule(modItem)){
-			temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-			if(addNewMods && !ModuleRegistry.doTasksConflict(modItem, temp)){
-				temp.add(ModuleRegistry.getVanillaModuleFromID(modItem).getName());
-			}
-		}
+		temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
+		if(addNewMods && !ModuleRegistry.doTasksConflict(modItem, temp))
+			temp.add(Integer.toString(modItem.itemID));
 		return temp;
 	}
 	

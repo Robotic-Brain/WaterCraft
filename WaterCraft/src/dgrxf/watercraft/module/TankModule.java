@@ -24,5 +24,4 @@ public class TankModule implements IBoatModule {
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f) {
 		list.addTask(new TankTask(boat, f, 8));
 	}
-
 }

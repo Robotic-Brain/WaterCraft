@@ -1,14 +1,13 @@
 package dgrxf.watercraft.interfaces;
 
 import net.minecraft.block.Block;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.item.Item;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
-import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.enumeration.ModuleType;
 
 public interface IBoatModule {
-
+	
 	/**
 	 * Currently unused
 	 * @return the types of modules you're adding

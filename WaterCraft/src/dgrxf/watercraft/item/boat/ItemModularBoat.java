@@ -52,7 +52,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
                 int y1 = movingobjectposition.blockY;
                 int z1 = movingobjectposition.blockZ;
                 
-                if (world.getBlockMaterial(x1, y1, z1) == Material.water && world.isAirBlock(x1, y1 + 1, z1)) {
+                if ((world.getBlockMaterial(x1, y1, z1) == Material.water || world.getBlockMaterial(x1, y1, z1) == Material.lava) && world.isAirBlock(x1, y1 + 1, z1)) {
                     AbstractBaseBoat boat = new ModularBoat(world, x1, y1 + 1, z1, itemStack.getTagCompound());
                     world.spawnEntityInWorld(boat);
                     
@@ -73,7 +73,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
 			
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					par3List.add(tag.getString(Alphabet.values()[i].toString()));
+					par3List.add(new ItemStack(Item.itemsList[Integer.parseInt(tag.getString(Alphabet.values()[i].toString()))]).getDisplayName());
 				}
 			}
 			
