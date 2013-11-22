@@ -20,7 +20,7 @@ public class RopeTask extends BoatAITaskBase {
 	public static final float ROPE_LENGTH = 4.0F;
 	public static final float SEARCH_RADIUS = 5.0F;
 	public static final double SPEED_MULTIPLIER = 0.5;
-	public static final double FRICTION = 0.6;
+	public static final double FRICTION = 0.8;
 	
 	private AbstractBaseBoat boat;
 	private AbstractBaseBoat target;
@@ -169,7 +169,7 @@ public class RopeTask extends BoatAITaskBase {
 	public void readEntityFromNBT(NBTTagCompound compound) {
 		super.readEntityFromNBT(compound);
 		
-		targetID = new UUID(compound.getLong("targetIDmost"), compound.getLong("targedIDleast"));
+		targetID = new UUID(compound.getLong("targetIDmost"), compound.getLong("targetIDleast"));
 	}
 
 }
