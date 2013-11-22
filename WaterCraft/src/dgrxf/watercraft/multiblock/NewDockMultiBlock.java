@@ -26,7 +26,7 @@ public class NewDockMultiBlock {
      * @param world
      * @param start
      * @param direction
-     * @return true if MultiBlock found
+     * @return Rectangle of MultiBlock bounds or NULL
      */
     public static Rectangle checkMultiblock(World world, Vector3 start, ForgeDirection d) {
         
