@@ -40,7 +40,8 @@ public class RopeTask extends BoatAITaskBase {
 	
 	@Override
 	public void postOnUpdate() {
-		if (target == null && targetID != null) {			
+		if ((target == null || target.isDead) && boat.getRopeTargetId() >= 0 && targetID != null) {	
+			System.out.println("OMG I lost my partner!");
 			if (!searchForBoat(targetID)) {
 				targetID = null;
 				boat.setRopeTargetId(-1);
@@ -64,6 +65,8 @@ public class RopeTask extends BoatAITaskBase {
 		ItemStack stack = player.inventory.getCurrentItem();
 		
 		if (stack == null || stack.itemID != ModItems.rope.itemID) {
+			System.out.println("Target entity ID is: " + Integer.toString(boat.getRopeTargetId()));
+			System.out.println("Target is null? " + Boolean.toString(target == null));
 			return;
 		}
 		
@@ -80,11 +83,11 @@ public class RopeTask extends BoatAITaskBase {
 			tag.setLong("idMost", boat.getUniqueID().getMostSignificantBits());
 			stack.setTagCompound(tag);
 			
-			Watercraft.printToPlayer("ID set to " + boat.getUniqueID().toString());
+			System.out.println("ID set to " + boat.getUniqueID().toString());
 			
 		} else if (stack.getItemDamage() == 1 && target == null) {
 			
-			Watercraft.printToPlayer("searching target");
+			System.out.println("searching target");
 			
 			long idLeast = tag.getLong("idLeast");
 			long idMost = tag.getLong("idMost");
@@ -114,11 +117,11 @@ public class RopeTask extends BoatAITaskBase {
             		continue;
             	}
             	
-            	Watercraft.printToPlayer("I found a boat with ID " + foundBoat.getUniqueID().toString());
-            	Watercraft.printToPlayer("I'm searching for a boat with ID " + id.toString());
+            	System.out.println("I found a boat with ID " + foundBoat.getUniqueID().toString());
+            	System.out.println("I'm searching for a boat with ID " + id.toString());
             	
             	if (id.equals(foundBoat.getUniqueID())) {
-            		Watercraft.printToPlayer("I found my boat! Linked!");
+            		System.out.println("I found my boat! Linked!");
             		boat.setRopeTargetId(foundBoat.entityId);
             		target = foundBoat;
             		targetID = id;            		
