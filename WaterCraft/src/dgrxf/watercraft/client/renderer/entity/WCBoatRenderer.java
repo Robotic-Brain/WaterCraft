@@ -242,7 +242,7 @@ public class WCBoatRenderer extends Render {
     		AbstractBaseBoat target = (AbstractBaseBoat)e;
     		
     		double targetX = target.prevPosX + (target.posX - target.prevPosX) * partialTick + target.width * Math.cos(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatX; 
-        	double targetY = (target.prevPosY + (target.posY - target.prevPosY) * partialTick) - target.height * 0.5 - boatY;
+        	double targetY = target.prevPosY + (target.posY - target.prevPosY) * partialTick - target.height * 0.25 - boatY;
         	double targetZ = target.prevPosZ + (target.posZ - target.prevPosZ) * partialTick + target.width * Math.sin(target.rotationYaw * Math.PI / 180.0) / 2.0F - boatZ;
     		
         	System.out.println(new Vector3(boatX, boatY, boatZ).toString());
