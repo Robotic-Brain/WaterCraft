@@ -40,7 +40,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	private void createAndReturnItem(ItemStack slot, ItemStack item, IItemModule mod){
 		HashSet<String> strings = addModuleToSetOrReturnModules(slot, mod, true);
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, mod, false);
-		if(!strings.equals(temp)){
+		if(!strings.equals(temp) && ModuleRegistry.isModuleRegistered(mod.getBoatModule())){
 			item = new ItemStack(slot.getItem());
 			ModuleRegistry.writeSetToItemStackNBT(strings, item);
 			returnItem(item);

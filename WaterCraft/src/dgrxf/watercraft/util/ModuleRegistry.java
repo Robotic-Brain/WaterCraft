@@ -115,6 +115,9 @@ public class ModuleRegistry {
 	/**
 	 * @param clazz the class of the module you wish to call writeModuleInfoToNBT from
 	 * @param tag the NBT tag compound you wish to write to
+	 * @param startingPos the value you wish to use for your nbt key.
+	 * 
+	 * @return true if the tag was written, false if not.
 	 */
 	public static boolean writeSetInfoToNBT(Class<? extends IBoatModule> clazz, NBTTagCompound tag, int startingPos){
 		for(IBoatModule mods : modules){
@@ -125,7 +128,11 @@ public class ModuleRegistry {
 		}
 		return false;
 	}
-
+	
+	/**
+	 * @param set The HashSet that contains the module information you wish to write to the boat.
+	 * @param item The ItemStack that contains the boat you wish to write information to.
+	 */
 	public static void writeSetToItemStackNBT(HashSet<String> set, ItemStack item) {
 		
 		NBTTagCompound tag = new NBTTagCompound();
@@ -139,8 +146,14 @@ public class ModuleRegistry {
 		item.setTagCompound(tag);
 	}
 
+	
+	/**
+	 * @param mod The module you wish to check to see if it conflicts with other modules
+	 * @param temp the HashSet of modules currently on the modular boat
+	 * @return True if the modular tasks are in conflict or the IItemModules module class is not registered, this is determined by the catagories of modules for the module you pass in.<br><br>
+	 * False if there is no conflict and the module can be placed on the modular boat.
+	 */
 	public static boolean doTasksConflict(IItemModule mod, HashSet<String> temp) {
-		
 		for(String s : temp){
 			if(isModuleRegistered(mod.getBoatModule())){
 				try {
