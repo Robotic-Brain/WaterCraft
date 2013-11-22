@@ -23,6 +23,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.tileentity.controlunit.logic.ControlUnitLogic;
 import dgrxf.watercraft.util.LogHelper;
+import dgrxf.watercraft.util.Rectangle;
 import dgrxf.watercraft.util.Vector3;
 
 /**
@@ -49,6 +50,8 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     /** Boats **/
     public AbstractBaseBoat dockedBoat;
     public boolean          holdBoat;
+    
+    private Rectangle		AABBBounds;
     
     /**Logic **/
     private ControlUnitLogic basicLogic = ControlUnitLogic.basicOnInteraction;
@@ -176,13 +179,13 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
         int tempY = yCoord;
         int tempZ = zCoord + d.offsetZ * 3;
         
-        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(tempX - 1, tempY - 1, tempZ - 1, tempX + 1, tempY + 1, tempZ + 1);
-        
+        AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(this.AABBBounds.x, tempY - 1, this.AABBBounds.y, this.AABBBounds.w + this.AABBBounds.x, tempY + 1, this.AABBBounds.h + this.AABBBounds.y);
         List list = worldObj.getEntitiesWithinAABB(entC, bounds);
         
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof AbstractBaseBoat) {
+            	System.out.println("test");
                 return (AbstractBaseBoat) e;
             }
         }
@@ -259,7 +262,8 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
     }
     
     public boolean checkForMultiBlock() {
-        return null != NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord - 1, zCoord), getBlockDirection());
+    	this.AABBBounds = NewDockMultiBlock.checkMultiblock(worldObj, new Vector3(xCoord, yCoord - 1, zCoord), getBlockDirection());
+        return null != this.AABBBounds;
     }
     
     public boolean isUseableByPlayer(EntityPlayer entityplayer) {

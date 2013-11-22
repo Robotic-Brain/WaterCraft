@@ -32,9 +32,6 @@ public class NewDockMultiBlock {
         
         start = start.add(new Vector3(d));
         
-        LogHelper.debug("Hayo!!");
-        LogHelper.debug(checkBlock(world, start, BOUNDING_BLOCK));
-        
         /**
          * these will hold the final dimensions
          */
