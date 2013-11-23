@@ -511,4 +511,10 @@ public class WCTileEntityChest extends TileEntity implements IInventory, ILockab
         System.out.println("Server: Sending packet");
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, blockMetadata, tag);
     }
+    
+    @SideOnly(Side.CLIENT)
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return AxisAlignedBB.getAABBPool().getAABB(xCoord - 1, yCoord, zCoord - 1, xCoord + 2, yCoord + 2, zCoord + 2);
+    }
 }
