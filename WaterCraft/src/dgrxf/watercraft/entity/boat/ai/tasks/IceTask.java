@@ -5,7 +5,7 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
 public class IceTask extends BoatAITaskBase {
     
-    public IceTask(AbstractBaseBoat boat, Float priority) {
+    public IceTask(AbstractBaseBoat boat, Float priority, Object... args) {
         super(boat, priority);
     }
     

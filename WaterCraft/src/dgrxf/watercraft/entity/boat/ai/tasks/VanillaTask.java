@@ -7,7 +7,7 @@ import dgrxf.watercraft.item.ModItems;
 
 public class VanillaTask extends BoatAITaskBase {
     
-    public VanillaTask(AbstractBaseBoat boat, Float priority) {
+    public VanillaTask(AbstractBaseBoat boat, Float priority, Object... args) {
         super(boat, priority);
     }
     
