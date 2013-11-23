@@ -41,7 +41,7 @@ public class ModuleRegistry {
 	
 	private static boolean registerModule(int id, IBoatModule mod){
 		if(modules.containsKey(id)){
-			LogHelper.severe("You are attempting to register a module with to the Item or Block with the id" + id + ", however this Item or Block is already in use and cannot be overwritten.");
+			LogHelper.severe("You are attempting to register a module with to the Item or Block with the id: " + id + ", however this Item or Block is already in use and cannot be overwritten.");
 			return false;
 		}else{
 			modules.put(id, mod);

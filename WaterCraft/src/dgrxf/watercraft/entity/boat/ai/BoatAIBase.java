@@ -48,11 +48,16 @@ public abstract class BoatAIBase {
     }
     
     /**
-     * Gets called
+     * Gets called when the boat takes damage
      */
     public boolean attackEntityFrom(DamageSource source, float damage) {
         return true;
     }
+    
+    /**
+     * Gets called just before the boat has been destroyed
+     */
+    public void setDead(){}
     
     /**
      * Gets called when the player right clicks a boat

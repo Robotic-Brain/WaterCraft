@@ -84,6 +84,13 @@ public class BoatAITaskList extends BoatAIBase {
     }
     
     @Override
+    public void setDead() {
+    	for(BoatAITaskBase task : tasks){
+    		task.setDead();
+    	}
+    }
+    
+    @Override
     public boolean breakBoat() {
         boolean result = true;
         for(BoatAITaskBase task : tasks){

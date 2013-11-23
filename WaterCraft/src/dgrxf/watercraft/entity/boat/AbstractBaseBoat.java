@@ -672,6 +672,12 @@ public abstract class AbstractBaseBoat extends Entity {
     	return true;
     }
     
+    @Override
+    public void setDead() {
+    	this.ai.setDead();
+    	super.setDead();
+    }
+    
     /**
      * Sets the damage taken from the last hit.
      */
