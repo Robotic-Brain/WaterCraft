@@ -7,10 +7,9 @@ import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
 import dgrxf.watercraft.enumeration.Alphabet;
-import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.lib.EntityInfo;
-import dgrxf.watercraft.module.CustomModule;
 import dgrxf.watercraft.util.ModuleRegistry;
 
 public class ModularBoat extends AbstractBaseBoat{
@@ -36,6 +35,7 @@ public class ModularBoat extends AbstractBaseBoat{
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {
 		super(par1World, par2, par4, par6);
 		strings = (ArrayList)readTagInformation(tag);
+		list.clear();
 		updateBoatAI(this.list);
 	}
 	
@@ -56,15 +56,18 @@ public class ModularBoat extends AbstractBaseBoat{
 	@Override
 	protected void updateBoatAI(BoatAITaskList list) {
 		this.list = list;
+		int priority = 0;
 		if(strings != null){
 			for(int i = 0; i < strings.size(); i++){
-				ModuleRegistry.addBoatAI(Integer.parseInt((String) strings.get(i)), list, this, (float)i);
-				Block block = ModuleRegistry.getBlockType(Integer.parseInt((String) strings.get(i)));
+				ModuleRegistry.addBoatAI(ModuleRegistry.parseStringToItemStack((String) strings.get(i)), list, this, (float)i);
+				Block block = ModuleRegistry.getBlockType(ModuleRegistry.parseStringToItemStack((String) strings.get(i)));
 				if(block != null){
 					this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, block.blockID);
 				}
+				priority = i;
 			}
 		}
+		list.addTask(new RopeTask(this, list.size() == 0 ? priority : priority+1));
 	}
 
 	@Override
@@ -99,7 +102,6 @@ public class ModularBoat extends AbstractBaseBoat{
 			while(!innerTag.hasNoTags()){
 				strings.add(innerTag.getString(Alphabet.values()[i].toString()));
 				innerTag.removeTag(Alphabet.values()[i].toString());
-				System.out.println(strings.get(i).toString());
 				i++;
 			}
 			this.updateBoatAI();

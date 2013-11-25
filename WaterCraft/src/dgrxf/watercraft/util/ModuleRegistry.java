@@ -3,7 +3,6 @@ package dgrxf.watercraft.util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -14,70 +13,68 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.module.CustomModule;
 
 public class ModuleRegistry {
 	
+	private static HashMap<Integer, ItemStack> registeredModules = new HashMap();
 	private static HashMap<Integer, IBoatModule> modules = new HashMap();
-	private static ArrayList<Integer> ids = new ArrayList();
+	private static ArrayList<Integer> registeredIDs = new ArrayList();
 	
 	/**
 	 * @param item The Item you wish to associate your module with.
 	 * @param mod The module you wish to register.
 	 * @return True if the module was registered successfully, false if not.
 	 */
-	public static final boolean registerModule(Item item, IBoatModule mod){
-		return registerModule(item.itemID, mod);
-	}
-	
-	/**
-	 * @param item The Block you wish to associate your module with.
-	 * @param mod The module you wish to register.
-	 * @return True if the module was registered successfully, false if not.
-	 */
-	public static final boolean registerModule(Block block, IBoatModule mod){
-		return registerModule(block.blockID, mod);
-	}
-	
-	private static boolean registerModule(int id, IBoatModule mod){
-		if(modules.containsKey(id)){
-			LogHelper.severe("You are attempting to register a module with to the Item or Block with the id: " + id + ", however this Item or Block is already in use and cannot be overwritten.");
+	public static final boolean registerModule(ItemStack itemStack, IBoatModule mod){		
+		if(modules.containsKey(itemStack)){
+			LogHelper.severe("You are attempting to register a module with to the ItemStack containing: " + itemStack.getDisplayName() + ", metadata: " + itemStack.getItemDamage() + "however this ItemStack is already in use and cannot be overwritten.");
 			return false;
 		}else{
-			modules.put(id, mod);
-			ids.add(id);
+			registeredModules.put(getNextID(), itemStack);
+			modules.put(getNextID(), mod);
+			registeredIDs.add(getNextID());
 			return true;
 		}
+	}
+	
+	private static int getNextID(){
+		return registeredIDs.size();
 	}
 
 	/**
 	 * @param item The item you wish to see if it has been associated with a module
 	 * @return True if the item has an associated module
 	 */
-	public static final boolean isItemRegistered(Item item){
-		return modules.containsKey(item.itemID);
+	public static final boolean isItemRegistered(ItemStack item){
+		for(Integer i : registeredIDs){
+			ItemStack temp = registeredModules.get(i);
+			if(temp.isItemEqual(item)){
+				return true;
+			}
+		}
+		return false;
 	}
 	
-	/**
-	 * @param block The block you wish to see if it has been associated with a module
-	 * @return True if the block has an associated module
-	 */
-	public static final boolean isItemRegistered(Block block){
-		return modules.containsKey(block.blockID);
+	private static final int isItemRegisteredAndGetID(ItemStack item){
+		for(Integer i : registeredIDs){
+			ItemStack temp = registeredModules.get(i);
+			if(temp.isItemEqual(item)){
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	/**
 	 * @param itemID The Item or Block ID associated with the module you wish to call getModuleType from
 	 * @return The getModuleType for the module, returns an empty ModuleType[] if the class is not registered.
 	 */
-	public static final ModuleType[] getModuleTypes(int itemID){
+	public static final ModuleType[] getModuleTypes(ItemStack itemID){
 		ModuleType[] temp = new ModuleType[0];
-		for(int id : ids){
-			if(itemID == id){
-				temp = modules.get(id).getModuleType();
-			}
+		int tempInt = isItemRegisteredAndGetID(itemID);
+		if(tempInt != -1){
+			temp = modules.get(tempInt).getModuleType();
 		}
-		
 		return temp;
 	}
 	/**
@@ -85,14 +82,21 @@ public class ModuleRegistry {
 	 * @param itemID The Item or Block ID associated with the module you wish to call getBlockType from
 	 * @return The getBlockType for the given id, null if the id of the Item/Block is not registered, or the module does not have a block.
 	 */
-	public static final Block getBlockType(int itemID){
+	public static final Block getBlockType(ItemStack itemID){
 		Block b = null;
-		for(int id : ids){
-			if(id == itemID){
-				b = modules.get(id).getBlockType();
-			}
+		int tempInt = isItemRegisteredAndGetID(itemID);
+		if(tempInt != -1){
+			b = modules.get(tempInt).getBlockType();
 		}
 		return b;
+	}
+	
+	public static final ItemStack parseStringToItemStack(String s){
+		
+		String[] temp = s.split(":");
+		int id = Integer.parseInt(temp[0]);
+		int meta = Integer.parseInt(temp[1]);
+		return new ItemStack(id, 0, meta);
 	}
 	
 	/**
@@ -102,11 +106,10 @@ public class ModuleRegistry {
 	 * @param priority The priority of the AI task you wish to add to the boat.
 	 */
 	
-	public static final void addBoatAI(int itemID, BoatAITaskList list, AbstractBaseBoat boat, float priority){
-		for(int id : ids){
-			if(itemID == id){
-				modules.get(id).addBoatAI(list, boat, priority);
-			}
+	public static final void addBoatAI(ItemStack itemID, BoatAITaskList list, AbstractBaseBoat boat, float priority){
+		int tempInt = isItemRegisteredAndGetID(itemID);
+		if(tempInt != -1){
+			modules.get(tempInt).addBoatAI(list, boat, priority);
 		}
 	}
 	
@@ -133,33 +136,11 @@ public class ModuleRegistry {
 	 * @return True if the modular tasks are in conflict or the module associated with the Item is not registered, this is determined by the catagories of modules for the module you pass in.<br><br>
 	 * False if there is no conflict and the module can be placed on the modular boat.
 	 */
-	public static final boolean doTasksConflict(Item mod, HashSet<String> temp) {
+	public static final boolean doTasksConflict(ItemStack mod, HashSet<String> temp) {
 		boolean toReturn = false;
 			for(String s : temp){
-				if(modules.containsKey(mod.itemID)){
-					toReturn = doTasksConflict((modules.get(mod.itemID)), modules.get(Integer.parseInt(s)));
-					if(toReturn){
-						break;
-					}
-				}else{
-					toReturn = true;
-				}
-		}
-			
-		return toReturn;
-	}
-	
-	/**
-	 * @param mod The Block associated with the module you wish to check to see if it conflicts with other modules
-	 * @param temp the HashSet of modules currently on the modular boat
-	 * @return True if the modular tasks are in conflict or the module associated with the Item is not registered, this is determined by the catagories of modules for the module you pass in.<br><br>
-	 * False if there is no conflict and the module can be placed on the modular boat.
-	 */
-	public static final boolean doTasksConflict(Block mod, HashSet<String> temp) {
-		boolean toReturn = false;
-			for(String s : temp){
-				if(modules.containsKey(mod.blockID)){
-					toReturn = doTasksConflict((modules.get(mod.blockID)), modules.get(Integer.parseInt(s)));
+				if(isItemRegistered(mod)){
+					toReturn = doTasksConflict(modules.get(mod), modules.get(Integer.parseInt(s)));
 					if(toReturn){
 						break;
 					}

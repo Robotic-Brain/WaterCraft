@@ -5,5 +5,6 @@ public enum ModuleType {
 	BOAT,
     ENGINE,
     BLOCK,
-    INVENTORY;
+    INVENTORY,
+    AI;
 }

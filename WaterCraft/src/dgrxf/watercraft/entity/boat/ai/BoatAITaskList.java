@@ -20,6 +20,14 @@ public class BoatAITaskList extends BoatAIBase {
         super(boat);
     }
     
+    public void clear(){
+    	tasks.clear();
+    }
+    
+    public int size(){
+    	return tasks.size();
+    }
+    
     public void addTask(BoatAITaskBase task) {
         // TDO: NOTE: This implementation only allows one element per priority
         tasks.add(task);

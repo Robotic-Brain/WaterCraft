@@ -20,6 +20,7 @@ import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.util.ModuleRegistry;
 
 public class ItemModularBoat extends Item implements IModularBoat{
 
@@ -73,7 +74,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
 			
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					par3List.add(new ItemStack(Item.itemsList[Integer.parseInt(tag.getString(Alphabet.values()[i].toString()))]).getDisplayName());
+					par3List.add(tag.getString(Alphabet.values()[i].toString()));
 				}
 			}
 			
@@ -89,7 +90,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
     		HashSet returnList = new HashSet<String>();
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					returnList.add(new String(tag.getString(Alphabet.values()[i].toString())));
+					returnList.add(tag.getString(Alphabet.values()[i].toString()));
 				}
 			}
     		return returnList;

@@ -26,16 +26,15 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		
 		if(slotZero != null && slotOne != null){
 			ItemStack item = null;
-			NBTTagCompound tag;
-			if(slotZero.getItem() instanceof IModularBoat && ModuleRegistry.isItemRegistered(slotOne.getItem())){
-				createAndReturnItem(slotZero, item, slotOne.getItem());
-			}else if(ModuleRegistry.isItemRegistered(slotZero.getItem()) && (slotOne.getItem() instanceof IModularBoat)){
-				createAndReturnItem(slotOne, item, slotZero.getItem());
+			if(slotZero.getItem() instanceof IModularBoat && ModuleRegistry.isItemRegistered(slotOne)){
+				createAndReturnItem(slotZero, item, slotOne);
+			}else if(ModuleRegistry.isItemRegistered(slotZero) && (slotOne.getItem() instanceof IModularBoat)){
+				createAndReturnItem(slotOne, item, slotZero);
 			}
 		}
 	}
 	
-	private void createAndReturnItem(ItemStack slot, ItemStack item, Item modItem){
+	private void createAndReturnItem(ItemStack slot, ItemStack item, ItemStack modItem){
 		HashSet<String> strings = addModuleToSetOrReturnModules(slot, modItem, true);
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, modItem, false);
 			if(!strings.equals(temp)){
@@ -51,11 +50,10 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		setInventorySlotContents(2, item);
 	}
 	
-	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, Item modItem, boolean addNewMods){
-		HashSet<String> temp = new HashSet();
-		temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
+	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, ItemStack modItem, boolean addNewMods){
+		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
 		if(addNewMods && !ModuleRegistry.doTasksConflict(modItem, temp))
-			temp.add(Integer.toString(modItem.itemID));
+			temp.add(Integer.toString(modItem.itemID)+":"+Integer.toString(modItem.getItemDamage()));
 		return temp;
 	}
 	
