@@ -14,6 +14,11 @@ public interface IBoatModule {
 	public ModuleType[] getModuleType();
 	
 	/**
+	 * @return the types of conflicting modules
+	 */
+	public ModuleType[] getConflictingModuleTypes();
+	
+	/**
 	 * If your module type is BLOCK return the block here, if not return null
 	 */
 	public Block getBlockType();

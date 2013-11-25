@@ -1,6 +1,7 @@
 package dgrxf.watercraft.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.item.ItemBlockChest;
@@ -11,12 +12,12 @@ import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.TEMultiblockPhantom;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
+import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 /**
  * Mod Blocks
@@ -43,7 +44,8 @@ public class ModBlocks {
         //Buoy Blocks
         buoy = new BuoyBlock(BlockInfo.BUOY_ID);
         
-        controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);
+        //controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);
+        controlUnitDock = new CraneBlock(BlockInfo.CONTROL_UNIT_DOCK_ID, Material.rock);
         freezer = new WaterFreezerBlock(BlockInfo.FREEZER_ID);
         dropZone = new DropZoneBlock();
         toolbox = new ToolBoxBlock();
@@ -71,7 +73,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(phantomMultiBlock, BlockInfo.PHANTOM_MULTIBLOCK_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
-        GameRegistry.registerTileEntity(WCTileEntityControlUnitDock.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
+        GameRegistry.registerTileEntity(WCTileEntityCrane.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityFreezer.class, BlockInfo.FREEZER_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityToolBox.class, BlockInfo.TOOLBOX_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityChest.class, BlockInfo.WC_CHEST_TE_KEY);

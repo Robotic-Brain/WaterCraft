@@ -20,7 +20,7 @@ import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.util.ModuleHelper;
+import dgrxf.watercraft.module.ModuleHelper;
 
 public class ItemModularBoat extends Item implements IModularBoat{
 

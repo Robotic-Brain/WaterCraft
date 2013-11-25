@@ -14,18 +14,21 @@ public class CustomModule implements IBoatModule {
 
 	Block block;
 	HashSet<ModuleType> moduleTypes = new HashSet<ModuleType>();
+	HashSet<ModuleType> confModuleTypes = new HashSet<ModuleType>();
 	Class task;
 	Object[] args;
 	
 	/**
 	 * @param moduleTypes An array of ModuleTypes (if any) you wish your module to be of. Can be null.
+	 * @param conModuleTypes An array of ModuleTypes (if any) you wish your module to conflict with. Can be null.
 	 * @param block The block (if any) you wish to have render inside the boat. Can be null. If this does not equal null ModuleType.BLOCK will automatically be added to moduleTypes, if not already present.
 	 * @param task The BoatAITaskBase class you wish for your module to have. Can be null.
 	 * @param args The extra arguments for the AI Task you wish to have, everything after the priority. Can be empty or null.
 	 */
-	public CustomModule(ModuleType[] moduleTypes, Block block, Class<? extends BoatAITaskBase> task, Object... args){
+	public CustomModule(ModuleType[] moduleTypes, ModuleType[] confModuleTypes, Block block, Class<? extends BoatAITaskBase> task, Object... args){
 		boolean declaresBlock = false;
 		this.moduleTypes.addAll(Arrays.asList(moduleTypes));
+		this.confModuleTypes.addAll(Arrays.asList(confModuleTypes));
 		this.block = block;
 		this.task = task;
 		this.args = args;
@@ -37,18 +40,21 @@ public class CustomModule implements IBoatModule {
 			}
 			if(!declaresBlock){
 				this.moduleTypes.add(ModuleType.BLOCK);
+				this.confModuleTypes.add(ModuleType.BLOCK);
 			}
 		}
 	}
 	
 	@Override
 	public ModuleType[] getModuleType() {
-		if(moduleTypes != null)
-			return moduleTypes.toArray(new ModuleType[moduleTypes.size()]);
-		else
-			return new ModuleType[0];
+		return moduleTypes.toArray(new ModuleType[moduleTypes.size()]);
 	}
 
+	@Override
+	public ModuleType[] getConflictingModuleTypes() {
+		return confModuleTypes.toArray(new ModuleType[confModuleTypes.size()]);
+	}
+	
 	@Override
 	public Block getBlockType() {
 		return block;
@@ -66,4 +72,5 @@ public class CustomModule implements IBoatModule {
 			}
 		}
 	}
+
 }

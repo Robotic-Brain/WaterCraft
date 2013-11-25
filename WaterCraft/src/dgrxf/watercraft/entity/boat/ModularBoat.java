@@ -10,12 +10,11 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.lib.EntityInfo;
-import dgrxf.watercraft.util.ModuleHelper;
-import dgrxf.watercraft.util.ModuleRegistry;
+import dgrxf.watercraft.module.ModuleHelper;
+import dgrxf.watercraft.module.ModuleRegistry;
 
 public class ModularBoat extends AbstractBaseBoat{
 	
-	ArrayList strings = new ArrayList<String>();
 	private BoatAITaskList list;
 	
 	private static final String NBT_TAG_MODULE_COMPUND = "Modules";
@@ -35,7 +34,7 @@ public class ModularBoat extends AbstractBaseBoat{
 	
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {
 		super(par1World, par2, par4, par6);
-		strings = (ArrayList)readTagInformation(tag);
+		modules = (ArrayList)readTagInformation(tag);
 		list.clear();
 		updateBoatAI(this.list);
 	}
@@ -58,10 +57,10 @@ public class ModularBoat extends AbstractBaseBoat{
 	protected void updateBoatAI(BoatAITaskList list) {
 		this.list = list;
 		int priority = 0;
-		if(strings != null){
-			for(int i = 0; i < strings.size(); i++){
-				ModuleHelper.addBoatAI(ModuleHelper.parseStringToItemStack((String) strings.get(i)), list, this, (float)i);
-				Block block = ModuleHelper.getBlockType(ModuleHelper.parseStringToItemStack((String) strings.get(i)));
+		if(modules != null){
+			for(int i = 0; i < modules.size(); i++){
+				ModuleHelper.addBoatAI(ModuleHelper.parseStringToItemStack((String) modules.get(i)), list, this, (float)i);
+				Block block = ModuleHelper.getBlockType(ModuleHelper.parseStringToItemStack((String) modules.get(i)));
 				if(block != null){
 					this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, block.blockID);
 				}
@@ -84,9 +83,9 @@ public class ModularBoat extends AbstractBaseBoat{
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		NBTTagCompound innerTag = new NBTTagCompound();
-		if(strings != null){
-			for(int i = 0; i < strings.size(); i++){
-				innerTag.setString(Alphabet.values()[i].toString(), strings.get(i).toString());
+		if(modules != null){
+			for(int i = 0; i < modules.size(); i++){
+				innerTag.setString(Alphabet.values()[i].toString(), modules.get(i).toString());
 			}
 			tag.setCompoundTag(NBT_TAG_MODULE_COMPUND, innerTag);
 		}
@@ -101,7 +100,7 @@ public class ModularBoat extends AbstractBaseBoat{
 			innerTag = tag.getCompoundTag(NBT_TAG_MODULE_COMPUND);
 			int i = 0;
 			while(!innerTag.hasNoTags()){
-				strings.add(innerTag.getString(Alphabet.values()[i].toString()));
+				modules.add(innerTag.getString(Alphabet.values()[i].toString()));
 				innerTag.removeTag(Alphabet.values()[i].toString());
 				i++;
 			}

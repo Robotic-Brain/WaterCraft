@@ -1,4 +1,4 @@
-package dgrxf.watercraft.util;
+package dgrxf.watercraft.module;
 
 import java.util.HashSet;
 
@@ -110,15 +110,21 @@ public class ModuleHelper extends ModuleRegistry{
 	}
 	
 	private static boolean doTasksConflict(IBoatModule mod1, IBoatModule mod2){
-		ModuleType[] mods1, mods2;
+		ModuleType[] mods1, mods2, cMods1, cMods2;
 		mods1 = mod1.getModuleType();
 		mods2 = mod2.getModuleType();
+		cMods1 = mod1.getConflictingModuleTypes();
+		cMods2 = mod2.getConflictingModuleTypes();
 		
 		for(ModuleType m1 : mods1){
-			for(ModuleType m2 : mods2){
-				if(m1 == m2){
-					return true;
-				}
+			for (ModuleType cM2 : cMods2){
+				if(m1 == cM2) return true;
+			}
+		}
+		
+		for(ModuleType m2 : mods2){
+			for(ModuleType cM1 : cMods1){
+				if(m2 == cM1) return true;
 			}
 		}
 		

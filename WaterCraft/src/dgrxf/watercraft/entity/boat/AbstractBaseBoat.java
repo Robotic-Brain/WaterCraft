@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -7,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -18,6 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.lib.EntityInfo;
+import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
@@ -51,6 +54,7 @@ public abstract class AbstractBaseBoat extends Entity {
     
     private static final String NBT_AI_TAG = "aiValues";
     public BoatAIBase        ai;
+	protected ArrayList<String> modules = new ArrayList<String>();
     
     public AbstractBaseBoat(World par1World) {
         super(par1World);
@@ -793,4 +797,14 @@ public abstract class AbstractBaseBoat extends Entity {
     public int getRopeTargetId() {
     	return dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TARGET_BOAT_ID);
     }
+    
+    public ItemStack[] getBoatModules()
+    {
+    	ItemStack[] temp = new ItemStack[modules.size()];
+    	for(int i = 0; i < modules.size(); i++){
+    		temp[i] = ModuleHelper.parseStringToItemStack(modules.get(i));
+    	}
+    	return temp;
+    }
+    
 }

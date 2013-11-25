@@ -1,4 +1,4 @@
-package dgrxf.watercraft.util;
+package dgrxf.watercraft.module;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +13,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.util.LogHelper;
 
 public class ModuleRegistry {
 	
@@ -55,7 +56,7 @@ public class ModuleRegistry {
 		return false;
 	}
 	
-	protected static final int isItemRegisteredAndGetID(ItemStack item){
+	public static final int isItemRegisteredAndGetID(ItemStack item){
 		for(Integer i : registeredIDs){
 			ItemStack temp = registeredModules.get(i);
 			if(temp.isItemEqual(item)){

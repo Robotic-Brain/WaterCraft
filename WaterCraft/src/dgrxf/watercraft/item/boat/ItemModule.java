@@ -12,9 +12,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.ItemInfo;
 
-public class ItemHull extends Item{
+public class ItemModule extends Item{
 
-	public ItemHull() {
+	public ItemModule() {
 		super(ItemInfo.BOAT_HULL_ID);
 		setCreativeTab(Watercraft.boatTab);
 		hasSubtypes = true;

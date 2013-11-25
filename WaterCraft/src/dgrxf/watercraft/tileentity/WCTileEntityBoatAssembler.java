@@ -9,8 +9,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IModularBoat;
-import dgrxf.watercraft.util.ModuleHelper;
-import dgrxf.watercraft.util.ModuleRegistry;
+import dgrxf.watercraft.module.ModuleHelper;
+import dgrxf.watercraft.module.ModuleRegistry;
 
 public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 

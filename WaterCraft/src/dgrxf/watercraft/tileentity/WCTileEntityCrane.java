@@ -3,12 +3,25 @@ package dgrxf.watercraft.tileentity;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.module.ModuleRegistry;
 
-public class WCTileEntityCrane extends TileEntity{
+public class WCTileEntityCrane extends DirectionalTileEntity{
+	
+	@Override
+	public void updateEntity() {
+		AbstractBaseBoat b = getBoatInBounds(getBlockDirection());
+		if(b != null){
+			ItemStack[] temp = b.getBoatModules();
+			for(ItemStack item : temp){
+				int tempInt = ModuleRegistry.isItemRegisteredAndGetID(item);
+			}
+		}
+	}
 	
 	public AbstractBaseBoat getBoatInBounds(ForgeDirection d){
         int tempX = xCoord + d.offsetX * 3;

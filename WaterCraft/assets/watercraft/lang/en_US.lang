@@ -13,8 +13,8 @@ tile.wcChestName.name=Chest
 
 item.hull0.name=Buoy AI
 item.hull1.name=Vanilla AI
-item.hull2.name=Ice Hull
-item.hull3.name=Lava Hull
+item.hull2.name=Hull Reinforcement : Ice
+item.hull3.name=Hull Reinforcement : Lava
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat
