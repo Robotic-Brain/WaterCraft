@@ -74,7 +74,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
 			
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					par3List.add(tag.getString(Alphabet.values()[i].toString()));
+					par3List.add(ModuleRegistry.parseStringToItemStack(tag.getString(Alphabet.values()[i].toString())).getDisplayName());
 				}
 			}
 			

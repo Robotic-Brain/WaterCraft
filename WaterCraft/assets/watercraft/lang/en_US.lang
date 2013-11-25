@@ -8,10 +8,13 @@ tile.buoyBlockName.name=Buoy
 tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
 tile.toolBoxBlockName.name=Tool Box
+tile.wcLiquidTank.name=Liquid Tank
+tile.wcChestName.name=Chest
 
-item.hull0.name=Wooden Hull
-item.hull1.name=Lava Hull
+item.hull0.name=Buoy AI
+item.hull1.name=Vanilla AI
 item.hull2.name=Ice Hull
+item.hull3.name=Lava Hull
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat

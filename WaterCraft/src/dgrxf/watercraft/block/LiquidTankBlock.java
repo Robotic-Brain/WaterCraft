@@ -22,6 +22,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
@@ -33,6 +34,7 @@ public class LiquidTankBlock extends Block{
 	public LiquidTankBlock(int par1) {
 		super(par1, Material.glass);
 		this.setHardness(1f);
+		this.setUnlocalizedName(BlockInfo.TANK_UNLOCALIZED_NAME);
 		this.setCreativeTab(Watercraft.miscTab);
 	}
 
