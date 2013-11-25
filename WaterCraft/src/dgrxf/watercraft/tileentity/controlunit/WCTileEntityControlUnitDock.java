@@ -298,7 +298,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
 
 	public boolean canBeUpgraded(ItemStack stack) {
 		System.out.println("Tile");
-		if(stack.getItem().itemID == ModItems.upgrades.itemID){
+	//	if(stack.getItem().itemID == ModItems.upgrades.itemID){
 			switch(stack.getItemDamage()){
 				case 1:
 					if(!chestTab){
@@ -313,7 +313,7 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
 					}
 					break;
 			}
-		}
+	//	}
 		return false;
 	}
 		
