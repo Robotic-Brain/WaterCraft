@@ -10,6 +10,7 @@ package dgrxf.watercraft.item;
  */
 
 import net.minecraft.item.Item;
+import dgrxf.watercraft.item.boat.ItemBoat;
 import dgrxf.watercraft.item.boat.ItemHull;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.item.buoy.ItemFlag;
@@ -31,6 +32,7 @@ public class ModItems {
     public static Item boatHull;
     
     public static void init() {
+    	boatVanilla = new ItemBoat();
         tapeMeasure = new ItemTapeMeasure();
         telescope = new ItemTelescope();
         flag = new ItemFlag();

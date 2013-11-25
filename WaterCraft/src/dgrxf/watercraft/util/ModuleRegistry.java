@@ -91,7 +91,13 @@ public class ModuleRegistry {
 		return b;
 	}
 	
+	/**
+	 * Parses a string and returns an itemstack according to the string's details
+	 * @param s The string you wish to convert to an itemstack
+	 * @return null if s is null or if it is not the correct format, or returns an itemstack containing the item described in string s.
+	 */
 	public static final ItemStack parseStringToItemStack(String s){
+		if(s == null || !s.contains(":")) return null;
 		
 		String[] temp = s.split(":");
 		int id = Integer.parseInt(temp[0]);
@@ -100,7 +106,7 @@ public class ModuleRegistry {
 	}
 	
 	/**
-	 * @param itemID The Item or Block ID associated with the module you wish to call addBoatAI from.
+	 * @param itemID The ItemStack associated with the module you wish to call addBoatAI from.
 	 * @param list The class of the AI list you wish to add the AI to.
 	 * @param boat The AbstractBaseBoat you wish to add a module to.
 	 * @param priority The priority of the AI task you wish to add to the boat.
@@ -131,7 +137,7 @@ public class ModuleRegistry {
 	}
 	
 	/**
-	 * @param mod The Item associated with the module you wish to check to see if it conflicts with other modules
+	 * @param mod The ItemStack associated with the module you wish to check to see if it conflicts with other modules
 	 * @param temp the HashSet of modules currently on the modular boat
 	 * @return True if the modular tasks are in conflict or the module associated with the Item is not registered, this is determined by the catagories of modules for the module you pass in.<br><br>
 	 * False if there is no conflict and the module can be placed on the modular boat.
@@ -139,8 +145,10 @@ public class ModuleRegistry {
 	public static final boolean doTasksConflict(ItemStack mod, HashSet<String> temp) {
 		boolean toReturn = false;
 			for(String s : temp){
-				if(isItemRegistered(mod)){
-					toReturn = doTasksConflict(modules.get(mod), modules.get(Integer.parseInt(s)));
+				int tempInt = isItemRegisteredAndGetID(mod);
+				int tempInt2 = isItemRegisteredAndGetID(parseStringToItemStack(s));
+				if(tempInt != -1 && tempInt2 != -1){
+					toReturn = doTasksConflict(modules.get(tempInt), modules.get(tempInt2));
 					if(toReturn){
 						break;
 					}
