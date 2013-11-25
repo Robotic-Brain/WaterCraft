@@ -10,6 +10,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.lib.EntityInfo;
+import dgrxf.watercraft.util.ModuleHelper;
 import dgrxf.watercraft.util.ModuleRegistry;
 
 public class ModularBoat extends AbstractBaseBoat{
@@ -59,8 +60,8 @@ public class ModularBoat extends AbstractBaseBoat{
 		int priority = 0;
 		if(strings != null){
 			for(int i = 0; i < strings.size(); i++){
-				ModuleRegistry.addBoatAI(ModuleRegistry.parseStringToItemStack((String) strings.get(i)), list, this, (float)i);
-				Block block = ModuleRegistry.getBlockType(ModuleRegistry.parseStringToItemStack((String) strings.get(i)));
+				ModuleHelper.addBoatAI(ModuleHelper.parseStringToItemStack((String) strings.get(i)), list, this, (float)i);
+				Block block = ModuleHelper.getBlockType(ModuleHelper.parseStringToItemStack((String) strings.get(i)));
 				if(block != null){
 					this.dataWatcher.updateObject(EntityInfo.DATAWATCHER_TILE_ID, block.blockID);
 				}

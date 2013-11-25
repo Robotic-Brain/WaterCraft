@@ -4,12 +4,12 @@ import java.util.HashSet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IModularBoat;
+import dgrxf.watercraft.util.ModuleHelper;
 import dgrxf.watercraft.util.ModuleRegistry;
 
 public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
@@ -39,7 +39,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, modItem, false);
 			if(!strings.equals(temp)){
 				item = new ItemStack(slot.getItem());
-				ModuleRegistry.writeSetToItemStackNBT(strings, item);
+				ModuleHelper.writeSetToItemStackNBT(strings, item);
 				returnItem(item);
 			}
 	}
@@ -52,7 +52,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	
 	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, ItemStack modItem, boolean addNewMods){
 		HashSet<String> temp = ((IModularBoat)boat.getItem()).getModuleList(boat);
-		if(addNewMods && !ModuleRegistry.doTasksConflict(modItem, temp))
+		if(addNewMods && !ModuleHelper.doTasksConflict(modItem, temp))
 			temp.add(Integer.toString(modItem.itemID)+":"+Integer.toString(modItem.getItemDamage()));
 		return temp;
 	}

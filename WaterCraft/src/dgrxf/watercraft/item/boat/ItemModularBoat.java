@@ -20,7 +20,7 @@ import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.util.ModuleRegistry;
+import dgrxf.watercraft.util.ModuleHelper;
 
 public class ItemModularBoat extends Item implements IModularBoat{
 
@@ -74,7 +74,7 @@ public class ItemModularBoat extends Item implements IModularBoat{
 			
 			for(int i = 0; i < Alphabet.COUNT.ordinal(); i++){
 				if(tag.hasKey(Alphabet.values()[i].toString())){
-					par3List.add(ModuleRegistry.parseStringToItemStack(tag.getString(Alphabet.values()[i].toString())).getDisplayName());
+					par3List.add(ModuleHelper.parseStringToItemStack(tag.getString(Alphabet.values()[i].toString())).getDisplayName());
 				}
 			}
 			
