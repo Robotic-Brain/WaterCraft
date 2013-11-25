@@ -57,6 +57,7 @@ public class ToolBoxRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) x + 0.5F, (float) y + 0.3F, (float) z + 0.5F);
         GL11.glRotatef(getBlockRotation(tile), 0, 1, 0);
         
+        Minecraft.getMinecraft().renderEngine.bindTexture(RenderInfo.TOOLBOX_TEXTURE_LOCATION);
         if (tile.isOpen) {
             modelPadlock_open.renderAll();
         } else {
