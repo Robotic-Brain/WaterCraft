@@ -24,7 +24,7 @@ import dgrxf.watercraft.lib.ItemInfo;
 public class ItemModularBoat extends Item implements IModularBoat{
 
 	public ItemModularBoat() {
-        super(ItemInfo.TANK_BOAT_ID);
+        super(ItemInfo.MODULAR_BOAT_ID);
         setUnlocalizedName(ItemInfo.BOAT_MODULAR_UNLOCALIZED_NAME);
         setCreativeTab(Watercraft.boatTab);
     }
