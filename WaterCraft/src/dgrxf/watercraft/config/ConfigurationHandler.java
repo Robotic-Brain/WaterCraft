@@ -30,17 +30,13 @@ public class ConfigurationHandler {
             ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt();
             ItemInfo.TELESCOPE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt();
             ItemInfo.ENGINE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt();
-            ItemInfo.BOATCHEST_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOATCHEST_KEY, ItemInfo.BOATCHEST_ID_DEFAULT).getInt();
-            ItemInfo.LAVABOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.LAVABOAT_KEY, ItemInfo.LAVABOAT_ID_DEFAULT).getInt();
             ItemInfo.FLAG_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.FLAG_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt();
-            ItemInfo.ICEBOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.ICEBOAT_KEY, ItemInfo.ICEBOAT_ID_DEFAULT).getInt();
             ItemInfo.ROPE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.ROPE_KEY, ItemInfo.ROPE_ID_DEFAULT).getInt();
             ItemInfo.PADLOCK_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.PADLOCK_KEY, ItemInfo.PADLOCK_ID_DEFAULT).getInt();
             ItemInfo.CALCULATOR_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.CALCULATOR_KEY, ItemInfo.CALCULATOR_ID_DEFAULT).getInt();
             ItemInfo.KEY_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt();
-            ItemInfo.TANK_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TANK_BOAT_KEY, ItemInfo.TANK_BOAT_ID_DEFAULT).getInt();
-            ItemInfo.UPGRADE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.UPGRADE_KEY, ItemInfo.UPGRADE_ID_DEFAULT).getInt();
             ItemInfo.MODULAR_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_MODULAR_KEY, ItemInfo.MODULAR_BOAT_ID_DEFAULT).getInt();
+            ItemInfo.BOAT_HULL_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_HULL_KEY, ItemInfo.BOAT_HULL_ID_DEFAULT).getInt();
             
             // Blocks
             BlockInfo.BUOY_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();

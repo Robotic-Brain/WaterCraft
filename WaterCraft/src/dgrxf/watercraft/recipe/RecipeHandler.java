@@ -29,7 +29,6 @@ public class RecipeHandler {
         OreDictionary.registerOre("chest", ModBlocks.chest);
         OreDictionary.registerOre("chest", Block.chest);
         OreDictionary.registerOre("boat", Item.boat);
-        OreDictionary.registerOre("boat", ModItems.boatSimple);
         OreDictionary.registerOre("boat", ModItems.boatVanilla);
         
         GameRegistry.addRecipe(new ShapelessOreRecipe(Item.minecartCrate, new Object[] {
@@ -45,7 +44,7 @@ public class RecipeHandler {
     }
     
     public static void itemRecipes() {
-        GameRegistry.addRecipe(new ItemStack(ModItems.boatSimple), "x x", "xxx", 'x', Block.planks);
+    	//GameRegistry.addRecipe(new ItemStack(ModItems.boatSimple), "x x", "xxx", 'x', Block.planks);
     }
     
     public static void removeVanillaRecpies() {

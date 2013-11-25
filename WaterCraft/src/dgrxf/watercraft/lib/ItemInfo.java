@@ -31,19 +31,10 @@ public class ItemInfo {
     public static final String TELESCOPE_KEY                 = "Telescope";
     
     public static final String ENGINE_UNLOCALIZED_NAME       = "EngineName";
-    public static final String ENGINE_KEY                    = "Engine";
-    
-    public static final String BOATCHEST_UNLOCALIZED_NAME    = "boatChest";
-    public static final String BOATCHEST_KEY                 = "Chest Boat";
-    
-    public static final String LAVABOAT_UNLOCALIZED_NAME     = "lavaBoat";
-    public static final String LAVABOAT_KEY                  = "Lava Boat";
+    public static final String ENGINE_KEY                    = "Engine";  
     
     public static final String FLAG_UNLOCALIZED_NAME         = "flag";
     public static final String FLAG_KEY                      = "Flag";
-    
-    public static final String ICEBOAT_UNLOCALIZED_NAME      = "iceBoat";
-    public static final String ICEBOAT_KEY                   = "Ice Boat";
     
     public static final String ROPE_UNLOCALIZED_NAME         = "rope";
     public static final String ROPE_KEY                      = "Rope";
@@ -60,8 +51,8 @@ public class ItemInfo {
     public static final String TANK_BOAT_UNLOCALIZED_NAME    = "tankBoat";
     public static final String TANK_BOAT_KEY                  = "Tank Boat";
     
-    public static final String UPGRADE_UNLOCALIZED_NAME         = "upgrade";
-    public static final String UPGRADE_KEY                      = "Upgrades";
+    public static final String BOAT_HULL_UNLOCALIZED_NAME    = "item.hull";
+    public static final String BOAT_HULL_KEY                  = "Hull";
     
     /*************
      * Integers
@@ -81,22 +72,13 @@ public class ItemInfo {
     
     public static final int    ENGINE_ID_DEFAULT             = 11709;
     public static int          ENGINE_ID;
-    
-    public static final int    BOATCHEST_ID_DEFAULT          = 11710;
-    public static int          BOATCHEST_ID;
-    
-    public static final int    LAVABOAT_ID_DEFAULT           = 11711;
-    public static int          LAVABOAT_ID;
-    
+          
     public static final int    DUMB_BOAT_ID_DEFAULT          = 11712;
     public static int          DUMB_BOAT_ID;
     
     public static final int    FLAG_ID_DEFAULT               = 11713;
     public static int          FLAG_ID;
-    
-    public static final int    ICEBOAT_ID_DEFAULT            = 11714;
-    public static int          ICEBOAT_ID;
-    
+        
     public static final int    ROPE_ID_DEFAULT               = 11715;
     public static int          ROPE_ID;
     
@@ -109,9 +91,6 @@ public class ItemInfo {
     public static final int    KEY_ID_DEFAULT                = 11718;
     public static int          KEY_ID;
     
-    public static final int    TANK_BOAT_ID_DEFAULT          = 11719;
-    public static int          TANK_BOAT_ID;
-    
-    public static final int    UPGRADE_ID_DEFAULT          = 11720;
-    public static int          UPGRADE_ID;
+    public static final int    BOAT_HULL_ID_DEFAULT          = 11719;
+    public static int          BOAT_HULL_ID;
 }
