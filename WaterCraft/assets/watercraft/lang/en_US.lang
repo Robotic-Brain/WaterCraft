@@ -9,13 +9,12 @@ tile.controlUnitDock.name=Control Unit
 tile.freezerBlockName.name=Water Freezer
 tile.toolBoxBlockName.name=Tool Box
 
-item.lavaBoat.name=Lava Boat
-item.boatChest.name=Chest Boat
+item.hull0.name=Wooden Hull
+item.hull1.name=Lava Hull
+item.hull2.name=Ice Hull
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat
-item.dumbBoat.name=Simple Boat
-item.iceBoat.name=Ice Boat
 item.rope.name=Rope
 item.padlock.name=Padlock
 item.calculator.name=Calculator
