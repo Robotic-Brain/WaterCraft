@@ -9,6 +9,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.IItemRenderer.ItemRenderType;
 
 import org.lwjgl.opengl.GL11;
 
@@ -21,6 +22,7 @@ public class GuiBoatAssembler extends GuiBase {
 	
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/boatassembler.png"); 
 	private IInventory inventory;
+	private InventoryPlayer playerInv;
 	private int rotation = 0;
 	
 	public GuiBoatAssembler(InventoryPlayer inventory, IInventory inv) {
@@ -28,6 +30,7 @@ public class GuiBoatAssembler extends GuiBase {
 		this.xSize = 196;
 		this.ySize = 218;
 		this.inventory = inv;
+		this.playerInv = inventory;
 	}
 
 	@Override
@@ -72,8 +75,8 @@ public class GuiBoatAssembler extends GuiBase {
 					rotation = 0;
 				if(stack.getItem() == ModItems.modularBoat)
 					RenderManager.instance.renderEntityWithPosYaw(new ModularBoat(Minecraft.getMinecraft().theWorld, 0, 0, 0, stack.getTagCompound()), 0, 0, 0, 0, 0);
-				else if(stack.getItem() instanceof ItemBlock){
-					RenderManager.instance.itemRenderer.renderItem(null, stack, 10);
+				else {
+					RenderManager.instance.itemRenderer.renderItem(playerInv.player, stack, 10);
 				}
 				RenderHelper.enableStandardItemLighting();
 				GL11.glPopMatrix();
