@@ -16,6 +16,8 @@ public class MiscInfo {
      * Integers
      *************/
     
+    public static final int     BASE_BLOCK_ID        = 700;
+    
     public static final int     BOUY_DEFAULT_RANGE   = 10;
     public static int           BOUY_RANGE;
     
