@@ -11,8 +11,8 @@ package dgrxf.watercraft.item;
 
 import net.minecraft.item.Item;
 import dgrxf.watercraft.item.boat.ItemBoat;
-import dgrxf.watercraft.item.boat.ItemModule;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
+import dgrxf.watercraft.item.boat.ItemModule;
 import dgrxf.watercraft.item.buoy.ItemFlag;
 import dgrxf.watercraft.item.toolbox.ItemPadlock;
 

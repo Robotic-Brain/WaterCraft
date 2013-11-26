@@ -16,7 +16,6 @@ import dgrxf.watercraft.entity.boat.IceBoat;
 import dgrxf.watercraft.entity.boat.LavaBoat;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.entity.boat.TankBoat;
-import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;

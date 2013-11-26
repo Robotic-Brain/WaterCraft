@@ -3,9 +3,7 @@ package dgrxf.watercraft.entity.boat.ai;
 import java.util.Set;
 import java.util.TreeSet;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;

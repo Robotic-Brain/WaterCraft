@@ -2,13 +2,12 @@ package dgrxf.watercraft.tileentity;
 
 import java.util.Arrays;
 
-import dgrxf.watercraft.item.ModItems;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import dgrxf.watercraft.item.ModItems;
 
 public class WCTileEntityLockAssembler extends TileEntity implements IInventory {
 	

@@ -11,7 +11,6 @@ import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.module.ModuleHelper;
-import dgrxf.watercraft.module.ModuleRegistry;
 
 public class ModularBoat extends AbstractBaseBoat{
 	

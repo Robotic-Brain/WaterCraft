@@ -1,7 +1,6 @@
 package dgrxf.watercraft.interfaces;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.ModuleType;

@@ -1,14 +1,14 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.container.LockAssemblerContainer;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
-import net.minecraft.util.ResourceLocation;
 
 public class GuiLockAssembler extends GuiBase {
 	

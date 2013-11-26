@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.entity.boat.VanillaBoat;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.entity.boat.VanillaBoat;
 import dgrxf.watercraft.lib.ItemInfo;
 
 /**

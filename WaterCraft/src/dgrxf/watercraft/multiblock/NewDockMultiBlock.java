@@ -3,7 +3,6 @@ package dgrxf.watercraft.multiblock;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Rectangle;
 import dgrxf.watercraft.util.Vector2;
 import dgrxf.watercraft.util.Vector3;

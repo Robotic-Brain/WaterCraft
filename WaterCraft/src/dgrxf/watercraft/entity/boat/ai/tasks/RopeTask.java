@@ -9,11 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
-import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.Vector2;
-import dgrxf.watercraft.util.Vector3;
 
 public class RopeTask extends BoatAITaskBase {
 	
