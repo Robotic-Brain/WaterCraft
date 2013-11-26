@@ -47,7 +47,8 @@ public enum BlockRegistry {
     TANK                (MiscInfo.BASE_BLOCK_ID + 10, "wcLiquidTank", LiquidTankBlock.class, ItemBlockLiquidTank.class, WCTileEntityLiquidStorageTank.class),
     BOAT_ASSEMBLER      (MiscInfo.BASE_BLOCK_ID + 11, "boatAssemblerName", BoatModuleAssemblerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityBoatAssembler.class),
     //PLATFORM            (MiscInfo.BASE_BLOCK_ID + 12, "wcPlatFrom", DockPlatformBlock.class),
-    PHANTOM_MULTIBLOCK  (MiscInfo.BASE_BLOCK_ID + 13, "phantomMultiblock", MultiblockPhantom.class, (Class<? extends ItemBlock>)null, TEMultiblockPhantom.class);
+    PHANTOM_MULTIBLOCK  (MiscInfo.BASE_BLOCK_ID + 13, "phantomMultiblock", MultiblockPhantom.class, (Class<? extends ItemBlock>)null, TEMultiblockPhantom.class),
+    CRANE				(MiscInfo.BASE_BLOCK_ID + 14, "craneBlockName", CraneBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityCrane.class);
     
     /************************************************************************************
      * 
