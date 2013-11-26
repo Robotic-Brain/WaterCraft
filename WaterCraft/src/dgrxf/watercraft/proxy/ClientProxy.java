@@ -3,6 +3,7 @@ package dgrxf.watercraft.proxy;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.client.renderer.block.BuoyRenderer;
 import dgrxf.watercraft.client.renderer.block.ControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.block.LiquidTankRenderer;
@@ -50,11 +51,11 @@ public class ClientProxy extends CommonProxy {
         
         RenderingRegistry.registerEntityRenderingHandler(AbstractBaseBoat.class, new WCBoatRenderer());
         
-        MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_ID, new ItemBuoyRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockInfo.BUOY_FILTER_ID, new ItemBuoyRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockInfo.TOOLBOX_ID, new ItemToolBoxRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
-        MinecraftForgeClient.registerItemRenderer(BlockInfo.WC_CHEST_ID, new ItemWCChestRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockRegistry.BUOY.getId(), new ItemBuoyRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockRegistry.TOOLBOX.getId(), new ItemToolBoxRenderer());
+        //TODO Keeping this for the future if we ever need it again - Drunk
+        //MinecraftForgeClient.registerItemRenderer(BlockInfo.CONTROL_UNIT_DOCK_ID, new ItemControlUnitRenderer());
+        MinecraftForgeClient.registerItemRenderer(BlockRegistry.WC_CHEST.getId(), new ItemWCChestRenderer());
         
         RenderingRegistry.registerBlockHandler(new LiquidTankRenderer());
     }
