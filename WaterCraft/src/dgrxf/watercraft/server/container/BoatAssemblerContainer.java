@@ -17,16 +17,16 @@ public class BoatAssemblerContainer extends Container{
 		this.playerInv = playerInv;
 		
 		for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(playerInv, i, 18 + 18 * i, 158));
+            addSlotToContainer(new Slot(playerInv, i, 18 + 18 * i, 194));
         }
         
         for (int i = 0; i < 27; i++) {
-            addSlotToContainer(new Slot(playerInv, i + 9, 18 + 18 * (i % 9), 100 + 18 * (i / 9)));
+            addSlotToContainer(new Slot(playerInv, i + 9, 18 + 18 * (i % 9), 136 + 18 * (i / 9)));
         }
 		
-        addSlotToContainer(new Slot(inv, 0, 79, 20));
-        addSlotToContainer(new Slot(inv, 1, 101, 20));
-        addSlotToContainer(new Slot(inv, 2, 90, 43));
+        addSlotToContainer(new Slot(inv, 0, 44, 97));
+        addSlotToContainer(new Slot(inv, 1, 136, 97));
+        addSlotToContainer(new Slot(inv, 2, 172, 8));
         
 	}
 	
