@@ -27,8 +27,7 @@ import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
  * 
  */
 public class ModBlocks {
-    
-    public static BuoyBlock buoy;
+	/*public static BuoyBlock buoy;
 
     public static Block     controlUnitDock;
     public static Block     freezer;
@@ -44,7 +43,7 @@ public class ModBlocks {
     public static Block     markerBlock; 
     
     public static void init() {
-        //Buoy Blocks
+        
         buoy = new BuoyBlock(BlockInfo.BUOY_ID);
         
         //controlUnitDock = new ControlBlockDock(BlockInfo.CONTROL_UNIT_DOCK_ID);
@@ -88,5 +87,5 @@ public class ModBlocks {
         
         GameRegistry.registerTileEntity(TEMultiblockPhantom.class, BlockInfo.PHANTOM_MULTIBLOCK_TE_KEY);
 
-    }
+    }*/
 }
