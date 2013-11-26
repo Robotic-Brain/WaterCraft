@@ -3,6 +3,7 @@ package dgrxf.watercraft.item;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -68,6 +69,7 @@ public class ItemKey extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
-    	info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
+    	if (GuiScreen.isShiftKeyDown())
+    		info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
     }
 }
