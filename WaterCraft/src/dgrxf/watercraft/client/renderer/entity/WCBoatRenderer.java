@@ -7,6 +7,7 @@ import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -109,7 +110,8 @@ public class WCBoatRenderer extends Render {
     protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4) {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
-        this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        RenderManager.instance.itemRenderer.renderItem(null, new ItemStack(par3Block), 10);
+        //this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
         if(par3Block == BlockRegistry.TANK.getBlock()){
         	renderLiquidInTank(entity, par3Block);
         }
