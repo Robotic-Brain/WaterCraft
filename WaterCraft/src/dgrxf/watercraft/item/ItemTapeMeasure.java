@@ -1,6 +1,9 @@
 package dgrxf.watercraft.item;
 
+import java.util.List;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,7 +14,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.util.MD5Generator;
 import dgrxf.watercraft.util.TranslationHelper;
 import dgrxf.watercraft.util.Vector3;
 
@@ -55,11 +60,25 @@ public class ItemTapeMeasure extends Item {
 	                player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z)));
 	            } else {
 	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z)));
-	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length())));
+	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length() + 1)));
 	                setFirstFlag(stack, false);
 	            }
         }
         return false;
+    }
+    
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean val) {
+    	if (GuiScreen.isShiftKeyDown()){
+    		list.add("To use this item do this:");
+    		list.add(" 1: Right Click on the first block");
+    		list.add(" 2: Right Click on the secound block");
+    		list.add("    Simple!");
+    		list.add("");
+    		list.add("    You can also right click in the air");
+    		list.add("    to reset the measurment");
+    	}else
+    		list.add("Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view more information");
     }
     
     /**
