@@ -12,9 +12,9 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.client.gui.container.ControlUnitContainer;
 import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.network.PacketHandler;
+import dgrxf.watercraft.server.container.ControlUnitContainer;
 import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.util.LogHelper;
 

@@ -6,8 +6,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.client.gui.container.LockAssemblerContainer;
 import dgrxf.watercraft.network.PacketHandler;
+import dgrxf.watercraft.server.container.LockAssemblerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
 public class GuiLockAssembler extends GuiBase {
