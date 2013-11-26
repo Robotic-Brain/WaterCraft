@@ -51,6 +51,7 @@ public class GuiBoatAssembler extends GuiBase {
 		fontRenderer.drawString(returnItemName(1), 103, 31, GuiColor.WHITE.toRGB());
 
 		renderItem(53, 75, inventory.getStackInSlot(0));
+		renderItem(145, 75, inventory.getStackInSlot(1));
 	}
 	
 	public String returnItemName(int slot){
