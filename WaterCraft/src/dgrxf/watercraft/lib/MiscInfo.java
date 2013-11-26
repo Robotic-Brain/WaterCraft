@@ -1,5 +1,7 @@
 package dgrxf.watercraft.lib;
 
+import dgrxf.watercraft.client.gui.GuiColor;
+
 public class MiscInfo {
     
     /*************
@@ -11,6 +13,8 @@ public class MiscInfo {
     public static final String  DEBUG_KEY            = "Debugging";
     public static final String  BOUY_KEY             = "Bouy Search Range";
     public static final String  TICKING_KEY          = "Ticking Rate";
+    
+    public static final String SHIFT_CLICKING_INFO   = "Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view more information";
     
     /*************
      * Integers
