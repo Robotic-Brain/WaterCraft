@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.container;
+package dgrxf.watercraft.server.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import dgrxf.watercraft.block.BlockRegistry;
-import dgrxf.watercraft.client.gui.container.slot.ToolBoxSlot;
+import dgrxf.watercraft.server.container.slot.ToolBoxSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.damage.WCDamageSources;
 
