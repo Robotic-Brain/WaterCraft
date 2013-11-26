@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.util.MD5Generator;
@@ -71,5 +72,7 @@ public class ItemKey extends Item {
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
     	if (GuiScreen.isShiftKeyDown())
     		info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
+    	else
+    		info.add("Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view the key code");
     }
 }
