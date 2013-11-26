@@ -30,7 +30,7 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 	
 	private int getTabForItem(ItemStack item) {
 		for(int i = 0; i < items.length; i++){
-			if(getStackInSlot(i).isItemEqual(item)){
+			if(getStackInSlot(i) != null && getStackInSlot(i).isItemEqual(item)){
 				return i;
 			}
 		}
