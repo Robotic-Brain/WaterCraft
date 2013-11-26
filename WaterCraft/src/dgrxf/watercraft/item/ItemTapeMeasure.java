@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -29,7 +30,7 @@ public class ItemTapeMeasure extends Item {
     
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (!world.isRemote) {
+        if (world.isRemote) {
             return false;
         }
         
@@ -38,10 +39,14 @@ public class ItemTapeMeasure extends Item {
                 setPos(stack, new Vector3(x, y, z));
                 setFirstFlag(stack, true);
                 
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z));
+                player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z)));
+                
+                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z));
             } else {
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z));
-                Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
+            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z)));
+            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length())));
+                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z));
+                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
                 setFirstFlag(stack, false);
             }
         }
