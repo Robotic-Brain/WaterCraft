@@ -22,8 +22,8 @@ public class ModuleRegistry {
 		int temp = isItemRegisteredAndGetID(itemStack);
 		if(temp != -1){
 			try {
-				throw new ModuleException("The mod " + modID.getClass().getSimpleName() + " is attempting to register a module with to the item named \"" + itemStack.getDisplayName() + "\", however, this item is already registered by " + getModulesMod(temp).getClass().getSimpleName() + " and cannot be overwritten.");
-			} catch (ModuleException e) {
+				throw new RuntimeException("The mod " + modID.getClass().getSimpleName() + " is attempting to register a module with to the item named \"" + itemStack.getDisplayName() + "\", however, this item is already registered by " + getModulesMod(temp).getClass().getSimpleName() + " and cannot be overwritten.");
+			} catch (RuntimeException e) {
 				e.printStackTrace();
 			}
 		}else{
