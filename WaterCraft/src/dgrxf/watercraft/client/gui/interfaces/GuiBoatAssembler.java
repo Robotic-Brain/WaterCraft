@@ -1,23 +1,16 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.item.EntityFallingSand;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
@@ -61,7 +54,7 @@ public class GuiBoatAssembler extends GuiBase {
 	
 	public void renderItem(int x, int y, ItemStack stack){
 		if(stack != null){
-			if(stack.getItem() == ModItems.modularBoat){
+			
 				GL11.glPushMatrix();
 				GL11.glTranslatef(x, y, 100);
 				
@@ -76,18 +69,17 @@ public class GuiBoatAssembler extends GuiBase {
 				rotation++;
 				if(rotation == 360)
 					rotation = 0;
-				
-				RenderManager.instance.renderEntityWithPosYaw(new ModularBoat(Minecraft.getMinecraft().theWorld, 0, 0, 0, stack.getTagCompound()), 0, 0, 0, 0, 0);
-
+				if(stack.getItem() == ModItems.modularBoat)
+					RenderManager.instance.renderEntityWithPosYaw(new ModularBoat(Minecraft.getMinecraft().theWorld, 0, 0, 0, stack.getTagCompound()), 0, 0, 0, 0, 0);
+				else{
+					RenderManager.instance.itemRenderer.renderItem(null, stack, 10);
+				}
 				RenderHelper.disableStandardItemLighting();
 				GL11.glPopMatrix();
-			}else if(isItemBlock(stack.getItem().itemID)){
-				GL11.glPushMatrix();
-
-				GL11.glPopMatrix();
 			}
-		}
 	}
+	
+	
 	
 	public boolean isItemBlock(int id){
 		
