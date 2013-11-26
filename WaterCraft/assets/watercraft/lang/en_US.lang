@@ -20,6 +20,7 @@ item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat
 item.rope.name=Rope
 item.padlock.name=Padlock
+item.key.name=Padlock Key
 item.calculator.name=Calculator
 item.wcboatmodular.name=Modular Boat
 
@@ -42,6 +43,7 @@ flag.black=Black Flag
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Distance: %s
+strings.watercraft:tape_measure_restart=Tape Measure Reset
 
 strings.watercraft:toolbox_contains=This Toolbox currently contains: 
 strings.watercraft:toolbox_contains_nothing=Nothing
