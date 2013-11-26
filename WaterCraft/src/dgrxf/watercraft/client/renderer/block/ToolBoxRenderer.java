@@ -20,8 +20,8 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 public class ToolBoxRenderer extends TileEntitySpecialRenderer {
     
-    private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
-    private IModelCustom modelToolBox_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
+    private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox.obj");
+    private IModelCustom modelToolBox_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox_open.obj");
     private IModelCustom modelPadlock_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/padlock.obj");
     private IModelCustom modelPadlock_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/padlock_open.obj");
     

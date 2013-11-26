@@ -13,8 +13,8 @@ import dgrxf.watercraft.lib.RenderInfo;
 
 public class ItemToolBoxRenderer implements IItemRenderer {
     
-    private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox.obj");
-    private IModelCustom modelToolBox_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/toolbox_open.obj");
+    private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox.obj");
+    private IModelCustom modelToolBox_open   = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox_open.obj");
     
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
