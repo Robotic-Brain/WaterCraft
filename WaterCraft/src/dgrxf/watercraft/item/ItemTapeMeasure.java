@@ -28,29 +28,37 @@ public class ItemTapeMeasure extends Item {
         setCreativeTab(Watercraft.miscTab);
     }
     
+    /**
+     * Used to allow the player to reset the tape measure by shift-right clicking in the air
+     */
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+    	if (world.isRemote)
+            return stack;
+    	
+    	if(player.isSneaking()){
+        	setFirstFlag(stack, false);
+        	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_RESTART)));
+        }
+    	return stack;
+    }
+    
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
-        if (world.isRemote) {
+        if (world.isRemote)
             return false;
-        }
         
-        if (world.blockExists(x, y, z)) {
-            if (!getFirstFlag(stack)) {
-                setPos(stack, new Vector3(x, y, z));
-                setFirstFlag(stack, true);
-                
-                player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z)));
-                
-                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z));
-            } else {
-            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z)));
-            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length())));
-                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z));
-                //Minecraft.getMinecraft().thePlayer.sendChatMessage(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length()));
-                setFirstFlag(stack, false);
-            }
+	        if (world.blockExists(x, y, z)) {
+	            if (!getFirstFlag(stack)) {
+	                setPos(stack, new Vector3(x, y, z));
+	                setFirstFlag(stack, true);
+	                player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z)));
+	            } else {
+	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z)));
+	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length())));
+	                setFirstFlag(stack, false);
+	            }
         }
-        
         return false;
     }
     
