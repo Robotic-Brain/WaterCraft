@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,15 +28,19 @@ public class ModuleRegistry {
 	 * @return True if the module was registered successfully, false if not.
 	 */
 	public static final boolean registerModule(ItemStack itemStack, IBoatModule mod){		
-		if(modules.containsKey(itemStack)){
-			LogHelper.severe("You are attempting to register a module with to the ItemStack containing: " + itemStack.getDisplayName() + ", metadata: " + itemStack.getItemDamage() + "however this ItemStack is already in use and cannot be overwritten.");
-			return false;
+		if(isItemRegistered(itemStack)){
+			try {
+				throw new ModuleException("You are attempting to register a module with to the item named \"" + itemStack.getDisplayName() + "\", however, this item is already in use and cannot be overwritten.");
+			} catch (ModuleException e) {
+				e.printStackTrace();
+			}
 		}else{
 			registeredModules.put(getNextID(), itemStack);
 			modules.put(getNextID(), mod);
 			registeredIDs.add(getNextID());
 			return true;
 		}
+		return false;
 	}
 	
 	private static int getNextID(){
