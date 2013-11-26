@@ -1,22 +1,15 @@
 package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.InventoryTask;
-import dgrxf.watercraft.interfaces.ILockableBlock;
-import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
-import dgrxf.watercraft.util.LogHelper;
 
 public class ChestBoat extends AbstractBaseBoat{
 
@@ -47,7 +40,7 @@ public class ChestBoat extends AbstractBaseBoat{
 
 	@Override
 	public Block getDisplayTile() {
-		return ModBlocks.chest;
+		return BlockRegistry.WC_CHEST.getBlock();
 	}
 	
 }

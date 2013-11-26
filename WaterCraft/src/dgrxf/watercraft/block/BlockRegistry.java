@@ -1,14 +1,25 @@
 package dgrxf.watercraft.block;
 
-import java.lang.reflect.InvocationTargetException;
-
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
+import dgrxf.watercraft.item.ItemBlockChest;
+import dgrxf.watercraft.item.ItemBlockLiquidTank;
+import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
+import dgrxf.watercraft.item.toolbox.ItemBlockToolBox;
 import dgrxf.watercraft.lib.MiscInfo;
+import dgrxf.watercraft.tileentity.TEMultiblockPhantom;
+import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
+import dgrxf.watercraft.tileentity.WCTileEntityChest;
+import dgrxf.watercraft.tileentity.WCTileEntityCrane;
+import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
+import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
+import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
+import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.LogHelper;
 
 /**
@@ -17,7 +28,6 @@ import dgrxf.watercraft.util.LogHelper;
  * <pre>
  * Constructor:
  *      Default ID,
- *      configKey,
  *      UnlocalizedName,
  *      Block.class,
  *      [[ItemBlock.class], [teKey, TileEntity.class]]
@@ -26,7 +36,18 @@ import dgrxf.watercraft.util.LogHelper;
  */
 public enum BlockRegistry {
     
-    BUOY(MiscInfo.BASE_BLOCK_ID + 0, "Buoy", "buoyBlockName", BuoyBlock.class);
+    BUOY                (MiscInfo.BASE_BLOCK_ID + 1, "buoyBlockName", BuoyBlock.class, ItemBlockBuoy.class, WCTileEntityBuoy.class),
+    //CONTROL_UNIT_DOCK   (MiscInfo.BASE_BLOCK_ID + 2, "controlUnitDock", CraneBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityCrane.class),
+    FREEZER             (MiscInfo.BASE_BLOCK_ID + 3, "freezerBlockName", WaterFreezerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityFreezer.class),
+    //DROPZONE            (MiscInfo.BASE_BLOCK_ID + 5, "dropZoneBlockName", DropZoneBlock.class),
+    TOOLBOX             (MiscInfo.BASE_BLOCK_ID + 6, "toolBoxBlockName", ToolBoxBlock.class, ItemBlockToolBox.class, WCTileEntityToolBox.class),
+    //BUOY_FILTER         (MiscInfo.BASE_BLOCK_ID + 7, "buoyFilterBlockName", BuoyBlock.class),
+    WC_CHEST            (MiscInfo.BASE_BLOCK_ID + 8, "wcChestName", WCChest.class, ItemBlockChest.class, WCTileEntityChest.class),
+    LOCK_ASSEMBLER      (MiscInfo.BASE_BLOCK_ID + 9, "lockAssemblerName", LockAssemblerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityLockAssembler.class),
+    TANK                (MiscInfo.BASE_BLOCK_ID + 10, "wcLiquidTank", LiquidTankBlock.class, ItemBlockLiquidTank.class, WCTileEntityLiquidStorageTank.class),
+    BOAT_ASSEMBLER      (MiscInfo.BASE_BLOCK_ID + 11, "boatAssemblerName", BoatModuleAssemblerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityBoatAssembler.class),
+    //PLATFORM            (MiscInfo.BASE_BLOCK_ID + 12, "wcPlatFrom", DockPlatformBlock.class),
+    PHANTOM_MULTIBLOCK  (MiscInfo.BASE_BLOCK_ID + 13, "phantomMultiblock", MultiblockPhantom.class, (Class<? extends ItemBlock>)null, TEMultiblockPhantom.class);
     
     /************************************************************************************
      * 
@@ -44,7 +65,6 @@ public enum BlockRegistry {
      * Default Id
      */
     private int                         defaultId;
-    private String                      configKey;
     
     private String                      unlocalizedName;
     private String                      tileEntityKey;
@@ -72,15 +92,13 @@ public enum BlockRegistry {
      * 
      * @param id
      *            Default Block Id
-     * @param configKey
-     *            Config Key
      * @param name
      *            Unlocalized Name
      * @param bClazz
      *            Block Class
      */
-    private BlockRegistry(int id, String configKey, String name, Class<? extends Block> bClazz) {
-        this(id, configKey, name, bClazz, null, null, null);
+    private BlockRegistry(int id, String name, Class<? extends Block> bClazz) {
+        this(id, name, bClazz, null, null, null);
     }
     
     /**
@@ -88,8 +106,6 @@ public enum BlockRegistry {
      * 
      * @param id
      *            Default Block Id
-     * @param configKey
-     *            Config Key
      * @param name
      *            Unlocalized Name
      * @param bClazz
@@ -97,8 +113,8 @@ public enum BlockRegistry {
      * @param iClazz
      *            ItemBlock class
      */
-    private BlockRegistry(int id, String configKey, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz) {
-        this(id, configKey, name, bClazz, iClazz, null, null);
+    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz) {
+        this(id, name, bClazz, iClazz, null, null);
     }
     
     /**
@@ -106,8 +122,6 @@ public enum BlockRegistry {
      * 
      * @param id
      *            Default Block Id
-     * @param configKey
-     *            Config Key
      * @param name
      *            Unlocalized Name
      * @param bClazz
@@ -117,8 +131,8 @@ public enum BlockRegistry {
      * @param tClazz
      *            TileEntity Class
      */
-    private BlockRegistry(int id, String configKey, String name, Class<? extends Block> bClazz, String teKey, Class<? extends TileEntity> tClazz) {
-        this(id, configKey, name, bClazz, null, teKey, tClazz);
+    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, String teKey, Class<? extends TileEntity> tClazz) {
+        this(id, name, bClazz, null, teKey, tClazz);
     }
     
     /**
@@ -126,8 +140,24 @@ public enum BlockRegistry {
      * 
      * @param id
      *            Default Block Id
-     * @param configKey
-     *            Config Key
+     * @param name
+     *            Unlocalized Name
+     * @param bClazz
+     *            Block Class
+     * @param iClazz
+     *            ItemBlock class
+     * @param tClazz
+     *            TileEntity Class
+     */
+    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, Class<? extends TileEntity> tClazz) {
+        this(id, name, bClazz, iClazz, null, tClazz);
+    }
+    
+    /**
+     * Registers Block with TE and ItemBlock
+     * 
+     * @param id
+     *            Default Block Id
      * @param name
      *            Unlocalized Name
      * @param bClazz
@@ -139,12 +169,11 @@ public enum BlockRegistry {
      * @param tClazz
      *            TileEntity Class
      */
-    private BlockRegistry(int id, String configKey, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, String teKey, Class<? extends TileEntity> tClazz) {
+    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, String teKey, Class<? extends TileEntity> tClazz) {
         this.instance = null;
         
         this.id = INVALID_BLOCK_ID;
         this.defaultId = id;
-        this.configKey = configKey;
         this.unlocalizedName = name;
         this.blockClass = bClazz;
         this.itemClass = iClazz;
@@ -236,24 +265,28 @@ public enum BlockRegistry {
     
     public static void loadIdsFromConfig(Configuration config) {
         for (BlockRegistry block : BlockRegistry.values()) {
-            block.id = config.getBlock(block.configKey, block.defaultId).getInt();
+            block.id = config.getBlock(block.unlocalizedName, block.defaultId).getInt();
         }
     }
     
-    public static void registerBlocks() throws Exception {
+    public static void registerBlocks() {
         for (BlockRegistry block : BlockRegistry.values()) {
             if (block.instance != null) {
                 throw new RuntimeException("Register Blocks Should only be called once! (Thrown by: " + block + ")");
             } else if (block.id == INVALID_BLOCK_ID) {
                 throw new RuntimeException("Block has no valid Id set! (Thrown by: " + block + ")");
             }
-            block.instance = block.blockClass.getConstructor(Integer.TYPE).newInstance(block.id);
-            block.instance.setUnlocalizedName(block.unlocalizedName);
-            
-            GameRegistry.registerBlock(block.instance, block.itemClass, block.unlocalizedName);
-            
-            if (block.teClass != null) {
-                GameRegistry.registerTileEntity(block.teClass, block.tileEntityKey);
+            try {
+                block.instance = block.blockClass.getConstructor(Integer.TYPE).newInstance(block.id);
+                block.instance.setUnlocalizedName(block.unlocalizedName);
+                
+                GameRegistry.registerBlock(block.instance, block.itemClass, block.unlocalizedName);
+                
+                if (block.teClass != null) {
+                    GameRegistry.registerTileEntity(block.teClass, block.tileEntityKey);
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
     }

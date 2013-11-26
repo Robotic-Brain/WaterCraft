@@ -7,7 +7,6 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
@@ -16,7 +15,6 @@ public class ControlBlockDock extends BuoyBlock {
     public ControlBlockDock(int id) {
         super(id);
         setCreativeTab(Watercraft.buoyTab);
-        setUnlocalizedName(BlockInfo.CONTROL_UNIT_DOCK_UNLOCALIZED_NAME);
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
     

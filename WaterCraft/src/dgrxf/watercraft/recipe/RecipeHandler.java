@@ -7,7 +7,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
-import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.RecipeHelper;
 
@@ -26,7 +26,7 @@ public class RecipeHandler {
     }
     
     public static void oreDictRecipes() {
-        OreDictionary.registerOre("chest", ModBlocks.chest);
+        OreDictionary.registerOre("chest", BlockRegistry.WC_CHEST.getBlock());
         OreDictionary.registerOre("chest", Block.chest);
         OreDictionary.registerOre("boat", Item.boat);
         OreDictionary.registerOre("boat", ModItems.boatVanilla);

@@ -8,13 +8,12 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.config.ConfigurationHandler;
 import dgrxf.watercraft.creativetab.CreativeTabBoats;
@@ -63,7 +62,7 @@ public class Watercraft {
     public void load(FMLInitializationEvent e) {
         proxy.initRendering();
         proxy.initSounds();
-        ModBlocks.init();
+        BlockRegistry.registerBlocks();
         ModItems.init();
         MultiBlockInfo.init();
         Entities.init();

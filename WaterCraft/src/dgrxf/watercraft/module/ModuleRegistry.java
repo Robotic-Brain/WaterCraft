@@ -2,24 +2,9 @@ package dgrxf.watercraft.module;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
-import cpw.mods.fml.client.FMLFileResourcePack;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.FMLModContainer;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeVersion;
-import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
-import dgrxf.watercraft.enumeration.Alphabet;
-import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.util.LogHelper;
 
 public class ModuleRegistry {
 	

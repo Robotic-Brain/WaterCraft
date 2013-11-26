@@ -6,6 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.client.gui.container.BoatAssemblerContainer;
 import dgrxf.watercraft.client.gui.container.CalculatorContainer;
 import dgrxf.watercraft.client.gui.container.ControlUnitContainer;
@@ -20,7 +21,6 @@ import dgrxf.watercraft.client.gui.interfaces.GuiToolBox;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.ControlUnitGUI;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.item.ModItems;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
@@ -49,7 +49,7 @@ public class GuiHandler implements IGuiHandler {
         
         switch (id) {
             case TOOLBOX_GUI_ID:
-                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockRegistry.TOOLBOX.getId()) {
                     return new ToolboxContainer(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);
                 }
@@ -98,7 +98,7 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case TOOLBOX_GUI_ID:
                 
-                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockInfo.TOOLBOX_ID) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockRegistry.TOOLBOX.getId()) {
                     Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
                     return new GuiToolBox(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);

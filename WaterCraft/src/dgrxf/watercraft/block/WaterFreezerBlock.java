@@ -12,7 +12,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
 /**
@@ -27,7 +26,6 @@ public class WaterFreezerBlock extends Block {
     public WaterFreezerBlock(int id) {
         super(id, Material.iron);
         setCreativeTab(Watercraft.miscTab);
-        setUnlocalizedName(BlockInfo.FREEZER_UNLOCALIZED_NAME);
     }
     
     @Override

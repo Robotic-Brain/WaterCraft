@@ -21,23 +21,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
-/**
- * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
- * 
- * Class Last Modified On: 11/09/2013 MM/DD/YYYY
- * 
- */
-
 public class ToolBoxBlock extends DirectionalBlock {
     
-    public ToolBoxBlock() {
-        super(BlockInfo.TOOLBOX_ID, Material.iron);
+    public ToolBoxBlock(int id) {
+        super(id, Material.iron);
         setCreativeTab(Watercraft.miscTab);
-        setUnlocalizedName(BlockInfo.TOOLBOX_UNLOCALIZED_NAME);
         setBlockBounds(0.1F, 0F, 0.35F, 0.9F, 0.5F, 0.65F);
     }
     

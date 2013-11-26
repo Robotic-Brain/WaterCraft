@@ -1,22 +1,20 @@
 package dgrxf.watercraft.block;
 
-import cpw.mods.fml.common.network.FMLNetworkHandler;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
 public class LockAssemblerBlock extends BlockContainer {
 
-	protected LockAssemblerBlock(int id) {
+	public LockAssemblerBlock(int id) {
 		super(id, Material.iron);
 		setCreativeTab(Watercraft.miscTab);
-        setUnlocalizedName(BlockInfo.LOCK_ASSEMBLER_UNLOCALIZED_NAME);
 	}
 
 	@Override

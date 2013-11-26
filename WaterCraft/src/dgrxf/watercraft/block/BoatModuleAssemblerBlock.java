@@ -3,13 +3,10 @@ package dgrxf.watercraft.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
 public class BoatModuleAssemblerBlock extends Block{
@@ -17,7 +14,6 @@ public class BoatModuleAssemblerBlock extends Block{
 	public BoatModuleAssemblerBlock(int id) {
 		super(id, Material.rock);
 		setCreativeTab(Watercraft.miscTab);
-		setUnlocalizedName(BlockInfo.BOAT_ASSEMBLER_UNLOCALIZED_NAME);
 	}
 	@Override
 	public boolean hasTileEntity(int metadata) {

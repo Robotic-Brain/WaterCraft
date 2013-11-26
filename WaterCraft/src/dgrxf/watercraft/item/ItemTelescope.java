@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
@@ -24,7 +24,7 @@ public class ItemTelescope extends Item {
     @Override
     public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
-            if (world.getBlockId(x, y, z) == ModBlocks.buoy.blockID) {
+            if (world.getBlockId(x, y, z) == BlockRegistry.BUOY.getId()) {
                 ;
                 TileEntity te = world.getBlockTileEntity(x, y, z);
                 if (te instanceof WCTileEntityBuoy) {

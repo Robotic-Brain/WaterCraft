@@ -12,7 +12,7 @@ package dgrxf.watercraft.config;
 import java.io.File;
 
 import net.minecraftforge.common.Configuration;
-import dgrxf.watercraft.lib.BlockInfo;
+import dgrxf.watercraft.block.BlockRegistry;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
@@ -39,18 +39,7 @@ public class ConfigurationHandler {
             ItemInfo.BOAT_HULL_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_HULL_KEY, ItemInfo.BOAT_HULL_ID_DEFAULT).getInt();
             
             // Blocks
-            BlockInfo.BUOY_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.BUOY_KEY, BlockInfo.BUOY_ID_DEFAULT).getInt();
-            BlockInfo.CONTROL_UNIT_DOCK_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.CONTROL_UNIT_DOCK_KEY, BlockInfo.CONTROL_UNIT_DOCK_ID_DEFAULT).getInt();
-            BlockInfo.FREEZER_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.FREEZER_KEY, BlockInfo.FREEZER_ID_DEFAULT).getInt();
-            BlockInfo.DROPZONE_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.DROPZONE_KEY, BlockInfo.DROPZONE_ID_DEFAULT).getInt();
-            BlockInfo.TOOLBOX_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.TOOLBOX_KEY, BlockInfo.TOOLBOX_ID_DEFAULT).getInt();
-            BlockInfo.BUOY_FILTER_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.BUOY_FILTER_KEY, BlockInfo.BUOY_FILTER_ID_DEFAULT).getInt();
-            BlockInfo.WC_CHEST_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.WC_CHEST_KEY, BlockInfo.WC_CHEST_ID_DEFAULT).getInt();
-            BlockInfo.LOCK_ASSEMBLER_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.LOCK_ASSEMBLER_KEY, BlockInfo.LOCK_ASSEMBLER_ID_DEFAULT).getInt();
-            BlockInfo.TANK_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.TANK_KEY, BlockInfo.TANK_ID_DEFAULT).getInt();
-            BlockInfo.BOAT_ASSEMBLER_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.BOAT_ASSEMBLER_KEY, BlockInfo.BOAT_ASSEMBLER_ID_DEFAULT).getInt();
-            BlockInfo.PLATFORM_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.PLATFORM_KEY, BlockInfo.PLATFORM_ID_DEFAULT).getInt();
-            BlockInfo.PHANTOM_MULTIBLOCK_ID = config.getBlock(BlockInfo.CATEGORY, BlockInfo.PHANTOM_MULTIBLOCK_KEY, BlockInfo.PHANTOM_MULTIBLOCK_ID_DEFAULT).getInt();
+            BlockRegistry.loadIdsFromConfig(config);
             
             // Misc
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();

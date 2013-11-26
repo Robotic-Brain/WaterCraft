@@ -26,7 +26,6 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.lib.BlockInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
@@ -37,11 +36,10 @@ public class WCChest extends BlockContainer {
     /** 1 for trapped chests, 0 for normal chests. */
     public final int     chestType;
     
-    protected WCChest(int id, int type) {
+    public WCChest(int id) {
         super(id, Material.wood);
-        this.chestType = type;
+        this.chestType = 0;
         this.setCreativeTab(Watercraft.miscTab);
-        this.setUnlocalizedName(BlockInfo.WC_CHEST_UNLOCALIZED_NAME);
         this.setBlockBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.875F, 0.9375F);
         this.setStepSound(soundWoodFootstep);
     }

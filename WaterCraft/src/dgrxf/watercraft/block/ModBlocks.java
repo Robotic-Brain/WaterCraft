@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
+import dgrxf.watercraft.block.port.MarkerBlock;
 import dgrxf.watercraft.item.ItemBlockChest;
 import dgrxf.watercraft.item.ItemBlockLiquidTank;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
@@ -38,7 +39,9 @@ public class ModBlocks {
     public static Block     lockAssembler;
     public static Block 	boatAssembler;
     public static Block     dockPlatform;
+    
     public static Block     phantomMultiBlock;
+    public static Block     markerBlock; 
     
     public static void init() {
         //Buoy Blocks
@@ -58,6 +61,7 @@ public class ModBlocks {
         dockPlatform  = new DockPlatformBlock();
         
         phantomMultiBlock = new MultiblockPhantom(BlockInfo.PHANTOM_MULTIBLOCK_ID);
+        markerBlock = new MarkerBlock(BlockInfo.MARKER_BLOCK_ID);
         
         GameRegistry.registerBlock(buoy, ItemBlockBuoy.class, BlockInfo.BUOY_UNLOCALIZED_NAME);
         
@@ -71,6 +75,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(dockPlatform, BlockInfo.PLATFORM_UNLOCALIZED_NAME);
         
         GameRegistry.registerBlock(phantomMultiBlock, BlockInfo.PHANTOM_MULTIBLOCK_UNLOCALIZED_NAME);
+        GameRegistry.registerBlock(markerBlock, BlockInfo.MARKER_BLOCK_UNLOCALIZED_NAME);
         
         GameRegistry.registerTileEntity(WCTileEntityBuoy.class, BlockInfo.BUOY_TE_KEY);
         GameRegistry.registerTileEntity(WCTileEntityCrane.class, BlockInfo.CONTROL_UNIT_DOCK_TE_KEY);

@@ -2,7 +2,8 @@ package dgrxf.watercraft.client.particles;
 
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
-import dgrxf.watercraft.block.ModBlocks;
+import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.util.Vector3;
 
 public class BuoyParticle extends EntityFX {
@@ -18,7 +19,7 @@ public class BuoyParticle extends EntityFX {
         particleMaxAge = FLY_TIME;
         particleScale = 1;
         
-        setParticleIcon(ModBlocks.buoy.getParticleIcon());
+        setParticleIcon(((BuoyBlock) BlockRegistry.BUOY.getBlock()).getParticleIcon());
     }
     
     @Override
