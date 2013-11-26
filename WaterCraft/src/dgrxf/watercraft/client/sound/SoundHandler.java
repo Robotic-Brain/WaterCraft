@@ -5,6 +5,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.util.LogHelper;
 
 /**
  * (Original from VSWE Courses)
@@ -25,7 +26,11 @@ public class SoundHandler {
     }
     
     private void addSound(SoundLoadEvent event, Sounds sound) {
-        event.manager.soundPoolSounds.addSound(Sounds.SOUNDS_LOCATION + ":" + sound.getName() + ".ogg");
+        try {
+            event.manager.addSound(Sounds.SOUNDS_LOCATION + ":" + sound.getName() + ".ogg");
+        } catch (Exception e) {
+            LogHelper.warning("Failed loading sound file: " + sound.getName());
+        }
     }
     
 }

@@ -139,7 +139,7 @@ public class ToolboxContainer extends Container {
             
             if (stack.getItem().itemID == ModBlocks.toolbox.blockID) {
                 player.attackEntityFrom(WCDamageSources.inception, 1000);
-                PacketHandler.sendSoundPackage(Sounds.INCEPTION.ordinal(), (Player) player, (int)player.posX, (int)player.posY, (int)player.posZ);
+                //PacketHandler.sendSoundPackage(Sounds.INCEPTION.ordinal(), (Player) player, (int)player.posX, (int)player.posY, (int)player.posZ);
             }
             
             if (i >= 36 && tile.isItemValidForSlot(0, stack)) {

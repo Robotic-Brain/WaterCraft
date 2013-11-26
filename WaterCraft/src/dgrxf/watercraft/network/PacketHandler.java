@@ -125,7 +125,7 @@ public class PacketHandler implements IPacketHandler {
         
     }
 
-    public static void sendSoundPackage(int data, Player player, int x, int y, int z) {
+    public static void sendSoundPackage(int data, int x, int y, int z, int dimension) {
         ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
         DataOutputStream dataStream = new DataOutputStream(byteStream);
         
@@ -137,7 +137,7 @@ public class PacketHandler implements IPacketHandler {
             dataStream.writeInt(y);
             dataStream.writeInt(z);
             
-            PacketDispatcher.sendPacketToPlayer(PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()), player);
+            PacketDispatcher.sendPacketToAllAround(x, y, z, 16, dimension, PacketDispatcher.getPacket(ModInfo.CHANNEL, byteStream.toByteArray()));
         } catch (IOException e) {
             LogHelper.severe("Failed to send sound interface packet. This is a bug please report this to the mod auther." + e);
         }
