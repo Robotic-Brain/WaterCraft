@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.client.gui.container.BoatAssemblerContainer;
+import dgrxf.watercraft.server.container.BoatAssemblerContainer;
 
 public class GuiBoatAssembler extends GuiBase{
 	

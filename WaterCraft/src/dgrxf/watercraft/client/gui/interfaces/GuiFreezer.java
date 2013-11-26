@@ -7,8 +7,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.client.gui.container.FreezerContainer;
 import dgrxf.watercraft.network.PacketHandler;
+import dgrxf.watercraft.server.container.FreezerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
 public class GuiFreezer extends GuiContainer {

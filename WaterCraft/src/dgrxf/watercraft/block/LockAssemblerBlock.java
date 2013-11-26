@@ -15,6 +15,7 @@ public class LockAssemblerBlock extends BlockContainer {
 	public LockAssemblerBlock(int id) {
 		super(id, Material.iron);
 		setCreativeTab(Watercraft.miscTab);
+		setTextureName("crafting_table");
 	}
 
 	@Override
