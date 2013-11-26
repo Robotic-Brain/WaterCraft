@@ -19,14 +19,10 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 		AbstractBaseBoat b = getBoatInBounds(getBlockDirection());
 		if(b != null){
 			ItemStack[] temp = b.getBoatModules();
-			for(ItemStack item : temp){
-				for(ItemStack ourItem : items){
-					if(item == ourItem){
-						int toCall = getTabForItem(item);
-						if(toCall != -1){
-							//TODO: Add gui interactions here now that we have the tab to execute the list from
-						}
-					}
+			for(ItemStack boatItem : temp){
+				int toCall = getTabForItem(boatItem);
+				if(toCall != -1){
+					//TODO: Add gui interactions here now that we have the tab to execute the list from
 				}
 			}
 		}
