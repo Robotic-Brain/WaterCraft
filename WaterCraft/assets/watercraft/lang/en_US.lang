@@ -10,6 +10,7 @@ tile.freezerBlockName.name=Water Freezer
 tile.toolBoxBlockName.name=Tool Box
 tile.wcLiquidTank.name=Liquid Tank
 tile.wcChestName.name=Chest
+tile.lockAssemblerName.name=Lock Assembler
 
 item.hull0.name=Buoy AI
 item.hull1.name=Vanilla AI
