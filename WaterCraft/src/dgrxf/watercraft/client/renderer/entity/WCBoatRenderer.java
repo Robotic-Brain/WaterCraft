@@ -110,8 +110,7 @@ public class WCBoatRenderer extends Render {
     protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4) {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
-        RenderManager.instance.itemRenderer.renderItem(null, new ItemStack(par3Block), 10);
-        //this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
         if(par3Block == BlockRegistry.TANK.getBlock()){
         	renderLiquidInTank(entity, par3Block);
         }

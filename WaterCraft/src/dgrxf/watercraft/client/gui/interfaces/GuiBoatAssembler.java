@@ -111,9 +111,9 @@ public class GuiBoatAssembler extends GuiBase {
 				if(stack.getItem() == ModItems.modularBoat){
 					
 				}else if(stack.getItem() instanceof ItemBlock){
-					//renderBlock(stack, x, y, 30F);
+					
 				}else {
-					//renderItem(stack, x, y);
+					
 				}
 				RenderHelper.enableStandardItemLighting();
 				GL11.glPopMatrix();
