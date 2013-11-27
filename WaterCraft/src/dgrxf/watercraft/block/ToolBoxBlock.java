@@ -23,7 +23,11 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
-
+/**
+ * Warning Messy code
+ * 
+ * @author DrunkMafia
+ */
 public class ToolBoxBlock extends DirectionalBlock {
     
     public ToolBoxBlock(int id) {
@@ -50,10 +54,6 @@ public class ToolBoxBlock extends DirectionalBlock {
         world.markBlockForUpdate(x, y, z);
     }
     
-    /**
-     * This can't access the metadata of the block, so It gets it from the tile
-     * entity
-     */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         
@@ -73,7 +73,7 @@ public class ToolBoxBlock extends DirectionalBlock {
         
         WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
         if (tile.isLocked() && tile.playerName != player.username) {
-            Watercraft.printToPlayer("This is not your Toolbox!");
+            Watercraft.printToPlayer("This is not your Toolbox!" , player);
             return false;
         }
         if (!player.isSneaking()) {

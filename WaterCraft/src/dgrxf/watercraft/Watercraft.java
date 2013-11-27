@@ -2,6 +2,8 @@ package dgrxf.watercraft;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatMessageComponent;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -70,8 +72,10 @@ public class Watercraft {
         ModuleInfo.init();
     }
     
+    //NOTICE: DO NOT USE THIS: Minecraft.getMinecraft().thePlayer.sendChatMessage("");
+    
     @SideOnly(Side.CLIENT)
-    public static void printToPlayer(String txt) {
-        Minecraft.getMinecraft().thePlayer.sendChatMessage("" + txt);
+    public static void printToPlayer(String txt, EntityPlayer player) {
+        player.sendChatToPlayer(ChatMessageComponent.createFromText(txt));
     }
 }
