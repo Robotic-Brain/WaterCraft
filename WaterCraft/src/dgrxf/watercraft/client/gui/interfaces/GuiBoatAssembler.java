@@ -2,17 +2,15 @@ package dgrxf.watercraft.client.gui.interfaces;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiColor;
-import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
+import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
@@ -55,6 +53,12 @@ public class GuiBoatAssembler extends GuiBase {
 		GL11.glColor4f(1, 1, 1, 1);
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
+		rotation++;
+		int k = 0;
+		for(GuiGraphicsRectangle rect : drawRects){
+			rect.renderingHandler(rect.getWidth()/2 + guiLeft, rect.getHeight()/2 + guiTop, inventory.getStackInSlot(k), rotation, 25);
+			k++;
+		}
 	}
 	
 	@Override
@@ -67,10 +71,10 @@ public class GuiBoatAssembler extends GuiBase {
 		rotation++;
 		int i = 0;
 		for(GuiGraphicsRectangle rect : drawRects){
-			rect.renderingHandler(rect.getWidth()/2, rect.getHeight()/2, inventory.getStackInSlot(i), rotation, 25);
+			//rect.renderingHandler(rect.getWidth()/2, rect.getHeight()/2, inventory.getStackInSlot(i), rotation, 25);
 			if(inventory.getStackInSlot(i) != null && rect.inRect(this, x, y)){
 				if(ModuleRegistry.isItemRegistered(inventory.getStackInSlot(i)))
-					rect.drawHoverString(this, x, y, ModuleRegistry.getModuleInfo(inventory.getStackInSlot(i)));
+					rect.drawHoverString(this, x, y, ModuleHelper.getModuleInfo(inventory.getStackInSlot(i)));
 			}
 			i++;
 		}

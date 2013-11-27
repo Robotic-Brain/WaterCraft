@@ -16,6 +16,7 @@ public class CustomModule implements IBoatModule {
 	HashSet<ModuleType> moduleTypes = new HashSet<ModuleType>();
 	HashSet<ModuleType> confModuleTypes = new HashSet<ModuleType>();
 	Class task;
+	String info = "";
 	Object[] args;
 	
 	/**
@@ -25,13 +26,14 @@ public class CustomModule implements IBoatModule {
 	 * @param task The BoatAITaskBase class you wish for your module to have. Can be null.
 	 * @param args The extra arguments for the AI Task you wish to have, everything after the priority. Can be empty or null.
 	 */
-	public CustomModule(ModuleType[] moduleTypes, ModuleType[] confModuleTypes, Block block, Class<? extends BoatAITaskBase> task, Object... args){
+	public CustomModule(ModuleType[] moduleTypes, ModuleType[] confModuleTypes, Block block, String info, Class<? extends BoatAITaskBase> task, Object... args){
 		boolean declaresBlock = false;
 		this.moduleTypes.addAll(Arrays.asList(moduleTypes));
 		this.confModuleTypes.addAll(Arrays.asList(confModuleTypes));
 		this.block = block;
 		this.task = task;
 		this.args = args;
+		this.info = info;
 		if(block != null){
 			for(ModuleType m : this.moduleTypes){
 				if(m == ModuleType.BLOCK){
@@ -71,6 +73,11 @@ public class CustomModule implements IBoatModule {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public String getModuleInfo() {
+		return info;
 	}
 
 }

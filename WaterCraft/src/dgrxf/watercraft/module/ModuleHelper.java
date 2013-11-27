@@ -131,4 +131,8 @@ public class ModuleHelper extends ModuleRegistry{
 		return false;
 	}
 
+	public static final String getModuleInfo(ItemStack item){
+		return modules.get(isItemRegisteredAndGetID(item)).getModuleInfo();
+	}
+	
 }

@@ -26,4 +26,6 @@ public interface IBoatModule {
 	 * If your module adds custom AI add it with this.
 	 */
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f);
+
+	public String getModuleInfo();
 }

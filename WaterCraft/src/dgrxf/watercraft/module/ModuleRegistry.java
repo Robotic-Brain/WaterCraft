@@ -12,14 +12,13 @@ public class ModuleRegistry {
 	private static HashMap<Integer, Object> modByID = new HashMap();
 	protected static HashMap<Integer, IBoatModule> modules = new HashMap();
 	private static ArrayList<Integer> registeredIDs = new ArrayList();
-	private static ArrayList<String> modulesInfo = new ArrayList();
 	
 	/**
 	 * @param item The Item you wish to associate your module with.
 	 * @param mod The module you wish to register.
 	 * @return True if the module was registered successfully, false if not.
 	 */
-	public static final boolean registerModule(ItemStack itemStack, IBoatModule mod, Object modID, String info){
+	public static final boolean registerModule(ItemStack itemStack, IBoatModule mod, Object modID){
 		int temp = isItemRegisteredAndGetID(itemStack);
 		if(temp != -1){
 			try {
@@ -32,7 +31,6 @@ public class ModuleRegistry {
 			registeredModules.put(getNextID(), itemStack);
 			modules.put(getNextID(), mod);
 			registeredIDs.add(getNextID());
-			modulesInfo.add(info);
 			return true;
 		}
 		return false;
@@ -69,8 +67,5 @@ public class ModuleRegistry {
 		}
 		return -1;
 	}
-	
-	public static final String getModuleInfo(ItemStack item){
-		return modulesInfo.get(isItemRegisteredAndGetID(item));
-	}
+
 }
