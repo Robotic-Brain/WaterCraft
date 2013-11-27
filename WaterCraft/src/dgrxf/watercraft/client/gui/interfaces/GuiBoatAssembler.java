@@ -71,8 +71,8 @@ public class GuiBoatAssembler extends GuiBase {
 		fontRenderer.drawString(returnItemName(1), 103, 31, GuiColor.WHITE.toRGB());
 
 		rotation++;
-		renderItem(53, 75, inventory.getStackInSlot(0));
-		renderItem(145, 75, inventory.getStackInSlot(1));
+		renderingHandler(53, 75, inventory.getStackInSlot(0));
+		renderingHandler(145, 75, inventory.getStackInSlot(1));
 	}
 	
 	public String returnItemName(int slot){
@@ -87,7 +87,7 @@ public class GuiBoatAssembler extends GuiBase {
 		}
 	}
 	
-	public void renderItem(int x, int y, ItemStack stack){
+	public void renderingHandler(int x, int y, ItemStack stack){
 		if(stack != null){
 
 				GL11.glPushMatrix();
@@ -148,14 +148,5 @@ public class GuiBoatAssembler extends GuiBase {
 		GL11.glRotatef(20, 1, 0, 0);
 		GL11.glRotatef(rotation, 0, 1, 0);
 		renderBlocks.renderBlockAsItem(Block.blocksList[stack.itemID], stack.getItemDamage(), 1.0f);
-	}
-
-	public boolean isItemBlock(int id){
-		
-		if(id < Block.blocksList.length){
-			System.out.println("id");
-			return Block.blocksList[id] != null ? true : false;
-		}
-		return false;
 	}
 }
