@@ -20,6 +20,7 @@ public class Gui3DRectangle extends GuiRectangle{
 	InventoryPlayer inv;
 	public Gui3DRectangle(int x, int y, int w, int h, InventoryPlayer inv) {
 		super(x, y, w, h);
+		this.inv = inv;
 	}
 
 	public void renderEntity(ItemStack stack, Entity e, int x, int y, float rotation, float scale){
