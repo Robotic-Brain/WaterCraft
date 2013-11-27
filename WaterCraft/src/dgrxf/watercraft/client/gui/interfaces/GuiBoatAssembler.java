@@ -42,7 +42,7 @@ public class GuiBoatAssembler extends GuiBase {
 		this.inventory = inv;
 		this.playerInv = inventory;
 	}
-
+	
 	@Override
 	public void initGui() {
 		super.initGui();
@@ -67,8 +67,8 @@ public class GuiBoatAssembler extends GuiBase {
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
 		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
-		fontRenderer.drawString(returnItemName(0), 10, 31, GuiColor.WHITE.toRGB());
-		fontRenderer.drawString(returnItemName(1), 103, 31, GuiColor.WHITE.toRGB());
+		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
+		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
 		rotation++;
 		renderingHandler(53, 75, inventory.getStackInSlot(0));
@@ -84,6 +84,18 @@ public class GuiBoatAssembler extends GuiBase {
 		}
 		else{
 			return "Not a Module";
+		}
+	}
+	
+	public int returnItemColour(int slot){
+		ItemStack stack = inventory.getStackInSlot(slot);
+		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
+			return GuiColor.WHITE.toRGB();
+		else if(stack == null){
+			return GuiColor.WHITE.toRGB();
+		}
+		else{
+			return GuiColor.RED.toRGB();
 		}
 	}
 	
