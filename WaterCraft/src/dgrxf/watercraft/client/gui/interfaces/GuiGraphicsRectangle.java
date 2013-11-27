@@ -18,9 +18,9 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 
-public class Gui3DRectangle extends GuiRectangle{
+public class GuiGraphicsRectangle extends GuiRectangle{
 	InventoryPlayer inv;
-	public Gui3DRectangle(int x, int y, int w, int h, InventoryPlayer inv) {
+	public GuiGraphicsRectangle(int x, int y, int w, int h, InventoryPlayer inv) {
 		super(x, y, w, h);
 		this.inv = inv;
 	}
