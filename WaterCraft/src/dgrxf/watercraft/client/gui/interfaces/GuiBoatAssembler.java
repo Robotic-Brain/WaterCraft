@@ -1,16 +1,25 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.renderer.ItemRenderer;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiColor;
+import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.module.ModuleRegistry;
@@ -25,7 +34,6 @@ public class GuiBoatAssembler extends GuiBase {
 	private InventoryPlayer playerInv;
 	private int rotation = 0;
 	private GuiButton assemble;
-	private Gui3DRectangle[] drawRects = {new Gui3DRectangle(7, 28, 90, 90, playerInv), new Gui3DRectangle(99, 28, 90, 90, playerInv)};
 	
 	public GuiBoatAssembler(InventoryPlayer inventory, WCTileEntityBoatAssembler inv) {
 		super(new BoatAssemblerContainer(inventory, inv));
@@ -34,7 +42,7 @@ public class GuiBoatAssembler extends GuiBase {
 		this.inventory = inv;
 		this.playerInv = inventory;
 	}
-
+	
 	@Override
 	public void initGui() {
 		super.initGui();
@@ -59,6 +67,8 @@ public class GuiBoatAssembler extends GuiBase {
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
 		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
+		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
+		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
 		rotation++;
 		renderingHandler(53, 75, inventory.getStackInSlot(0));
@@ -77,20 +87,35 @@ public class GuiBoatAssembler extends GuiBase {
 		}
 	}
 	
+	public int returnItemColour(int slot){
+		ItemStack stack = inventory.getStackInSlot(slot);
+		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
+			return GuiColor.WHITE.toRGB();
+		else if(stack == null){
+			return GuiColor.WHITE.toRGB();
+		}
+		else{
+			return GuiColor.RED.toRGB();
+		}
+	}
+	
 	public void renderingHandler(int x, int y, ItemStack stack){
 		if(stack != null){
 
 				GL11.glPushMatrix();
-				GL11.glDisable(GL11.GL_LIGHTING);
+				RenderHelper.disableStandardItemLighting();
 				
 				if(rotation == 360)
 					rotation = 0;
 				
 				if(stack.getItem() == ModItems.modularBoat){
+					
 				}else if(stack.getItem() instanceof ItemBlock){
+					//renderBlock(stack, x, y, 30F);
 				}else {
+					//renderItem(stack, x, y);
 				}
-				GL11.glEnable(GL11.GL_LIGHTING);
+				RenderHelper.enableStandardItemLighting();
 				GL11.glPopMatrix();
 			}
 	}
