@@ -37,6 +37,7 @@ public class ConfigurationHandler {
             ItemInfo.KEY_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt();
             ItemInfo.MODULAR_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_MODULAR_KEY, ItemInfo.MODULAR_BOAT_ID_DEFAULT).getInt();
             ItemInfo.BOAT_HULL_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_HULL_KEY, ItemInfo.BOAT_HULL_ID_DEFAULT).getInt();
+            ItemInfo.SPAWNTRADER_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.SPAWNTRADER_KEY, ItemInfo.SPAWNTRADER_ID_DEFAULT).getInt();
             
             // Blocks
             BlockRegistry.loadIdsFromConfig(config);
