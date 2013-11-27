@@ -30,6 +30,7 @@ public class ModItems {
     public static Item key;
     public static Item modularBoat;
     public static Item boatModule;
+    public static Item trader;
     
     public static void init() {
     	boatVanilla = new ItemBoat();
@@ -42,5 +43,6 @@ public class ModItems {
         key = new ItemKey();
         modularBoat = new ItemModularBoat();
         boatModule = new ItemModule();
+        trader = new ItemTraderSpawner();
     }
 }

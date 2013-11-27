@@ -54,6 +54,9 @@ public class ItemInfo {
     public static final String BOAT_HULL_UNLOCALIZED_NAME    = "item.hull";
     public static final String BOAT_HULL_KEY                  = "Hull";
     
+    public static final String SPAWNTRADER_UNLOCALIZED_NAME    = "spawnTrader";
+    public static final String SPAWNTRADER_KEY                  = "SpawnTrader";
+    
     /*************
      * Integers
      *************/
@@ -93,4 +96,7 @@ public class ItemInfo {
     
     public static final int    BOAT_HULL_ID_DEFAULT          = 11719;
     public static int          BOAT_HULL_ID;
+    
+    public static final int    SPAWNTRADER_ID_DEFAULT          = 11730;
+    public static int          SPAWNTRADER_ID;
 }
