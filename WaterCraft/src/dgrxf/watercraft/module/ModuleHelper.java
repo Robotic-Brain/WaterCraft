@@ -10,6 +10,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.interfaces.IModularBoat;
 
 public class ModuleHelper extends ModuleRegistry{
 	
@@ -132,8 +133,18 @@ public class ModuleHelper extends ModuleRegistry{
 	}
 
 	public static final String getModuleInfo(ItemStack item){
-		int temp = isItemRegisteredAndGetID(item);
-		return temp == -1 ? "" : modules.get(temp).getModuleInfo();
+		if(item.getItem() instanceof IModularBoat){
+			HashSet<String> temps = ((IModularBoat)item.getItem()).getModuleList(item);
+			String origString = "Module Descriptions:\n";
+			String tempString = origString;
+			for(String s : temps){
+				tempString = tempString + modules.get(isItemRegisteredAndGetID(ModuleHelper.parseStringToItemStack(s))).getModuleInfo() + "\n";
+			}
+			return tempString.equals(origString) ? "No Modules" : tempString;
+		}else{
+			int temp = isItemRegisteredAndGetID(item);
+			return temp == -1 ? "" : modules.get(temp).getModuleInfo();
+		}
 	}
 	
 }

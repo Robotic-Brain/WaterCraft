@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiColor;
+import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
@@ -73,7 +74,7 @@ public class GuiBoatAssembler extends GuiBase {
 		for(GuiGraphicsRectangle rect : drawRects){
 			//rect.renderingHandler(rect.getWidth()/2, rect.getHeight()/2, inventory.getStackInSlot(i), rotation, 25);
 			if(inventory.getStackInSlot(i) != null && rect.inRect(this, x, y)){
-				if(ModuleRegistry.isItemRegistered(inventory.getStackInSlot(i)))
+				if(ModuleRegistry.isItemRegistered(inventory.getStackInSlot(i)) || inventory.getStackInSlot(i).getItem() instanceof IModularBoat)
 					rect.drawHoverString(this, x, y, ModuleHelper.getModuleInfo(inventory.getStackInSlot(i)));
 			}
 			i++;
