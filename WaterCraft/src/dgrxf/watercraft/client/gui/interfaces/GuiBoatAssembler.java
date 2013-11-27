@@ -40,8 +40,8 @@ public class GuiBoatAssembler extends GuiBase {
 		buttonList.clear();
 		assemble = new GuiButton(0, guiLeft+110, guiTop+6, 60, 20, "Assemble");
 		buttonList.add(assemble);
-		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv);
-		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv);
+		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv, new GuiRectangle(43, 96, 17, 17));
+		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv, new GuiRectangle(135, 96, 17, 17));
 	}
 	
 	@Override

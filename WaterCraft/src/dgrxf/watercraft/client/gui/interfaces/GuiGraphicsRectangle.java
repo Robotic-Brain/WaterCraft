@@ -23,15 +23,36 @@ import dgrxf.watercraft.item.ModItems;
 
 public class GuiGraphicsRectangle extends GuiRectangle{
 	InventoryPlayer inv;
+	GuiRectangle exemptArea;
+	
 	public GuiGraphicsRectangle(int x, int y, int w, int h, InventoryPlayer inv) {
+		this(x, y, w, h, inv, null);
+	}
+	
+	public GuiGraphicsRectangle(int x, int y, int w, int h, InventoryPlayer inv, GuiRectangle exemptArea){
 		super(x, y, w, h);
 		this.inv = inv;
+		this.exemptArea = exemptArea;
 	}
 
 	public void drawString(String s, int x, int y, int color, FontRenderer fontRenderer){
 		int length = s.length();
 		fontRenderer.drawString(s, x + this.getX(), y + this.getY(), GuiColor.WHITE.toRGB());
 	}
+	
+    public boolean inRect(GuiBase gui, int x, int y) {
+    	if(exemptArea != null){
+    		if(super.inRect(gui, x, y)){
+	    		if(exemptArea.inRect(gui, x, y)){
+	    			return false;
+	    		}
+	    		return true;
+    		}
+    		return false;
+    	}else{
+    		return super.inRect(gui, x, y);
+    	}
+    }
 	
 	public void renderingHandler(int x, int y, ItemStack stack, int rotation, float scale){
 		if(stack != null){
