@@ -1,25 +1,16 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiColor;
-import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.module.ModuleRegistry;
@@ -34,6 +25,7 @@ public class GuiBoatAssembler extends GuiBase {
 	private InventoryPlayer playerInv;
 	private int rotation = 0;
 	private GuiButton assemble;
+	private GuiGraphicsRectangle[] drawRects = {new GuiGraphicsRectangle(7, 28, 90, 90, playerInv), new GuiGraphicsRectangle(99, 28, 90, 90, playerInv)};
 	
 	public GuiBoatAssembler(InventoryPlayer inventory, WCTileEntityBoatAssembler inv) {
 		super(new BoatAssemblerContainer(inventory, inv));
