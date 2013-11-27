@@ -9,15 +9,15 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.entity.EntityTrader.EntityTrader;
 
+
 @SideOnly(Side.CLIENT)
 public class RenderTrader extends RenderLiving
 {
-    private static final ResourceLocation traderTextures = new ResourceLocation("textures/entity/trader.png");
+    private static final ResourceLocation traderTextures = new ResourceLocation("watercraft", "textures/entity/trader.png");
     /** Model of the villager. */
     protected ModelVillager villagerModel;
 
@@ -26,7 +26,7 @@ public class RenderTrader extends RenderLiving
         super(new ModelVillager(0.0F), 0.5F);
         this.villagerModel = (ModelVillager)this.mainModel;
     }
-
+    
     /**
      * Determines wether Villager Render pass or not.
      */
