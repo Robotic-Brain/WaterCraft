@@ -1,18 +1,20 @@
 package dgrxf.watercraft.server.container;
 
+import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
-public class BoatAssemblerContainer extends Container{
+public class BoatAssemblerContainer extends Container implements ITeContainer{
 
-	public IInventory inv;
+	public WCTileEntityBoatAssembler inv;
 	public InventoryPlayer playerInv;
 	
-	public BoatAssemblerContainer(InventoryPlayer playerInv, IInventory inv){
+	public BoatAssemblerContainer(InventoryPlayer playerInv, WCTileEntityBoatAssembler inv){
 		this.inv = inv;
 		this.playerInv = playerInv;
 		
@@ -62,6 +64,11 @@ public class BoatAssemblerContainer extends Container{
         }
         
         return null;
+	}
+
+	@Override
+	public TileEntity getTileEntity() {
+		return inv;
 	}
 
 }

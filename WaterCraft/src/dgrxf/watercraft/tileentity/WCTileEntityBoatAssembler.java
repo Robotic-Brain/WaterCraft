@@ -11,16 +11,18 @@ import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
+import dgrxf.watercraft.network.PacketHandler;
 
-public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
+public class WCTileEntityBoatAssembler extends TileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	private ItemStack[] items = new ItemStack[3];
-
+	private boolean assemble = false;
 	//TODO: Comment the class
 	
 	@Override
 	public void updateEntity() {
 		if(this.worldObj.isRemote) return;
+		
 		ItemStack slotZero = getStackInSlot(0);
 		ItemStack slotOne = getStackInSlot(1);
 		
@@ -37,7 +39,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 	private void createAndReturnItem(ItemStack slot, ItemStack item, ItemStack modItem){
 		HashSet<String> strings = addModuleToSetOrReturnModules(slot, modItem, true);
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, modItem, false);
-			if(!strings.equals(temp)){
+			if(!strings.equals(temp) && assemble){
 				item = new ItemStack(slot.getItem());
 				ModuleHelper.writeSetToItemStackNBT(strings, item);
 				returnItem(item);
@@ -48,6 +50,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
 		decrStackSize(0, 1);
 		decrStackSize(1, 1);
 		setInventorySlotContents(2, item);
+		assemble = false;
 	}
 	
 	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, ItemStack modItem, boolean addNewMods){
@@ -169,5 +172,15 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory{
             }
         }
     }
+
+	@Override
+	public void receiveInterfaceEvent(byte buttonid, byte[] extraInfo) {
+		if(worldObj.isRemote) return;
+		switch(buttonid){
+		case 0:
+			assemble = true;
+			break;
+		}
+	}
 	
 }

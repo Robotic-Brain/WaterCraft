@@ -36,7 +36,6 @@ public class GuiHandler implements IGuiHandler {
     public static final int FREEZER_GUI_ID = 3;
     public static final int LOCK_ASSEMBLER_GUI_ID = 4;
     public static final int BOAT_ASSEMBLER_BLOCK_GUI_ID = 5;
-    public static final int BOAT_ASSEMBLER_ENTITY_GUI_ID = 6;
 
     
     public GuiHandler() {
@@ -76,15 +75,9 @@ public class GuiHandler implements IGuiHandler {
             		return new LockAssemblerContainer(player.inventory, (WCTileEntityLockAssembler)te);
             	}
             	break;
-            case BOAT_ASSEMBLER_ENTITY_GUI_ID:
-            	Entity e = world.getEntityByID(x);
-            	if(e instanceof IInventory){
-            		return new BoatAssemblerContainer(player.inventory, (IInventory)e);
-            	}
-            	break;
             case BOAT_ASSEMBLER_BLOCK_GUI_ID:
             	if(te instanceof WCTileEntityBoatAssembler){
-            		return new BoatAssemblerContainer(player.inventory, (IInventory)te);
+            		return new BoatAssemblerContainer(player.inventory, (WCTileEntityBoatAssembler)te);
             	}
             	break;
         }
@@ -126,15 +119,9 @@ public class GuiHandler implements IGuiHandler {
             		return new GuiLockAssembler(player.inventory, (WCTileEntityLockAssembler)te);
             	}
             	break;
-            case BOAT_ASSEMBLER_ENTITY_GUI_ID:
-            	Entity e = world.getEntityByID(x);
-            	if(e instanceof IInventory){
-            		return new GuiBoatAssembler(player.inventory, (IInventory)e);
-            	}
-            	break;
             case BOAT_ASSEMBLER_BLOCK_GUI_ID:
             	if(te instanceof WCTileEntityBoatAssembler){
-            		return new GuiBoatAssembler(player.inventory, (IInventory)te);
+            		return new GuiBoatAssembler(player.inventory, (WCTileEntityBoatAssembler)te);
             	}
             	break;
         }
