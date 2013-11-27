@@ -68,6 +68,10 @@ public class GuiBoatAssembler extends GuiBase {
 		int i = 0;
 		for(GuiGraphicsRectangle rect : drawRects){
 			rect.renderingHandler(rect.getWidth()/2, rect.getHeight()/2, inventory.getStackInSlot(i), rotation, 25);
+			if(inventory.getStackInSlot(i) != null && rect.inRect(this, x, y)){
+				if(ModuleRegistry.isItemRegistered(inventory.getStackInSlot(i)))
+					rect.drawHoverString(this, x, y, ModuleRegistry.getModuleInfo(inventory.getStackInSlot(i)));
+			}
 			i++;
 		}
 	}
