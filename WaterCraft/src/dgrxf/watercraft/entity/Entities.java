@@ -2,6 +2,7 @@ package dgrxf.watercraft.entity;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.entity.EntityTrader.EntityTrader;
 import dgrxf.watercraft.entity.boat.ChestBoat;
 import dgrxf.watercraft.entity.boat.DumbBoat;
 import dgrxf.watercraft.entity.boat.IceBoat;
@@ -27,6 +28,7 @@ public class Entities {
         EntityRegistry.registerModEntity(IceBoat.class, "EntityIceBoat", 4, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(TankBoat.class, "EntityTankBoat", 5, Watercraft.instance, 80, 3, true);
         EntityRegistry.registerModEntity(ModularBoat.class, "EntityModularBoat", 6, Watercraft.instance, 80, 3, true);
+        EntityRegistry.registerModEntity(EntityTrader.class, "EntityTrader", 13, Watercraft.instance, 80, 3, true);
         /*EntityRegistry.registerModEntity(WCEntitySmartBoat.class, "WCEntitySmartBoat", 2, Watercraft.instance, 80, 3, true);*/
     }
     
