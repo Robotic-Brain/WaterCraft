@@ -26,20 +26,23 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory,
 		ItemStack slotZero = getStackInSlot(0);
 		ItemStack slotOne = getStackInSlot(1);
 		
-		if(slotZero != null && slotOne != null){
+		if(slotZero != null && slotOne != null && assemble){
+			assemble = false;
 			ItemStack item = null;
 			if(slotZero.getItem() instanceof IModularBoat && ModuleRegistry.isItemRegistered(slotOne)){
 				createAndReturnItem(slotZero, item, slotOne);
 			}else if(ModuleRegistry.isItemRegistered(slotZero) && (slotOne.getItem() instanceof IModularBoat)){
 				createAndReturnItem(slotOne, item, slotZero);
 			}
+		}else if(assemble){
+			assemble = false;
 		}
 	}
 	
 	private void createAndReturnItem(ItemStack slot, ItemStack item, ItemStack modItem){
 		HashSet<String> strings = addModuleToSetOrReturnModules(slot, modItem, true);
 		HashSet<String> temp = addModuleToSetOrReturnModules(slot, modItem, false);
-			if(!strings.equals(temp) && assemble){
+			if(!strings.equals(temp)){
 				item = new ItemStack(slot.getItem());
 				ModuleHelper.writeSetToItemStackNBT(strings, item);
 				returnItem(item);
@@ -50,7 +53,6 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory,
 		decrStackSize(0, 1);
 		decrStackSize(1, 1);
 		setInventorySlotContents(2, item);
-		assemble = false;
 	}
 	
 	private HashSet<String> addModuleToSetOrReturnModules(ItemStack boat, ItemStack modItem, boolean addNewMods){

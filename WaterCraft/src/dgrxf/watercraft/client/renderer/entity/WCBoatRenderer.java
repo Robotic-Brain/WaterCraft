@@ -66,7 +66,7 @@ public class WCBoatRenderer extends Render {
         	if(block != BlockRegistry.WC_CHEST.getBlock()){
                 this.bindTexture(TextureMap.locationBlocksTexture);
                 GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
-	            this.renderBlockInBoat(entity, par9, block, 0);
+	            this.renderBlockInBoat(entity, par9, block, 0, (float)par2, (float)par4, (float)par6);
         	}else if(entity.getDisplayTile() == BlockRegistry.WC_CHEST.getBlock()){
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
@@ -82,7 +82,7 @@ public class WCBoatRenderer extends Render {
                 	chest.renderAll(false);
                 }
         	}
-        	
+
             GL11.glPopMatrix();
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         }
@@ -98,19 +98,14 @@ public class WCBoatRenderer extends Render {
         }
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
-        /*if(entity instanceof WCEntityBoat && ((WCEntityBoat)entity).getFlagColor() != Colours.none){
-        	renderFlag(((WCEntityBoat)entity), par2, par4, par6, par8, par9);
-        }*/
-        
         renderRope(entity, par2, par4, par6, par8, par9);
-        
         GL11.glPopMatrix();
     }
     
-    protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4) {
+    protected void renderBlockInBoat(AbstractBaseBoat entity, float par2, Block par3Block, int par4, float x, float y, float z) {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
-        this.renderBlocks.renderBlockAsItem(par3Block, par4, f1);
+        RenderManager.instance.itemRenderer.renderItem(null, new ItemStack(par3Block), 10);
         if(par3Block == BlockRegistry.TANK.getBlock()){
         	renderLiquidInTank(entity, par3Block);
         }
@@ -121,18 +116,6 @@ public class WCBoatRenderer extends Render {
     public void doRender(Entity entity, double x, double y, double z, float yaw, float partialTickTime) {
         renderBoat((AbstractBaseBoat) entity, x, y, z, yaw, partialTickTime);
     }
-    
-    private IModelCustom flagModel = AdvancedModelLoader.loadModel("/assets/watercraft/models/Flag.obj");
-    
-    /*private void renderFlag(WCEntityBoat boat, double x, double y, double z, float yaw, float partialTickTime) {
-    	GL11.glPushMatrix();
-    	Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(ModInfo.MODID, RenderInfo.FLAG_TEXTURE_LOCATION + (boat.getFlagColor().ordinal() + 1) + ".png"));
-    	GL11.glTranslatef(0.7F, -0.2F, -0.55F);
-    	GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
-    	GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
-    	flagModel.renderAll();
-    	GL11.glPopMatrix();		
-    }*/
     
     private void renderLiquidInTank(AbstractBaseBoat entity, Block block){
     	FluidStack flu = null;
@@ -178,6 +161,8 @@ public class WCBoatRenderer extends Render {
 				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.874f, 0.874f);
 				break;
 			}
+			
+			GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 			
 			renderBlock.setRenderBoundsFromBlock(block);
 	        tessellator.startDrawingQuads();

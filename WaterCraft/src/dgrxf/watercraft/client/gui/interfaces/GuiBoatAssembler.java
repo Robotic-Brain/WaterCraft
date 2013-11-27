@@ -25,7 +25,7 @@ public class GuiBoatAssembler extends GuiBase {
 	private InventoryPlayer playerInv;
 	private int rotation = 0;
 	private GuiButton assemble;
-	private GuiGraphicsRectangle[] drawRects = {new GuiGraphicsRectangle(7, 28, 90, 90, playerInv), new GuiGraphicsRectangle(99, 28, 90, 90, playerInv)};
+	private GuiGraphicsRectangle[] drawRects = new GuiGraphicsRectangle[2];
 	
 	public GuiBoatAssembler(InventoryPlayer inventory, WCTileEntityBoatAssembler inv) {
 		super(new BoatAssemblerContainer(inventory, inv));
@@ -41,6 +41,8 @@ public class GuiBoatAssembler extends GuiBase {
 		buttonList.clear();
 		assemble = new GuiButton(0, guiLeft+110, guiTop+6, 60, 20, "Assemble");
 		buttonList.add(assemble);
+		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv);
+		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv);
 	}
 	
 	@Override
@@ -63,8 +65,11 @@ public class GuiBoatAssembler extends GuiBase {
 		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
 		rotation++;
-		renderingHandler(53, 75, inventory.getStackInSlot(0));
-		renderingHandler(145, 75, inventory.getStackInSlot(1));
+		int i = 0;
+		for(GuiGraphicsRectangle rect : drawRects){
+			rect.renderingHandler(rect.getWidth()/2, rect.getHeight()/2, inventory.getStackInSlot(i), rotation, 25);
+			i++;
+		}
 	}
 	
 	public String returnItemName(int slot){
@@ -89,28 +94,6 @@ public class GuiBoatAssembler extends GuiBase {
 		else{
 			return GuiColor.RED.toRGB();
 		}
-	}
-	
-	public void renderingHandler(int x, int y, ItemStack stack){
-		if(stack != null){
-
-				GL11.glPushMatrix();
-				RenderHelper.disableStandardItemLighting();
-				
-				if(rotation == 360)
-					rotation = 0;
-				
-				if(stack.getItem() == ModItems.modularBoat){
-					
-				}else if(stack.getItem() instanceof ItemBlock){
-					
-				}else {
-					
-				}
-				RenderHelper.enableStandardItemLighting();
-				GL11.glPopMatrix();
-			}
-	}
-	
+	}	
 
 }
