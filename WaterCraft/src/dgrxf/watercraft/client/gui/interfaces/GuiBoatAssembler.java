@@ -38,7 +38,7 @@ public class GuiBoatAssembler extends GuiBase {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		assemble = new GuiButton(0, guiLeft+110, guiTop+6, 60, 20, "Assemble");   // TODO Translation
+		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, "Assemble");   // TODO Translation
 		buttonList.add(assemble);
 		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv, new GuiRectangle(43, 96, 17, 17));
 		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv, new GuiRectangle(135, 96, 17, 17));
@@ -86,24 +86,15 @@ public class GuiBoatAssembler extends GuiBase {
 		ItemStack stack = inventory.getStackInSlot(slot);
 		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
 			return stack.getDisplayName();
-		else if(stack == null){
-			return "Empty";  // TODO Translation
-		}
-		else{
-			return "Not a Module";   // TODO Translation
-		}
+		else if(stack == null) return "Empty";  // TODO Translation
+		else return "Not a Module";   // TODO Translation
 	}
 	
 	public int returnItemColour(int slot){
 		ItemStack stack = inventory.getStackInSlot(slot);
 		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
 			return GuiColor.WHITE.toRGB();
-		else if(stack == null){
-			return GuiColor.WHITE.toRGB();
-		}
-		else{
-			return GuiColor.RED.toRGB();
-		}
+		else if(stack == null) return GuiColor.WHITE.toRGB();
+		else return GuiColor.RED.toRGB();
 	}	
-
 }
