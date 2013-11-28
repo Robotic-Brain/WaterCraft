@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.util.TranslationHelper;
 
 public class ModuleRegistry {
 	
@@ -27,7 +28,7 @@ public class ModuleRegistry {
 		if(m != null){
 			if(temp != -1){
 				try {
-					throw new RuntimeException("The mod " + m.getName() + " is attempting to register a module with to the item named \"" + itemStack.getDisplayName() + "\", however, this item is already registered by " + getModulesMod(temp).getName() + " and cannot be overwritten.");
+					throw new RuntimeException(TranslationHelper.translate(TranslationHelper.MODULE_DUPLICATE_EXCEPTION, m.getName(), itemStack.getDisplayName(), getModulesMod(temp).getName()));
 				} catch (RuntimeException e) {
 					e.printStackTrace();
 				}
@@ -41,7 +42,7 @@ public class ModuleRegistry {
 			return false;
 		}else{
 			try{
-				throw new RuntimeException("The class " + modID.getClass().getSimpleName() + " is not a registered Forge Modloader mod container, the module with the item " + itemStack.getDisplayName() + " will not be registered.");
+				throw new RuntimeException(TranslationHelper.translate(TranslationHelper.MODULE_INVALID_MOD_EXCEPTION, modID.getClass().getSimpleName(), itemStack.getDisplayName()));
 			} catch(RuntimeException e){
 				e.printStackTrace();
 				return false;

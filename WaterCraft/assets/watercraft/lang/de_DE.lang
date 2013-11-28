@@ -47,6 +47,9 @@ strings.watercraft:tape_measure_end=Beende Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Abstand: %s
 strings.watercraft:tape_measure_restart=Abbruch der Messung
 
+strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten. (NEEDS TRANSLATION)
+strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered. (NEEDS TRANSLATION)
+
 strings.watercraft:toolbox_contains=Dieser Werkzeugkasten beinhaltet: 
 strings.watercraft:toolbox_contains_nothing=Nichts
 strings.watercraft:toolbox_empty=Ein leerer Werkzeugkasten

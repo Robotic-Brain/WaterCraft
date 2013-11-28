@@ -41,6 +41,9 @@ strings.watercraft:tape_measure_start=Startad mätning vid: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Avslutad mätning vid: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Avstånd: %s
 
+strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten. (NEEDS TRANSLATION)
+strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered. (NEEDS TRANSLATION)
+
 strings.watercraft:toolbox_contains=Denna Verktygslåda innehåller för tillfället:
 strings.watercraft:toolbox_contains_nothing=Ingenting
 strings.watercraft:toolbox_empty=En tom Verktygslåda

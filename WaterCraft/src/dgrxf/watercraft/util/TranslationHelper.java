@@ -21,6 +21,9 @@ public class TranslationHelper {
     public static final String TAPE_MEASURE_DISTANCE     = BASE_KEY + "tape_measure_distance";
     public static final String TAPE_MEASURE_RESTART      = BASE_KEY + "tape_measure_restart";
     
+    public static final String MODULE_DUPLICATE_EXCEPTION          = BASE_KEY + "module_exception";
+    public static final String MODULE_INVALID_MOD_EXCEPTION        = BASE_KEY + "module_invalid_mod_exception";
+    
     public static final String TOOLBOX_CONTAINS        = BASE_KEY + "toolbox_contains";
     public static final String TOOLBOX_CONTAINS_NOTING = BASE_KEY + "toolbox_contains_nothing";
     public static final String TOOLBOX_EMPTY           = BASE_KEY + "toolbox_empty";

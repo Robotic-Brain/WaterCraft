@@ -71,7 +71,6 @@ public class Watercraft {
         proxy.initSounds();
         ModBlocks.registerBlocks();
         ModItems.registerItems();
-        //ModItems.init();
         MultiBlockInfo.init();
         Entities.init();
         RecipeHandler.init();
@@ -85,10 +84,7 @@ public class Watercraft {
     @EventHandler
     public void postInit(FMLPostInitializationEvent event){
     	if(Loader.isModLoaded("ComputerCraft")){
-    		System.out.println("ComputerCraft Found!");
     		hasCC = true;
-    	}else{
-    		System.out.println("ComputerCraft not found :(");
     	}
     }
     
