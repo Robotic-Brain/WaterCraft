@@ -26,6 +26,7 @@ item.watercraft:flag.orange=Orange Flagga
 item.watercraft:flag.magenta=Magenta Flagga
 item.watercraft:flag.light_blue=Ljust Blå Flagga
 item.watercraft:flag.yellow=Gul Flagga
+item.watercraft:flag.lime_green=Lime Green Flag (NEEDS LOCALIZATION)
 item.watercraft:flag.pink=Råsa Flagga
 item.watercraft:flag.grey=Grå Flagga
 item.watercraft:flag.light_grey=Ljus Grå Flagga

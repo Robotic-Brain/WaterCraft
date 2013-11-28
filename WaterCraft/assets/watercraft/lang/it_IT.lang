@@ -1,10 +1,16 @@
 ﻿
-itemGroup.watercraft=WaterCraft
+itemGroup.wcmisc=WaterCraft Miscellaneous
+itemGroup.wcboats=WaterCraft Boats
+itemGroup.wcbouys=WaterCraft Bouys
 
 tile.watercraft:buoyBlockName.name=Boa
 tile.watercraft:controlUnitDock.name=Unità di Controllo
 tile.watercraft:freezerBlockName.name=Congelatore
 tile.watercraft:toolBoxBlockName.name=Cassetta degli Attrezzi
+tile.watercraft:wcLiquidTank.name=Liquid Tank
+tile.watercraft:wcChestName.name=Chest
+tile.watercraft:lockAssemblerName.name=Lock Assembler
+tile.watercraft:boatAssemblerName.name=Boat Assembler
 
 item.watercraft:lavaBoat.name=Barca per Lava NEEDS LOCALIZATION
 item.watercraft:boatChest.name=Barca con Baule NEEDS LOCALIZATION
@@ -21,6 +27,23 @@ strings.watercraft:toolbox_contains_nothing=niente
 strings.watercraft:toolbox_empty=Cassetta degli Attrezzi vuota
 strings.watercraft:toolbox_owner=Questa Cassetta degli Attrezzi appartiene a: %s
 strings.watercraft:toolbox_no_owner=Cassetta degli Attrezzi senza proprietario
+
+item.watercraft:flag.white=White Flag
+item.watercraft:flag.orange=Orange Flag
+item.watercraft:flag.magenta=Magenta Flag
+item.watercraft:flag.light_blue=Light Blue Flag
+item.watercraft:flag.yellow=Yellow Flag
+item.watercraft:flag.lime_green=Lime Green Flag
+item.watercraft:flag.pink=Pink Flag
+item.watercraft:flag.grey=Grey Flag
+item.watercraft:flag.light_grey=Light Grey Flag
+item.watercraft:flag.cyan=Cyan Flag
+item.watercraft:flag.purple=Purple Flag
+item.watercraft:flag.blue=Blue Flag
+item.watercraft:flag.brown=Brown Flag
+item.watercraft:flag.green=Green Flag
+item.watercraft:flag.red=Red Flag
+item.watercraft:flag.black=Black Flag
 
 strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten. (NEEDS TRANSLATION)
 strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered. (NEEDS TRANSLATION)

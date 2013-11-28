@@ -31,6 +31,7 @@ item.watercraft:flag.orange=Orange Flagge
 item.watercraft:flag.magenta=Magenta Flagge
 item.watercraft:flag.light_blue=Hellblaue Flagge
 item.watercraft:flag.yellow=Gelbe Flagge
+item.watercraft:flag.lime_green=Lime Green Flag (NEEDS LOCALIZATION)
 item.watercraft:flag.pink=Rosa Flagge
 item.watercraft:flag.grey=Graue Flagge
 item.watercraft:flag.light_grey=Hellgraue Flagge
