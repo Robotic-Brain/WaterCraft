@@ -10,12 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.entity.boat.ChestBoat;
-import dgrxf.watercraft.entity.boat.DumbBoat;
-import dgrxf.watercraft.entity.boat.IceBoat;
-import dgrxf.watercraft.entity.boat.LavaBoat;
 import dgrxf.watercraft.entity.boat.ModularBoat;
-import dgrxf.watercraft.entity.boat.TankBoat;
 import dgrxf.watercraft.multiblock.NewDockMultiBlock;
 import dgrxf.watercraft.tileentity.ITileEntityInterfaceEvent;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -142,19 +137,8 @@ public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEnt
      * @param Boat inside the AAB
      */
     private void runLogic(AbstractBaseBoat e) {
-        if (e instanceof DumbBoat) {
+        if (e instanceof ModularBoat)
             logic(basicLogic);
-        } else if (e instanceof ModularBoat) {
-            logic(basicLogic);
-        } else if (e instanceof LavaBoat) {
-            logic(basicLogic);
-        } else if (e instanceof ChestBoat) {
-            if(chestTab) logic(chestLogic); else logic(basicLogic);
-        } else if (e instanceof IceBoat) {
-            logic(basicLogic);
-        } else if (e instanceof TankBoat) {
-            if(tankTab) logic(tankLogic); else logic(basicLogic);
-        }
 	}
     /**
      * Runs the logic

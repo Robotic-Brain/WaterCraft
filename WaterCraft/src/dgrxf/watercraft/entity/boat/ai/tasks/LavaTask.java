@@ -3,9 +3,12 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
+import dgrxf.watercraft.interfaces.ICustomBoatTexture;
+import dgrxf.watercraft.lib.RenderInfo;
 
-public class LavaTask extends BoatAITaskBase {
+public class LavaTask extends BoatAITaskBase implements ICustomBoatTexture{
 
 	public LavaTask(AbstractBaseBoat boat, Float priority, Object... args) {
 		super(boat, priority);
@@ -33,6 +36,11 @@ public class LavaTask extends BoatAITaskBase {
 	@Override
 	public boolean breakBoat() {
 	    return false;
+	}
+
+	@Override
+	public ResourceLocation getCustomTexture() {
+		return RenderInfo.IRON_BOAT_TEXTURE_LOCATION;
 	}
 	
 }

@@ -63,6 +63,7 @@ public class Watercraft {
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         RecipeHandler.removeVanillaRecpies();
+        System.out.println(Minecraft.getMinecraft().mcDataDir.getAbsolutePath());
     }
     
     @EventHandler
