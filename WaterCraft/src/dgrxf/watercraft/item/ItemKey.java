@@ -41,7 +41,7 @@ public class ItemKey extends Item {
                         ((ILockableBlock) te).setCode(-1);
                         world.markBlockForUpdate(x, y, z);
                         
-                        EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ItemRegistry.PADLOCK.getItem(), 1, code));
+                        EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ModItems.PADLOCK.getItem(), 1, code));
                         
                         float f3 = 0.05F;
                         entityitem.motionX = (float) this.random.nextGaussian() * f3;

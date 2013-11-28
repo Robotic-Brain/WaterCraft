@@ -23,7 +23,7 @@ import dgrxf.watercraft.lib.MiscInfo;
  * </pre>
  *
  */
-public enum ItemRegistry {
+public enum ModItems {
     
     VANILLA_BOAT    (11700, "wcboat", ItemBoat.class),
     TAPE_MEASURE    (11707, "TapeItemName", ItemTapeMeasure.class),
@@ -75,7 +75,7 @@ public enum ItemRegistry {
      * 
      ***********************************************************************************/
     
-    private ItemRegistry(int defaultId, String name, Class<? extends Item> iClass) {
+    private ModItems(int defaultId, String name, Class<? extends Item> iClass) {
         this.id = INVALID_ITEM_ID;
         this.defaultId = defaultId;
         this.unlocalizedName = MiscInfo.RESOURCE_PREFIX + name;
@@ -132,13 +132,13 @@ public enum ItemRegistry {
      ***********************************************************************************/
     
     public static void loadIdsFromConfig(Configuration config) {
-        for (ItemRegistry item : ItemRegistry.values()) {
+        for (ModItems item : ModItems.values()) {
             item.id = config.getItem(item.unlocalizedName, item.defaultId).getInt();
         }
     }
     
     public static void registerItems() {
-        for (ItemRegistry item : ItemRegistry.values()) {
+        for (ModItems item : ModItems.values()) {
             if (item.instance != null) {
                 throw new RuntimeException("registerItems() Should only be called once! (Thrown by: " + item + ")");
             } else if (item.id == INVALID_ITEM_ID) {

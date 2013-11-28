@@ -3,7 +3,7 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 
 public class VanillaTask extends BoatAITaskBase {
     
@@ -30,7 +30,7 @@ public class VanillaTask extends BoatAITaskBase {
     @Override
     public void onInteractFirst(EntityPlayer player) {
         if (boat.riddenByEntity == null) {
-        	if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() == ItemRegistry.ROPE.getItem()){
+        	if(player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() == ModItems.ROPE.getItem()){
         		return;
         	}
             if (!boat.worldObj.isRemote) {

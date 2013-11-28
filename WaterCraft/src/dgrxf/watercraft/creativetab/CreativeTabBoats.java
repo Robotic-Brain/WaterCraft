@@ -3,7 +3,7 @@ package dgrxf.watercraft.creativetab;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 
 public class CreativeTabBoats extends CreativeTabs {
     
@@ -18,7 +18,7 @@ public class CreativeTabBoats extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {
-        return ItemRegistry.MODULAR_BOAT.getId();
+        return ModItems.MODULAR_BOAT.getId();
     }
     
 }

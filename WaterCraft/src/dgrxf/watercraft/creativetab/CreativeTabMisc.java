@@ -3,7 +3,7 @@ package dgrxf.watercraft.creativetab;
 import net.minecraft.creativetab.CreativeTabs;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 
 /**
  * Class Made By: Robotic-Brain
@@ -25,7 +25,7 @@ public class CreativeTabMisc extends CreativeTabs {
     @Override
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {
-        return ItemRegistry.TELESCOPE.getId();
+        return ModItems.TELESCOPE.getId();
     }
     
 }

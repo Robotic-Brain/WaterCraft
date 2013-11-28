@@ -21,7 +21,7 @@ import dgrxf.watercraft.creativetab.CreativeTabBuoys;
 import dgrxf.watercraft.creativetab.CreativeTabMisc;
 import dgrxf.watercraft.entity.Entities;
 import dgrxf.watercraft.event.WCEventHandler;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.ModuleInfo;
 import dgrxf.watercraft.lib.MultiBlockInfo;
@@ -63,7 +63,7 @@ public class Watercraft {
         proxy.initRendering();
         proxy.initSounds();
         ModBlocks.registerBlocks();
-        ItemRegistry.registerItems();
+        ModItems.registerItems();
         //ModItems.init();
         MultiBlockInfo.init();
         Entities.init();

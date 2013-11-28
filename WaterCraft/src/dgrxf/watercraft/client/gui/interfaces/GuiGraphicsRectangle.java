@@ -18,7 +18,7 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.entity.boat.ModularBoat;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 
 public class GuiGraphicsRectangle extends GuiRectangle{
 	InventoryPlayer inv;
@@ -59,7 +59,7 @@ public class GuiGraphicsRectangle extends GuiRectangle{
 			if(rotation == 360)
 				rotation = 0;
 			
-			if(stack.getItem() == ItemRegistry.MODULAR_BOAT.getItem()){
+			if(stack.getItem() == ModItems.MODULAR_BOAT.getItem()){
 				//temp code
 				renderRotatingEntity(new ModularBoat(Minecraft.getMinecraft().theWorld, 0, 0, 0, stack.getTagCompound()), x, y, rotation, scale);
 			}else if(stack.getItem() instanceof ItemBlock){

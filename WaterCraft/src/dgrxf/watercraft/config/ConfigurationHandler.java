@@ -13,7 +13,7 @@ import java.io.File;
 
 import net.minecraftforge.common.Configuration;
 import dgrxf.watercraft.block.ModBlocks;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
 
@@ -25,7 +25,7 @@ public class ConfigurationHandler {
             config.load();
             
             // Items
-            ItemRegistry.loadIdsFromConfig(config);
+            ModItems.loadIdsFromConfig(config);
             /*ItemInfo.DUMB_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt();
             ItemInfo.BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt();
             ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt();

@@ -7,7 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import dgrxf.watercraft.item.ItemRegistry;
+import dgrxf.watercraft.item.ModItems;
 
 public class WCTileEntityLockAssembler extends TileEntity implements IInventory {
 	
@@ -35,8 +35,8 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 	public void updateEntity() {
 		super.updateEntity();
 		
-		setInventorySlotContents(3, new ItemStack(ItemRegistry.PADLOCK.getId(), 1, getCode()));
-		setInventorySlotContents(4, new ItemStack(ItemRegistry.KEY.getId(), 1, getCode()));
+		setInventorySlotContents(3, new ItemStack(ModItems.PADLOCK.getId(), 1, getCode()));
+		setInventorySlotContents(4, new ItemStack(ModItems.KEY.getId(), 1, getCode()));
 	}
 
 	@Override
