@@ -1,6 +1,8 @@
 package dgrxf.watercraft.entity.EntityTrader;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -8,26 +10,27 @@ import net.minecraft.entity.EntityLivingData;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.Tuple;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class EntityTrader extends EntityVillager {
 	
-    private MerchantRecipeList buyingList;
+    private MerchantRecipeList traderBuyingList;
     private float field_82191_bN;
 	
+    public static final Map traderStockList = new HashMap();
+    public static final Map tradersmithSellingList = new HashMap();
+    
 	public EntityTrader(World par1World, int par2) {
 		super(par1World, par2);
 	}
 
 	public EntityTrader(World par1World) {
 		this(par1World, 0);
-	}
+	}	
 	
 	private float adjustProbability(float par1)
     {
@@ -43,9 +46,9 @@ public class EntityTrader extends EntityVillager {
 	
 	private void addDefaultEquipmentAndRecipies(int par1)
     {
-        if (this.buyingList != null)
+        if (this.traderBuyingList != null)
         {
-            this.field_82191_bN = MathHelper.sqrt_float((float)this.buyingList.size()) * 0.2F;
+            this.field_82191_bN = MathHelper.sqrt_float((float)this.traderBuyingList.size()) * 0.2F;
         }
         else
         {
@@ -54,10 +57,8 @@ public class EntityTrader extends EntityVillager {
 
         MerchantRecipeList merchantrecipelist;
         merchantrecipelist = new MerchantRecipeList();
-        VillagerRegistry.manageVillagerTrades(merchantrecipelist, this, this.getProfession(), this.rand);
+        //VillagerRegistry.manageVillagerTrades(merchantrecipelist, this, this.getProfession(), this.rand);
         int j;
-        label50:
-
         switch (this.getProfession())
         {
             case 0:
@@ -85,29 +86,26 @@ public class EntityTrader extends EntityVillager {
 
         Collections.shuffle(merchantrecipelist);
 
-        if (this.buyingList == null)
+        if (this.traderBuyingList == null)
         {
-            this.buyingList = new MerchantRecipeList();
+            this.traderBuyingList = new MerchantRecipeList();
         }
 
         for (int j1 = 0; j1 < par1 && j1 < merchantrecipelist.size(); ++j1)
         {
-            this.buyingList.addToListWithCheck((MerchantRecipe)merchantrecipelist.get(j1));
+            this.traderBuyingList.addToListWithCheck((MerchantRecipe)merchantrecipelist.get(j1));
         }
     }
 	
-	private static ItemStack getRandomSizedStack(int par0, Random par1Random)
+	private static int getRandomCountForBlacksmithItem(int par0, Random par1Random)
     {
-		//int dmg = 0;
-		//if (par0 == Item.dyePowder.itemID) {
-		//	dmg = 
-		//}
-        return new ItemStack(par0, getRandomCountForItem(par0, par1Random), 0);
+        Tuple tuple = (Tuple)tradersmithSellingList.get(Integer.valueOf(par0));
+        return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
     }
 	
 	private static int getRandomCountForItem(int par0, Random par1Random)
     {
-        Tuple tuple = (Tuple)villagerStockList.get(Integer.valueOf(par0));
+        Tuple tuple = (Tuple)traderStockList.get(Integer.valueOf(par0));
         return tuple == null ? 1 : (((Integer)tuple.getFirst()).intValue() >= ((Integer)tuple.getSecond()).intValue() ? ((Integer)tuple.getFirst()).intValue() : ((Integer)tuple.getFirst()).intValue() + par1Random.nextInt(((Integer)tuple.getSecond()).intValue() - ((Integer)tuple.getFirst()).intValue()));
     }
 	
@@ -118,6 +116,18 @@ public class EntityTrader extends EntityVillager {
         applyRandomTrade(this, worldObj.rand);
         return par1EntityLivingData;
     }
+	
+	static
+    {
+        traderStockList.put(Integer.valueOf(Item.fishRaw.itemID), new Tuple(Integer.valueOf(1), Integer.valueOf(12)));
+        traderStockList.put(Integer.valueOf(Item.dyePowder.itemID), new Tuple(Integer.valueOf(3), Integer.valueOf(10)));
+        traderStockList.put(Integer.valueOf(dgrxf.watercraft.block.ModBlocks.TANK.getId()), new Tuple(Integer.valueOf(1), Integer.valueOf(1)));
+        traderStockList.put(Integer.valueOf(Item.diamond.itemID), new Tuple(Integer.valueOf(4), Integer.valueOf(6)));
+        tradersmithSellingList.put(Integer.valueOf(Item.shears.itemID), new Tuple(Integer.valueOf(3), Integer.valueOf(4)));
+        tradersmithSellingList.put(Integer.valueOf(Item.shears.itemID), new Tuple(Integer.valueOf(3), Integer.valueOf(4)));
+        tradersmithSellingList.put(Integer.valueOf(Item.shears.itemID), new Tuple(Integer.valueOf(7), Integer.valueOf(11)));
+        tradersmithSellingList.put(Integer.valueOf(Item.shears.itemID), new Tuple(Integer.valueOf(12), Integer.valueOf(14)));
 
+    }
 	
 }
