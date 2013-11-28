@@ -13,10 +13,10 @@ tile.wcChestName.name=Chest
 tile.lockAssemblerName.name=Lock Assembler
 tile.boatAssemblerName.name=Boat Assembler
 
-item.hull0.name=Buoy AI
-item.hull1.name=Vanilla AI
-item.hull2.name=Hull Reinforcement : Ice
-item.hull3.name=Hull Reinforcement : Lava
+item.hull0.name=Module: Follow Buoys
+item.hull1.name=Module: Seat
+item.hull2.name=Hull Upgrade: Ice Breaking
+item.hull3.name=Hull Upgrade: Lava Resistance
 item.TelescopeName.name=Telescope
 item.TapeItemName.name=Tape Measure
 item.wcboat.name=Boat
