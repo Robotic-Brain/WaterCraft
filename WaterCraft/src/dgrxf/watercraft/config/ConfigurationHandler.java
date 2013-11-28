@@ -12,7 +12,7 @@ package dgrxf.watercraft.config;
 import java.io.File;
 
 import net.minecraftforge.common.Configuration;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
@@ -40,7 +40,7 @@ public class ConfigurationHandler {
             ItemInfo.SPAWNTRADER_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.SPAWNTRADER_KEY, ItemInfo.SPAWNTRADER_ID_DEFAULT).getInt();
             
             // Blocks
-            BlockRegistry.loadIdsFromConfig(config);
+            ModBlocks.loadIdsFromConfig(config);
             
             // Misc
             MiscInfo.BOUY_RANGE = config.get(MiscInfo.CATEGORY, MiscInfo.BOUY_KEY, MiscInfo.BOUY_DEFAULT_RANGE).getInt();

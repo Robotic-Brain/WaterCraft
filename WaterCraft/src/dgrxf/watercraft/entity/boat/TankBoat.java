@@ -2,7 +2,7 @@ package dgrxf.watercraft.entity.boat;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.TankTask;
@@ -33,6 +33,6 @@ public class TankBoat extends AbstractBaseBoat{
 	
 	@Override
 	public Block getDisplayTile() {
-		return BlockRegistry.TANK.getBlock();
+		return ModBlocks.TANK.getBlock();
 	}
 }

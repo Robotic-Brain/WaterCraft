@@ -7,7 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.server.container.slot.ToolBoxSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.damage.WCDamageSources;
@@ -134,7 +134,7 @@ public class ToolboxContainer extends Container {
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
             
-            if (stack.getItem().itemID == BlockRegistry.TOOLBOX.getId()) {
+            if (stack.getItem().itemID == ModBlocks.TOOLBOX.getId()) {
                 player.attackEntityFrom(WCDamageSources.inception, 1000);
                 //PacketHandler.sendSoundPackage(Sounds.INCEPTION.ordinal(), (Player) player, (int)player.posX, (int)player.posY, (int)player.posZ);
             }

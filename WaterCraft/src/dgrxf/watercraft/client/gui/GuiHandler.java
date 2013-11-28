@@ -6,7 +6,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.interfaces.GuiBoatAssembler;
 import dgrxf.watercraft.client.gui.interfaces.GuiCalculator;
 import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
@@ -48,7 +48,7 @@ public class GuiHandler implements IGuiHandler {
         
         switch (id) {
             case TOOLBOX_GUI_ID:
-                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockRegistry.TOOLBOX.getId()) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == ModBlocks.TOOLBOX.getId()) {
                     return new ToolboxContainer(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);
                 }
@@ -92,7 +92,7 @@ public class GuiHandler implements IGuiHandler {
         switch (id) {
             case TOOLBOX_GUI_ID:
                 
-                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == BlockRegistry.TOOLBOX.getId()) {
+                if (te instanceof WCTileEntityToolBox || player.getCurrentEquippedItem().itemID == ModBlocks.TOOLBOX.getId()) {
                     Sounds.TOOLBOX_OPENING.play(player.posX, player.posY, player.posZ, 1.0f, 1.0f);
                     return new GuiToolBox(player.inventory, te instanceof WCTileEntityToolBox ? (WCTileEntityToolBox) te
                             : null);

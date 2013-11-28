@@ -34,7 +34,7 @@ import dgrxf.watercraft.util.LogHelper;
  * </pre>
  * 
  */
-public enum BlockRegistry {
+public enum ModBlocks {
     
     BUOY                (MiscInfo.BASE_BLOCK_ID + 1, "buoyBlockName", BuoyBlock.class, ItemBlockBuoy.class, WCTileEntityBuoy.class),
     //CONTROL_UNIT_DOCK   (MiscInfo.BASE_BLOCK_ID + 2, "controlUnitDock", CraneBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityCrane.class),
@@ -98,7 +98,7 @@ public enum BlockRegistry {
      * @param bClazz
      *            Block Class
      */
-    private BlockRegistry(int id, String name, Class<? extends Block> bClazz) {
+    private ModBlocks(int id, String name, Class<? extends Block> bClazz) {
         this(id, name, bClazz, null, null, null);
     }
     
@@ -114,7 +114,7 @@ public enum BlockRegistry {
      * @param iClazz
      *            ItemBlock class
      */
-    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz) {
+    private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz) {
         this(id, name, bClazz, iClazz, null, null);
     }
     
@@ -132,7 +132,7 @@ public enum BlockRegistry {
      * @param tClazz
      *            TileEntity Class
      */
-    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, String teKey, Class<? extends TileEntity> tClazz) {
+    private ModBlocks(int id, String name, Class<? extends Block> bClazz, String teKey, Class<? extends TileEntity> tClazz) {
         this(id, name, bClazz, null, teKey, tClazz);
     }
     
@@ -150,7 +150,7 @@ public enum BlockRegistry {
      * @param tClazz
      *            TileEntity Class
      */
-    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, Class<? extends TileEntity> tClazz) {
+    private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, Class<? extends TileEntity> tClazz) {
         this(id, name, bClazz, iClazz, null, tClazz);
     }
     
@@ -170,7 +170,7 @@ public enum BlockRegistry {
      * @param tClazz
      *            TileEntity Class
      */
-    private BlockRegistry(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, String teKey, Class<? extends TileEntity> tClazz) {
+    private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, String teKey, Class<? extends TileEntity> tClazz) {
         this.instance = null;
         
         this.id = INVALID_BLOCK_ID;
@@ -265,13 +265,13 @@ public enum BlockRegistry {
      ***********************************************************************************/
     
     public static void loadIdsFromConfig(Configuration config) {
-        for (BlockRegistry block : BlockRegistry.values()) {
+        for (ModBlocks block : ModBlocks.values()) {
             block.id = config.getBlock(block.unlocalizedName, block.defaultId).getInt();
         }
     }
     
     public static void registerBlocks() {
-        for (BlockRegistry block : BlockRegistry.values()) {
+        for (ModBlocks block : ModBlocks.values()) {
             if (block.instance != null) {
                 throw new RuntimeException("Register Blocks Should only be called once! (Thrown by: " + block + ")");
             } else if (block.id == INVALID_BLOCK_ID) {

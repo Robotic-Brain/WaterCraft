@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
@@ -63,11 +63,11 @@ public class WCBoatRenderer extends Render {
             GL11.glPushMatrix();
             float f8 = 1F;
             GL11.glScalef(f8, f8, f8);
-        	if(block != BlockRegistry.WC_CHEST.getBlock()){
+        	if(block != ModBlocks.WC_CHEST.getBlock()){
                 this.bindTexture(TextureMap.locationBlocksTexture);
                 GL11.glTranslatef(0.0F, 6 / 16.0F, 0.0F);
 	            this.renderBlockInBoat(entity, par9, block, 0, (float)par2, (float)par4, (float)par6);
-        	}else if(entity.getDisplayTile() == BlockRegistry.WC_CHEST.getBlock()){
+        	}else if(entity.getDisplayTile() == ModBlocks.WC_CHEST.getBlock()){
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 GL11.glRotatef(180, 1.0F, 0.0F, 0.0F);
                 GL11.glTranslatef(-0.5F, -0.85F, -0.5F);
@@ -106,7 +106,7 @@ public class WCBoatRenderer extends Render {
         float f1 = entity.getBrightness(par2);
         GL11.glPushMatrix();
         RenderManager.instance.itemRenderer.renderItem(null, new ItemStack(par3Block), 10);
-        if(par3Block == BlockRegistry.TANK.getBlock()){
+        if(par3Block == ModBlocks.TANK.getBlock()){
         	renderLiquidInTank(entity, par3Block);
         }
         GL11.glPopMatrix();

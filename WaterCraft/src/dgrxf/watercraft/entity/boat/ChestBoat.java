@@ -4,7 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.DumbTask;
@@ -40,7 +40,7 @@ public class ChestBoat extends AbstractBaseBoat{
 
 	@Override
 	public Block getDisplayTile() {
-		return BlockRegistry.WC_CHEST.getBlock();
+		return ModBlocks.WC_CHEST.getBlock();
 	}
 	
 }

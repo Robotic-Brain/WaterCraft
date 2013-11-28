@@ -13,7 +13,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.block.BlockRegistry;
+import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.RotationHelper;
@@ -73,7 +73,7 @@ public class ItemBlockToolBox extends ItemBlock {
             FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, x, y, z);
             return false;
         }
-        world.setBlock(x, y, z, BlockRegistry.TOOLBOX.getId());
+        world.setBlock(x, y, z, ModBlocks.TOOLBOX.getId());
         WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
         if (stack.getTagCompound() != null) {
             NBTTagList items = stack.getTagCompound().getTagList("Items");
