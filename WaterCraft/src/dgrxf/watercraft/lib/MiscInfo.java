@@ -16,11 +16,12 @@ public class MiscInfo {
     
     public static final String SHIFT_CLICKING_INFO   = "Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view more information";
     
+    /* Localization Prefixes */
+    public static final String RESOURCE_PREFIX = ModInfo.MODID.toLowerCase() + ":";
+    
     /*************
      * Integers
      *************/
-    
-    public static final int     BASE_BLOCK_ID        = 700;
     
     public static final int     BOUY_DEFAULT_RANGE   = 10;
     public static int           BOUY_RANGE;

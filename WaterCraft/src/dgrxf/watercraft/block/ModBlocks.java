@@ -20,7 +20,6 @@ import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
-import dgrxf.watercraft.util.LogHelper;
 
 /**
  * Add Blocks to this enum
@@ -30,25 +29,22 @@ import dgrxf.watercraft.util.LogHelper;
  *      Default ID,
  *      UnlocalizedName,
  *      Block.class,
- *      [[ItemBlock.class], [teKey, TileEntity.class]]
+ *      [ItemBlock.class,
+ *      TileEntity.class]
  * </pre>
  * 
  */
 public enum ModBlocks {
     
-    BUOY                (MiscInfo.BASE_BLOCK_ID + 1, "buoyBlockName", BuoyBlock.class, ItemBlockBuoy.class, WCTileEntityBuoy.class),
-    //CONTROL_UNIT_DOCK   (MiscInfo.BASE_BLOCK_ID + 2, "controlUnitDock", CraneBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityCrane.class),
-    FREEZER             (MiscInfo.BASE_BLOCK_ID + 3, "freezerBlockName", WaterFreezerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityFreezer.class),
-    //DROPZONE            (MiscInfo.BASE_BLOCK_ID + 5, "dropZoneBlockName", DropZoneBlock.class),
-    TOOLBOX             (MiscInfo.BASE_BLOCK_ID + 6, "toolBoxBlockName", ToolBoxBlock.class, ItemBlockToolBox.class, WCTileEntityToolBox.class),
-    //BUOY_FILTER         (MiscInfo.BASE_BLOCK_ID + 7, "buoyFilterBlockName", BuoyBlock.class),
-    WC_CHEST            (MiscInfo.BASE_BLOCK_ID + 8, "wcChestName", WCChest.class, ItemBlockChest.class, WCTileEntityChest.class),
-    LOCK_ASSEMBLER      (MiscInfo.BASE_BLOCK_ID + 9, "lockAssemblerName", LockAssemblerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityLockAssembler.class),
-    TANK                (MiscInfo.BASE_BLOCK_ID + 10, "wcLiquidTank", LiquidTankBlock.class, ItemBlockLiquidTank.class, WCTileEntityLiquidStorageTank.class),
-    BOAT_ASSEMBLER      (MiscInfo.BASE_BLOCK_ID + 11, "boatAssemblerName", BoatModuleAssemblerBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityBoatAssembler.class),
-    //PLATFORM            (MiscInfo.BASE_BLOCK_ID + 12, "wcPlatFrom", DockPlatformBlock.class),
-    PHANTOM_MULTIBLOCK  (MiscInfo.BASE_BLOCK_ID + 13, "phantomMultiblock", MultiblockPhantom.class, (Class<? extends ItemBlock>)null, TEMultiblockPhantom.class),
-    CRANE				(MiscInfo.BASE_BLOCK_ID + 14, "craneBlockName", CraneBlock.class, (Class<? extends ItemBlock>)null, WCTileEntityCrane.class);
+    BUOY                (701, "buoyBlockName", BuoyBlock.class, ItemBlockBuoy.class, WCTileEntityBuoy.class),
+    FREEZER             (703, "freezerBlockName", WaterFreezerBlock.class, null, WCTileEntityFreezer.class),
+    TOOLBOX             (706, "toolBoxBlockName", ToolBoxBlock.class, ItemBlockToolBox.class, WCTileEntityToolBox.class),
+    WC_CHEST            (708, "wcChestName", WCChest.class, ItemBlockChest.class, WCTileEntityChest.class),
+    LOCK_ASSEMBLER      (709, "lockAssemblerName", LockAssemblerBlock.class, null, WCTileEntityLockAssembler.class),
+    TANK                (710, "wcLiquidTank", LiquidTankBlock.class, ItemBlockLiquidTank.class, WCTileEntityLiquidStorageTank.class),
+    BOAT_ASSEMBLER      (711, "boatAssemblerName", BoatModuleAssemblerBlock.class, null, WCTileEntityBoatAssembler.class),
+    PHANTOM_MULTIBLOCK  (713, "phantomMultiblock", MultiblockPhantom.class, null, TEMultiblockPhantom.class),
+    CRANE               (714, "craneBlockName", CraneBlock.class, null, WCTileEntityCrane.class);
     
     /************************************************************************************
      * 
@@ -81,6 +77,7 @@ public enum ModBlocks {
      ***********************************************************************************/
     
     private static final int            INVALID_BLOCK_ID = -1;
+    private static final String         TE_PREFIX        = "WCTeKey";
     
     /************************************************************************************
      * 
@@ -99,41 +96,7 @@ public enum ModBlocks {
      *            Block Class
      */
     private ModBlocks(int id, String name, Class<? extends Block> bClazz) {
-        this(id, name, bClazz, null, null, null);
-    }
-    
-    /**
-     * Adds block without TE but with ItemBlock
-     * 
-     * @param id
-     *            Default Block Id
-     * @param name
-     *            Unlocalized Name
-     * @param bClazz
-     *            Block Class
-     * @param iClazz
-     *            ItemBlock class
-     */
-    private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz) {
-        this(id, name, bClazz, iClazz, null, null);
-    }
-    
-    /**
-     * Adds Block with TE and without ItemBlock
-     * 
-     * @param id
-     *            Default Block Id
-     * @param name
-     *            Unlocalized Name
-     * @param bClazz
-     *            Block Class
-     * @param teKey
-     *            TileEntity Key
-     * @param tClazz
-     *            TileEntity Class
-     */
-    private ModBlocks(int id, String name, Class<? extends Block> bClazz, String teKey, Class<? extends TileEntity> tClazz) {
-        this(id, name, bClazz, null, teKey, tClazz);
+        this(id, name, bClazz, null, null);
     }
     
     /**
@@ -151,34 +114,13 @@ public enum ModBlocks {
      *            TileEntity Class
      */
     private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, Class<? extends TileEntity> tClazz) {
-        this(id, name, bClazz, iClazz, null, tClazz);
-    }
-    
-    /**
-     * Registers Block with TE and ItemBlock
-     * 
-     * @param id
-     *            Default Block Id
-     * @param name
-     *            Unlocalized Name
-     * @param bClazz
-     *            Block Class
-     * @param iClazz
-     *            ItemBlock class
-     * @param teKey
-     *            TileEntity Key
-     * @param tClazz
-     *            TileEntity Class
-     */
-    private ModBlocks(int id, String name, Class<? extends Block> bClazz, Class<? extends ItemBlock> iClazz, String teKey, Class<? extends TileEntity> tClazz) {
         this.instance = null;
         
         this.id = INVALID_BLOCK_ID;
         this.defaultId = id;
-        this.unlocalizedName = name;
+        this.unlocalizedName = MiscInfo.RESOURCE_PREFIX + name;
         this.blockClass = bClazz;
         this.itemClass = iClazz;
-        this.tileEntityKey = teKey;
         this.teClass = tClazz;
         
         // Automatically use ItemBlock.class if none given
@@ -186,12 +128,8 @@ public enum ModBlocks {
             this.itemClass = ItemBlock.class;
         }
         
-        // Auto-assign TE key if TE-class given without key
         if (this.teClass != null) {
-            if (this.tileEntityKey == null) {
-                this.tileEntityKey = this.unlocalizedName + "TeKey";
-                LogHelper.warning("TileEntity key auto-assigned! (" + this.teClass.getSimpleName() + " => " + this.tileEntityKey + ")");
-            }
+            this.tileEntityKey = TE_PREFIX + name;
         } else {
             // just to make sure we are consistent
             this.tileEntityKey = null;
