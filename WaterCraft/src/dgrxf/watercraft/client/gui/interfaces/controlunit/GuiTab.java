@@ -25,7 +25,7 @@ public abstract class GuiTab extends GuiRectangle {
         return id;
     }
     
-    public void drawTabTitle(ControlUnitGUI gui, int x, int y) {
+    public void drawTabTitle(CraneGUI gui, int x, int y) {
         if (gui.activeTab == this) {
             gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0xFFFFFF);
         } else {
@@ -33,20 +33,20 @@ public abstract class GuiTab extends GuiRectangle {
         }
     }
     
-    public abstract void drawBackground(ControlUnitGUI gui, int x, int y);
+    public abstract void drawBackground(CraneGUI gui, int x, int y);
     
-    public abstract void drawForeground(ControlUnitGUI gui, int x, int y);
+    public abstract void drawForeground(CraneGUI gui, int x, int y);
     
     public void actionPerformed(GuiButton button) {
     }
     
-    public void mouseClick(ControlUnitGUI gui, int x, int y, int button) {
+    public void mouseClick(CraneGUI gui, int x, int y, int button) {
     }
     
-    public void mouseMoveClick(ControlUnitGUI gui, int x, int y, int button, long timeSinceClicked) {
+    public void mouseMoveClick(CraneGUI gui, int x, int y, int button, long timeSinceClicked) {
     }
     
-    public void mouseReleased(ControlUnitGUI gui, int x, int y, int button) {
+    public void mouseReleased(CraneGUI gui, int x, int y, int button) {
     }
     
 }

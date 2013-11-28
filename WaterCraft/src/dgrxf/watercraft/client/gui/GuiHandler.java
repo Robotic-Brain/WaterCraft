@@ -12,12 +12,12 @@ import dgrxf.watercraft.client.gui.interfaces.GuiCalculator;
 import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
 import dgrxf.watercraft.client.gui.interfaces.GuiLockAssembler;
 import dgrxf.watercraft.client.gui.interfaces.GuiToolBox;
-import dgrxf.watercraft.client.gui.interfaces.controlunit.ControlUnitGUI;
+import dgrxf.watercraft.client.gui.interfaces.controlunit.CraneGUI;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
 import dgrxf.watercraft.server.container.CalculatorContainer;
-import dgrxf.watercraft.server.container.ControlUnitContainer;
+import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.server.container.FreezerContainer;
 import dgrxf.watercraft.server.container.LockAssemblerContainer;
 import dgrxf.watercraft.server.container.ToolboxContainer;
@@ -55,7 +55,7 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    return new ControlUnitContainer(player.inventory, (WCTileEntityControlUnitDock) te);
+                    return new CraneContainer(player.inventory, (WCTileEntityControlUnitDock) te);
                 }
                 break;
             case CALCULATOR_GUI_ID:
@@ -99,7 +99,7 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    return new ControlUnitGUI(player.inventory, (WCTileEntityControlUnitDock) te);
+                    return new CraneGUI(player.inventory, (WCTileEntityControlUnitDock) te);
                 }
                 break;
             case CALCULATOR_GUI_ID:

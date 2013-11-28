@@ -13,6 +13,7 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 public class WCTileEntityCrane extends DirectionalTileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	ItemStack[] items = new ItemStack[4];
+	public int activeTabIndex;
 	
 	@Override
 	public void updateEntity() {

@@ -92,7 +92,7 @@ public class GuiTabRoute extends GuiTab {
     }
     
     @Override
-    public void drawBackground(ControlUnitGUI gui, int x, int y) {
+    public void drawBackground(CraneGUI gui, int x, int y) {
         scrollList.drawBackground(gui, x, y);
         
         if (itemSelected) {
@@ -124,7 +124,7 @@ public class GuiTabRoute extends GuiTab {
     }
     
     @Override
-    public void drawForeground(ControlUnitGUI gui, int x, int y) {
+    public void drawForeground(CraneGUI gui, int x, int y) {
         
         if (drawMenu) {
             for (GuiExtra extra : menu) {
@@ -138,7 +138,7 @@ public class GuiTabRoute extends GuiTab {
     }
     
     @Override
-    public void mouseClick(ControlUnitGUI gui, int x, int y, int button) {
+    public void mouseClick(CraneGUI gui, int x, int y, int button) {
         if (drawMenu) {
             if (dropDownButton.inRect(gui, x, y) || dropDownFirst.inRect(gui, x, y)) {
                 drawMenu = false;
@@ -155,7 +155,7 @@ public class GuiTabRoute extends GuiTab {
     }
     
     @Override
-    public void mouseMoveClick(ControlUnitGUI gui, int x, int y, int button, long timeSinceClicked) {
+    public void mouseMoveClick(CraneGUI gui, int x, int y, int button, long timeSinceClicked) {
         scrollList.mouseMoveClick(gui, x, y, button, timeSinceClicked);
         if (drawMenu) {
             for (GuiExtra extra : menu) {
@@ -165,7 +165,7 @@ public class GuiTabRoute extends GuiTab {
     }
     
     @Override
-    public void mouseReleased(ControlUnitGUI gui, int x, int y, int button) {
+    public void mouseReleased(CraneGUI gui, int x, int y, int button) {
         scrollList.mouseReleased(gui, x, y, button);
         if (drawMenu) {
             for (GuiExtra extra : menu) {

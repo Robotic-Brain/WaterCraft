@@ -14,21 +14,21 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.network.PacketHandler;
-import dgrxf.watercraft.server.container.ControlUnitContainer;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
+import dgrxf.watercraft.server.container.CraneContainer;
+import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.util.LogHelper;
 
 @SideOnly(Side.CLIENT)
-public class ControlUnitGUI extends GuiBase {
+public class CraneGUI extends GuiBase {
     
-    private WCTileEntityControlUnitDock unit;
+    private WCTileEntityCrane unit;
     private final GuiTab[]              tabs;
     public GuiTab                       activeTab;
     private GuiButton                   addButton;
     protected GuiButton                 removeButton;
     
-    public ControlUnitGUI(InventoryPlayer inventory, WCTileEntityControlUnitDock te) {
-        super(new ControlUnitContainer(inventory, te));
+    public CraneGUI(InventoryPlayer inventory, WCTileEntityCrane te) {
+        super(new CraneContainer(inventory, te));
         unit = te;
         
         xSize = 196;
