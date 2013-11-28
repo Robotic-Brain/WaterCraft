@@ -32,7 +32,7 @@ public class ItemFlag extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister icon) {
-    	flags = new Icon[15];
+    	flags = new Icon[16];
         for (int i = 0; i < flags.length; i++) {
             flags[i] = icon.registerIcon(ModInfo.MODID + ":" + "flags/flag_" + (i + 1));
         }
@@ -46,7 +46,7 @@ public class ItemFlag extends Item {
     
     @Override
     public void getSubItems(int val, CreativeTabs tab, List subItems) {
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 16; i++) {
         	ItemStack stack = new ItemStack(this, 1, i);
         	stack.setItemName(TranslationHelper.translate(stack.getUnlocalizedName(), 0));
             subItems.add(stack);

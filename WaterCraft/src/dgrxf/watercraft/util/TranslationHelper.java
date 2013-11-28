@@ -34,7 +34,7 @@ public class TranslationHelper {
     public static final String TAB_BOAT                = "creativeTab.boat";
     public static final String TAB_BOUY                = "creativeTab.bouy";
     
-    public static final String[] FLAGS = {"white", "orange", "magenta", "light_blue", "yellow", "pink", "grey", "light_grey", "cyan", "purple", "blue", "brown", "green", "red", "black"};
+    public static final String[] FLAGS = {"white", "orange", "magenta", "light_blue", "yellow", "lime_green", "pink", "grey", "light_grey", "cyan", "purple", "blue", "brown", "green", "red", "black"};
     
     /**
      * Simple Wrapper
