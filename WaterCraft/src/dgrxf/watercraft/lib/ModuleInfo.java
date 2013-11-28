@@ -18,6 +18,7 @@ import dgrxf.watercraft.module.ModuleRegistry;
 
 public class ModuleInfo {
 	public static void init(){
+	 // TODO Translation
 		ModuleRegistry.registerModule(new ItemStack(ModItems.boatModule, 0, 0), new CustomModule(new ModuleType[]{ModuleType.BOAT}, new ModuleType[]{ModuleType.BOAT}, null, "Adds basic Bouy AI to the boat", DumbTask.class), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModItems.boatModule, 0, 1), new CustomModule(new ModuleType[]{ModuleType.BOAT, ModuleType.ACTIVATABLE}, new ModuleType[]{ModuleType.BOAT, ModuleType.BLOCK}, null, "Adds vanilla AI to the boat", VanillaTask.class), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModItems.boatModule, 0, 2), new CustomModule(new ModuleType[]{ModuleType.AI}, new ModuleType[0], null, "Allows boat to break though Ice", IceTask.class), Watercraft.instance);

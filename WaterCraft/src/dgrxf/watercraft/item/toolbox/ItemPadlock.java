@@ -60,6 +60,7 @@ public class ItemPadlock extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
-    	info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
+     // TODO Translation
+        info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
     }
 }

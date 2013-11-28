@@ -70,6 +70,7 @@ public class ItemTapeMeasure extends Item {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean val) {
     	if (GuiScreen.isShiftKeyDown()){
+    	 // TODO Translation
     		list.add("To use this item do this:");
     		list.add(" 1: Right Click on the first block");
     		list.add(" 2: Right Click on the secound block");
@@ -78,6 +79,7 @@ public class ItemTapeMeasure extends Item {
     		list.add("    You can also right click in the air");
     		list.add("    to reset the measurment");
     	}else
+    	 // TODO Translation
     		list.add("Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view more information");
     }
     

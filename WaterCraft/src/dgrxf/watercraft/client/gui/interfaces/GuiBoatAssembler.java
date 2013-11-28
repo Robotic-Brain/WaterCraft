@@ -38,7 +38,7 @@ public class GuiBoatAssembler extends GuiBase {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		assemble = new GuiButton(0, guiLeft+110, guiTop+6, 60, 20, "Assemble");
+		assemble = new GuiButton(0, guiLeft+110, guiTop+6, 60, 20, "Assemble");   // TODO Translation
 		buttonList.add(assemble);
 		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv, new GuiRectangle(43, 96, 17, 17));
 		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv, new GuiRectangle(135, 96, 17, 17));
@@ -65,6 +65,7 @@ public class GuiBoatAssembler extends GuiBase {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
+		// TODO Translation
 		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
 		fontRenderer.drawString("Inventory", 8, 122, GuiColor.GRAY.toRGB());
 		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
@@ -86,10 +87,10 @@ public class GuiBoatAssembler extends GuiBase {
 		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
 			return stack.getDisplayName();
 		else if(stack == null){
-			return "Empty";
+			return "Empty";  // TODO Translation
 		}
 		else{
-			return "Not a Module";
+			return "Not a Module";   // TODO Translation
 		}
 	}
 	

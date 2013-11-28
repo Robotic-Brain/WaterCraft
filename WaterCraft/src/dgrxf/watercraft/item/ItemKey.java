@@ -70,9 +70,12 @@ public class ItemKey extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, EntityPlayer player, List info, boolean useExtraInformation) {
-    	if (GuiScreen.isShiftKeyDown())
-    		info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
-    	else
-    		info.add("Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view the key code");
+        if (GuiScreen.isShiftKeyDown()) {
+            // TODO Translation
+            info.add("CODE: " + MD5Generator.generateHash(Integer.toString(itemstack.getItemDamage())));
+        } else {
+            // TODO Translation
+            info.add("Hold" + GuiColor.LIGHTBLUE + " SHIFT " + GuiColor.LIGHTGRAY + "to view the key code");
+        }
     }
 }
