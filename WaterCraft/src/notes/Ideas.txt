@@ -3,15 +3,15 @@
 ***************
 
     - Boats
-        - Chest Boat
-        - Tank Boat
+        - Chest Boat (DONE)
+        - Tank Boat (DONE)
         - (Future Integration) Energy Storage Boat (BatBox/MFE/MFSU ect.)
         - EntityLiving Boat
-        - Lava Boats?
+        - Lava Boats? (DONE)
             - Boats that are resistant to lava? So they can work in the nether.
-        - Ice Crushing Boat
+        - Ice Crushing Boat (DONE)
         - fishing boat 
-        - Dumb boats!
+        - Dumb boats! (IN PROGRESS)
             - these boats just follow the direction of the buoys
             - Colour coded flags
         - Smart Boats

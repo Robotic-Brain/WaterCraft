@@ -66,6 +66,7 @@ public class GuiBoatAssembler extends GuiBase {
 	protected void drawGuiContainerForegroundLayer(int x, int y) {
 		GL11.glColor4f(1, 1, 1, 1);
 		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
+		fontRenderer.drawString("Inventory", 8, 122, GuiColor.GRAY.toRGB());
 		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
 		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
