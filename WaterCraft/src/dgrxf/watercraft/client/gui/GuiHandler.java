@@ -55,7 +55,8 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    return new CraneContainer(player.inventory, (WCTileEntityControlUnitDock) te);
+                    //return new CraneContainer(player.inventory, (WCTileEntityControlUnitDock) te);
+                    return null;
                 }
                 break;
             case CALCULATOR_GUI_ID:
@@ -99,7 +100,8 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    return new CraneGUI(player.inventory, (WCTileEntityControlUnitDock) te);
+                    //return new CraneGUI(player.inventory, (WCTileEntityControlUnitDock) te);
+                    return null;
                 }
                 break;
             case CALCULATOR_GUI_ID:
