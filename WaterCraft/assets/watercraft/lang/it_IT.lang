@@ -1,16 +1,16 @@
 ﻿
 itemGroup.watercraft=WaterCraft
 
-tile.buoyBlockName.name=Boa
-tile.controlUnitDock.name=Unità di Controllo
-tile.freezerBlockName.name=Congelatore
-tile.toolBoxBlockName.name=Cassetta degli Attrezzi
+tile.watercraft:buoyBlockName.name=Boa
+tile.watercraft:controlUnitDock.name=Unità di Controllo
+tile.watercraft:freezerBlockName.name=Congelatore
+tile.watercraft:toolBoxBlockName.name=Cassetta degli Attrezzi
 
-item.lavaBoat.name=Barca per Lava NEEDS LOCALIZATION
-item.boatChest.name=Barca con Baule NEEDS LOCALIZATION
-item.TelescopeName.name=Telescopio
-item.TapeItemName.name=Metro
-item.wcboat.name=Barca
+item.watercraft:lavaBoat.name=Barca per Lava NEEDS LOCALIZATION
+item.watercraft:boatChest.name=Barca con Baule NEEDS LOCALIZATION
+item.watercraft:TelescopeName.name=Telescopio
+item.watercraft:TapeItemName.name=Metro
+item.watercraft:wcboat.name=Barca
 
 strings.watercraft:tape_measure_start=Inizio Misura: [%s, %s, %s] 
 strings.watercraft:tape_measure_end=Fine Misura: [%s, %s, %s] 

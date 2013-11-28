@@ -2,21 +2,19 @@
 
 itemGroup.watercraft=WaterCraft(水工艺)
 
-tile.buoyBlockName.name=浮标
-tile.controlUnitDock.name=控制系统
-tile.freezerBlockName.name=冻水机
-tile.smelterBlockName.name=熔冰机
-tile.toolBoxBlockName.name=工具箱
+tile.watercraft:buoyBlockName.name=浮标
+tile.watercraft:controlUnitDock.name=控制系统
+tile.watercraft:freezerBlockName.name=冻水机
+tile.watercraft:smelterBlockName.name=熔冰机
+tile.watercraft:toolBoxBlockName.name=工具箱
 
-item.dumbBoat.name=糊涂船
-item.lavaBoat.name=岩浆船
-item.boatChest.name=箱子船
-item.TelescopeName.name=望远镜
-item.TapeItemName.name=卷尺
-item.wcboat.name=船
+item.watercraft:dumbBoat.name=糊涂船
+item.watercraft:lavaBoat.name=岩浆船
+item.watercraft:boatChest.name=箱子船
+item.watercraft:TelescopeName.name=望远镜
+item.watercraft:TapeItemName.name=卷尺
+item.watercraft:wcboat.name=船
 
 strings.watercraft:tape_measure_start=开始测量: [%s, %s, %s]
 strings.watercraft:tape_measure_end=结束测量: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=距离: %s
-
-death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox. NEEDS LOCALIZATION
