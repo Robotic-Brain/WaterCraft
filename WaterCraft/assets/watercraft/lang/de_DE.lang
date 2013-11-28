@@ -1,21 +1,57 @@
 ﻿Deutsche Übersetung von Robotic-Brain
 
-itemGroup.watercraft=WaterCraft
+itemGroup.wcmisc=WaterCraft Zeug
+itemGroup.wcboats=WaterCraft Boote
+itemGroup.wcbouys=WaterCraft Bojen
 
 tile.buoyBlockName.name=Boje
 tile.controlUnitDock.name=Steuereinheit
 tile.freezerBlockName.name=Wasserkühler
-tile.smelterBlockName.name=Eisschmelze
-tile.toolBoxBlockName.name=Werkzeugbox
+tile.toolBoxBlockName.name=Werkzeugkasten
+tile.wcLiquidTank.name=Flüssigkeitstank
+tile.wcChestName.name=Truhe
+tile.lockAssemblerName.name=Schloss Montage WIP
+tile.boatAssemblerName.name=Boot Montageband WIP
 
-item.lavaBoat.name=Lava Boat NEEDS LOCALIZATION
-item.boatChest.name=Chest Boat NEEDS LOCALIZATION
+item.hull0.name=Modul: Folge Bojen
+item.hull1.name=Modul: Sitz
+item.hull2.name=Rumpf Upgrade: Eisbrecher
+item.hull3.name=Rumpf Upgrade: Lavaresistenz
 item.TelescopeName.name=Teleskop
 item.TapeItemName.name=Maßband
 item.wcboat.name=Boot
+item.rope.name=Seil
+item.padlock.name=Vorhängeschloss
+item.key.name=Schlüssel
+item.calculator.name=Rechner WIP
+item.wcboatmodular.name=Standard-Boot
+
+flag.white=Weiße Flagge
+flag.orange=Orange Flagge
+flag.magenta=Magenta Flagge
+flag.light_blue=Hellblaue Flagge
+flag.yellow=Gelbe Flagge
+flag.pink=Rosa Flagge
+flag.grey=Graue Flagge
+flag.light_grey=Hellgraue Flagge
+flag.cyan=Türkise Flagge
+flag.purple=Violette Flagge
+flag.blue=Blaue Flagge
+flag.brown=Braune Flagge
+flag.green=Grüne Flagge
+flag.red=Rote Flagge
+flag.black=Schwarze Flagge
 
 strings.watercraft:tape_measure_start=Starte Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Beende Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Abstand: %s
+strings.watercraft:tape_measure_restart=Abbruch der Messung
 
-death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox. NEEDS LOCALIZATION
+strings.watercraft:toolbox_contains=Dieser Werkzeugkasten beinhaltet: 
+strings.watercraft:toolbox_contains_nothing=Nichts
+strings.watercraft:toolbox_empty=Ein leerer Werkzeugkasten
+strings.watercraft:toolbox_owner=Dieser Werkzeugkasten gehört: %s
+strings.watercraft:toolbox_no_owner=Gehört niemandem
+
+death.attack.inception=%s verlor sich im Limbus während dem Verschachteln von Werkzeugkästen
+
