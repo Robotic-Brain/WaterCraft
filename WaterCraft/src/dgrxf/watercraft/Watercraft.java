@@ -3,12 +3,17 @@ package dgrxf.watercraft;
 import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms.IMCEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.FMLNetworkHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -36,10 +41,12 @@ import dgrxf.watercraft.recipe.RecipeHandler;
  * 
  */
 
-@Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME)
+@Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME, dependencies="after:ComputerCraft")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class)
 public class Watercraft {
     
+	public static boolean hasCC = false;
+	
     @Instance(ModInfo.MODID)
     public static Watercraft       instance;
     
@@ -69,6 +76,20 @@ public class Watercraft {
         Entities.init();
         RecipeHandler.init();
         ModuleInfo.init();
+    }
+    
+    @EventHandler
+    public void interModComs(IMCEvent event){
+    }
+    
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event){
+    	if(Loader.isModLoaded("ComputerCraft")){
+    		System.out.println("ComputerCraft Found!");
+    		hasCC = true;
+    	}else{
+    		System.out.println("ComputerCraft not found :(");
+    	}
     }
     
     @SideOnly(Side.CLIENT)

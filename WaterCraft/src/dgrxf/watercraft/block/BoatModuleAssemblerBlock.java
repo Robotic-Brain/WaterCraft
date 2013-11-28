@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
+import dgrxf.watercraft.interactions.ComputerCraft.tileentity.WCCCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
 public class BoatModuleAssemblerBlock extends Block{
@@ -23,7 +24,10 @@ public class BoatModuleAssemblerBlock extends Block{
 	
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		return new WCTileEntityBoatAssembler();
+		if(!Watercraft.hasCC)
+			return new WCTileEntityBoatAssembler();
+		else
+			return new WCCCTileEntityBoatAssembler();
 	}
 	
 	@Override
