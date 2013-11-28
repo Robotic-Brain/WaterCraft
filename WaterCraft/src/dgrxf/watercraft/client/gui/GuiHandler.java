@@ -1,8 +1,6 @@
 package dgrxf.watercraft.client.gui;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -22,6 +20,7 @@ import dgrxf.watercraft.server.container.FreezerContainer;
 import dgrxf.watercraft.server.container.LockAssemblerContainer;
 import dgrxf.watercraft.server.container.ToolboxContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
+import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
@@ -55,8 +54,7 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    //return new CraneContainer(player.inventory, (WCTileEntityControlUnitDock) te);
-                    return null;
+                    return new CraneContainer(player.inventory, (WCTileEntityCrane) te);
                 }
                 break;
             case CALCULATOR_GUI_ID:
@@ -100,8 +98,7 @@ public class GuiHandler implements IGuiHandler {
                 break;
             case CONTROLUNIT_GUI_ID:
                 if (te instanceof WCTileEntityControlUnitDock) {
-                    //return new CraneGUI(player.inventory, (WCTileEntityControlUnitDock) te);
-                    return null;
+                    return new CraneGUI(player.inventory, (WCTileEntityCrane) te);
                 }
                 break;
             case CALCULATOR_GUI_ID:
