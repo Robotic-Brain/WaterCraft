@@ -21,11 +21,12 @@ public class CreativeTabMisc extends CreativeTabs {
     
     /**
      * the itemID for the item to be displayed on the tab
+     * TODO: see CreativeTabBoats
      */
     @Override
     @SideOnly(Side.CLIENT)
     public int getTabIconItemIndex() {
-        return ModItems.TELESCOPE.getId();
+        return ModItems.TELESCOPE.getShifted();
     }
     
 }
