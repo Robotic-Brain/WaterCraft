@@ -211,7 +211,7 @@ public enum ModBlocks {
     public static void registerBlocks() {
         for (ModBlocks block : ModBlocks.values()) {
             if (block.instance != null) {
-                throw new RuntimeException("Register Blocks Should only be called once! (Thrown by: " + block + ")");
+                throw new RuntimeException("registerBlocks() Should only be called once! (Thrown by: " + block + ")");
             } else if (block.id == INVALID_BLOCK_ID) {
                 throw new RuntimeException("Block has no valid Id set! (Thrown by: " + block + ")");
             }
