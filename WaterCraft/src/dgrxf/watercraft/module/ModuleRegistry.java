@@ -53,6 +53,11 @@ public class ModuleRegistry {
 		return registeredIDs.size();
 	}
 	
+	public static ModContainer getModulesMod(ItemStack item){
+		int temp = isItemRegisteredAndGetID(item);
+		return temp == -1 ? null : getModulesMod(temp);
+	}
+	
 	public static ModContainer getModulesMod(int id){
 		return modByID.get(id);
 	}
