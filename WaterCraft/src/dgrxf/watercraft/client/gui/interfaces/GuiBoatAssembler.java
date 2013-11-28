@@ -50,7 +50,7 @@ public class GuiBoatAssembler extends GuiBase {
 	}
 	
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
+	protected void drawGuiContainerBackgroundLayer(float tickTime, int mouseX, int mouseY) {
 		GL11.glColor4f(1, 1, 1, 1);
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
@@ -63,7 +63,7 @@ public class GuiBoatAssembler extends GuiBase {
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int x, int y) {
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		GL11.glColor4f(1, 1, 1, 1);
 		// TODO Translation
 		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
@@ -71,12 +71,12 @@ public class GuiBoatAssembler extends GuiBase {
 		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
 		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
-		rotation++;
+		//rotation++;
 		int i = 0;
 		for(GuiGraphicsRectangle rect : drawRects){
-			if(inventory.getStackInSlot(i) != null && rect.inRect(this, x, y)){
+			if(inventory.getStackInSlot(i) != null && rect.inRect(this, mouseX, mouseY)){
 				if(ModuleRegistry.isItemRegistered(inventory.getStackInSlot(i)) || inventory.getStackInSlot(i).getItem() instanceof IModularBoat)
-					rect.drawHoverString(this, x, y, ModuleHelper.getModuleInfo(inventory.getStackInSlot(i)));
+					rect.drawHoverString(this, mouseX, mouseY, ModuleHelper.getModuleInfo(inventory.getStackInSlot(i)));
 			}
 			i++;
 		}
