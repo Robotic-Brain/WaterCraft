@@ -19,14 +19,12 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IModularBoat;
-import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.module.ModuleHelper;
 
 public class ItemModularBoat extends Item implements IModularBoat{
 
-	public ItemModularBoat() {
-        super(ItemInfo.MODULAR_BOAT_ID);
-        setUnlocalizedName(ItemInfo.BOAT_MODULAR_UNLOCALIZED_NAME);
+	public ItemModularBoat(int id) {
+        super(id);
         setCreativeTab(Watercraft.boatTab);
     }
     

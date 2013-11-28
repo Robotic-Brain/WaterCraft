@@ -9,7 +9,7 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ILockableBlock;
-import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.item.ItemRegistry;
 import dgrxf.watercraft.lib.EntityInfo;
 
 public class InventoryTask extends BoatAITaskBase implements IInventory, ILockableBlock{
@@ -39,7 +39,7 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
         	if(lockable){
 	        	ItemStack heldItem = player.inventory.getCurrentItem();
 	            if (!player.isSneaking()) {
-	            	if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == (byte)0 || (heldItem != null && heldItem.itemID == ModItems.key.itemID && heldItem.getItemDamage() == this.getCode()))
+	            	if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == (byte)0 || (heldItem != null && heldItem.itemID == ItemRegistry.KEY.getId() && heldItem.getItemDamage() == this.getCode()))
 	            		if(guiID < 0){
 	            			openVanillaGUI(player);
 	            		}
@@ -47,14 +47,14 @@ public class InventoryTask extends BoatAITaskBase implements IInventory, ILockab
 	            			FMLNetworkHandler.openGui(player, modID, guiID, boat.worldObj, boat.entityId, 0, 0);
 	            } else {
 	                if(boat.getDataWatcher().getWatchableObjectByte(EntityInfo.DATAWATCHER_CHEST_LOCK) == 1){
-	                	if(heldItem != null && heldItem.itemID == ModItems.key.itemID){
+	                	if(heldItem != null && heldItem.itemID == ItemRegistry.KEY.getId()){
 	                		if(heldItem.getItemDamage() == this.getCode()){
 	                			boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
 	                		}
 	                	}
 	                }
 	                else{
-	                	if(heldItem != null && heldItem.itemID == ModItems.padlock.itemID){
+	                	if(heldItem != null && heldItem.itemID == ItemRegistry.PADLOCK.getId()){
 	            			boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)1));
 	            			this.setCode(heldItem.getItemDamage());
 	                	}

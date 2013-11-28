@@ -16,16 +16,14 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.interfaces.ILockableBlock;
-import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.util.MD5Generator;
 
 public class ItemKey extends Item {
     
     Random random = new Random();
     
-    public ItemKey() {
-        super(ItemInfo.KEY_ID);
-        setUnlocalizedName(ItemInfo.KEY_UNLOCALIZED_NAME);
+    public ItemKey(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
     }
     
@@ -43,7 +41,7 @@ public class ItemKey extends Item {
                         ((ILockableBlock) te).setCode(-1);
                         world.markBlockForUpdate(x, y, z);
                         
-                        EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ModItems.padlock, 1, code));
+                        EntityItem entityitem = new EntityItem(world, x, y + 1, z, new ItemStack(ItemRegistry.PADLOCK.getItem(), 1, code));
                         
                         float f3 = 0.05F;
                         entityitem.motionX = (float) this.random.nextGaussian() * f3;

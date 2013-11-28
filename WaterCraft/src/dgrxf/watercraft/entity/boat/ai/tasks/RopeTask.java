@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
-import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.item.ItemRegistry;
 import dgrxf.watercraft.util.Vector2;
 
 public class RopeTask extends BoatAITaskBase {
@@ -60,7 +60,7 @@ public class RopeTask extends BoatAITaskBase {
 		}
 		ItemStack stack = player.inventory.getCurrentItem();
 		
-		if (stack == null || stack.itemID != ModItems.rope.itemID) {
+		if (stack == null || stack.itemID != ItemRegistry.ROPE.getId()) {
 			System.out.println("Target entity ID is: " + Integer.toString(boat.getRopeTargetId()));
 			System.out.println("Target is null? " + Boolean.toString(target == null));
 			return;

@@ -13,7 +13,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.VanillaBoat;
-import dgrxf.watercraft.lib.ItemInfo;
 
 /**
  * This overwrites the vanilla boat
@@ -21,9 +20,8 @@ import dgrxf.watercraft.lib.ItemInfo;
  */
 public class ItemBoat extends Item {
     
-    public ItemBoat() {
-        super(ItemInfo.BOAT_ID);
-        setUnlocalizedName(ItemInfo.BOAT_UNLOCALIZED_NAME);
+    public ItemBoat(int id) {
+        super(id);
         setCreativeTab(Watercraft.boatTab);
     }
     

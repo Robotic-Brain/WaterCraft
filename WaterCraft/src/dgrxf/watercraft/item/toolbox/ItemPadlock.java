@@ -12,7 +12,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.interfaces.ILockableBlock;
-import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.util.MD5Generator;
 
 /**
@@ -24,9 +23,8 @@ import dgrxf.watercraft.util.MD5Generator;
 
 public class ItemPadlock extends Item {
     
-    public ItemPadlock() {
-        super(ItemInfo.PADLOCK_ID);
-        setUnlocalizedName(ItemInfo.PADLOCK_UNLOCALIZED_NAME);
+    public ItemPadlock(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
     }
     

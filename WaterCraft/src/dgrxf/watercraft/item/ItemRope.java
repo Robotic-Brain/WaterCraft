@@ -8,12 +8,10 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemRope extends Item {
-    public ItemRope() {
-        super(ItemInfo.ROPE_ID);
-        setUnlocalizedName(ItemInfo.ROPE_UNLOCALIZED_NAME);
+    public ItemRope(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
     }
     

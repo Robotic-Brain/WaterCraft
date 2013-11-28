@@ -24,18 +24,16 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.EntityTrader.EntityTrader;
-import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemTraderSpawner extends ItemMonsterPlacer {
 	
 	@SideOnly(Side.CLIENT)
     private Icon theIcon;
 	
-	public ItemTraderSpawner() {
-		super(ItemInfo.SPAWNTRADER_ID);
+	public ItemTraderSpawner(int id) {
+		super(id);
 		this.setHasSubtypes(false);
         this.setCreativeTab(Watercraft.miscTab);
-        setUnlocalizedName(ItemInfo.SPAWNTRADER_UNLOCALIZED_NAME);
 	}
 	
 	public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)

@@ -12,7 +12,7 @@ import dgrxf.watercraft.client.gui.interfaces.GuiLockAssembler;
 import dgrxf.watercraft.client.gui.interfaces.GuiToolBox;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.CraneGUI;
 import dgrxf.watercraft.client.sound.Sounds;
-import dgrxf.watercraft.item.ModItems;
+import dgrxf.watercraft.item.ItemRegistry;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
 import dgrxf.watercraft.server.container.CalculatorContainer;
 import dgrxf.watercraft.server.container.CraneContainer;
@@ -58,7 +58,7 @@ public class GuiHandler implements IGuiHandler {
                 }
                 break;
             case CALCULATOR_GUI_ID:
-                if (player.inventory.getCurrentItem().getItem().itemID == ModItems.calculator.itemID) {
+                if (player.inventory.getCurrentItem().getItem().itemID == ItemRegistry.CALCULATOR.getId()) {
                     return new CalculatorContainer();
                 } else {
                     System.out.println("Item is not valid");
@@ -102,7 +102,7 @@ public class GuiHandler implements IGuiHandler {
                 }
                 break;
             case CALCULATOR_GUI_ID:
-                if (player.inventory.getCurrentItem().getItem().itemID == ModItems.calculator.itemID) {
+                if (player.inventory.getCurrentItem().getItem().itemID == ItemRegistry.CALCULATOR.getId()) {
                     return new GuiCalculator();
                 } else {
                     System.out.println("Item is not valid");

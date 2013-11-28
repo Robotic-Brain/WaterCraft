@@ -10,14 +10,12 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
-import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
 public class ItemTelescope extends Item {
     
-    public ItemTelescope() {
-        super(ItemInfo.TELESCOPE_ID);
-        setUnlocalizedName(ItemInfo.TELESCOPE_UNLOCALIZED_NAME);
+    public ItemTelescope(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
     }
     

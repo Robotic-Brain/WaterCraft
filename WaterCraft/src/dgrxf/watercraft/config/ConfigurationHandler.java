@@ -13,7 +13,7 @@ import java.io.File;
 
 import net.minecraftforge.common.Configuration;
 import dgrxf.watercraft.block.ModBlocks;
-import dgrxf.watercraft.lib.ItemInfo;
+import dgrxf.watercraft.item.ItemRegistry;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
 
@@ -25,7 +25,8 @@ public class ConfigurationHandler {
             config.load();
             
             // Items
-            ItemInfo.DUMB_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt();
+            ItemRegistry.loadIdsFromConfig(config);
+            /*ItemInfo.DUMB_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt();
             ItemInfo.BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt();
             ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt();
             ItemInfo.TELESCOPE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt();
@@ -37,7 +38,7 @@ public class ConfigurationHandler {
             ItemInfo.KEY_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt();
             ItemInfo.MODULAR_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_MODULAR_KEY, ItemInfo.MODULAR_BOAT_ID_DEFAULT).getInt();
             ItemInfo.BOAT_HULL_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_HULL_KEY, ItemInfo.BOAT_HULL_ID_DEFAULT).getInt();
-            ItemInfo.SPAWNTRADER_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.SPAWNTRADER_KEY, ItemInfo.SPAWNTRADER_ID_DEFAULT).getInt();
+            ItemInfo.SPAWNTRADER_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.SPAWNTRADER_KEY, ItemInfo.SPAWNTRADER_ID_DEFAULT).getInt();*/
             
             // Blocks
             ModBlocks.loadIdsFromConfig(config);

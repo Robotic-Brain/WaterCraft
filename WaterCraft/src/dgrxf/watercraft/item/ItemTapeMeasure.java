@@ -2,7 +2,6 @@ package dgrxf.watercraft.item;
 
 import java.util.List;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,8 +14,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiColor;
-import dgrxf.watercraft.lib.ItemInfo;
-import dgrxf.watercraft.util.MD5Generator;
 import dgrxf.watercraft.util.TranslationHelper;
 import dgrxf.watercraft.util.Vector3;
 
@@ -27,9 +24,8 @@ public class ItemTapeMeasure extends Item {
     private static final String NBT_TAG_Z     = "z";
     private static final String NBT_TAG_FIRST = "first";
     
-    public ItemTapeMeasure() {
-        super(ItemInfo.TAPE_MEASURE_ID);
-        setUnlocalizedName(ItemInfo.TAPE_MEASURE_UNLOCALIZED_NAME);
+    public ItemTapeMeasure(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
     }
     

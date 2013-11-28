@@ -7,13 +7,11 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemCalculator extends Item{
-    public ItemCalculator() {
-        super(ItemInfo.CALCULATOR_ID);
+    public ItemCalculator(int id) {
+        super(id);
         setCreativeTab(Watercraft.miscTab);
-        setUnlocalizedName(ItemInfo.CALCULATOR_UNLOCALIZED_NAME);
     }
     
     @Override

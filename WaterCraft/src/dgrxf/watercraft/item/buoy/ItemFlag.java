@@ -10,13 +10,12 @@ import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.lib.ItemInfo;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.util.TranslationHelper;
 
 public class ItemFlag extends Item {
-    public ItemFlag() {
-        super(ItemInfo.FLAG_ID);
+    public ItemFlag(int id) {
+        super(id);
         setCreativeTab(Watercraft.boatTab);
         hasSubtypes = true;
         maxStackSize = 1;
@@ -24,7 +23,7 @@ public class ItemFlag extends Item {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-    	return ItemInfo.FLAG_UNLOCALIZED_NAME + "." + TranslationHelper.FLAGS[stack.getItemDamage()];
+    	return super.getUnlocalizedName() + "." + TranslationHelper.FLAGS[stack.getItemDamage()];
     }
     
     @SideOnly(Side.CLIENT)

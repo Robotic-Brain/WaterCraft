@@ -7,19 +7,18 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.lib.ItemInfo;
 
 public class ItemModule extends Item{
 
-	public ItemModule() {
-		super(ItemInfo.BOAT_HULL_ID);
+	public ItemModule(int id) {
+		super(id);
 		setCreativeTab(Watercraft.boatTab);
 		hasSubtypes = true;
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return ItemInfo.BOAT_HULL_UNLOCALIZED_NAME + stack.getItemDamage(); 
+		return super.getUnlocalizedName() + stack.getItemDamage(); 
 	}
 	
 	@Override
