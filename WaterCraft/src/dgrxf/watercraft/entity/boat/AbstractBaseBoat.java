@@ -807,4 +807,11 @@ public abstract class AbstractBaseBoat extends Entity {
     	return temp;
     }
     
+    public void setBoatYaw(double boatYaw) {
+		this.boatYaw = boatYaw;
+	}
+    
+    public double getBoatYaw() {
+		return boatYaw;
+	}    
 }

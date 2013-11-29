@@ -1,15 +1,15 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
-import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector2;
 
 public class DumbTask extends BoatAITaskBase {
     
-    private Vector2 target;
+    private Vector2 target, lastLocation;
     private AbstractBaseBoat boat;
+    private ForgeDirection direction;
     
     public DumbTask(AbstractBaseBoat boat, Float priority, Object... args) {
         super(boat, priority);
@@ -19,22 +19,23 @@ public class DumbTask extends BoatAITaskBase {
     @Override
     public void updateMotion() {
     	moveToTarget();
+    	
+    	if(target != null && boat.worldObj.isAirBlock((int)target.x, (int)boat.posY, (int)target.y)){
+    		setTargetLocation(lastLocation);
+    		lastLocation = null;
+    	}
     }
-    
-    @Override
-    public void onInteractFirst(EntityPlayer player) {
-    	boat.playerHasInteractedWith = true;
-    }
-    
+        
     @Override
     public void buoyFound(WCBouyLogic buoy) {
         if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
             setTargetLocation(buoy.getNextBuoyCoords(buoy.getBlockDirection()).xz());
-            LogHelper.debug("Traget set");
+            direction = buoy.getBlockDirection();
+            lastLocation = buoy.getBuoyCoords().xz();
         }
     }
     
-    private static final double BOAT_SPEED = 0.3;
+    private static final double BOAT_SPEED = 0.1;
     
     private void moveToTarget() {
         if (target == null || boat.worldObj.isRemote) {
@@ -54,5 +55,4 @@ public class DumbTask extends BoatAITaskBase {
     private void setTargetLocation(Vector2 target) {
         this.target = target;
     }
-    
 }

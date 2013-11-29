@@ -55,7 +55,7 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
                 if (te instanceof WCTileEntityBuoy) {
                     setNextBuoy((WCTileEntityBuoy) te, dir);
                     ((WCTileEntityBuoy) te).updateBuoys();
-                    LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
+                   // LogHelper.debug("Buoy get on " + dir + " me: [x: " + xCoord + ", y: " + yCoord + ", z: " + zCoord + "]" + " next: [x: " + te.xCoord + ", y: " + te.yCoord + ", z: " + te.zCoord + "]");
                 }
             }
         }
@@ -77,6 +77,10 @@ public abstract class WCBouyLogic extends DirectionalTileEntity {
         }
         
         findNewBuoys();
+    }
+    
+    public Vector3 getBuoyCoords() {
+    	return new Vector3(xCoord, yCoord, zCoord);
     }
     
     /**
