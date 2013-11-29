@@ -50,10 +50,6 @@ public class ToolBoxBlock extends DirectionalBlock {
         world.markBlockForUpdate(x, y, z);
     }
     
-    /**
-     * This can't access the metadata of the block, so It gets it from the tile
-     * entity
-     */
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         
