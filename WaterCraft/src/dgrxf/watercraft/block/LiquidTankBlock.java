@@ -21,7 +21,6 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.interactions.ComputerCraft.tileentity.WCCCTileEntityLiquidStorageTank;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
@@ -75,10 +74,7 @@ public class LiquidTankBlock extends Block{
 	
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		if(!Watercraft.hasCC)
-			return new WCTileEntityLiquidStorageTank();
-		else
-			return new WCCCTileEntityLiquidStorageTank();
+		return new WCTileEntityLiquidStorageTank();
 	}
 	
 	@Override

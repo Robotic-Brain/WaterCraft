@@ -2,13 +2,11 @@ package dgrxf.watercraft.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
-import dgrxf.watercraft.interactions.ComputerCraft.tileentity.WCCCTileEntityBoatAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
 public class BoatModuleAssemblerBlock extends Block{
@@ -24,10 +22,7 @@ public class BoatModuleAssemblerBlock extends Block{
 	
 	@Override
 	public TileEntity createTileEntity(World world, int metadata) {
-		if(!Watercraft.hasCC)
-			return new WCTileEntityBoatAssembler();
-		else
-			return new WCCCTileEntityBoatAssembler();
+		return new WCTileEntityBoatAssembler();
 	}
 	
 	@Override
