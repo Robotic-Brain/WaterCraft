@@ -13,7 +13,7 @@ public class Reflection {
  		}
 	}
 	
-	public static Method getMethodForClass(Class clazz, String methodName, Class... args){
+	public static Method getMethodFromClass(Class clazz, String methodName, Class... args){
 		try{
 			Method m = clazz.getDeclaredMethod(methodName, args);
 			m.setAccessible(true);
@@ -25,7 +25,7 @@ public class Reflection {
 		}
 	}
 	
-	public static Field getFieldForClass(Class clazz, String fieldName){
+	public static Field getFieldFromClass(Class clazz, String fieldName){
 		try{
 			Field f = clazz.getDeclaredField(fieldName);
 			f.setAccessible(true);

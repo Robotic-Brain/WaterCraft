@@ -4,11 +4,11 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interactions.ComputerCraft.ComputerCraftInteractions;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
-import net.minecraft.tileentity.TileEntity;
 
-public class PeripheralInvocationHandler implements InvocationHandler{
+public class PeripheralHandler implements InvocationHandler{
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -20,9 +20,13 @@ public class PeripheralInvocationHandler implements InvocationHandler{
 
 	public Object getPeripheral(TileEntity te) {
 		if(te instanceof WCTileEntityLiquidStorageTank){
-			return Proxy.newProxyInstance(ComputerCraftInteractions.IHostedPeripheralClass.getClassLoader(), new Class[]{ComputerCraftInteractions.IHostedPeripheralClass}, new TankPeripheralInvocationHandler());
+			return instanciateProxy(new TankPeripheralInvocationHandler((WCTileEntityLiquidStorageTank)te));
 		}
 		return null;
+	}
+	
+	private Object instanciateProxy(PeripheralInvocationHandlerBase handler) {
+		return Proxy.newProxyInstance(ComputerCraftInteractions.IHostedPeripheralClass.getClassLoader(), new Class[]{ComputerCraftInteractions.IHostedPeripheralClass}, handler);
 	}
 	
 }
