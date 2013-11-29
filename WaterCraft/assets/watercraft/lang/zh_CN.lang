@@ -15,9 +15,6 @@ item.watercraft:TelescopeName.name=望远镜
 item.watercraft:TapeItemName.name=卷尺
 item.watercraft:wcboat.name=船
 
-strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten. (NEEDS TRANSLATION)
-strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered. (NEEDS TRANSLATION)
-
 strings.watercraft:tape_measure_start=开始测量: [%s, %s, %s]
 strings.watercraft:tape_measure_end=结束测量: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=距离: %s

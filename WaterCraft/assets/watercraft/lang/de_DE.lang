@@ -31,7 +31,7 @@ item.watercraft:flag.orange=Orange Flagge
 item.watercraft:flag.magenta=Magenta Flagge
 item.watercraft:flag.light_blue=Hellblaue Flagge
 item.watercraft:flag.yellow=Gelbe Flagge
-item.watercraft:flag.lime_green=Lime Green Flag (NEEDS LOCALIZATION)
+item.watercraft:flag.lime_green=Hellgrüne Flagge
 item.watercraft:flag.pink=Rosa Flagge
 item.watercraft:flag.grey=Graue Flagge
 item.watercraft:flag.light_grey=Hellgraue Flagge
@@ -47,9 +47,6 @@ strings.watercraft:tape_measure_start=Starte Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_end=Beende Messung: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Abstand: %s
 strings.watercraft:tape_measure_restart=Abbruch der Messung
-
-strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten. (NEEDS TRANSLATION)
-strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered. (NEEDS TRANSLATION)
 
 strings.watercraft:toolbox_contains=Dieser Werkzeugkasten beinhaltet: 
 strings.watercraft:toolbox_contains_nothing=Nichts
