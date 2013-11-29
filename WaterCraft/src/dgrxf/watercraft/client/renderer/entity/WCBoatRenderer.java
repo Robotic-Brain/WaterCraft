@@ -97,7 +97,7 @@ public class WCBoatRenderer extends Render {
             Minecraft.getMinecraft().renderEngine.bindTexture(boatTextures);
         }
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        //model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         renderRope(entity, par2, par4, par6, par8, par9);
         GL11.glPopMatrix();
     }
