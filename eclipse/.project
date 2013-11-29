@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>WaterCraft2</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>antconfig</name>
+			<type>2</type>
+			<locationURI>REPO_LOC/antconfig</locationURI>
+		</link>
+		<link>
+			<name>notes</name>
+			<type>2</type>
+			<locationURI>REPO_LOC/notes</locationURI>
+		</link>
+		<link>
+			<name>resources</name>
+			<type>2</type>
+			<locationURI>REPO_LOC/WaterCraft/resources</locationURI>
+		</link>
+		<link>
+			<name>source</name>
+			<type>2</type>
+			<locationURI>REPO_LOC/WaterCraft/src</locationURI>
+		</link>
+	</linkedResources>
+	<variableList>
+		<variable>
+			<name>REPO_LOC</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D</value>
+		</variable>
+	</variableList>
+</projectDescription>
