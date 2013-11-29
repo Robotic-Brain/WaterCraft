@@ -108,38 +108,9 @@ public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
 				ItemStack stack = new ItemStack(flu.getFluid().getBlockID(), 1, 0);
 				if(stack.getIconIndex() != null)
 					icon = stack.getIconIndex();
-				int amount = (int)(te.tank.getFluidAmount() / 1000);
 				
-				switch(amount){
-				case 0:
-					block.setBlockBounds(0, 0, 0, 0, 0, 0);
-					break;
-				case 1:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.21875f, 0.874f);
-					break;
-				case 2:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.3125f, 0.874f);
-					break;
-				case 3:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.40625f, 0.874f);
-					break;
-				case 4:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.5f, 0.874f);
-					break;
-				case 5:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.59375f, 0.874f);
-					break;
-				case 6:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.6875f, 0.874f);
-					break;
-				case 7: 
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.78125f, 0.874f);
-					break;
-				case 8:
-					block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.874f, 0.874f);
-					break;
-				}
-				
+				float amount = (((float)te.tank.getFluidAmount() / (float)te.tank.getCapacity()) * 0.74F) + 0.126F;
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, amount, 0.874f);
 				renderer.setRenderBoundsFromBlock(block);
 				Tessellator.instance.setColorOpaque_F(1.0f, 1.0f, 1.0f);
 				renderer.renderFaceYPos(block, x, y, z, icon);
@@ -148,13 +119,13 @@ public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
 				renderer.renderFaceYNeg(block, x, y, z, icon);
 				renderer.renderFaceZNeg(block, x, y, z, icon);
 				renderer.renderFaceXNeg(block, x, y, z, icon);
-				block.setBlockBounds(0, 0, 0, 1, 1, 1);
 				
 			}
-			
+			block.setBlockBounds(0, 0, 0, 1, 1, 1);
 		}
 		
 		return true;
+		
 	}
 
 	@Override

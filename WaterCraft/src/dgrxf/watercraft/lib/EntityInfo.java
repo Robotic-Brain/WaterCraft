@@ -9,12 +9,12 @@ package dgrxf.watercraft.lib;
 
 public class EntityInfo {
     
-    // NOTE: Do these need to be here?
     
 	public static final int DATAWATCHER_LIQUID_NAME = 22;
 	public static final int DATAWATCHER_CHEST_LOCK = 20;
 	public static final int DATAWATCHER_TANK_AMOUNT = 21;
 	public static final int DATAWATCHER_TILE_ID = 23;
+	public static final int DATAWATCHR_TANK_MAX = 25;
 	
 	//used in rope code
 	public static final int DATAWATCHER_TARGET_BOAT_ID = 24;

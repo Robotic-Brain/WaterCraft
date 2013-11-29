@@ -29,6 +29,7 @@ public class ModularBoat extends AbstractBaseBoat{
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_LIQUID_NAME, "none");
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_TILE_ID, new Integer(-1));
 		this.dataWatcher.addObject(EntityInfo.DATAWATCHER_CHEST_LOCK, new Byte((byte)0));
+		this.dataWatcher.addObject(EntityInfo.DATAWATCHR_TANK_MAX, new Integer(0));
 	}
 	
 	public ModularBoat(World par1World, double par2, double par4, double par6, NBTTagCompound tag) {

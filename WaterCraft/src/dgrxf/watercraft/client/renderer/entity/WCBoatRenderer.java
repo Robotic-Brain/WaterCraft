@@ -97,7 +97,7 @@ public class WCBoatRenderer extends Render {
             Minecraft.getMinecraft().renderEngine.bindTexture(boatTextures);
         }
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
-        model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        //model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         renderRope(entity, par2, par4, par6, par8, par9);
         GL11.glPopMatrix();
     }
@@ -131,69 +131,44 @@ public class WCBoatRenderer extends Render {
 			ItemStack stack = new ItemStack(flu.getFluid().getBlockID(), 1, 0);
 			if(stack.getIconIndex() != null)
 				icon = stack.getIconIndex();
-			int amount = entity.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT) / 1000;
-			switch(amount){
-			case 0:
-				block.setBlockBounds(0, 0, 0, 0, 0, 0);
-				break;
-			case 1:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.21875f, 0.874f);
-				break;
-			case 2:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.3125f, 0.874f);
-				break;
-			case 3:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.40625f, 0.874f);
-				break;
-			case 4:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.5f, 0.874f);
-				break;
-			case 5:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.59375f, 0.874f);
-				break;
-			case 6:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.6875f, 0.874f);
-				break;
-			case 7: 
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.78125f, 0.874f);
-				break;
-			case 8:
-				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, 0.874f, 0.874f);
-				break;
+			float amount = entity.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHER_TANK_AMOUNT);
+			float maxAmount = entity.getDataWatcher().getWatchableObjectInt(EntityInfo.DATAWATCHR_TANK_MAX);
+			float temp = ((amount) / maxAmount * 0.74F) + 0.126F;
+			if(temp > 0.126F){
+				block.setBlockBounds(0.126f, 0.126f, 0.126f, 0.874f, temp, 0.874f);
+				GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+				
+				renderBlock.setRenderBoundsFromBlock(block);
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(0.0F, 1F, 0.0F);
+				renderBlock.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
+		        
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(0.0F, 0F, 1.0F);
+				renderBlock.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
+				
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(1.0F, 0F, 0.0F);
+				renderBlock.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
+		        
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(0.0F, -1F, 0.0F);
+				renderBlock.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
+		        
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(0.0F, 0F, -1.0F);
+				renderBlock.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
+		        
+		        tessellator.startDrawingQuads();
+		        tessellator.setNormal(-1.0F, 0F, 0.0F);
+				renderBlock.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
+		        tessellator.draw();
 			}
-			
-			GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
-			
-			renderBlock.setRenderBoundsFromBlock(block);
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(0.0F, 1F, 0.0F);
-			renderBlock.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
-	        
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(0.0F, 0F, 1.0F);
-			renderBlock.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
-			
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(1.0F, 0F, 0.0F);
-			renderBlock.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
-	        
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(0.0F, -1F, 0.0F);
-			renderBlock.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
-	        
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(0.0F, 0F, -1.0F);
-			renderBlock.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
-	        
-	        tessellator.startDrawingQuads();
-	        tessellator.setNormal(-1.0F, 0F, 0.0F);
-			renderBlock.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, icon);
-	        tessellator.draw();
 	        
 			block.setBlockBounds(0, 0, 0, 1, 1, 1);
 			

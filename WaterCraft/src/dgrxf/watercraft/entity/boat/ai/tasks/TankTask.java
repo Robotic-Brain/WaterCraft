@@ -22,6 +22,7 @@ public class TankTask extends BoatAITaskBase implements IFluidHandler{
 	public TankTask(AbstractBaseBoat boat, Float priority, Object... args) {
 		super(boat, priority);
 		tank = new FluidTank(FluidContainerRegistry.BUCKET_VOLUME * (Integer)args[0]);
+		boat.getDataWatcher().updateObject(EntityInfo.DATAWATCHR_TANK_MAX, new Integer(FluidContainerRegistry.BUCKET_VOLUME * (Integer)args[0]));
 	}
 
 	@Override
