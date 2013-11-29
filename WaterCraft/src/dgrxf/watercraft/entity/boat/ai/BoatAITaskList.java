@@ -110,6 +110,7 @@ public class BoatAITaskList extends BoatAIBase {
     
     @Override
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
+        // TODO: Propper encapsulation
         for(BoatAITaskBase task : tasks){
         	task.writeEntityToNBT(par1nbtTagCompound);
     	}
