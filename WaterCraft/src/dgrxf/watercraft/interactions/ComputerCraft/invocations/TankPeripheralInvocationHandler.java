@@ -20,7 +20,7 @@ public class TankPeripheralInvocationHandler extends PeripheralInvocationHandler
 	public Object[] callMethod(Object computer, Object context, int method, Object[] args) {
 		switch(method){
 		case 0:
-			return new Object[]{FluidRegistry.getFluidName(tank.tank.getFluid().fluidID)};
+			return new Object[]{tank.tank.getFluid() != null ? FluidRegistry.getFluidName(tank.tank.getFluid().fluidID) : "empty"};
 		case 1:
 			return new Object[]{tank.tank.getFluidAmount()};
 		case 2:
@@ -32,7 +32,7 @@ public class TankPeripheralInvocationHandler extends PeripheralInvocationHandler
 	}
 
 	@Override
-	public boolean cantAttachToSide() {
+	public boolean cantAttachToSide(int side) {
 		return true;
 	}
 

@@ -6,6 +6,7 @@ import java.lang.reflect.Proxy;
 
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interactions.ComputerCraft.ComputerCraftInteractions;
+import dgrxf.watercraft.tileentity.WCTileEntityChest;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
 public class PeripheralHandler implements InvocationHandler{
@@ -19,9 +20,13 @@ public class PeripheralHandler implements InvocationHandler{
 	}
 
 	public Object getPeripheral(TileEntity te) {
+		
 		if(te instanceof WCTileEntityLiquidStorageTank){
 			return instanciateProxy(new TankPeripheralInvocationHandler((WCTileEntityLiquidStorageTank)te));
+		}else if(te instanceof WCTileEntityChest){
+			return instanciateProxy(new ChestIvocationHandler((WCTileEntityChest)te));
 		}
+		
 		return null;
 	}
 	
