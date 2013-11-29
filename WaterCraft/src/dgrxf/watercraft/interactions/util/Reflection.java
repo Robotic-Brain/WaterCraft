@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Reflection {
-
+	
 	public static Class getClassFromName(String name){
 		try{
 			return Class.forName(name);

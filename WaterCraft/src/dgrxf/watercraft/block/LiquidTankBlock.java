@@ -1,5 +1,8 @@
 package dgrxf.watercraft.block;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Proxy;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -21,6 +24,7 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.interactions.ComputerCraft.ComputerCraftInteractions;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
