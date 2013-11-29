@@ -34,13 +34,11 @@ public class ItemBlockToolBox extends ItemBlock {
         maxStackSize = 1;
     }
     
-    //Makes the item call createEntity when the item is dropped
     @Override
     public boolean hasCustomEntity(ItemStack stack) {
         return true;
     }
     
-    //This is used to stop the toolbox from being rendered open when dropped
     @Override
     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
         AxisAlignedBB bounds = AxisAlignedBB.getBoundingBox(location.posX - 1, location.posY - 1, location.posZ - 1, location.posX + 1, location.posY + 1, location.posZ + 1);
@@ -107,8 +105,10 @@ public class ItemBlockToolBox extends ItemBlock {
                 toolbox.setTagCompound(tag);
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, toolbox);
             }
-            FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
+        
+        if(world.isRemote)
+        	 FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.TOOLBOX_GUI_ID, world, (int) player.posX, (int) player.posY, (int) player.posZ);
         return stack;
     }
     

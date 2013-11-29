@@ -66,6 +66,62 @@ public class ToolBoxBlock extends DirectionalBlock {
     }
     
     @Override
+    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+    	return world.isBlockSolidOnSide(x, y - 1, z, ForgeDirection.UP);
+    }
+    
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
+    	if(world.isRemote)
+    		return;
+    	
+    	if(world.isAirBlock(x, y - 1, z)){
+    		WCTileEntityToolBox tile = (WCTileEntityToolBox) world.getBlockTileEntity(x, y, z);
+            
+            int size = tile.getSizeInventory();
+            ItemStack[] tempInv = new ItemStack[size];
+            
+            for (int i = 0; i < size; i++) {
+                if (tile.getStackInSlot(i) != null) {
+                    tempInv[i] = tile.getStackInSlot(i);
+                    tile.setInventorySlotContents(i, null);
+                }
+            }
+            
+            ItemStack toolBox = new ItemStack(this);
+            NBTTagCompound compound = new NBTTagCompound();
+            NBTTagList items = new NBTTagList();
+            
+            for (int i = 0; i < tempInv.length; i++) {
+                ItemStack slot = tempInv[i];
+                
+                if (slot != null) {
+                    NBTTagCompound item = new NBTTagCompound();
+                    item.setByte("Slot", (byte) i);
+                    slot.writeToNBT(item);
+                    items.appendTag(item);
+                }
+            }
+            compound.setTag("Items", items);
+            compound.setString("playerName", tile.getPlayerName());
+            compound.setBoolean("isLocked", tile.isLocked());
+            toolBox.setTagCompound(compound);
+            
+            world.setBlockToAir(x, y, z);
+            
+            EntityItem droppedItem = new EntityItem(world, x, y, z, toolBox);
+            
+            float mult = 0.05F;
+            
+            droppedItem.motionX = (-0.5F + world.rand.nextFloat()) * mult;
+            droppedItem.motionY = (4 + world.rand.nextFloat()) * mult;
+            droppedItem.motionZ = (-0.5F + world.rand.nextFloat()) * mult;
+            
+            world.spawnEntityInWorld(droppedItem);
+    	}
+    }
+    
+    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
         if (world.isRemote) {
             return true;
@@ -152,7 +208,7 @@ public class ToolBoxBlock extends DirectionalBlock {
         }
         super.breakBlock(world, x, y, z, id, meta);
     }
-    
+        
     @Override
     public boolean isOpaqueCube() {
         return false;
