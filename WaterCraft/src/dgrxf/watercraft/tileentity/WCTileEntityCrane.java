@@ -14,7 +14,7 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 public class WCTileEntityCrane extends DirectionalTileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	ItemStack[] items = new ItemStack[4];
-	HashMap<Integer, String> actions = new HashMap();
+	HashMap<Integer, Actions[]> actions = new HashMap();
 	public int activeTabIndex=0;
 	
 	private enum Actions{
@@ -30,6 +30,7 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 				int toCall = getTabForItem(boatItem);
 				if(toCall != -1){
 					//TODO: Add gui interactions here now that we have the tab to execute the list from
+					// ALSO TODO: Make an ActionRegistry that will accept tasks, like the AI system, then preform actions here.
 				}
 			}
 		}
