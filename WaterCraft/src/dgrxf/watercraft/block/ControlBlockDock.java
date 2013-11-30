@@ -8,7 +8,6 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.RenderInfo;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class ControlBlockDock extends BuoyBlock {
     
@@ -29,7 +28,7 @@ public class ControlBlockDock extends BuoyBlock {
             return true;
         }
         
-        FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.CONTROLUNIT_GUI_ID, world, x, y, z);
+        FMLNetworkHandler.openGui(player, Watercraft.instance, GuiHandler.CRANE_GUI_ID, world, x, y, z);
         return true;
     }
     
@@ -40,6 +39,7 @@ public class ControlBlockDock extends BuoyBlock {
     
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new WCTileEntityControlUnitDock();
+        //return new WCTileEntityControlUnitDock();
+    	return null;
     }
 }

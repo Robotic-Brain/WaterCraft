@@ -5,7 +5,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.renderer.block.BuoyRenderer;
-import dgrxf.watercraft.client.renderer.block.ControlUnitRenderer;
 import dgrxf.watercraft.client.renderer.block.LiquidTankRenderer;
 import dgrxf.watercraft.client.renderer.block.ToolBoxRenderer;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
@@ -21,7 +20,6 @@ import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 /**
  * Client Proxy
@@ -45,7 +43,7 @@ public class ClientProxy extends CommonProxy {
         RenderInfo.TANK_RENDER_ID = RenderingRegistry.getNextAvailableRenderId();
         
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityBuoy.class, new BuoyRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
+        //ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityControlUnitDock.class, new ControlUnitRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityToolBox.class, new ToolBoxRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(WCTileEntityChest.class, new WCChestRenderer());
         

@@ -1,5 +1,6 @@
 package dgrxf.watercraft.tileentity;
 
+import java.util.HashMap;
 import java.util.List;
 
 import net.minecraft.entity.Entity;
@@ -13,7 +14,12 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 public class WCTileEntityCrane extends DirectionalTileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	ItemStack[] items = new ItemStack[4];
-	public int activeTabIndex;
+	HashMap<Integer, String> actions = new HashMap();
+	public int activeTabIndex=0;
+	
+	private enum Actions{
+		
+	}
 	
 	@Override
 	public void updateEntity() {
@@ -48,7 +54,6 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
         for (int a = 0; a < list.size(); a++) {
             Entity e = (Entity) list.get(a);
             if (e instanceof AbstractBaseBoat) {
-            	System.out.println("test");
                 return (AbstractBaseBoat) e;
             }
         }

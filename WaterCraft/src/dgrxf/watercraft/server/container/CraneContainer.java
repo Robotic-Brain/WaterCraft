@@ -7,7 +7,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class CraneContainer extends Container implements ITeContainer {
     

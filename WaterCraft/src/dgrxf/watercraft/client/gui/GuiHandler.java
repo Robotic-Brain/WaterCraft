@@ -24,13 +24,12 @@ import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 
 public class GuiHandler implements IGuiHandler {
     
 	public static final int VANILLA_CHEST_ID   = -1;
     public static final int TOOLBOX_GUI_ID     = 0;
-    public static final int CONTROLUNIT_GUI_ID = 1;
+    public static final int CRANE_GUI_ID 	= 1;
     public static final int CALCULATOR_GUI_ID = 2;
     public static final int FREEZER_GUI_ID = 3;
     public static final int LOCK_ASSEMBLER_GUI_ID = 4;
@@ -52,8 +51,8 @@ public class GuiHandler implements IGuiHandler {
                             : null);
                 }
                 break;
-            case CONTROLUNIT_GUI_ID:
-                if (te instanceof WCTileEntityControlUnitDock) {
+            case CRANE_GUI_ID:
+                if (te instanceof WCTileEntityCrane) {
                     return new CraneContainer(player.inventory, (WCTileEntityCrane) te);
                 }
                 break;
@@ -96,8 +95,8 @@ public class GuiHandler implements IGuiHandler {
                             : null);
                 }
                 break;
-            case CONTROLUNIT_GUI_ID:
-                if (te instanceof WCTileEntityControlUnitDock) {
+            case CRANE_GUI_ID:
+                if (te instanceof WCTileEntityCrane) {
                     return new CraneGUI(player.inventory, (WCTileEntityCrane) te);
                 }
                 break;

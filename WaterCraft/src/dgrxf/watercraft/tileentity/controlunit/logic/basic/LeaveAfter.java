@@ -2,7 +2,6 @@ package dgrxf.watercraft.tileentity.controlunit.logic.basic;
 
 import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.ControlUnitLogicTabs;
-import dgrxf.watercraft.tileentity.controlunit.WCTileEntityControlUnitDock;
 import dgrxf.watercraft.tileentity.controlunit.logic.ControlUnitLogic;
 
 public class LeaveAfter extends ControlUnitLogic{
@@ -19,8 +18,8 @@ public class LeaveAfter extends ControlUnitLogic{
 		System.out.println("Tick");
 		tick--;
         if(tick <= 0){
-        	WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
-			tile.holdBoat =false;
+        	//WCTileEntityControlUnitDock tile = (WCTileEntityControlUnitDock) world.getBlockTileEntity(x, y, z);
+			//tile.holdBoat =false;
 			tick = countDown;
 		}
 	}
