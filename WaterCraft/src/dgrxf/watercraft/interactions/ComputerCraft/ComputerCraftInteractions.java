@@ -14,6 +14,8 @@ public class ComputerCraftInteractions {
 
 	public static Class IPeripheralHandlerClass = null;
 	public static Class IHostedPeripheralClass = null;
+	public static Class IComputerAccess = null;
+	public static Class ILuaContext = null;
 	public static Class ComputerCraftAPIClass = null;
 	
 	public static Method RegisterExternalPeripheral = null;
@@ -23,26 +25,26 @@ public class ComputerCraftInteractions {
 	public static void beginInteraction(){
 		ComputerCraftAPIClass = Reflection.getClassFromName("dan200.computer.api.ComputerCraftAPI");
 		if(ComputerCraftAPIClass != null){
-			try {
-				pe = new PeripheralHandler();
-				IPeripheralHandlerClass = Reflection.getClassFromName("dan200.computer.api.IPeripheralHandler");
-				IHostedPeripheralClass = Reflection.getClassFromName("dan200.computer.api.IHostedPeripheral");
-				RegisterExternalPeripheral = Reflection.getMethodFromClass(ComputerCraftAPIClass, "registerExternalPeripheral", Class.class, IPeripheralHandlerClass);
-				registerExternalPeripheral(WCTileEntityLiquidStorageTank.class);
-				registerExternalPeripheral(WCTileEntityChest.class);
-			}catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				e.printStackTrace();
-			}
+			pe = new PeripheralHandler();
+			IComputerAccess = Reflection.getClassFromName("dan200.computer.api.IComputerAccess");
+			ILuaContext = Reflection.getClassFromName("dan200.computer.api.ILuaContext");
+			IPeripheralHandlerClass = Reflection.getClassFromName("dan200.computer.api.IPeripheralHandler");
+			IHostedPeripheralClass = Reflection.getClassFromName("dan200.computer.api.IHostedPeripheral");
+			RegisterExternalPeripheral = Reflection.getMethodFromClass(ComputerCraftAPIClass, "registerExternalPeripheral", Class.class, IPeripheralHandlerClass);
+			registerExternalPeripheral(WCTileEntityLiquidStorageTank.class);
+			registerExternalPeripheral(WCTileEntityChest.class);
 		}
 	}
 	
-	private static void registerExternalPeripheral(Class te) throws IllegalAccessException, InvocationTargetException{
-		RegisterExternalPeripheral.invoke(null, te, IPeripheralHandlerClass.cast(Proxy.newProxyInstance(IPeripheralHandlerClass.getClassLoader(), new Class[]{IPeripheralHandlerClass}, pe)));
+	private static void registerExternalPeripheral(Class te){
+		try {
+			RegisterExternalPeripheral.invoke(null, te, IPeripheralHandlerClass.cast(Proxy.newProxyInstance(IPeripheralHandlerClass.getClassLoader(), new Class[]{IPeripheralHandlerClass}, pe)));
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 	}
 }

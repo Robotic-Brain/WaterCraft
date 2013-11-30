@@ -26,7 +26,14 @@ public abstract class PeripheralInvocationHandlerBase implements InvocationHandl
 	public void update() {}
 
 	public abstract boolean cantAttachToSide(int side);
-	public abstract Object[] callMethod(Object object, Object object2, int integer, Object[] objects);
+	/**
+	 * @param computer this parameter is of type IComputerAccess
+	 * @param luaContext this parameter is of type ILuaContext
+	 * @param method the method that is trying to be called (the order is determined by the ordered getMethodNames returns)
+	 * @param args the arguments for the method that computercraft is trying to call
+	 * @return whatever the method computercraft is trying to call returns
+	 */
+	public abstract Object[] callMethod(Object computer, Object luaContext, int method, Object[] args);
 	public abstract String getType();
 	public abstract String[] getMethodNames();
 

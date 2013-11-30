@@ -8,9 +8,8 @@ public class Reflection {
 	public static Class getClassFromName(String name){
 		try{
 			return Class.forName(name);
- 		}catch(ClassNotFoundException e){
- 			return null;
- 		}
+ 		}catch(ClassNotFoundException e){}
+		return null;
 	}
 	
 	public static Method getMethodFromClass(Class clazz, String methodName, Class... args){
@@ -18,11 +17,10 @@ public class Reflection {
 			Method m = clazz.getDeclaredMethod(methodName, args);
 			m.setAccessible(true);
 			return m;
-		}catch(NoSuchMethodException e){
-			return null;
-		}catch(SecurityException e){
-			return null;
 		}
+		catch(NoSuchMethodException e){}
+		catch(SecurityException e){}
+		return null;
 	}
 	
 	public static Field getFieldFromClass(Class clazz, String fieldName){
@@ -31,7 +29,7 @@ public class Reflection {
 			f.setAccessible(true);
 			return f;
 		}catch(Exception e){
-			return null;
 		}
+		return null;
 	}
 }
