@@ -36,6 +36,7 @@ public abstract class AbstractBaseBoat extends Entity {
     protected boolean           isEmpty;
     public double               speedMultiplier;
     private int                 boatPosRotationIncrements;
+    private double              BOAT_SPEED;
     
     // Interpolation helpers
     // ==================================
@@ -63,6 +64,7 @@ public abstract class AbstractBaseBoat extends Entity {
         this.preventEntitySpawning = true;
         this.setSize(1.5F, 0.6F);
         this.yOffset = this.height / 2.0F;
+        this.BOAT_SPEED = 0;
         
         BoatAITaskList list = new BoatAITaskList(this);
         this.updateBoatAI(list);
@@ -813,5 +815,13 @@ public abstract class AbstractBaseBoat extends Entity {
     
     public double getBoatYaw() {
 		return boatYaw;
+	}
+
+	public double getBoatSpeed() {
+		return BOAT_SPEED;
+	}    
+	
+	public void setBoatSpeed(double speed) {
+		this.BOAT_SPEED = speed;
 	}    
 }

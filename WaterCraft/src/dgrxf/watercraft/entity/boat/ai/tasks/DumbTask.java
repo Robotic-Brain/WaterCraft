@@ -35,7 +35,7 @@ public class DumbTask extends BoatAITaskBase {
         }
     }
     
-    private static final double BOAT_SPEED = 0.1;
+    
     
     private void moveToTarget() {
         if (target == null || boat.worldObj.isRemote) {
@@ -46,7 +46,7 @@ public class DumbTask extends BoatAITaskBase {
         Vector2 distance = target.sub(boatPos);
         Vector2 newMotion = new Vector2();
         
-        newMotion = distance.normalize().scalarMult(BOAT_SPEED);
+        newMotion = distance.normalize().scalarMult(boat.getBoatSpeed());
         
         boat.motionX = newMotion.x;
         boat.motionZ = newMotion.y;

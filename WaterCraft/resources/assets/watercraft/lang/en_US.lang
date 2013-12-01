@@ -25,6 +25,7 @@ item.watercraft:padlock.name=Padlock
 item.watercraft:key.name=Padlock Key
 item.watercraft:calculator.name=Calculator
 item.watercraft:wcboatmodular.name=Modular Boat
+item.watercraft:boatEngine.name=Boat Engine
 
 item.watercraft:flag.white=White Flag
 item.watercraft:flag.orange=Orange Flag
