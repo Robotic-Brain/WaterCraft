@@ -71,8 +71,6 @@ import dgrxf.watercraft.util.LogHelper;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class)
 public class Watercraft {
     
-    public static boolean          hasCC   = false;
-    
     @Instance(ModInfo.MODID)
     public static Watercraft       instance;
     
@@ -108,13 +106,6 @@ public class Watercraft {
     
     @EventHandler
     public void interModComs(IMCEvent event) {
-    }
-    
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
-        if (Loader.isModLoaded("ComputerCraft")) {
-            hasCC = true;
-        }
     }
     
     @SideOnly(Side.CLIENT)

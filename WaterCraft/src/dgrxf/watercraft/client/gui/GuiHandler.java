@@ -1,7 +1,11 @@
 package dgrxf.watercraft.client.gui;
 
+import java.util.Iterator;
+import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import dgrxf.watercraft.block.ModBlocks;
@@ -10,10 +14,13 @@ import dgrxf.watercraft.client.gui.interfaces.GuiCalculator;
 import dgrxf.watercraft.client.gui.interfaces.GuiFreezer;
 import dgrxf.watercraft.client.gui.interfaces.GuiLockAssembler;
 import dgrxf.watercraft.client.gui.interfaces.GuiToolBox;
+import dgrxf.watercraft.client.gui.interfaces.boat.GuiBoat;
 import dgrxf.watercraft.client.gui.interfaces.controlunit.CraneGUI;
 import dgrxf.watercraft.client.sound.Sounds;
+import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
+import dgrxf.watercraft.server.container.BoatContainer;
 import dgrxf.watercraft.server.container.CalculatorContainer;
 import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.server.container.FreezerContainer;
@@ -41,7 +48,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int FREEZER_GUI_ID = 3;
     public static final int LOCK_ASSEMBLER_GUI_ID = 4;
     public static final int BOAT_ASSEMBLER_BLOCK_GUI_ID = 5;
-    public static final int BOAT_ENGINE_GUI_ID = 6;
+    public static final int BOAT_GUI_ID = 6;
     
     public GuiHandler() {
     }
@@ -84,6 +91,13 @@ public class GuiHandler implements IGuiHandler {
             	if(te instanceof WCTileEntityBoatAssembler){
             		return new BoatAssemblerContainer(player.inventory, (WCTileEntityBoatAssembler)te);
             	}
+            	break;
+            case BOAT_GUI_ID:
+            	AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB((double)x, (double)y, (double)z, (double)(x + 1), (double)(y + 1), (double)(z + 1));
+            	List list = world.getEntitiesWithinAABB(AbstractBaseBoat.class, axisalignedbb);
+            	Iterator iterator = list.iterator();
+            	if(iterator.hasNext())
+	        		return new BoatContainer(player.inventory, (AbstractBaseBoat)iterator.next());
             	break;
         }
         return null;
@@ -128,6 +142,13 @@ public class GuiHandler implements IGuiHandler {
             	if(te instanceof WCTileEntityBoatAssembler){
             		return new GuiBoatAssembler(player.inventory, (WCTileEntityBoatAssembler)te);
             	}
+            	break;
+            case BOAT_GUI_ID:
+            	AxisAlignedBB axisalignedbb = AxisAlignedBB.getAABBPool().getAABB((double)x, (double)y, (double)z, (double)(x + 1), (double)(y + 1), (double)(z + 1));
+            	List list = world.getEntitiesWithinAABB(AbstractBaseBoat.class, axisalignedbb);
+            	Iterator iterator = list.iterator();
+            	if(iterator.hasNext())
+	        		return new GuiBoat(player.inventory, (AbstractBaseBoat)iterator.next());
             	break;
         }
         return null;

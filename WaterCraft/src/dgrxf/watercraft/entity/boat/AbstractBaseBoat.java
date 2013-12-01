@@ -17,6 +17,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.lib.EntityInfo;
@@ -675,8 +677,11 @@ public abstract class AbstractBaseBoat extends Entity {
      * First layer of player interaction
      */
     @Override
-    public boolean interactFirst(EntityPlayer par1EntityPlayer) {
-    	this.ai.onInteractFirst(par1EntityPlayer);
+    public boolean interactFirst(EntityPlayer player) {
+    	if(player.isSneaking())
+    		this.ai.onInteractFirst(player);
+    	else
+    		player.openGui(Watercraft.instance, GuiHandler.BOAT_GUI_ID, worldObj, (int)posX, (int)posY, (int)posZ);
     	return true;
     }
     

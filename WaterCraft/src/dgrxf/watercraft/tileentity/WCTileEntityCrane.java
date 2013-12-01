@@ -79,20 +79,52 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 		return items[i];
 	}
 
-	@Override
-	public ItemStack decrStackSize(int i, int j){ 
-		return null;
-	}
+    @Override
+    public ItemStack decrStackSize(int par1, int par2) {
+        if (this.items[par1] != null) {
+            ItemStack itemstack;
+            
+            if (this.items[par1].stackSize <= par2) {
+                itemstack = this.items[par1];
+                this.items[par1] = null;
+                this.onInventoryChanged();
+                return itemstack;
+            } else {
+                itemstack = this.items[par1].splitStack(par2);
+                
+                if (this.items[par1].stackSize == 0) {
+                    this.items[par1] = null;
+                }
+                
+                this.onInventoryChanged();
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
+    }
 
-	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		return null;
-	}
+    @Override
+    public ItemStack getStackInSlotOnClosing(int par1) {
+        if (this.items[par1] != null) {
+            ItemStack itemstack = this.items[par1];
+            this.items[par1] = null;
+            return itemstack;
+        } else {
+            return null;
+        }
+    }
 
-	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack) {
-		
-	}
+    @Override
+    public void setInventorySlotContents(int par1, ItemStack par2ItemStack) {
+        this.items[par1] = par2ItemStack;
+        
+        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit()) {
+            par2ItemStack.stackSize = this.getInventoryStackLimit();
+        }
+        
+        this.onInventoryChanged();
+    }
 
 	@Override
 	public String getInvName() {
@@ -106,12 +138,12 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 0;
+		return 64;
 	}
 
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer entityplayer) {
-		return false;
+		return entityplayer.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
 	}
 
 	@Override
