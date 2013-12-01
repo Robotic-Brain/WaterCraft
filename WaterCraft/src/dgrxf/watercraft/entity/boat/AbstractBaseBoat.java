@@ -35,6 +35,8 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  * NOTE: methods starting with "h_" need more cleanup. I figured out what I
  * wanted, so I didn't care to clean up further.
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ * 
  */
 public abstract class AbstractBaseBoat extends Entity {
     protected boolean           isEmpty;
