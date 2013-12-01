@@ -5,9 +5,9 @@
 
 	<available file="${environment.repo_location}/.git" type="dir" property="git.present" />
 
-	<!-- gets the sha suffix to use and stores it in ${repository.sha} -->
+	<!-- gets the sha suffix to use and stores it in ${repository.shaString} -->
 	<target name="get_sha_string" depends="tmp.repository.sha, git.status">
-		<condition property="repository.sha" value="${tmp.repository.sha}-modified" else="${tmp.repository.sha}">
+		<condition property="repository.shaString" value="${tmp.repository.sha}-modified" else="${tmp.repository.sha}">
 			<and>
 				<isset property="repository.modified" />
 				<not>
@@ -18,7 +18,7 @@
 
 		<antcall target="no_git_warning" />
 		<antcall target="dirty_tree_warning" />
-		<echo message="Resolved SHA String: ${repository.sha}" />
+		<echo message="Resolved SHA String: ${repository.shaString}" />
 	</target>
 	
 	<!-- helper for get_sha_string -->
@@ -83,7 +83,7 @@
 	</target>
 
 	<target name="replace_tokens">
-		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@GIT_SHA@" value="${repository.version}" summary="yes" />
+		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@GIT_SHA@" value="${repository.shaString}" summary="yes" />
 		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@VERSION@" value="${build.mod_version}" summary="yes" />
 		<replace file="${environment.mcp_location}/src/minecraft/mcmod.info" token="@VERSION@" value="${build.mod_version}" summary="yes" />
 	</target>
@@ -106,11 +106,11 @@
 		</exec>
 	</target>
 
-	<target name="build" depends="clean, git.revision, prep, replace_tokens, recompile, reobfuscate">
+	<target name="build" depends="clean, get_sha_string, prep, replace_tokens, recompile, reobfuscate">
 
 		<!-- Build the jar -->
 		<mkdir dir="${environment.release_location}/MC ${build.minecraft_version}/${build.mod_version}" />
-		<jar destfile="${environment.release_location}/MC ${build.minecraft_version}/${build.mod_version}/watercraft-universal-${build.mod_version}-${repository.version}.jar">
+		<jar destfile="${environment.release_location}/MC ${build.minecraft_version}/${build.mod_version}/watercraft-universal-${build.mod_version}-${repository.shaString}.jar">
 			<fileset dir="${environment.mcp_location}/src/minecraft/" includes="mcmod.info" />
 			<fileset dir="${environment.mcp_location}/src/minecraft/" includes="pack.mcmeta" />
 			<fileset dir="${environment.mcp_location}/reobf/minecraft" />
