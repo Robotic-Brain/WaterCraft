@@ -17,12 +17,6 @@ public class EngineTask extends BoatAITaskBase{
 	}
 	
 	@Override
-	public void onInteractFirst(EntityPlayer player) {
-		if(!player.worldObj.isRemote)
-			player.openGui(Watercraft.instance, GuiHandler.BOAT_ENGINE_GUI_ID, player.worldObj, (int)player.posX, (int)player.posY, (int)player.posZ);
-	}
-	
-	@Override
 	public void updateMotion() {
 		if(burnTime <= 0){
 			System.out.println("out of coal");
