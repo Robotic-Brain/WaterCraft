@@ -1,6 +1,8 @@
 package dgrxf.watercraft.interactions.ComputerCraft.invocations;
 
 import java.lang.reflect.InvocationHandler;
+import java.util.HashMap;
+import java.util.Map;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
@@ -15,6 +17,7 @@ import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 public class TankPeripheralInvocationHandler extends PeripheralInvocationHandlerBase implements InvocationHandler{
 
 	WCTileEntityLiquidStorageTank tank;
+	Map<Integer, Integer> location = (Map<Integer, Integer>) new HashMap().put(0, tank.xCoord);
 	public static final String[] methods = new String[]{"getFluidName", "getFluidAmount", "getTankCapacity", "getLocation"};
 	
 	public TankPeripheralInvocationHandler(WCTileEntityLiquidStorageTank te) {
@@ -31,11 +34,11 @@ public class TankPeripheralInvocationHandler extends PeripheralInvocationHandler
 		case 2:
 			return new Object[]{tank.tank.getCapacity()};
 		case 3:
-			return new Object[]{tank.xCoord, tank.yCoord, tank.zCoord};
+			return new Object[]{location};
 		}
 		return null;
 	}
-
+	
 	@Override
 	public boolean cantAttachToSide(int side) {
 		return true;
