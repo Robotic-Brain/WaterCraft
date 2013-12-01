@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<project name="WaterCraft" default="build">
+	<property file="build.properties" prefix="build" />
+	<property file="environment.properties" prefix="environment" />
+
+	<!-- modified version of: http://stackoverflow.com/a/4059546 -->
+	<available file="${environment.repo_location}/.git" type="dir" property="git.present" />
+	<target name="git.revision" if="git.present">
+		<!-- Store git revision in ${repository.version} -->
+		<exec executable="git" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
+			<arg value="rev-parse" />
+			<arg value="HEAD" />
+		</exec>
+		<condition property="repository.version" value="${git.revision}" else="unknown">
+			<and>
+				<isset property="git.revision" />
+				<length string="${git.revision}" trim="yes" length="0" when="greater" />
+			</and>
+		</condition>
+	</target>
+
+	<!-- modified version of EE3 build.xml (https://github.com/pahimar/Equivalent-Exchange-3) -->
+	<target name="clean">
+		<delete file="${environment.mcp_location}/src/minecraft/mcmod.info" />
+		<delete file="${environment.mcp_location}/src/minecraft/pack.mcmeta" />
+		<delete dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" />
+		<delete dir="${environment.mcp_location}/reobf/minecraft" />
+	</target>
+
+	<!-- Copies the mod source into the MCP build directory -->
+	<target name="prep">
+		<copy todir="${environment.mcp_location}/src/minecraft">
+			<fileset dir="${environment.source_location}" />
+		</copy>
+	</target>
+
+	<target name="replace_tokens">
+		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@GIT_SHA@" value="${repository.version}" />
+		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@VERSION@" value="${build.mod_version}" />
+	</target>
+
+	<target name="recompile">
+		<exec dir="${environment.mcp_location}" executable="cmd" osfamily="windows">
+			<arg line="/c recompile.bat" />
+		</exec>
+		<exec dir="${environment.mcp_location}" executable="bash" osfamily="unix">
+			<arg line="recompile.sh" />
+		</exec>
+	</target>
+
+	<target name="reobfuscate">
+		<exec dir="${environment.mcp_location}" executable="cmd" osfamily="windows">
+			<arg line="/c reobfuscate_srg.bat" />
+		</exec>
+		<exec dir="${environment.mcp_location}" executable="bash" osfamily="unix">
+			<arg line="reobfuscate_srg.sh" />
+		</exec>
+	</target>
+
+	<target name="build" depends="clean, git.revision, prep, replace_tokens, recompile, reobfuscate">
+
+		<!-- Build the jar -->
+		<mkdir dir="${environment.release_location}/MC ${build.minecraft_version}/${build.mod_version}" />
+		<jar destfile="${environment.release_location}/MC ${build.minecraft_version}/${build.mod_version}/watercraft-universal-${build.mod_version}-${repository.version}.jar">
+			<fileset dir="${environment.mcp_location}/src/minecraft/" includes="mcmod.info" />
+			<fileset dir="${environment.mcp_location}/src/minecraft/" includes="pack.mcmeta" />
+			<fileset dir="${environment.mcp_location}/reobf/minecraft" />
+			<fileset dir="${environment.resource_location}" excludes="**/xcf/**" />
+		</jar>
+
+		<!-- Clean up the MCP source now that we are done -->
+		<antcall target="clean" />
+	</target>
+</project>

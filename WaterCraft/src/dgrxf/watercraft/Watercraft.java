@@ -34,6 +34,7 @@ import dgrxf.watercraft.lib.MultiBlockInfo;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.proxy.CommonProxy;
 import dgrxf.watercraft.recipe.RecipeHandler;
+import dgrxf.watercraft.util.LogHelper;
 
 /**
  * Class Made By: Drunk Mafia
@@ -60,6 +61,8 @@ public class Watercraft {
     
     @EventHandler
     public void preInit(FMLPreInitializationEvent e) {
+        LogHelper.info("Watercraft build version is: " + ModInfo.BUILD_SHA);
+        
         MinecraftForge.EVENT_BUS.register(new WCEventHandler());
         ConfigurationHandler.init(e.getSuggestedConfigurationFile());
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());

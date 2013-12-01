@@ -1,6 +1,7 @@
 [
 {
   "modid": "watercraft",
+  "version": "@VERSION@",
   "name": "WaterCraft",
   "description": "WaterCraft is a mod that hopes to make the neglected minecraft boat more useful and more fun to build with.",
   "url": "",
