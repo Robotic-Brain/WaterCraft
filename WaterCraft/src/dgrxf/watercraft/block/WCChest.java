@@ -29,6 +29,13 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
+/**
+ * 
+ * WCChest
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCChest extends BlockContainer {
     
     private final Random random = new Random();

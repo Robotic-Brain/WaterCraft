@@ -9,6 +9,13 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.client.models.WCModelChest;
 import dgrxf.watercraft.client.renderer.block.WCChestRenderer;
 
+/**
+ * 
+ * ItemWCChestRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemWCChestRenderer implements IItemRenderer {
     
     private WCModelChest chestModel = new WCModelChest();

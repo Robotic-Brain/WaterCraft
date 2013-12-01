@@ -10,6 +10,13 @@ import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 
+/**
+ * 
+ * CustomModule
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class CustomModule implements IBoatModule {
 
 	Block block;

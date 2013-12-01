@@ -6,6 +6,13 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.RopeTask;
 import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 
+/**
+ * 
+ * VanillaBoat
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class VanillaBoat extends AbstractBaseBoat {
     
     public VanillaBoat(World par1World) {

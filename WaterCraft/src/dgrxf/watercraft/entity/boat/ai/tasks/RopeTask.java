@@ -13,6 +13,13 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.Vector2;
 
+/**
+ * 
+ * RopeTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class RopeTask extends BoatAITaskBase {
 	
 	public static final float ROPE_LENGTH = 4.0F;

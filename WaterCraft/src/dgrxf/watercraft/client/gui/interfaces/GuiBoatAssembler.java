@@ -17,6 +17,13 @@ import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
+/**
+ * 
+ * GuiBoatAssembler
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiBoatAssembler extends GuiBase {
 	
 	private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/boatassembler.png"); 

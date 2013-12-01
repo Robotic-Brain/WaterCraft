@@ -20,12 +20,12 @@ import dgrxf.watercraft.util.RotationHelper;
 import dgrxf.watercraft.util.TranslationHelper;
 
 /**
- * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
  * 
- * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * ItemBlockToolBox
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ItemBlockToolBox extends ItemBlock {
     
     public ItemBlockToolBox(int id) {

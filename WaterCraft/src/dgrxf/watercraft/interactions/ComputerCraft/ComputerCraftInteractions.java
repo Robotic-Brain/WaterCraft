@@ -4,12 +4,18 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interactions.ComputerCraft.invocations.PeripheralHandler;
 import dgrxf.watercraft.interactions.util.Reflection;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
+/**
+ * 
+ * ComputerCraftInteractions
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ComputerCraftInteractions {
 
 	public static Class IPeripheralHandlerClass = null;

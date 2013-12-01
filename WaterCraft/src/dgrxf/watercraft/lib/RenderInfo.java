@@ -1,16 +1,14 @@
 package dgrxf.watercraft.lib;
 
-/**
- * Class Made By: xandayn
- * 
- * Class Last Edited By: xandayn
- * Class Last Edited On: 07/11/2013
- * 						 DD/MM/YYYY
- * 
- */
-
 import net.minecraft.util.ResourceLocation;
 
+/**
+ * 
+ * RenderInfo
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class RenderInfo {
     public static final ResourceLocation BUOY_TEXTURE_LOCATION         = new ResourceLocation(ModInfo.MODID, "textures/models/ModelBuoyTexture.png");
     public static int                    BUOY_RENDER_ID;

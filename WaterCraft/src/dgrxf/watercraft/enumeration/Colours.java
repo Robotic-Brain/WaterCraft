@@ -1,5 +1,12 @@
 package dgrxf.watercraft.enumeration;
 
+/**
+ * 
+ * Colours
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public enum Colours {
     white("White"),
     orange("Orange"),

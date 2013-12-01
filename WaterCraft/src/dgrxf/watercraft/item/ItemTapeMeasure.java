@@ -17,6 +17,13 @@ import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.util.TranslationHelper;
 import dgrxf.watercraft.util.Vector3;
 
+/**
+ * 
+ * ItemTapeMeasure
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemTapeMeasure extends Item {
     
     private static final String NBT_TAG_X     = "x";

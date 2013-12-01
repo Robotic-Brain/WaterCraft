@@ -17,6 +17,13 @@ import dgrxf.watercraft.client.models.WCModelLargeChest;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
+/**
+ * 
+ * WCChestRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCChestRenderer extends TileEntitySpecialRenderer {
     
     public static final ResourceLocation RES_NORMAL_DOUBLE    = new ResourceLocation(ModInfo.MODID, "textures/models/largeChest.png");

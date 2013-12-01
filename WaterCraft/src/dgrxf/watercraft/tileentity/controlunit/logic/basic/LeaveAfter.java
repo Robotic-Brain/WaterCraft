@@ -4,6 +4,13 @@ import net.minecraft.world.World;
 import dgrxf.watercraft.enumeration.ControlUnitLogicTabs;
 import dgrxf.watercraft.tileentity.controlunit.logic.ControlUnitLogic;
 
+/**
+ * 
+ * LeaveAfter
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class LeaveAfter extends ControlUnitLogic{
 
 	private int countDown = 10;

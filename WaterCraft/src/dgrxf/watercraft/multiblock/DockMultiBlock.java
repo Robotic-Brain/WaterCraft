@@ -2,6 +2,13 @@ package dgrxf.watercraft.multiblock;
 
 import net.minecraft.block.Block;
 
+/**
+ * 
+ * DockMultiBlock
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class DockMultiBlock extends MultiBlock {
     
     /*

@@ -4,6 +4,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 
+/**
+ * 
+ * CustomParticles
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public enum CustomParticles {
     BUOY;
     

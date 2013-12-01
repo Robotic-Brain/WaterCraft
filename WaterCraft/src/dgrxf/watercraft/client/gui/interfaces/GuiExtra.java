@@ -1,5 +1,12 @@
 package dgrxf.watercraft.client.gui.interfaces;
 
+/**
+ * 
+ * GuiExtra
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class GuiExtra extends GuiRectangle {
     
     public GuiExtra(int x, int y, int w, int h) {

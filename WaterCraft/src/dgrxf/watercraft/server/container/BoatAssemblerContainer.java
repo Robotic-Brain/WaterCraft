@@ -1,14 +1,20 @@
 package dgrxf.watercraft.server.container;
 
-import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
+/**
+ * 
+ * BoatAssemblerContainer
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class BoatAssemblerContainer extends Container implements ITeContainer{
 
 	public WCTileEntityBoatAssembler inv;

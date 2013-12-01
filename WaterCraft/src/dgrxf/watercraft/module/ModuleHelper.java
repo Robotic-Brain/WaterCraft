@@ -12,6 +12,13 @@ import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.interfaces.IModularBoat;
 
+/**
+ * 
+ * ModuleHelper
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ModuleHelper extends ModuleRegistry{
 	
 	/**

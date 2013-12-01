@@ -20,6 +20,13 @@ import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
 
+/**
+ * 
+ * GuiGraphicsRectangle
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiGraphicsRectangle extends GuiRectangle{
 	InventoryPlayer inv;
 	GuiRectangle[] exemptAreas = null;

@@ -3,6 +3,13 @@ package dgrxf.watercraft.client.gui.interfaces.controlunit;
 import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.client.gui.interfaces.GuiExtra;
 
+/**
+ * 
+ * GuiDropdown
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiDropdown extends GuiExtra {
     
     private String      dir;

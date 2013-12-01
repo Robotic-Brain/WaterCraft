@@ -1,14 +1,5 @@
 package dgrxf.watercraft.client.renderer.item;
 
-/**
- * Class Made By: ???
- * 
- * Class Last Edited By: ???
- * Class Last Edited On: 07/11/2013
- * 						 DD/MM/YYYY
- * 
- */
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
@@ -19,6 +10,13 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * ItemBuoyRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemBuoyRenderer implements IItemRenderer {
     
     private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/buoy.obj");

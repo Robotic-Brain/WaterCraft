@@ -19,12 +19,12 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 
 /**
- * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
  * 
- * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * WCTileEntityToolBox
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class WCTileEntityToolBox extends DirectionalTileEntity implements IInventory, ILockableBlock {
     
     private ItemStack[] inventory;

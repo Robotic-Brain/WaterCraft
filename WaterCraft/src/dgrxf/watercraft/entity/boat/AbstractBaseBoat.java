@@ -24,6 +24,8 @@ import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
+ * AbstractBaseBoat
+ * 
  * Boat Base Class Vanilla functionality
  * 
  * when subclassing overwrite this.ai

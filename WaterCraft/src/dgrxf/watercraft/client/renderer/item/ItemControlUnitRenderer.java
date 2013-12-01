@@ -10,6 +10,13 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.client.FMLClientHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * ItemControlUnitRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemControlUnitRenderer implements IItemRenderer {
     
     private IModelCustom modelController = AdvancedModelLoader.loadModel("/assets/watercraft/models/controlunit.obj");

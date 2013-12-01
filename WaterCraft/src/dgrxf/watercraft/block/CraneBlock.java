@@ -9,6 +9,13 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 
+/**
+ * 
+ * CraneBlock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class CraneBlock extends DirectionalBlock{
 
 	public CraneBlock(int par1) {

@@ -9,6 +9,13 @@ import cpw.mods.fml.common.ModContainer;
 import dgrxf.watercraft.interfaces.IBoatModule;
 import dgrxf.watercraft.util.TranslationHelper;
 
+/**
+ * 
+ * ModuleRegistry
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ModuleRegistry {
 	
 	private static HashMap<Integer, ItemStack> registeredModules = new HashMap();

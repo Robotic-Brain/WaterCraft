@@ -7,7 +7,12 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 
 /**
+ * BoatAIBase
+ * 
  * Use this AI base class for simple boats
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public abstract class BoatAIBase {
     

@@ -11,6 +11,13 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
+/**
+ * 
+ * WCTileEntityCrane
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCTileEntityCrane extends DirectionalTileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	ItemStack[] items = new ItemStack[4];

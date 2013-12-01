@@ -4,6 +4,13 @@ import net.minecraft.client.model.ModelRenderer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * 
+ * WCModelLargeChest
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 @SideOnly(Side.CLIENT)
 public class WCModelLargeChest extends WCModelChest {
     public WCModelLargeChest() {

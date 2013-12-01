@@ -26,6 +26,13 @@ import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.util.LogHelper;
 
+/**
+ * 
+ * PacketHandler
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class PacketHandler implements IPacketHandler {
     
     public static final int INTERFACE_PACKET_ID 	 = 0;

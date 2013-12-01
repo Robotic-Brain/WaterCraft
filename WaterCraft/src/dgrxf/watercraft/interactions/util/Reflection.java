@@ -3,6 +3,13 @@ package dgrxf.watercraft.interactions.util;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+/**
+ * 
+ * Reflection
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class Reflection {
 	
 	public static Class getClassFromName(String name){

@@ -6,6 +6,13 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
 
+/**
+ * 
+ * GuiBase
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class GuiBase extends GuiContainer {
     
     public GuiBase(Container container) {

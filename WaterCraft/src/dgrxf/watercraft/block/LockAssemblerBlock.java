@@ -10,6 +10,13 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
+/**
+ * 
+ * LockAssemblerBlock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class LockAssemblerBlock extends BlockContainer {
 
 	public LockAssemblerBlock(int id) {

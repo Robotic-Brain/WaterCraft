@@ -21,6 +21,13 @@ import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;
 
+/**
+ * 
+ * ItemModularBoat
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemModularBoat extends Item implements IModularBoat{
 
 	public ItemModularBoat(int id) {

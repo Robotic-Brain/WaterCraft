@@ -13,6 +13,13 @@ import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
+/**
+ * 
+ * WCTileEntityLiquidStorageTank
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCTileEntityLiquidStorageTank extends TileEntity implements IFluidHandler{
 
 	public FluidTank tank;

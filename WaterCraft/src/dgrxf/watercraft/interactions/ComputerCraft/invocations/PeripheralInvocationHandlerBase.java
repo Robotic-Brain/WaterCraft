@@ -4,9 +4,15 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 import net.minecraft.nbt.NBTTagCompound;
-import dgrxf.watercraft.interactions.ComputerCraft.ComputerCraftInteractions;
 import dgrxf.watercraft.interactions.ComputerCraft.enumeration.Methods;
 
+/**
+ * 
+ * PeripheralInvocationHandlerBase
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class PeripheralInvocationHandlerBase implements InvocationHandler{
 
 	@Override

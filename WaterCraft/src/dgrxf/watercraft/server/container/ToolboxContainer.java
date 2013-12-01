@@ -13,12 +13,12 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.damage.WCDamageSources;
 
 /**
- * Class Created By: Drunk Mafia (TDM) Class Last Modified By: Drunk Mafia (TDM)
  * 
- * Class Last Modified On: 11/09/2013 MM/DD/YYYY
+ * ToolboxContainer
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ToolboxContainer extends Container {
     
     private WCTileEntityToolBox tile;

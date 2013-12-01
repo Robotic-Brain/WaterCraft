@@ -10,6 +10,13 @@ import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.LockAssemblerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
+/**
+ * 
+ * GuiLockAssembler
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiLockAssembler extends GuiBase {
 	
 	private WCTileEntityLockAssembler lock;

@@ -15,12 +15,12 @@ import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.util.MD5Generator;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:14/06/2013 MM/DD/YYYYY
+ * ItemPadlock
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ItemPadlock extends Item {
     
     public ItemPadlock(int id) {

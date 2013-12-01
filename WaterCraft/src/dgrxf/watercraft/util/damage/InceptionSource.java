@@ -6,7 +6,10 @@ import net.minecraft.util.DamageSource;
 
 /**
  * 
+ * InceptionSource
+ * 
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public class InceptionSource extends DamageSource {
     

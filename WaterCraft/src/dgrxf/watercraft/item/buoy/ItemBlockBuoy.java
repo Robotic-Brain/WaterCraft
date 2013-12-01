@@ -12,14 +12,12 @@ import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 import dgrxf.watercraft.util.RotationHelper;
 
 /**
- * Class Made By: Gory_Moon
  * 
- * Class Last Edited By: xandayn Class Last Edited On: 7/11/2013 DD/MM/YYYY
- * Class Last Edited By: Robotic-Brain Class Last Edited On: 8/11/2013
- * DD/MM/YYYY
+ * ItemBlockBuoy
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ItemBlockBuoy extends ItemBlock {
     
     public ItemBlockBuoy(int id) {

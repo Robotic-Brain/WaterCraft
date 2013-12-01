@@ -8,6 +8,8 @@ import dgrxf.watercraft.util.damage.InceptionSource;
 
 /**
  * 
+ * WCEventHandler
+ * 
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */

@@ -2,6 +2,13 @@ package dgrxf.watercraft.lib;
 
 import dgrxf.watercraft.client.gui.GuiColor;
 
+/**
+ * 
+ * MiscInfo
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class MiscInfo {
     
     /*************

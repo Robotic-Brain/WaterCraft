@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.util.Vector2;
 
+/**
+ * 
+ * GuiScrollList
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class GuiScrollList extends GuiExtra {
     
     private ArrayList<String> list;

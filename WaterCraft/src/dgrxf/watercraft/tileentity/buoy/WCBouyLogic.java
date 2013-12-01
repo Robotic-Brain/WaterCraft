@@ -7,6 +7,13 @@ import dgrxf.watercraft.tileentity.DirectionalTileEntity;
 import dgrxf.watercraft.util.LogHelper;
 import dgrxf.watercraft.util.Vector3;
 
+/**
+ * 
+ * WCBouyLogic
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class WCBouyLogic extends DirectionalTileEntity {
     
     /**

@@ -15,8 +15,13 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.VanillaBoat;
 
 /**
+ * 
+ * ItemBoat
+ * 
  * This overwrites the vanilla boat
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public class ItemBoat extends Item {
     

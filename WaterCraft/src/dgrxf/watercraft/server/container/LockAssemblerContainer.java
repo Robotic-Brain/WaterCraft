@@ -7,6 +7,13 @@ import net.minecraft.inventory.Slot;
 import dgrxf.watercraft.client.gui.interfaces.OutputSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
+/**
+ * 
+ * LockAssemblerContainer
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class LockAssemblerContainer extends Container {
 	WCTileEntityLockAssembler lock;
 	

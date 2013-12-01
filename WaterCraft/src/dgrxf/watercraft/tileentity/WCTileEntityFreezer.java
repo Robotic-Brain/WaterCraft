@@ -5,12 +5,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
- * Class Created By: Frod Class Last Modified By: Frod
  * 
- * Class Last Modified On: 11/08/2013 MM/DD/YYYY
+ * WCTileEntityFreezer
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class WCTileEntityFreezer extends TileEntity {
     
     private final int SMELTER_RANGE    = 15;

@@ -1,9 +1,14 @@
 package dgrxf.watercraft.interfaces;
 
 /**
+ * 
+ * ILockableBlock
+ * 
  * used in tile entities of container blocks that needs to be locked
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public interface ILockableBlock {
     
     /**

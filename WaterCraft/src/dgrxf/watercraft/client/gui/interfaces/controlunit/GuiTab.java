@@ -5,6 +5,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
 
+/**
+ * 
+ * GuiTab
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 @SideOnly(Side.CLIENT)
 public abstract class GuiTab extends GuiRectangle {
     

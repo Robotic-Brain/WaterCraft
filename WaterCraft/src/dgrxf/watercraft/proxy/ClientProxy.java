@@ -22,10 +22,11 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
 /**
- * Client Proxy
  * 
- * @author Drunk Mafia
+ * ClientProxy
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public class ClientProxy extends CommonProxy {
     @Override

@@ -9,6 +9,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.util.RotationHelper;
 
+/**
+ * 
+ * DirectionalBlock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class DirectionalBlock extends Block {
     
     public DirectionalBlock(int id, Material material) {

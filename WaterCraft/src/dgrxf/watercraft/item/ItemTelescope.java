@@ -12,6 +12,13 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
+/**
+ * 
+ * ItemTelescope
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemTelescope extends Item {
     
     public ItemTelescope(int id) {

@@ -9,6 +9,13 @@ import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * ControlBlockDock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ControlBlockDock extends BuoyBlock {
     
     public ControlBlockDock(int id) {

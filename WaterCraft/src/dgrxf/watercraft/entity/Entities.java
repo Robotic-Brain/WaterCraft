@@ -7,12 +7,12 @@ import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.entity.boat.VanillaBoat;
 
 /**
- * Class Made By: Gory_Moon
  * 
- * Class Last Edited By:Gory_Moon on:2013-11-06
+ * Entities
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class Entities {
     
     public static void init() {

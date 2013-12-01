@@ -12,12 +12,12 @@ import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:14/08/2013 MM/DD/YYYYY
- * 
+ * ToolBoxRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ToolBoxRenderer extends TileEntitySpecialRenderer {
     
     private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox.obj");

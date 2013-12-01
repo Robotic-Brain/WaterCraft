@@ -5,6 +5,13 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
 import dgrxf.watercraft.util.Vector2;
 
+/**
+ * 
+ * DumbTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class DumbTask extends BoatAITaskBase {
     
     private Vector2 target, lastLocation;

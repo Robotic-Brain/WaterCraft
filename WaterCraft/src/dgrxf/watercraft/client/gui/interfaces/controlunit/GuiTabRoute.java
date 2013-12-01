@@ -8,6 +8,13 @@ import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
 import dgrxf.watercraft.client.gui.interfaces.GuiScrollList;
 import dgrxf.watercraft.util.Vector2;
 
+/**
+ * 
+ * GuiTabRoute
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiTabRoute extends GuiTab {
     
     private ArrayList<String> directions     = new ArrayList<String>() {

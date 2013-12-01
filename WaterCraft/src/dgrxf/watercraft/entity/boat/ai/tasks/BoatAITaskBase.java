@@ -3,6 +3,13 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 
+/**
+ * 
+ * BoatAITaskBase
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public abstract class BoatAITaskBase extends BoatAIBase implements Comparable<BoatAITaskBase> {
     
     /**

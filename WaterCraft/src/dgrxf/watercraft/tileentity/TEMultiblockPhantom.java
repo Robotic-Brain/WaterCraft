@@ -4,6 +4,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.util.Vector3;
 
+/**
+ * 
+ * TEMultiblockPhantom
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class TEMultiblockPhantom extends TileEntity {
     
     /**

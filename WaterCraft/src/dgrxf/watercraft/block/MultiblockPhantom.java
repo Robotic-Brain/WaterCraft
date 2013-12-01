@@ -27,6 +27,13 @@ import net.minecraftforge.common.IPlantable;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.tileentity.TEMultiblockPhantom;
 
+/**
+ * 
+ * MultiblockPhantom
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class MultiblockPhantom extends Block {
 
     public MultiblockPhantom(int id) {

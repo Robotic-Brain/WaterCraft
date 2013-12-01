@@ -1,12 +1,12 @@
 package dgrxf.watercraft.lib;
 
 /**
- * Class Made By: ???
  * 
- * Class Last Edited By: ??? Class Last Edited On: 07/11/2013 DD/MM/YYYY
+ * ModInfo
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ModInfo {
     
     public static final String MODID        = "watercraft";

@@ -9,6 +9,13 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.server.container.CalculatorContainer;
 
+/**
+ * 
+ * GuiCalculator
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiCalculator extends GuiContainer {
     
     private String screenText = "";

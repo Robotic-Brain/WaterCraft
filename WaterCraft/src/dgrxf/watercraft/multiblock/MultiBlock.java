@@ -3,12 +3,12 @@ package dgrxf.watercraft.multiblock;
 import net.minecraft.world.World;
 
 /**
- * Class Created By: ??? Class Last Edited By: xandayn
  * 
- * Class Last Edited On: 11/09/2013 MM/DD/YYYY
+ * MultiBlock
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class MultiBlock {
     
     /*

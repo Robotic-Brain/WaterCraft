@@ -1,5 +1,12 @@
 package dgrxf.watercraft.client.gui;
 
+/**
+ * 
+ * GuiColor
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public enum GuiColor {
     BLACK(0x000000),
     BLUE(0x0000AA),

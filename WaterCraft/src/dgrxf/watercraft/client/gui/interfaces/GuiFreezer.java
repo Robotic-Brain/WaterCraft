@@ -11,6 +11,13 @@ import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.FreezerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
+/**
+ * 
+ * GuiFreezer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiFreezer extends GuiContainer {
     
     private String screenText;

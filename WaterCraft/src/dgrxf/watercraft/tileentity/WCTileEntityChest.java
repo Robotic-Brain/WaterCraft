@@ -21,6 +21,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.block.WCChest;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 
+/**
+ * 
+ * WCTileEntityChest
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCTileEntityChest extends TileEntity implements IInventory, ILockableBlock {
     private ItemStack[]      inventory = new ItemStack[36];
     

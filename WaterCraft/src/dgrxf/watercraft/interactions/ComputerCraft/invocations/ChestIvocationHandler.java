@@ -6,6 +6,13 @@ import java.util.Map;
 import net.minecraft.item.ItemStack;
 import dgrxf.watercraft.tileentity.WCTileEntityChest;
 
+/**
+ * 
+ * ChestIvocationHandler
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ChestIvocationHandler extends PeripheralInvocationHandlerBase{
 
 	private WCTileEntityChest chest;

@@ -5,6 +5,7 @@ import dgrxf.watercraft.lib.ModInfo;
 
 /**
  * (Original from VSWE Courses)
+ * http://courses.vswe.se/
  */
 
 public enum Sounds {

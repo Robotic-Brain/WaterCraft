@@ -9,6 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.item.ModItems;
 
+/**
+ * 
+ * WCTileEntityLockAssembler
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCTileEntityLockAssembler extends TileEntity implements IInventory {
 	
 	private static final int SLOTS = 5;

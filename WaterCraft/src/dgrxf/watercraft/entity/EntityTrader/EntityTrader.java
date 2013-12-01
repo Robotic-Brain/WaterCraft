@@ -16,6 +16,13 @@ import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import net.minecraft.world.World;
 
+/**
+ * 
+ * EntityTrader
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class EntityTrader extends EntityVillager {
 	
     private MerchantRecipeList traderBuyingList;

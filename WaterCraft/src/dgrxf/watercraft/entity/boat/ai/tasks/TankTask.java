@@ -14,6 +14,13 @@ import net.minecraftforge.fluids.IFluidHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.lib.EntityInfo;
 
+/**
+ * 
+ * TankTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class TankTask extends BoatAITaskBase implements IFluidHandler{
 
 	public FluidTank tank;

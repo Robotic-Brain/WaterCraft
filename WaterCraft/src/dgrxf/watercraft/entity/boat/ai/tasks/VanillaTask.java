@@ -5,6 +5,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.item.ModItems;
 
+/**
+ * 
+ * VanillaTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class VanillaTask extends BoatAITaskBase {
     
     public VanillaTask(AbstractBaseBoat boat, Float priority, Object... args) {

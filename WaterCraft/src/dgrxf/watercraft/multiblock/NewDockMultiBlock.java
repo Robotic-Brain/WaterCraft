@@ -8,8 +8,13 @@ import dgrxf.watercraft.util.Vector2;
 import dgrxf.watercraft.util.Vector3;
 
 /**
- * WARNING: Mess ahead!
  * 
+ * NewDockMultiBlock
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ * 
+ * WARNING: Mess ahead!
+ *
  */
 public class NewDockMultiBlock {
     

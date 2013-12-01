@@ -15,12 +15,12 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 
 /**
- * Class Created By: Frod Class Last Modified By: Frod
  * 
- * Class Last Modified On: 11/08/2013 MM/DD/YYYY
- * 
+ * WaterFreezerBlock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class WaterFreezerBlock extends Block {
     
     public WaterFreezerBlock(int id) {

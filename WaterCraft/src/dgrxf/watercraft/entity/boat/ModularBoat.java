@@ -12,6 +12,13 @@ import dgrxf.watercraft.enumeration.Alphabet;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.module.ModuleHelper;
 
+/**
+ * 
+ * ModularBoat
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ModularBoat extends AbstractBaseBoat{
 	
 	private BoatAITaskList list;

@@ -10,7 +10,8 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 
 /**
- * 
+ * BoatModuleAssemblerBlock
+ *
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */

@@ -25,6 +25,13 @@ import dgrxf.watercraft.tileentity.WCTileEntityFreezer;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * 
+ * GuiHandler
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiHandler implements IGuiHandler {
     
 	public static final int VANILLA_CHEST_ID   = -1;

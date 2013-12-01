@@ -5,6 +5,13 @@ import net.minecraft.client.model.ModelRenderer;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+/**
+ * 
+ * WCModelChest
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 @SideOnly(Side.CLIENT)
 public class WCModelChest extends ModelBase {
     /** The chest lid in the chest's model. */

@@ -24,6 +24,13 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 
+/**
+ * 
+ * ToolBoxBlock
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ToolBoxBlock extends DirectionalBlock {
     
     public ToolBoxBlock(int id) {

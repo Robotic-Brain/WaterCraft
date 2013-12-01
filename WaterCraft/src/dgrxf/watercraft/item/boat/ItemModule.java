@@ -8,6 +8,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import dgrxf.watercraft.Watercraft;
 
+/**
+ * 
+ * ItemModule
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemModule extends Item{
 
 	public ItemModule(int id) {

@@ -12,6 +12,13 @@ import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.EntityInfo;
 
+/**
+ * 
+ * InventoryTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class InventoryTask extends BoatAITaskBase implements IInventory, ILockableBlock{
 
 	private int guiID;

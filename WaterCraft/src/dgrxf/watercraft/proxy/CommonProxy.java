@@ -1,12 +1,12 @@
 package dgrxf.watercraft.proxy;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:11/06/2013 MM/DD/YYYYY
+ * CommonProxy
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class CommonProxy {
     public void initSounds() {
         

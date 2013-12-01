@@ -10,6 +10,13 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * ControlUnitRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ControlUnitRenderer extends TileEntitySpecialRenderer {
     private IModelCustom modelUnit = AdvancedModelLoader.loadModel("/assets/watercraft/models/controlunit.obj");
     

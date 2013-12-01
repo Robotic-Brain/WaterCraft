@@ -7,9 +7,11 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 
 /**
- * Recipe Helper
+ * 
+ * RecipeHelper
  * 
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public class RecipeHelper {
     public static void removeCraftingRecipe(ItemStack toRemove) {

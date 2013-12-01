@@ -8,6 +8,13 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.interfaces.ICustomBoatTexture;
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * LavaTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class LavaTask extends BoatAITaskBase implements ICustomBoatTexture{
 
 	public LavaTask(AbstractBaseBoat boat, Float priority, Object... args) {

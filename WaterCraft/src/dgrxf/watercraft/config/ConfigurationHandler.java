@@ -10,6 +10,8 @@ import dgrxf.watercraft.util.LogHelper;
 
 /**
  * 
+ * ConfigurationHandler
+ *
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */
@@ -22,19 +24,6 @@ public class ConfigurationHandler {
             
             // Items
             ModItems.loadIdsFromConfig(config);
-            /*ItemInfo.DUMB_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.DUMB_BOAT_KEY, ItemInfo.DUMB_BOAT_ID_DEFAULT).getInt();
-            ItemInfo.BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_KEY, ItemInfo.BOAT_ID_DEFAULT).getInt();
-            ItemInfo.TAPE_MEASURE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TAPE_MEASURE_KEY, ItemInfo.TAPE_MEASURE_ID_DEFAULT).getInt();
-            ItemInfo.TELESCOPE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.TELESCOPE_KEY, ItemInfo.TELESCOPE_ID_DEFAULT).getInt();
-            ItemInfo.ENGINE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.ENGINE_KEY, ItemInfo.ENGINE_ID_DEFAULT).getInt();
-            ItemInfo.FLAG_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.FLAG_KEY, ItemInfo.FLAG_ID_DEFAULT).getInt();
-            ItemInfo.ROPE_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.ROPE_KEY, ItemInfo.ROPE_ID_DEFAULT).getInt();
-            ItemInfo.PADLOCK_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.PADLOCK_KEY, ItemInfo.PADLOCK_ID_DEFAULT).getInt();
-            ItemInfo.CALCULATOR_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.CALCULATOR_KEY, ItemInfo.CALCULATOR_ID_DEFAULT).getInt();
-            ItemInfo.KEY_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.KEY_KEY, ItemInfo.KEY_ID_DEFAULT).getInt();
-            ItemInfo.MODULAR_BOAT_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_MODULAR_KEY, ItemInfo.MODULAR_BOAT_ID_DEFAULT).getInt();
-            ItemInfo.BOAT_HULL_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.BOAT_HULL_KEY, ItemInfo.BOAT_HULL_ID_DEFAULT).getInt();
-            ItemInfo.SPAWNTRADER_ID = config.getItem(ItemInfo.CATEGORY, ItemInfo.SPAWNTRADER_KEY, ItemInfo.SPAWNTRADER_ID_DEFAULT).getInt();*/
             
             // Blocks
             ModBlocks.loadIdsFromConfig(config);

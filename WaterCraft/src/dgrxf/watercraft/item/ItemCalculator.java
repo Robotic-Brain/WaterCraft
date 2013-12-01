@@ -8,6 +8,13 @@ import cpw.mods.fml.common.network.FMLNetworkHandler;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 
+/**
+ * 
+ * ItemCalculator
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemCalculator extends Item{
     public ItemCalculator(int id) {
         super(id);

@@ -3,6 +3,13 @@ package dgrxf.watercraft.entity.boat.ai.tasks;
 import net.minecraft.block.Block;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
+/**
+ * 
+ * IceTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class IceTask extends BoatAITaskBase {
     
     public IceTask(AbstractBaseBoat boat, Float priority, Object... args) {

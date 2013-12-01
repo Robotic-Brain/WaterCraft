@@ -12,7 +12,11 @@ import dgrxf.watercraft.item.toolbox.ItemPadlock;
 import dgrxf.watercraft.lib.MiscInfo;
 
 /**
+ * ModItems
+ * 
  * Add new Items to this Enum
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  * 
  * <pre>
  * Constructor:

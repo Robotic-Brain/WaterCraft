@@ -8,6 +8,13 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 
+/**
+ * 
+ * CraneContainer
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class CraneContainer extends Container implements ITeContainer {
     
     private WCTileEntityCrane unit;

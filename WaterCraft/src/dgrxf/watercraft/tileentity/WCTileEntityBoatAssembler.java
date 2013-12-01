@@ -11,8 +11,14 @@ import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
-import dgrxf.watercraft.network.PacketHandler;
 
+/**
+ * 
+ * WCTileEntityBoatAssembler
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCTileEntityBoatAssembler extends TileEntity implements IInventory, ITileEntityInterfaceEvent{
 
 	private ItemStack[] items = new ItemStack[3];

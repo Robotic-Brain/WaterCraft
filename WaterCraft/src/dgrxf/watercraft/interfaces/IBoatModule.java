@@ -5,6 +5,13 @@ import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.enumeration.ModuleType;
 
+/**
+ * 
+ * IBoatModule
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public interface IBoatModule {
 	
 	/**

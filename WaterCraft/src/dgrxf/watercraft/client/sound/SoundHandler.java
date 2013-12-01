@@ -9,8 +9,8 @@ import dgrxf.watercraft.util.LogHelper;
 
 /**
  * (Original from VSWE Courses)
+ * http://courses.vswe.se/
  */
-
 @SideOnly(Side.CLIENT)
 public class SoundHandler {
     

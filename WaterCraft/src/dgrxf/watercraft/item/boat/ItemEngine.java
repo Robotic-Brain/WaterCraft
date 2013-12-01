@@ -5,6 +5,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
+/**
+ * 
+ * ItemEngine
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemEngine extends Item{
 
 	public ItemEngine(int id) {

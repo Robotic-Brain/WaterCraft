@@ -21,12 +21,12 @@ import dgrxf.watercraft.util.Rectangle;
 import dgrxf.watercraft.util.Vector3;
 
 /**
- * Class Created By: ??? Class Last Edited By: DrunkMafia
  * 
- * Class Last Edited On: 21/07/2013 MM/DD/YYYY
+ * WCTileEntityControlUnitDock
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class WCTileEntityControlUnitDock extends WCBouyLogic implements ITileEntityInterfaceEvent {
     
     /** Constants **/

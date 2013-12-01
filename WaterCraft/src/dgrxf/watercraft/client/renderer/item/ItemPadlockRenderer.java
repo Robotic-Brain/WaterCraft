@@ -11,12 +11,12 @@ import cpw.mods.fml.client.FMLClientHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:14/06/2013 MM/DD/YYYYY
- * 
+ * ItemPadlockRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class ItemPadlockRenderer implements IItemRenderer {
     
     private IModelCustom modelPadlock = AdvancedModelLoader.loadModel("/assets/watercraft/models/padlock_open.obj");

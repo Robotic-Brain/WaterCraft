@@ -4,6 +4,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+/**
+ * 
+ * OutputSlot
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class OutputSlot extends Slot {
 
 	public OutputSlot(IInventory par1iInventory, int par2, int par3, int par4) {

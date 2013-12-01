@@ -6,6 +6,13 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
 import dgrxf.watercraft.util.Vector3;
 
+/**
+ * 
+ * BuoyParticle
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class BuoyParticle extends EntityFX {
     
     private static final float gravity  = 0.1F;

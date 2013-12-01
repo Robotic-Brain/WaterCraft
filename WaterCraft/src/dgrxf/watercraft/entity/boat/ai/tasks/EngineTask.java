@@ -1,11 +1,17 @@
 package dgrxf.watercraft.entity.boat.ai.tasks;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 
+/**
+ * 
+ * EngineTask
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class EngineTask extends BoatAITaskBase{
 
 	private int burnTime;

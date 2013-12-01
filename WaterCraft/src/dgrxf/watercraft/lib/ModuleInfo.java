@@ -15,9 +15,15 @@ import dgrxf.watercraft.entity.boat.ai.tasks.VanillaTask;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.module.CustomModule;
-import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
 
+/**
+ * 
+ * ModuleInfo
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ModuleInfo {
 	public static void init(){
 	 // TODO Translation

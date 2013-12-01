@@ -18,6 +18,13 @@ import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.util.LogHelper;
 
+/**
+ * 
+ * CraneGUI
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 @SideOnly(Side.CLIENT)
 public class CraneGUI extends GuiBase {
     

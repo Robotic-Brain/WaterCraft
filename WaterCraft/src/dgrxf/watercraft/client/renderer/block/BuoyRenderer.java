@@ -11,12 +11,12 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.lib.RenderInfo;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:11/07/2013 MM/DD/YYYYY
- * 
+ * BuoyRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class BuoyRenderer extends TileEntitySpecialRenderer {
     
     private IModelCustom modelBuoy = AdvancedModelLoader.loadModel("/assets/watercraft/models/buoy.obj");

@@ -6,8 +6,11 @@ import net.minecraftforge.common.ForgeDirection;
 import dgrxf.watercraft.block.DirectionalBlock;
 
 /**
- * Watercraft TileEntity Baseclass
  * 
+ * DirectionalTileEntity
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
 public abstract class DirectionalTileEntity extends TileEntity {
     

@@ -14,6 +14,13 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import dgrxf.watercraft.lib.RenderInfo;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
+/**
+ * 
+ * LiquidTankRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class LiquidTankRenderer implements ISimpleBlockRenderingHandler{
 	
 	@Override

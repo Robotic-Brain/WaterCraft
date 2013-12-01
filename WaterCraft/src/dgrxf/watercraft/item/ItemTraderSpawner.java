@@ -25,6 +25,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.entity.EntityTrader.EntityTrader;
 
+/**
+ * 
+ * ItemTraderSpawner
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemTraderSpawner extends ItemMonsterPlacer {
 	
 	@SideOnly(Side.CLIENT)

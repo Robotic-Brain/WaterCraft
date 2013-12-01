@@ -8,6 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 
+/**
+ * 
+ * ItemBlockLiquidTank
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemBlockLiquidTank extends ItemBlock{
 
 	public ItemBlockLiquidTank(int par1) {

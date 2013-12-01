@@ -18,6 +18,13 @@ import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.interfaces.ILockableBlock;
 import dgrxf.watercraft.util.MD5Generator;
 
+/**
+ * 
+ * ItemKey
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemKey extends Item {
     
     Random random = new Random();

@@ -1,12 +1,17 @@
 package dgrxf.watercraft.interactions.ComputerCraft.invocations;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
 
 import net.minecraftforge.fluids.FluidRegistry;
-import dgrxf.watercraft.interactions.ComputerCraft.ComputerCraftInteractions;
 import dgrxf.watercraft.tileentity.WCTileEntityLiquidStorageTank;
 
+/**
+ * 
+ * TankPeripheralInvocationHandler
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class TankPeripheralInvocationHandler extends PeripheralInvocationHandlerBase implements InvocationHandler{
 
 	WCTileEntityLiquidStorageTank tank;

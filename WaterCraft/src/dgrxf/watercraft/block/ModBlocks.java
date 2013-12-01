@@ -22,7 +22,12 @@ import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.tileentity.buoy.WCTileEntityBuoy;
 
 /**
+ * 
+ * ModBlocks
+ *
  * Add Blocks to this enum
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  * 
  * <pre>
  * Constructor:

@@ -13,6 +13,13 @@ import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.ModInfo;
 import dgrxf.watercraft.util.TranslationHelper;
 
+/**
+ * 
+ * ItemFlag
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemFlag extends Item {
     public ItemFlag(int id) {
         super(id);

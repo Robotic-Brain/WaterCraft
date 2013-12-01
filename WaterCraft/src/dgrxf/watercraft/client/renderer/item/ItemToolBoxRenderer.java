@@ -11,6 +11,13 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.lib.RenderInfo;
 
+/**
+ * 
+ * ItemToolBoxRenderer
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ItemToolBoxRenderer implements IItemRenderer {
     
     private IModelCustom modelToolBox_closed = AdvancedModelLoader.loadModel("/assets/watercraft/models/Toolbox.obj");

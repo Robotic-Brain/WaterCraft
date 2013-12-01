@@ -12,12 +12,12 @@ import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.RecipeHelper;
 
 /**
- * Class Made By: Drunk Mafia
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:14/06/2013 MM/DD/YYYYY
+ * RecipeHandler
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class RecipeHandler {
     public static void init() {
         //blockRecipes();
