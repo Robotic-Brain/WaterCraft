@@ -35,9 +35,9 @@
 	</target>
 
 	<target name="replace_tokens">
-		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@GIT_SHA@" value="${repository.version}" />
-		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@VERSION@" value="${build.mod_version}" />
-		<replace file="${environment.mcp_location}/src/minecraft/mcmod.info" token="@VERSION@" value="${build.mod_version}" />
+		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@GIT_SHA@" value="${repository.version}" summary="yes" />
+		<replace dir="${environment.mcp_location}/src/minecraft/${environment.main_package_path}" token="@VERSION@" value="${build.mod_version}" summary="yes" />
+		<replace file="${environment.mcp_location}/src/minecraft/mcmod.info" token="@VERSION@" value="${build.mod_version}" summary="yes" />
 	</target>
 
 	<target name="recompile">
