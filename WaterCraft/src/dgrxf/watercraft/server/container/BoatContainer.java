@@ -5,6 +5,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 
+/**
+ * 
+ * BoatContainer
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class BoatContainer extends Container{
 
 	public BoatContainer(IInventory player, AbstractBaseBoat boat){

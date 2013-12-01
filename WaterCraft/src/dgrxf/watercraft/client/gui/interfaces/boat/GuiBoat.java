@@ -5,6 +5,13 @@ import dgrxf.watercraft.client.gui.interfaces.GuiBase;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.server.container.BoatContainer;
 
+/**
+ * 
+ * GuiBoat
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class GuiBoat extends GuiBase{
 
 	public GuiBoat(IInventory player, AbstractBaseBoat boat) {
