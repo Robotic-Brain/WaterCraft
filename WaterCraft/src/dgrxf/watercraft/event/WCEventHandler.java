@@ -6,6 +6,11 @@ import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.util.damage.InceptionSource;
 
+/**
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class WCEventHandler {
     
     @ForgeSubscribe

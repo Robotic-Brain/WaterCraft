@@ -1,14 +1,5 @@
 package dgrxf.watercraft.config;
 
-/**
- * Class Made By: Drunk Mafia
- * 
- * Class Last Edited By: Drunk Mafia
- * Class Last Edited On: 14/11/2013
- * 						 DD/MM/YYYY
- * 
- */
-
 import java.io.File;
 
 import net.minecraftforge.common.Configuration;
@@ -17,6 +8,11 @@ import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.lib.MiscInfo;
 import dgrxf.watercraft.util.LogHelper;
 
+/**
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class ConfigurationHandler {
     public static void init(File file) {
         Configuration config = new Configuration(file);

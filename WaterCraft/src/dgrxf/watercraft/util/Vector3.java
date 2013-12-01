@@ -2,6 +2,11 @@ package dgrxf.watercraft.util;
 
 import net.minecraftforge.common.ForgeDirection;
 
+/**
+ * Vector 3D
+ *
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ */
 public class Vector3 {
     
     public double x, y, z;

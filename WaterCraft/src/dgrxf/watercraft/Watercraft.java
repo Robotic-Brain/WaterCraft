@@ -37,18 +37,44 @@ import dgrxf.watercraft.recipe.RecipeHandler;
 import dgrxf.watercraft.util.LogHelper;
 
 /**
- * Class Made By: Drunk Mafia
+ * WaterCraft
  * 
- * Class Last Edited By:Drunk Mafia Class Last Edited On:14/06/2013 MM/DD/YYYYY
+ * (https://github.com/Robotic-Brain/WaterCraft)
+ * 
+ * <pre>
+ * Copyright (C) 2013
+ * 
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option) any later
+ * version.
+ * 
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+ * details.
+ * 
+ * You should have received a copy of the GNU General Public License along with
+ * this program. If not, see <http://www.gnu.org/licenses/>.
+ * </pre>
+ * 
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ * 
+ * @author Drunk Mafia
+ * @author Robotic-Brain
+ * @author xandayn
+ * @author FrodCube
+ * @author GoryMoon
  * 
  */
 
-@Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME, dependencies="after:ComputerCraft")
+@Mod(modid = ModInfo.MODID, version = ModInfo.VERSION, name = ModInfo.NAME, dependencies = "after:ComputerCraft")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = { ModInfo.CHANNEL }, packetHandler = PacketHandler.class)
 public class Watercraft {
     
-	public static boolean hasCC = false;
-	
+    public static boolean          hasCC   = false;
+    
     @Instance(ModInfo.MODID)
     public static Watercraft       instance;
     
@@ -83,14 +109,14 @@ public class Watercraft {
     }
     
     @EventHandler
-    public void interModComs(IMCEvent event){
+    public void interModComs(IMCEvent event) {
     }
     
     @EventHandler
-    public void postInit(FMLPostInitializationEvent event){
-    	if(Loader.isModLoaded("ComputerCraft")){
-    		hasCC = true;
-    	}
+    public void postInit(FMLPostInitializationEvent event) {
+        if (Loader.isModLoaded("ComputerCraft")) {
+            hasCC = true;
+        }
     }
     
     @SideOnly(Side.CLIENT)

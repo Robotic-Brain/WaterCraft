@@ -6,6 +6,7 @@ import net.minecraftforge.common.ForgeDirection;
 /**
  * Rotation Helper Class
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  */
 public class RotationHelper {
     

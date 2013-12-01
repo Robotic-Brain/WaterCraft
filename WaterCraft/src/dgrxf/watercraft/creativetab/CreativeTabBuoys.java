@@ -5,6 +5,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.block.ModBlocks;
 
+/**
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
+ */
 public class CreativeTabBuoys extends CreativeTabs {
     
     public CreativeTabBuoys(int tabId, String label) {
