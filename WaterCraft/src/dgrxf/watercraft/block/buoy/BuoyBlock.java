@@ -26,6 +26,7 @@ import dgrxf.watercraft.util.Vector3;
 /**
  * Buoy Block
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  */
 public class BuoyBlock extends DirectionalBlock {
     

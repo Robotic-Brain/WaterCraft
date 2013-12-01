@@ -1,5 +1,10 @@
 package dgrxf.watercraft.util;
 
+/**
+ * Vector 2D
+ * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ */
 public class Vector2 {
     public double x, y;
     

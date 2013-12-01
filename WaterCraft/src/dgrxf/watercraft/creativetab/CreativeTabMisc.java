@@ -6,13 +6,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.item.ModItems;
 
 /**
- * Class Made By: Robotic-Brain
  * 
- * Class Last Edited By: Robotic-Brain Class Last Edited On: 08/11/2013
- * DD/MM/YYYY
- * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ *
  */
-
 public class CreativeTabMisc extends CreativeTabs {
     
     public CreativeTabMisc(int tabId, String label) {

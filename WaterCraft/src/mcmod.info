@@ -1,20 +1,21 @@
-[
 {
-  "modid": "watercraft",
-  "name": "WaterCraft",
-  "description": "WaterCraft is a mod that hopes to make the neglected minecraft boat more useful and more fun to build with.",
-  "url": "",
-  "updateUrl": "",
-  "authorList": [
-    "Drunk Mafia",
-    "Robotic-Brain",
-    "xandayn",
-    "FrodCube",
-    "GoryMoon"
-  ],
-  "credits": "VSWE (For his amazing courses)",
-  "logoFile": "",
-  "screenshots": [
-  ]
+  "modinfoversion": 2,
+  "modlist": [{
+    "modid": "watercraft",
+  	"version": "@VERSION@",
+  	"name": "WaterCraft",
+  	"description": "WaterCraft is a mod that hopes to make the neglected minecraft boat more useful and more fun to build with.",
+  	"url": "",
+  	"updateUrl": "",
+  	"authorList": [
+      "Drunk Mafia",
+   	  "Robotic-Brain",
+      "xandayn",
+      "FrodCube",
+      "GoryMoon"
+    ],
+    "credits": "VSWE (For his amazing courses)",
+    "logoFile": "",
+    "screenshots": []
+  }]
 }
-]

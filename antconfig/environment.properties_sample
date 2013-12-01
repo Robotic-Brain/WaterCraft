@@ -1,0 +1,9 @@
+repo_location=../
+project_location=${repo_location}/WaterCraft
+source_location=${project_location}/src
+resource_location=${project_location}/resources
+main_package_path=dgrxf/watercraft
+
+release_location=${repo_location}/release
+
+mcp_location=/Minecraft/forge-944/mcp

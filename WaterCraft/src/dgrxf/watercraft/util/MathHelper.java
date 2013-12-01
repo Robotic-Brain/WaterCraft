@@ -3,6 +3,7 @@ package dgrxf.watercraft.util;
 /**
  * Math Helper Class
  * 
+ * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  */
 public class MathHelper {
     
