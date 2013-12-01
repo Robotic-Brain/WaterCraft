@@ -3,8 +3,56 @@
 	<property file="build.properties" prefix="build" />
 	<property file="environment.properties" prefix="environment" />
 
-	<!-- modified version of: http://stackoverflow.com/a/4059546 -->
 	<available file="${environment.repo_location}/.git" type="dir" property="git.present" />
+
+	<!-- gets the sha suffix to use and stores it in ${repository.sha} -->
+	<target name="get_sha_string" depends="tmp.repository.sha, git.status">
+		<condition property="repository.sha" value="${tmp.repository.sha}-modified" else="${tmp.repository.sha}">
+			<and>
+				<isset property="repository.modified" />
+				<not>
+					<equals trim="yes" arg1="${tmp.repository.sha}" arg2="noSHA" />
+				</not>
+			</and>
+		</condition>
+
+		<antcall target="no_git_warning" />
+		<antcall target="dirty_tree_warning" />
+		<echo message="Resolved SHA String: ${repository.sha}" />
+	</target>
+	
+	<!-- helper for get_sha_string -->
+	<target name="tmp.repository.sha" depends="git.revision">
+		<condition property="tmp.repository.sha" value="${repository.version}" else="noSHA">
+			<isset property="repository.version" />
+		</condition>
+	</target>
+
+	<!-- checks for dirty work tree (stores in ${repository.modified}) -->
+	<target name="git.status" if="git.present">
+		<exec executable="git" outputproperty="git.status" failifexecutionfails="false" errorproperty="">
+			<arg value="status" />
+			<arg value="--porcelain" />
+		</exec>
+		<condition property="repository.modified">
+			<and>
+				<isset property="git.status" />
+				<length string="${git.status}" trim="yes" length="0" when="greater" />
+			</and>
+		</condition>
+	</target>
+
+	<!-- reports no git warning -->
+	<target name="no_git_warning" unless="git.present">
+		<echo level="warning">[WARNING] Unable to interact with git!</echo>
+	</target>
+
+	<!-- reports Dirty worktree warning -->
+	<target name="dirty_tree_warning" if="repository.modified">
+		<echo level="warning">[WARNING] Working directory modified! Reposity might be out of sync!</echo>
+	</target>
+
+	<!-- modified version of: http://stackoverflow.com/a/4059546 -->
 	<target name="git.revision" if="git.present">
 		<!-- Store git revision in ${repository.version} -->
 		<exec executable="git" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
