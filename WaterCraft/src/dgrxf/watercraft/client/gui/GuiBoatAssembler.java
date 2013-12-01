@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces;
+package dgrxf.watercraft.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -8,7 +8,6 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;

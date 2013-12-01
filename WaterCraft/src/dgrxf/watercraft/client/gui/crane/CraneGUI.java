@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces.controlunit;
+package dgrxf.watercraft.client.gui.crane;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.client.gui.interfaces.GuiBase;
+import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;

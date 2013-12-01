@@ -1,9 +1,9 @@
-package dgrxf.watercraft.client.gui.interfaces.controlunit;
+package dgrxf.watercraft.client.gui.crane;
 
 import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
+import dgrxf.watercraft.client.gui.GuiRectangle;
 
 /**
  * 

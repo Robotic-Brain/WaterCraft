@@ -1,7 +1,7 @@
-package dgrxf.watercraft.client.gui.interfaces.boat;
+package dgrxf.watercraft.client.gui.boat;
 
 import net.minecraft.inventory.IInventory;
-import dgrxf.watercraft.client.gui.interfaces.GuiBase;
+import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;
 import dgrxf.watercraft.server.container.BoatContainer;
 

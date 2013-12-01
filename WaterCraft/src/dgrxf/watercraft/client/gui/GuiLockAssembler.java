@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces;
+package dgrxf.watercraft.client.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.InventoryPlayer;

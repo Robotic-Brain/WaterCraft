@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces;
+package dgrxf.watercraft.client.gui;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

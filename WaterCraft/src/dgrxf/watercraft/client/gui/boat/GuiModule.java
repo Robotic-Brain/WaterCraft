@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces.boat;
+package dgrxf.watercraft.client.gui.boat;
 
 /**
  * 

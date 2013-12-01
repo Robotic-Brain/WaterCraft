@@ -1,7 +1,7 @@
-package dgrxf.watercraft.client.gui.interfaces.controlunit;
+package dgrxf.watercraft.client.gui.crane;
 
-import dgrxf.watercraft.client.gui.interfaces.GuiBase;
-import dgrxf.watercraft.client.gui.interfaces.GuiExtra;
+import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.GuiExtra;
 
 /**
  * 

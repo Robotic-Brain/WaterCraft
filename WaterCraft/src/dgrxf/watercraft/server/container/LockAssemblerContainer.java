@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
-import dgrxf.watercraft.client.gui.interfaces.OutputSlot;
+import dgrxf.watercraft.client.gui.OutputSlot;
 import dgrxf.watercraft.tileentity.WCTileEntityLockAssembler;
 
 /**

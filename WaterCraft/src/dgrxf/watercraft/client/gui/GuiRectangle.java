@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui.interfaces;
+package dgrxf.watercraft.client.gui;
 
 import java.util.Arrays;
 

@@ -1,11 +1,11 @@
-package dgrxf.watercraft.client.gui.interfaces.controlunit;
+package dgrxf.watercraft.client.gui.crane;
 
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiButton;
-import dgrxf.watercraft.client.gui.interfaces.GuiExtra;
-import dgrxf.watercraft.client.gui.interfaces.GuiRectangle;
-import dgrxf.watercraft.client.gui.interfaces.GuiScrollList;
+import dgrxf.watercraft.client.gui.GuiExtra;
+import dgrxf.watercraft.client.gui.GuiRectangle;
+import dgrxf.watercraft.client.gui.GuiScrollList;
 import dgrxf.watercraft.util.Vector2;
 
 /**

@@ -1,8 +1,7 @@
-package dgrxf.watercraft.client.gui.interfaces;
+package dgrxf.watercraft.client.gui;
 
 import java.util.ArrayList;
 
-import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.util.Vector2;
 
 /**
