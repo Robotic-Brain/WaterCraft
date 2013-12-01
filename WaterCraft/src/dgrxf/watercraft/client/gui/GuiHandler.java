@@ -34,7 +34,7 @@ public class GuiHandler implements IGuiHandler {
     public static final int FREEZER_GUI_ID = 3;
     public static final int LOCK_ASSEMBLER_GUI_ID = 4;
     public static final int BOAT_ASSEMBLER_BLOCK_GUI_ID = 5;
-
+    public static final int BOAT_ENGINE_GUI_ID = 6;
     
     public GuiHandler() {
     }

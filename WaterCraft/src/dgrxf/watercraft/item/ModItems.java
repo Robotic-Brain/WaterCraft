@@ -1,11 +1,10 @@
 package dgrxf.watercraft.item;
 
-import java.lang.reflect.InvocationTargetException;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
+import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.item.boat.ItemBoat;
+import dgrxf.watercraft.item.boat.ItemEngine;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
 import dgrxf.watercraft.item.boat.ItemModule;
 import dgrxf.watercraft.item.buoy.ItemFlag;
@@ -35,7 +34,8 @@ public enum ModItems {
     KEY             (11718, "key", ItemKey.class),
     MODULAR_BOAT    (11720, "wcboatmodular", ItemModularBoat.class),
     BOAT_MODULES    (11719, "boatModules", ItemModule.class),
-    TRADER_SPAWNER  (11730, "spawnTrader", ItemTraderSpawner.class);
+    TRADER_SPAWNER  (11730, "spawnTrader", ItemTraderSpawner.class),
+    boatEngine      (11731, "boatEngine", ItemEngine.class);
     
     /************************************************************************************
      * 
