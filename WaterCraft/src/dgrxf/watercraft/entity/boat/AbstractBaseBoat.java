@@ -35,7 +35,7 @@ import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
  * NOTE: methods starting with "h_" need more cleanup. I figured out what I
  * wanted, so I didn't care to clean up further.
  * 
- * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
+ * @license No License since this is mostly vanilla code owned by Mojang
  * 
  */
 public abstract class AbstractBaseBoat extends Entity {
