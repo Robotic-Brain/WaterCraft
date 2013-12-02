@@ -3,7 +3,6 @@ package dgrxf.watercraft.client.gui.crane;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -12,11 +11,13 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.components.GuiGraphicalTab;
+import dgrxf.watercraft.lib.ModInfo;
 
 /**
  * GuiCraneTab
@@ -90,6 +91,14 @@ public class GuiCraneTab extends GuiGraphicalTab{
 			gui.drawTexturedModelRectFromIcon(x, y, stack.getItem().getIcon(stack, stack.getItemDamage()), 16, 16);
 			GL11.glEnable(GL11.GL_LIGHTING);
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see dgrxf.watercraft.client.gui.components.GuiGraphicalTab#getGuiTabIcon()
+	 */
+	@Override
+	public ResourceLocation getGuiTabIcon() {
+		return new ResourceLocation(ModInfo.MODID, "");
 	}
 
 }

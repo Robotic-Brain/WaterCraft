@@ -36,8 +36,6 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     private ArrayList<GuiCraneTab>			tabList = new ArrayList();
     private ItemStack[]					modules = ModuleRegistry.getRegisteredItemStacks();
     private GuiCraneTab                       activeTab;
-    private GuiButton                   addButton;
-    private GuiButton                 removeButton;
     
     //TODO: COMPLETELY REDO THIS CLASS
     
@@ -88,17 +86,10 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        fontRenderer.drawString("Control Unit", 8, 6, 0x404040);
-        
-        for (GuiCraneTab tab : tabList) {
-            tab.drawTabTitle(this);
-        }
-        
+        //fontRenderer.drawString("Control Unit", 8, 6, 0x404040);
+    	
         for (GuiCraneTab tab : tabList) {
             tab.drawForeground(this, x, y);
-        }
-        
-        for (GuiCraneTab tab : tabList) {
             tab.drawHoverString(this, x, y, tab.getName());
         }
     }
@@ -107,11 +98,11 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     public void initGui() {
         super.initGui();
         buttonList.clear();
-        addButton = new GuiButton(0, guiLeft + 93, guiTop + 38, 80, 20, "Add Direction");
+/*        addButton = new GuiButton(0, guiLeft + 93, guiTop + 38, 80, 20, "Add Direction");
         removeButton = new GuiButton(1, guiLeft + 120, guiTop + 74, 42, 20, "Remove");
         removeButton.enabled = false;
         buttonList.add(addButton);
-        buttonList.add(removeButton);
+        buttonList.add(removeButton);*/
     }
     
     @Override
@@ -154,7 +145,6 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     
     public ArrayList<String> getSelectedListFromCurrentTab() {
         return null;
-    	//return activeTab.getTargetDirections();
     }
 
 	/* (non-Javadoc)
