@@ -32,12 +32,10 @@ import dgrxf.watercraft.util.Rectangle;
 
 //TODO:Rewrite this class, I didn't write it very well.
 public abstract class GuiGraphicsRectangle extends GuiRectangle{
-	protected InventoryPlayer inv;
 	protected Rectangle[] exemptAreas = null;
 	
-	public GuiGraphicsRectangle(int x, int y, int w, int h, InventoryPlayer inv, Rectangle... exemptAreas){
+	public GuiGraphicsRectangle(int x, int y, int w, int h, Rectangle... exemptAreas){
 		super(x, y, w, h);
-		this.inv = inv;
 		this.exemptAreas = exemptAreas;
 	}
 	
@@ -62,7 +60,7 @@ public abstract class GuiGraphicsRectangle extends GuiRectangle{
     	}
     }
 	
-	public abstract void renderingHandler(int x, int y, ItemStack stack, int rotation, float scale);
+	public abstract void renderingHandler(int x, int y, ItemStack stack, float rotation, float scale, GuiBase gui);
 
 	
 }

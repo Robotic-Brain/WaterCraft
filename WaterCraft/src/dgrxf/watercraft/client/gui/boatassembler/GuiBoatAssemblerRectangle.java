@@ -1,7 +1,5 @@
 package dgrxf.watercraft.client.gui.boatassembler;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemRenderer;
@@ -14,9 +12,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+
+import org.lwjgl.opengl.GL11;
+
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.components.GuiGraphicsRectangle;
-import dgrxf.watercraft.client.gui.components.GuiRectangle;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
 import dgrxf.watercraft.util.Rectangle;
@@ -29,6 +29,8 @@ import dgrxf.watercraft.util.Rectangle;
  */
 public class GuiBoatAssemblerRectangle extends GuiGraphicsRectangle{
 
+	InventoryPlayer inv;
+	
 	/**
 	 * @param x
 	 * @param y
@@ -38,14 +40,12 @@ public class GuiBoatAssemblerRectangle extends GuiGraphicsRectangle{
 	 * @param exemptAreas
 	 */
 	public GuiBoatAssemblerRectangle(int x, int y, int w, int h, InventoryPlayer inv, Rectangle... exemptAreas) {
-		super(x, y, w, h, inv, exemptAreas);
+		super(x, y, w, h, exemptAreas);
+		this.inv = inv;
 	}
 	
-	/* (non-Javadoc)
-	 * @see dgrxf.watercraft.client.gui.components.GuiGraphicsRectangle#renderingHandler(int, int, net.minecraft.item.ItemStack, int, float)
-	 */
 	@Override
-	public void renderingHandler(int x, int y, ItemStack stack, int rotation, float scale){
+	public void renderingHandler(int x, int y, ItemStack stack, float rotation, float scale, GuiBase gui){
 		if(stack != null){
 
 			GL11.glPushMatrix();
@@ -107,7 +107,6 @@ public class GuiBoatAssemblerRectangle extends GuiGraphicsRectangle{
 	public void renderStackAsBlock(ItemStack stack, int x, int y, float scale, float rotation) {
 		GL11.glPushMatrix();
 		TextureManager textMan = Minecraft.getMinecraft().getTextureManager();
-		RenderBlocks renderBlocks = new RenderBlocks();
 		
 		textMan.bindTexture(textMan.getResourceLocation(0));
 		GL11.glTranslatef(this.getX() + x, this.getY() + y, 100);
@@ -115,7 +114,7 @@ public class GuiBoatAssemblerRectangle extends GuiGraphicsRectangle{
 		GL11.glRotatef(180, 0, 0, 1);
 		GL11.glRotatef(20, 1, 0, 0);
 		GL11.glRotatef(rotation, 0, 1, 0);
-		renderBlocks.renderBlockAsItem(Block.blocksList[stack.itemID], stack.getItemDamage(), 1.0f);
+        RenderManager.instance.itemRenderer.renderItem(null, stack, 10);
 		GL11.glPopMatrix();
 	}
 

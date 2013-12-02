@@ -12,6 +12,6 @@ import dgrxf.watercraft.client.gui.components.GuiTab;
 public interface IGuiTabContainer {
 
 	public FontRenderer getFontRenderer();
-	public GuiTab getActiveTab();
+	public IGuiTab getActiveTab();
 	
 }

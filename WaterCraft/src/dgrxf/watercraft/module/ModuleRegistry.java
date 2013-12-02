@@ -61,12 +61,12 @@ public class ModuleRegistry {
 		return registeredIDs.size();
 	}
 	
-	public static ModContainer getModulesMod(ItemStack item){
+	public static final ModContainer getModulesMod(ItemStack item){
 		int temp = isItemRegisteredAndGetID(item);
 		return temp == -1 ? null : getModulesMod(temp);
 	}
 	
-	public static ModContainer getModulesMod(int id){
+	public static final ModContainer getModulesMod(int id){
 		return modByID.get(id);
 	}
 	
@@ -94,4 +94,12 @@ public class ModuleRegistry {
 		return -1;
 	}
 
+	public static final ItemStack[] getRegisteredItemStacks(){
+		ArrayList<ItemStack> temp = new ArrayList();
+		for(Integer i : registeredIDs){
+			temp.add(registeredModules.get(i));
+		}
+		return temp.toArray(new ItemStack[temp.size()]);
+	}
+	
 }

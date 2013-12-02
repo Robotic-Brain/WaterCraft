@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
@@ -13,9 +14,9 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
-import dgrxf.watercraft.client.gui.components.GuiTab;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
 import dgrxf.watercraft.enumeration.OrdinalNumbers;
+import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
@@ -32,8 +33,9 @@ import dgrxf.watercraft.util.LogHelper;
 public class CraneGUI extends GuiBase implements IGuiTabContainer{
     
     private WCTileEntityCrane unit;
-    private ArrayList<GuiTab>			tabList = new ArrayList();
-    private GuiTab                       activeTab;
+    private ArrayList<GuiCraneTab>			tabList = new ArrayList();
+    private ItemStack[]					modules = ModuleRegistry.getRegisteredItemStacks();
+    private GuiCraneTab                       activeTab;
     private GuiButton                   addButton;
     private GuiButton                 removeButton;
     
@@ -46,8 +48,8 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         xSize = 196;
         ySize = 218;
         
-        for(int i = 0; i < 4; i++){
-        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, 0, 0 , 0, 0));
+        for(int i = 0; i < modules.length; i++){
+        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, (16*i), 0, 16, 16, modules[i]));
         }
         
         LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
@@ -62,7 +64,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
-        for (GuiTab tab : tabList) {
+        for (GuiCraneTab tab : tabList) {
             int srcY = 218;
             int srcX = 0;
             
@@ -88,13 +90,15 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     protected void drawGuiContainerForegroundLayer(int x, int y) {
         fontRenderer.drawString("Control Unit", 8, 6, 0x404040);
         
-        for (GuiTab tab : tabList) {
+        for (GuiCraneTab tab : tabList) {
             tab.drawTabTitle(this);
         }
         
-        activeTab.drawForeground(this, x, y);
+        for (GuiCraneTab tab : tabList) {
+            tab.drawForeground(this, x, y);
+        }
         
-        for (GuiTab tab : tabList) {
+        for (GuiCraneTab tab : tabList) {
             tab.drawHoverString(this, x, y, tab.getName());
         }
     }
@@ -121,7 +125,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         
         activeTab.mouseClick(this, x, y, button);
         int i = 0;
-        for (GuiTab tab : tabList) {
+        for (GuiCraneTab tab : tabList) {
             if (activeTab != tab) {
                 if (tab.inRect(this, x, y)) {
                     unit.activeTabIndex = i;
@@ -157,7 +161,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
 	 * @see dgrxf.watercraft.client.gui.interfaces.IGuiTab#getActiveTab()
 	 */
 	@Override
-	public GuiTab getActiveTab() {
+	public GuiCraneTab getActiveTab() {
 		return activeTab;
 	}
     

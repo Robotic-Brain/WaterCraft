@@ -4,7 +4,7 @@ import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
-import dgrxf.watercraft.client.gui.crane.CraneGUI;
+import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
 
 /**
@@ -15,13 +15,14 @@ import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
  *
  */
 @SideOnly(Side.CLIENT)
-public abstract class GuiTab extends GuiRectangle {
+public abstract class GuiTab extends GuiRectangle implements IGuiTab{
     
     private String name;
     private int    id;
+	private boolean isActive = false;
     
-    public GuiTab(String name, int id) {
-        super(8 + id * 45, 18, 45, 12);
+    public GuiTab(String name, int id, int x, int y, int w, int h) {
+        super(x, y, w, h);
         this.id = id;
         this.name = name;
     }
@@ -49,5 +50,13 @@ public abstract class GuiTab extends GuiRectangle {
     public abstract void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked);
     
     public abstract void mouseReleased(GuiBase gui, int x, int y, int button);
+	
+    public boolean isActive(){
+    	return isActive;
+    }
+    
+	public void setTabActive(boolean active){
+		this.isActive = active;
+	}
     
 }
