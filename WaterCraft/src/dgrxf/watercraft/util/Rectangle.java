@@ -1,5 +1,7 @@
 package dgrxf.watercraft.util;
 
+import dgrxf.watercraft.client.gui.GuiBase;
+
 /**
  * 
  * Rectangle
@@ -24,6 +26,10 @@ public class Rectangle {
      */
     public Rectangle() {
         this(0, 0, 0, 0);
+    }
+    
+    public Rectangle(int x, int y, int w, int h){
+    	this((double)x,y,w,h);
     }
     
     /**
@@ -130,4 +136,12 @@ public class Rectangle {
     public String toString() {
         return "Rect: [" + x + ", " + y + "|" + w + ", " + h + "]";
     }
+    
+    public boolean inRect(GuiBase gui, int mouseX, int mouseY) {
+        mouseX -= gui.getLeft();
+        mouseY -= gui.getTop();
+        
+        return x <= mouseX && mouseX <= x + w && y <= mouseY && mouseY <= y + h;
+    }
+    
 }

@@ -13,7 +13,7 @@ import dgrxf.watercraft.util.Vector2;
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */
-public abstract class GuiScrollList extends GuiExtra {
+public abstract class GuiScrollList extends GuiComponent {
     
     private ArrayList<String> list;
     private int               scrollPos;

@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.crane.CraneGUI;
-import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
+import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
 
 /**
  * 
@@ -34,28 +34,20 @@ public abstract class GuiTab extends GuiRectangle {
         return id;
     }
     
-    public void drawTabTitle(IGuiTab gui, int x, int y) {
-        if (gui.getActiveTab() == this) {
-            gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0xFFFFFF);
-        } else {
-            gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0);
-        }
+    public void drawTabTitle(IGuiTabContainer gui) {
+    	gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0xFFFFFF);
     }
     
-    public abstract void drawBackground(CraneGUI gui, int x, int y);
+    public abstract void drawBackground(GuiBase gui, int x, int y);
     
-    public abstract void drawForeground(CraneGUI gui, int x, int y);
+    public abstract void drawForeground(GuiBase gui, int x, int y);
     
-    public void actionPerformed(GuiButton button) {
-    }
+    public abstract void actionPerformed(GuiButton button);
     
-    public void mouseClick(CraneGUI gui, int x, int y, int button) {
-    }
+    public abstract void mouseClick(GuiBase gui, int x, int y, int button);
     
-    public void mouseMoveClick(CraneGUI gui, int x, int y, int button, long timeSinceClicked) {
-    }
+    public abstract void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked);
     
-    public void mouseReleased(CraneGUI gui, int x, int y, int button) {
-    }
+    public abstract void mouseReleased(GuiBase gui, int x, int y, int button);
     
 }

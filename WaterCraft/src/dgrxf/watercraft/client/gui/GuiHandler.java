@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.boat.GuiBoat;
+import dgrxf.watercraft.client.gui.boatassembler.GuiBoatAssembler;
 import dgrxf.watercraft.client.gui.crane.CraneGUI;
 import dgrxf.watercraft.client.sound.Sounds;
 import dgrxf.watercraft.entity.boat.AbstractBaseBoat;

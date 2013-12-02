@@ -14,7 +14,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.components.GuiTab;
-import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
+import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
+import dgrxf.watercraft.enumeration.OrdinalNumbers;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
@@ -28,14 +29,15 @@ import dgrxf.watercraft.util.LogHelper;
  *
  */
 @SideOnly(Side.CLIENT)
-public class CraneGUI extends GuiBase implements IGuiTab{
+public class CraneGUI extends GuiBase implements IGuiTabContainer{
     
     private WCTileEntityCrane unit;
-    private final GuiTab[]              tabs;
-    private ArrayList<GuiTab>			tabList;
-    public GuiTab                       activeTab;
+    private ArrayList<GuiTab>			tabList = new ArrayList();
+    private GuiTab                       activeTab;
     private GuiButton                   addButton;
-    protected GuiButton                 removeButton;
+    private GuiButton                 removeButton;
+    
+    //TODO: COMPLETELY REDO THIS CLASS
     
     public CraneGUI(InventoryPlayer inventory, WCTileEntityCrane te) {
         super(new CraneContainer(inventory, te));
@@ -44,12 +46,12 @@ public class CraneGUI extends GuiBase implements IGuiTab{
         xSize = 196;
         ySize = 218;
         
-        tabs = new GuiTab[] { new GuiTabRoute("First", 0),
-                new GuiTabRoute("Second", 1), new GuiTabRoute("Third", 2),
-                new GuiTabRoute("Fourth", 3) };
+        for(int i = 0; i < 4; i++){
+        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, 0, 0 , 0, 0));
+        }
+        
         LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
-        activeTab = tabs[unit.activeTabIndex];
-        ((GuiTabRoute) activeTab).isActive = true;
+        activeTab = tabList.get(unit.activeTabIndex);
     }
      
     private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/controllunit.png");
@@ -60,20 +62,16 @@ public class CraneGUI extends GuiBase implements IGuiTab{
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
-        for (GuiTab tab : tabs) {
+        for (GuiTab tab : tabList) {
             int srcY = 218;
             int srcX = 0;
             
-            switch (tab.getId()) {
-                case 0:
-                    srcX = 0;
-                    break;
-                case 3:
-                    srcX = 90;
-                    break;
-                default:
-                    srcX = 45;
-                    break;
+            if(tab.getId() != 0){
+            	if(tab.getId() == tabList.size()-1){
+            		srcX = 90;
+            	}else{
+            		srcX = 45;
+            	}
             }
             
             if (tab == activeTab) {
@@ -84,21 +82,19 @@ public class CraneGUI extends GuiBase implements IGuiTab{
             
             tab.draw(this, srcX, srcY);
         }
-        
-        activeTab.drawBackground(this, x, y);
     }
     
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
         fontRenderer.drawString("Control Unit", 8, 6, 0x404040);
         
-        for (GuiTab tab : tabs) {
-            tab.drawTabTitle(this, x, y);
+        for (GuiTab tab : tabList) {
+            tab.drawTabTitle(this);
         }
         
         activeTab.drawForeground(this, x, y);
         
-        for (GuiTab tab : tabs) {
+        for (GuiTab tab : tabList) {
             tab.drawHoverString(this, x, y, tab.getName());
         }
     }
@@ -125,14 +121,12 @@ public class CraneGUI extends GuiBase implements IGuiTab{
         
         activeTab.mouseClick(this, x, y, button);
         int i = 0;
-        for (GuiTab tab : tabs) {
+        for (GuiTab tab : tabList) {
             if (activeTab != tab) {
                 if (tab.inRect(this, x, y)) {
-                    ((GuiTabRoute) activeTab).isActive = false;
                     unit.activeTabIndex = i;
                     PacketHandler.sendInterfacePacket((byte) 0, new byte[] { (byte) i });
                     activeTab = tab;
-                    ((GuiTabRoute) activeTab).isActive = true;
                     break;
                 }
             }
@@ -154,8 +148,9 @@ public class CraneGUI extends GuiBase implements IGuiTab{
         activeTab.mouseReleased(this, x, y, button);
     }
     
-    public ArrayList<String> getTargetDirectionsCurrentTab() {
-        return ((GuiTabRoute) activeTab).getTargetDirections();
+    public ArrayList<String> getSelectedListFromCurrentTab() {
+        return null;
+    	//return activeTab.getTargetDirections();
     }
 
 	/* (non-Javadoc)

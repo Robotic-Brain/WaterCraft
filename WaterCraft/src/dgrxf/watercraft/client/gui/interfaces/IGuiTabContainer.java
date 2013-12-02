@@ -9,7 +9,7 @@ import dgrxf.watercraft.client.gui.components.GuiTab;
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  * 
  */
-public interface IGuiTab {
+public interface IGuiTabContainer {
 
 	public FontRenderer getFontRenderer();
 	public GuiTab getActiveTab();

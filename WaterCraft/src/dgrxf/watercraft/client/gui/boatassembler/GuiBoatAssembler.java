@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui;
+package dgrxf.watercraft.client.gui.boatassembler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -8,6 +8,8 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.client.gui.components.GuiGraphicsRectangle;
 import dgrxf.watercraft.client.gui.components.GuiRectangle;
 import dgrxf.watercraft.interfaces.IModularBoat;
@@ -17,6 +19,7 @@ import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.BoatAssemblerContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
+import dgrxf.watercraft.util.Rectangle;
 
 /**
  * 
@@ -48,8 +51,8 @@ public class GuiBoatAssembler extends GuiBase {
 		buttonList.clear();
 		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, "Assemble");   // TODO Translation
 		buttonList.add(assemble);
-		drawRects[0] = new GuiGraphicsRectangle(7, 28, 90, 90, playerInv, new GuiRectangle(43, 96, 17, 17));
-		drawRects[1] = new GuiGraphicsRectangle(99, 28, 90, 90, playerInv, new GuiRectangle(135, 96, 17, 17));
+		drawRects[0] = new GuiBoatAssemblerRectangle(7, 28, 90, 90, playerInv, new Rectangle(43, 96, 17, 17));
+		drawRects[1] = new GuiBoatAssemblerRectangle(99, 28, 90, 90, playerInv, new Rectangle(135, 96, 17, 17));
 	}
 	
 	@Override

@@ -1,7 +1,8 @@
 package dgrxf.watercraft.client.gui.components;
 
+import java.util.List;
+
 import dgrxf.watercraft.client.gui.GuiBase;
-import dgrxf.watercraft.client.gui.crane.GuiTabRoute;
 
 /**
  * 
@@ -10,19 +11,10 @@ import dgrxf.watercraft.client.gui.crane.GuiTabRoute;
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */
-public class GuiDropdown extends GuiExtra {
+public class GuiDropdown extends GuiComponent {
     
-    private String      dir;
-    private GuiTabRoute route;
-    
-    public GuiDropdown(int x, int y, String dir, GuiTabRoute route) {
+    public GuiDropdown(int x, int y, List options) {
         super(x, y, 58, 14);
-        this.dir = dir;
-        this.route = route;
-    }
-    
-    public String getDirection() {
-        return dir;
     }
     
     @Override
@@ -38,15 +30,15 @@ public class GuiDropdown extends GuiExtra {
     
     @Override
     public void drawForeground(GuiBase gui, int x, int y) {
-        gui.getFontRenderer().drawString(dir, getX() + 4, getY() + 3, 0);
+        //gui.getFontRenderer().drawString(dir, getX() + 4, getY() + 3, 0);
     }
     
     @Override
     public void mouseClick(GuiBase gui, int x, int y, int button) {
         if (inRect(gui, x, y)) {
-            route.setCurrentDir(dir);
+        	
         } else {
-            route.stopDrawingDropDown();
+        	
         }
     }
     

@@ -17,6 +17,12 @@ public class KeySlider extends GuiRectangle {
 		super(x, y, w, h);
 		clicked = false;
 	}
+
+	@Override
+	public void drawBackground(GuiBase gui, int x, int y) {}
+	
+	@Override
+	public void drawForeground(GuiBase gui, int x, int y) {}
 	
 	
 }
