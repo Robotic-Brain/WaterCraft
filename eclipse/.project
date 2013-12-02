@@ -21,6 +21,11 @@
 			<locationURI>REPO_LOC/antconfig</locationURI>
 		</link>
 		<link>
+			<name>licenses</name>
+			<type>2</type>
+			<locationURI>REPO_LOC/licenses</locationURI>
+		</link>
+		<link>
 			<name>notes</name>
 			<type>2</type>
 			<locationURI>REPO_LOC/notes</locationURI>

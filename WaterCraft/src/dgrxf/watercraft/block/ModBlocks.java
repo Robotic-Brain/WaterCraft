@@ -6,6 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.Configuration;
 import cpw.mods.fml.common.registry.GameRegistry;
 import dgrxf.watercraft.block.buoy.BuoyBlock;
+import dgrxf.watercraft.block.port.MarkerBlock;
 import dgrxf.watercraft.item.ItemBlockChest;
 import dgrxf.watercraft.item.ItemBlockLiquidTank;
 import dgrxf.watercraft.item.buoy.ItemBlockBuoy;
@@ -49,7 +50,8 @@ public enum ModBlocks {
     TANK                (710, "wcLiquidTank", LiquidTankBlock.class, ItemBlockLiquidTank.class, WCTileEntityLiquidStorageTank.class),
     BOAT_ASSEMBLER      (711, "boatAssemblerName", BoatModuleAssemblerBlock.class, null, WCTileEntityBoatAssembler.class),
     PHANTOM_MULTIBLOCK  (713, "phantomMultiblock", MultiblockPhantom.class, null, TEMultiblockPhantom.class),
-    CRANE               (714, "craneBlockName", CraneBlock.class, null, WCTileEntityCrane.class);
+    CRANE               (714, "craneBlockName", CraneBlock.class, null, WCTileEntityCrane.class),
+    MARKER              (715, "markerBlock", MarkerBlock.class);
     
     /************************************************************************************
      * 

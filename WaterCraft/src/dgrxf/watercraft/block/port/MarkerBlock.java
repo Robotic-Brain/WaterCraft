@@ -17,6 +17,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 
+/**
+ * 
+ * MarkerBlock
+ * 
+ * @license Minecraft Mod Public License (MMPL)
+ *
+ */
 public class MarkerBlock extends BlockContainer {
     
     public MarkerBlock(int id) {
