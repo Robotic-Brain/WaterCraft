@@ -1,4 +1,4 @@
-package dgrxf.watercraft.server.container;
+package dgrxf.watercraft.common.container;
 
 import net.minecraft.tileentity.TileEntity;
 

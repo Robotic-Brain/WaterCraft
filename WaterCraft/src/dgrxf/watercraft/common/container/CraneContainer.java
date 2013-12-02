@@ -1,4 +1,4 @@
-package dgrxf.watercraft.server.container;
+package dgrxf.watercraft.common.container;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,12 +23,12 @@ public class CraneContainer extends Container implements ITeContainer {
         unit = te;
         
         for (int x = 0; x < 9; x++) {
-            addSlotToContainer(new Slot(invPlayer, x, 18 + 18 * x, 194));
+            addSlotToContainer(new Slot(invPlayer, x, 28 + 18 * x, 131));
         }
         
         for (int y = 0; y < 3; y++) {
             for (int x = 0; x < 9; x++) {
-                addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 18 + 18 * x, 136 + y * 18));
+                addSlotToContainer(new Slot(invPlayer, x + y * 9 + 9, 28 + 18 * x, 73 + y * 18));
             }
         }
         

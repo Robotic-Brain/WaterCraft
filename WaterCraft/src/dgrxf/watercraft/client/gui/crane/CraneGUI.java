@@ -15,10 +15,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
+import dgrxf.watercraft.common.container.CraneContainer;
 import dgrxf.watercraft.enumeration.OrdinalNumbers;
 import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
-import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
 import dgrxf.watercraft.util.LogHelper;
 
@@ -43,18 +43,18 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         super(new CraneContainer(inventory, te));
         unit = te;
         
-        xSize = 196;
-        ySize = 218;
+        xSize = 216;
+        ySize = 157;
         
         for(int i = 0; i < modules.length; i++){
-        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, (16*i), 0, 16, 16, modules[i]));
+        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, 12+(24*i), -21, 24, 24, modules[i]));
         }
         
         LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
         activeTab = tabList.get(unit.activeTabIndex);
     }
      
-    private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/controllunit.png");
+    private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/crane.png");
     
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
@@ -63,7 +63,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
         for (GuiCraneTab tab : tabList) {
-            int srcY = 218;
+            /*int srcY = 218;
             int srcX = 0;
             
             if(tab.getId() != 0){
@@ -80,7 +80,8 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
                 srcY += 12;
             }
             
-            tab.draw(this, srcX, srcY);
+            tab.draw(this, srcX, srcY);*/
+        	tab.drawBackground(this, x, y);
         }
     }
     

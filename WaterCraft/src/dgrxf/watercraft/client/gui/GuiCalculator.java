@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import dgrxf.watercraft.server.container.CalculatorContainer;
+import dgrxf.watercraft.common.container.CalculatorContainer;
 
 /**
  * 

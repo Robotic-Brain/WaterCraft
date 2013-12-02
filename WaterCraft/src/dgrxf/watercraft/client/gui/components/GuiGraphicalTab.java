@@ -5,6 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
+import dgrxf.watercraft.lib.ModInfo;
 
 /**
  * GraphicalGuiTab
@@ -42,10 +43,6 @@ public abstract class GuiGraphicalTab extends GuiGraphicsRectangle implements IG
     
     public void drawTabTitle(IGuiTabContainer gui) {}
     
-    public void drawBackground(GuiBase gui, int x, int y){
-    	
-    }
-    
     public abstract void drawForeground(GuiBase gui, int x, int y);
     
     public abstract void actionPerformed(GuiButton button);
@@ -56,7 +53,9 @@ public abstract class GuiGraphicalTab extends GuiGraphicsRectangle implements IG
     
     public abstract void mouseReleased(GuiBase gui, int x, int y, int button);
 	
-    public abstract ResourceLocation getGuiTabIcon();
+	public ResourceLocation getGuiTabResource() {
+		return new ResourceLocation(ModInfo.MODID, "textures/gui/guiComponents.png");
+	}
     
     public boolean isActive(){
     	return isActive;

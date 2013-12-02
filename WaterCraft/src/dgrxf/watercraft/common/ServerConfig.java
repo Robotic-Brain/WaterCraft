@@ -1,4 +1,4 @@
-package dgrxf.watercraft.server;
+package dgrxf.watercraft.common;
 
 /**
  * 

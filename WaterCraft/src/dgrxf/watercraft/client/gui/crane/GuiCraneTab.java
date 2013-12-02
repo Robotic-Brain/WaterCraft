@@ -11,13 +11,11 @@ import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.components.GuiGraphicalTab;
-import dgrxf.watercraft.lib.ModInfo;
 
 /**
  * GuiCraneTab
@@ -48,7 +46,14 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	}
 	
 	@Override
-	public void drawBackground(GuiBase gui, int x, int y) {}
+	public void drawBackground(GuiBase gui, int x, int y) {
+		Minecraft.getMinecraft().renderEngine.bindTexture(getGuiTabResource());
+		int srcY = 0;
+		if(this != ((CraneGUI)gui).getActiveTab()){
+			srcY = 24;
+		}
+		gui.drawTexturedModalRect(getX()+gui.getLeft(), getY()+gui.getTop(), 0, srcY, getWidth(), getHeight());
+	}
 
 	@Override
 	public void drawForeground(GuiBase gui, int x, int y) {
@@ -78,7 +83,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 			RenderBlocks renderBlocks = new RenderBlocks();
 			
 			textMan.bindTexture(textMan.getResourceLocation(0));
-			GL11.glTranslatef(x+8, y+8, 100);
+			GL11.glTranslatef(x + (getWidth()/2), y + (getHeight()/2), 100);
 			GL11.glScalef(-10, 10, 10);
 			GL11.glRotatef(180, 0, 0, 1);
 			GL11.glRotatef(20, 1, 0, 0);
@@ -88,17 +93,9 @@ public class GuiCraneTab extends GuiGraphicalTab{
 		}else{
 			GL11.glDisable(GL11.GL_LIGHTING);
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
-			gui.drawTexturedModelRectFromIcon(x, y, stack.getItem().getIcon(stack, stack.getItemDamage()), 16, 16);
+			gui.drawTexturedModelRectFromIcon(x+4, y+4, stack.getItem().getIcon(stack, stack.getItemDamage()), 16, 16);
 			GL11.glEnable(GL11.GL_LIGHTING);
 		}
-	}
-
-	/* (non-Javadoc)
-	 * @see dgrxf.watercraft.client.gui.components.GuiGraphicalTab#getGuiTabIcon()
-	 */
-	@Override
-	public ResourceLocation getGuiTabIcon() {
-		return new ResourceLocation(ModInfo.MODID, "");
 	}
 
 }
