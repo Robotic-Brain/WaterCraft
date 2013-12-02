@@ -1,5 +1,7 @@
 package dgrxf.watercraft.client.gui;
 
+import dgrxf.watercraft.client.gui.components.GuiRectangle;
+
 /**
  * 
  * KeySlider

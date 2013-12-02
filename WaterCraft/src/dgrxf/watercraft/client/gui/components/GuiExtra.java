@@ -1,4 +1,6 @@
-package dgrxf.watercraft.client.gui;
+package dgrxf.watercraft.client.gui.components;
+
+import dgrxf.watercraft.client.gui.GuiBase;
 
 /**
  * 

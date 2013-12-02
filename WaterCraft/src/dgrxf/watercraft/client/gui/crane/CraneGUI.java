@@ -13,6 +13,8 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.components.GuiTab;
+import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.server.container.CraneContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
@@ -26,10 +28,11 @@ import dgrxf.watercraft.util.LogHelper;
  *
  */
 @SideOnly(Side.CLIENT)
-public class CraneGUI extends GuiBase {
+public class CraneGUI extends GuiBase implements IGuiTab{
     
     private WCTileEntityCrane unit;
     private final GuiTab[]              tabs;
+    private ArrayList<GuiTab>			tabList;
     public GuiTab                       activeTab;
     private GuiButton                   addButton;
     protected GuiButton                 removeButton;
@@ -154,5 +157,13 @@ public class CraneGUI extends GuiBase {
     public ArrayList<String> getTargetDirectionsCurrentTab() {
         return ((GuiTabRoute) activeTab).getTargetDirections();
     }
+
+	/* (non-Javadoc)
+	 * @see dgrxf.watercraft.client.gui.interfaces.IGuiTab#getActiveTab()
+	 */
+	@Override
+	public GuiTab getActiveTab() {
+		return activeTab;
+	}
     
 }

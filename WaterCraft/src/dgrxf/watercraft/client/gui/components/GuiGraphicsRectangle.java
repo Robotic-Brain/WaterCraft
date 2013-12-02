@@ -1,4 +1,4 @@
-package dgrxf.watercraft.client.gui;
+package dgrxf.watercraft.client.gui.components;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
@@ -16,6 +16,8 @@ import net.minecraft.util.Icon;
 
 import org.lwjgl.opengl.GL11;
 
+import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.entity.boat.ModularBoat;
 import dgrxf.watercraft.item.ModItems;
 

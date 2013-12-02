@@ -1,9 +1,11 @@
-package dgrxf.watercraft.client.gui.crane;
+package dgrxf.watercraft.client.gui.components;
 
 import net.minecraft.client.gui.GuiButton;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.client.gui.GuiRectangle;
+import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.crane.CraneGUI;
+import dgrxf.watercraft.client.gui.interfaces.IGuiTab;
 
 /**
  * 
@@ -32,8 +34,8 @@ public abstract class GuiTab extends GuiRectangle {
         return id;
     }
     
-    public void drawTabTitle(CraneGUI gui, int x, int y) {
-        if (gui.activeTab == this) {
+    public void drawTabTitle(IGuiTab gui, int x, int y) {
+        if (gui.getActiveTab() == this) {
             gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0xFFFFFF);
         } else {
             gui.getFontRenderer().drawString(name, getX() + 2, getY() + 2, 0);
