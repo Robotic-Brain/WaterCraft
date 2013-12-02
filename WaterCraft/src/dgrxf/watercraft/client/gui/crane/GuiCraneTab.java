@@ -40,7 +40,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public void drawHoverString(GuiBase gui, int mouseX, int mouseY, String str) {
 		if(inRect(gui, mouseX, mouseY)){
 			List temp = new ArrayList<String>();
-			temp.add(module.getDisplayName());
+			temp.add(str);
 			gui.drawHoverString(temp, mouseX-gui.getLeft(), mouseY-gui.getTop());
 		}
 	}
@@ -77,8 +77,9 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public void mouseReleased(GuiBase gui, int x, int y, int button) {}
 
 	public void renderingHandler(int x, int y, ItemStack stack, float rotation, float scale, GuiBase gui) {
+		GL11.glPushMatrix();
+		GL11.glDisable(GL11.GL_LIGHTING);
 		if(stack.getItem() instanceof ItemBlock){
-			GL11.glPushMatrix();
 			TextureManager textMan = Minecraft.getMinecraft().getTextureManager();
 			RenderBlocks renderBlocks = new RenderBlocks();
 			
@@ -86,16 +87,15 @@ public class GuiCraneTab extends GuiGraphicalTab{
 			GL11.glTranslatef(x + (getWidth()/2), y + (getHeight()/2), 100);
 			GL11.glScalef(-10, 10, 10);
 			GL11.glRotatef(180, 0, 0, 1);
-			GL11.glRotatef(20, 1, 0, 0);
+			GL11.glRotatef(30, 1, 0, 0);
 			GL11.glRotatef(-45, 0, 1, 0);
 	        RenderManager.instance.itemRenderer.renderItem(null, stack, 10);
-			GL11.glPopMatrix();
 		}else{
-			GL11.glDisable(GL11.GL_LIGHTING);
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 			gui.drawTexturedModelRectFromIcon(x+4, y+4, stack.getItem().getIcon(stack, stack.getItemDamage()), 16, 16);
-			GL11.glEnable(GL11.GL_LIGHTING);
 		}
+		GL11.glEnable(GL11.GL_LIGHTING);
+		GL11.glPopMatrix();
 	}
 
 }

@@ -73,15 +73,6 @@ public abstract class GuiComponent{
         return getX() <= mouseX && mouseX <= getX() + getWidth() && getY() <= mouseY && mouseY <= getY() + getHeight();
     }
     
-    public boolean inRect(GuiBase gui, int x, int y, int[] rect) {
-        if (rect.length < 4) {
-            return false;
-        }
-        x -= gui.getLeft();
-        y -= gui.getTop();
-        return (x >= rect[0]) && (x <= rect[0] + rect[2]) && (y >= rect[1]) && (y <= rect[1] + rect[3]);
-    }
-    
 	public abstract void drawBackground(GuiBase gui, int x, int y);
     
     public abstract void drawForeground(GuiBase gui, int x, int y);

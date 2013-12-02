@@ -35,5 +35,6 @@ public class ModuleInfo {
 		ModuleRegistry.registerModule(new ItemStack(ModBlocks.WC_CHEST.getBlock()), new CustomModule(new ModuleType[]{ModuleType.INVENTORY, ModuleType.ACTIVATABLE}, new ModuleType[]{ModuleType.INVENTORY, ModuleType.TANK}, ModBlocks.WC_CHEST.getBlock(), "Adds a locking chest to the boat", InventoryTask.class, GuiHandler.VANILLA_CHEST_ID, Watercraft.instance, 27, true), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModBlocks.TANK.getBlock()), new CustomModule(new ModuleType[]{ModuleType.TANK, ModuleType.ACTIVATABLE}, new ModuleType[]{ModuleType.INVENTORY, ModuleType.TANK}, ModBlocks.TANK.getBlock(), "Adds a tank to the boat", TankTask.class, 8), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModItems.boatEngine.getItem()), new CustomModule(new ModuleType[]{ModuleType.AI}, new ModuleType[0], null, "Adds an Engine to the boat", EngineTask.class), Watercraft.instance);
+		ModuleRegistry.registerModule(new ItemStack(Block.dirt), new CustomModule(new ModuleType[0], new ModuleType[0], Block.dirt, "Adds dirt to the boat", null), Watercraft.instance);
 	}
 }

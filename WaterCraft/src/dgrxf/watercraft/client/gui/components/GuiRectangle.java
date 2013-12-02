@@ -28,4 +28,13 @@ public abstract class GuiRectangle extends GuiComponent{
 	 */
 	@Override
 	public abstract void drawForeground(GuiBase gui, int x, int y);
+    
+    public boolean inRect(GuiBase gui, int x, int y, int[] rect) {
+        if (rect.length < 4) {
+            return false;
+        }
+        x -= gui.getLeft();
+        y -= gui.getTop();
+        return (x >= rect[0]) && (x <= rect[0] + rect[2]) && (y >= rect[1]) && (y <= rect[1] + rect[3]);
+    }
 }

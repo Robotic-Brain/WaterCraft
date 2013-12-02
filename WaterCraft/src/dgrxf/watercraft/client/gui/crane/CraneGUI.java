@@ -1,7 +1,6 @@
 package dgrxf.watercraft.client.gui.crane;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -14,13 +13,12 @@ import org.lwjgl.opengl.GL11;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.components.GuiArrowButton;
 import dgrxf.watercraft.client.gui.interfaces.IGuiTabContainer;
 import dgrxf.watercraft.common.container.CraneContainer;
-import dgrxf.watercraft.enumeration.OrdinalNumbers;
 import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityCrane;
-import dgrxf.watercraft.util.LogHelper;
 
 /**
  * 
@@ -31,30 +29,63 @@ import dgrxf.watercraft.util.LogHelper;
  */
 @SideOnly(Side.CLIENT)
 public class CraneGUI extends GuiBase implements IGuiTabContainer{
+
+    private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/crane.png");
+    private static final int			  TABS_PER_PAGE = 8;
     
     private WCTileEntityCrane unit;
     private ArrayList<GuiCraneTab>			tabList = new ArrayList();
-    private ItemStack[]					modules = ModuleRegistry.getRegisteredItemStacks();
-    private GuiCraneTab                       activeTab;
-    
-    //TODO: COMPLETELY REDO THIS CLASS
+    private ItemStack[]						modules = ModuleRegistry.getRegisteredItemStacks();
+    private ArrayList<Integer>				pages = new ArrayList();
+    private int 							currentPage = 1;
+    private GuiCraneTab                     activeTab;
+    private GuiArrowButton[]				buttons = new GuiArrowButton[2];
     
     public CraneGUI(InventoryPlayer inventory, WCTileEntityCrane te) {
         super(new CraneContainer(inventory, te));
         unit = te;
-        
         xSize = 216;
         ySize = 157;
-        
+        pages.add(1);
+        int startingPosX = 12;
+        int startingPosY = -21;
+        int tabSizeXY = 24;
+        int pageCount = 1;
         for(int i = 0; i < modules.length; i++){
-        	tabList.add(new GuiCraneTab(OrdinalNumbers.values()[i].toString(), i, 12+(24*i), -21, 24, 24, modules[i]));
+        	tabList.add(new GuiCraneTab(modules[i].getDisplayName(), i, 12+ 24 * (i % TABS_PER_PAGE), -21, tabSizeXY, tabSizeXY, modules[i]));
         }
         
-        LogHelper.log(Level.WARNING, "[DEBUG]: " + unit.activeTabIndex);
+        for(int i = 1; i < tabList.size()+1; i++){
+        	if(i > TABS_PER_PAGE * pages.size()){
+        		pages.add(pages.size());
+        	}
+        }
+        System.out.println(pages.size());
         activeTab = tabList.get(unit.activeTabIndex);
     }
-     
-    private static final ResourceLocation texture = new ResourceLocation("watercraft", "textures/gui/crane.png");
+    
+	@Override
+	public void updateScreen() {
+		super.updateScreen();
+		if(currentPage == pages.size()){
+			buttons[0].enabled = false;
+		}else{
+			buttons[0].enabled = true;
+		}
+		
+		if(currentPage == 1){
+			buttons[1].enabled = false;
+		}else{
+			buttons[1].enabled = true;
+		}
+	}
+	
+    @Override
+    public void initGui() {
+    	super.initGui();
+    	buttons[0] = new GuiArrowButton(0, guiLeft + xSize-7, guiTop-15, 12, 12, GuiArrowButton.GuiDirection.RIGHT);
+    	buttons[1] = new GuiArrowButton(1, guiLeft-5, guiTop-15, 12, 12, GuiArrowButton.GuiDirection.LEFT);
+    }
     
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y) {
@@ -62,58 +93,46 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
+        for(GuiArrowButton button : buttons){
+        	button.drawBackground(this, x, y);
+        }
+        
         for (GuiCraneTab tab : tabList) {
-            /*int srcY = 218;
-            int srcX = 0;
-            
-            if(tab.getId() != 0){
-            	if(tab.getId() == tabList.size()-1){
-            		srcX = 90;
-            	}else{
-            		srcX = 45;
-            	}
-            }
-            
-            if (tab == activeTab) {
-                srcY += 24;
-            } else if (tab.inRect(this, x, y)) {
-                srcY += 12;
-            }
-            
-            tab.draw(this, srcX, srcY);*/
+        	if(isTabOnPage(tab))
         	tab.drawBackground(this, x, y);
         }
     }
     
     @Override
     protected void drawGuiContainerForegroundLayer(int x, int y) {
-        //fontRenderer.drawString("Control Unit", 8, 6, 0x404040);
-    	
         for (GuiCraneTab tab : tabList) {
+        	if(isTabOnPage(tab))
             tab.drawForeground(this, x, y);
+        }
+        for (GuiCraneTab tab : tabList) {
+        	if(isTabOnPage(tab))
             tab.drawHoverString(this, x, y, tab.getName());
         }
     }
     
     @Override
-    public void initGui() {
-        super.initGui();
-        buttonList.clear();
-/*        addButton = new GuiButton(0, guiLeft + 93, guiTop + 38, 80, 20, "Add Direction");
-        removeButton = new GuiButton(1, guiLeft + 120, guiTop + 74, 42, 20, "Remove");
-        removeButton.enabled = false;
-        buttonList.add(addButton);
-        buttonList.add(removeButton);*/
-    }
-    
-    @Override
-    protected void actionPerformed(GuiButton button) {
-        activeTab.actionPerformed(button);
-    }
-    
-    @Override
     protected void mouseClicked(int x, int y, int button) {
         super.mouseClicked(x, y, button);
+        
+        for (GuiArrowButton b : buttons){
+        	if(b.mouseClick(this, x, y)){
+                if(b.id == 0){
+                	if(currentPage < pages.size()){
+                		currentPage++;
+                	}
+                }
+                if(b.id == 1){
+                	if(currentPage > 1){
+                		currentPage--;
+                	}
+                }
+        	}
+        }
         
         activeTab.mouseClick(this, x, y, button);
         int i = 0;
@@ -148,12 +167,15 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         return null;
     }
 
-	/* (non-Javadoc)
-	 * @see dgrxf.watercraft.client.gui.interfaces.IGuiTab#getActiveTab()
-	 */
 	@Override
 	public GuiCraneTab getActiveTab() {
 		return activeTab;
 	}
     
+	private boolean isTabOnPage(GuiCraneTab tab){
+		int id = tab.getId();
+		if(id >= (TABS_PER_PAGE * currentPage - TABS_PER_PAGE < 0 ? 0 : TABS_PER_PAGE * currentPage - TABS_PER_PAGE) && id <= TABS_PER_PAGE * currentPage - 1) return true;
+		return false;
+	}
+	
 }
