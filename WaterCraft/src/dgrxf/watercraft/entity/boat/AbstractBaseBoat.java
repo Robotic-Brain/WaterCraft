@@ -60,8 +60,8 @@ public abstract class AbstractBaseBoat extends Entity {
     // ==================================
     
     private static final String NBT_AI_TAG = "aiValues";
-    public BoatAIBase        ai;
-	protected ArrayList<String> modules = new ArrayList<String>();
+    public BoatAIBase           ai;
+    protected ArrayList<String> modules    = new ArrayList<String>();
     
     public AbstractBaseBoat(World par1World) {
         super(par1World);
@@ -680,17 +680,14 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     public boolean interactFirst(EntityPlayer player) {
-    	if(player.isSneaking())
-    		this.ai.onInteractFirst(player);
-    	else
-    		player.openGui(Watercraft.instance, GuiHandler.BOAT_GUI_ID, worldObj, (int)posX, (int)posY, (int)posZ);
-    	return true;
+        this.ai.onInteractFirst(player);
+        return true;
     }
     
     @Override
     public void setDead() {
-    	this.ai.setDead();
-    	super.setDead();
+        this.ai.setDead();
+        super.setDead();
     }
     
     /**
@@ -746,8 +743,8 @@ public abstract class AbstractBaseBoat extends Entity {
     }
     
     private int              buoyUpdateTimer;
-	public  boolean          playerHasInteractedWith;
-	public boolean isIdle;
+    public boolean           playerHasInteractedWith;
+    public boolean           isIdle;
     private static final int BUOY_UPDATE_INTERVAL = 10;
     
     /**
@@ -798,39 +795,31 @@ public abstract class AbstractBaseBoat extends Entity {
     protected abstract void updateBoatAI(BoatAITaskList list);
     
     protected void updateBoatAI() {
-        this.updateBoatAI((BoatAITaskList)this.ai);
+        this.updateBoatAI((BoatAITaskList) this.ai);
     }
     
     public void setRopeTargetId(int id) {
-    	dataWatcher.updateObject(EntityInfo.DATAWATCHER_TARGET_BOAT_ID, id);
+        dataWatcher.updateObject(EntityInfo.DATAWATCHER_TARGET_BOAT_ID, id);
     }
     
     public int getRopeTargetId() {
-    	return dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TARGET_BOAT_ID);
+        return dataWatcher.getWatchableObjectInt(EntityInfo.DATAWATCHER_TARGET_BOAT_ID);
     }
     
-    public ItemStack[] getBoatModules()
-    {
-    	ItemStack[] temp = new ItemStack[modules.size()];
-    	for(int i = 0; i < modules.size(); i++){
-    		temp[i] = ModuleHelper.parseStringToItemStack(modules.get(i));
-    	}
-    	return temp;
+    public ItemStack[] getBoatModules() {
+        ItemStack[] temp = new ItemStack[modules.size()];
+        for (int i = 0; i < modules.size(); i++) {
+            temp[i] = ModuleHelper.parseStringToItemStack(modules.get(i));
+        }
+        return temp;
     }
     
-    public void setBoatYaw(double boatYaw) {
-		this.boatYaw = boatYaw;
-	}
+    // TDOD: Not sure if this belongs here
+    public double getBoatSpeed() {
+        return BOAT_SPEED;
+    }
     
-    public double getBoatYaw() {
-		return boatYaw;
-	}
-
-	public double getBoatSpeed() {
-		return BOAT_SPEED;
-	}    
-	
-	public void setBoatSpeed(double speed) {
-		this.BOAT_SPEED = speed;
-	}    
+    public void setBoatSpeed(double speed) {
+        this.BOAT_SPEED = speed;
+    }
 }
