@@ -42,8 +42,8 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 	public void updateEntity() {
 		super.updateEntity();
 		
-		setInventorySlotContents(3, new ItemStack(ModItems.PADLOCK.getId(), 1, getCode()));
-		setInventorySlotContents(4, new ItemStack(ModItems.KEY.getId(), 1, getCode()));
+		setInventorySlotContents(3, new ItemStack(ModItems.PADLOCK.getShifted(), 1, getCode()));
+		setInventorySlotContents(4, new ItemStack(ModItems.KEY.getShifted(), 1, getCode()));
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class WCTileEntityLockAssembler extends TileEntity implements IInventory 
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
-		return i < SLOTS - OUTPUT_SLOTS && Arrays.asList(INGREDIENTS_ID).contains(itemstack.itemID);
+		return false;
 	}
 
 }
