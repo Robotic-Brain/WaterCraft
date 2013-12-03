@@ -19,7 +19,7 @@ import dgrxf.watercraft.module.ModuleHelper;
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */
-public class ModularBoat extends AbstractBaseBoat{
+public class ModularBoat extends AbstractBaseBoat {
 	
 	private BoatAITaskList list;
 	
