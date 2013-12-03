@@ -163,7 +163,7 @@ public class WCTileEntityCrane extends DirectionalTileEntity implements IInvento
 
 	@Override
 	public void receiveInterfaceEvent(byte buttonid, byte[] extraInfo) {
-		
+		this.activeTabIndex = extraInfo[0];
 	}
 	
 }

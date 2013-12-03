@@ -80,6 +80,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 		GL11.glPushMatrix();
 		GL11.glDisable(GL11.GL_LIGHTING);
 		if(stack.getItem() instanceof ItemBlock){
+			GL11.glEnable(GL11.GL_LIGHTING);
 			TextureManager textMan = Minecraft.getMinecraft().getTextureManager();
 			RenderBlocks renderBlocks = new RenderBlocks();
 			
@@ -90,6 +91,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 			GL11.glRotatef(30, 1, 0, 0);
 			GL11.glRotatef(-45, 0, 1, 0);
 	        RenderManager.instance.itemRenderer.renderItem(null, stack, 10);
+			GL11.glDisable(GL11.GL_LIGHTING);
 		}else{
 			Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationItemsTexture);
 			gui.drawTexturedModelRectFromIcon(x+4, y+4, stack.getItem().getIcon(stack, stack.getItemDamage()), 16, 16);

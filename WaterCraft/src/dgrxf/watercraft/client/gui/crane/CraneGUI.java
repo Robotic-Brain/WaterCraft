@@ -3,7 +3,6 @@ package dgrxf.watercraft.client.gui.crane;
 import java.util.ArrayList;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -37,7 +36,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     private ArrayList<GuiCraneTab>			tabList = new ArrayList();
     private ItemStack[]						modules = ModuleRegistry.getRegisteredItemStacks();
     private ArrayList<Integer>				pages = new ArrayList();
-    private int 							currentPage = 1;
+    private int 							currentPage;
     private GuiCraneTab                     activeTab;
     private GuiArrowButton[]				buttons = new GuiArrowButton[2];
     
@@ -52,7 +51,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         int tabSizeXY = 24;
         int pageCount = 1;
         for(int i = 0; i < modules.length; i++){
-        	tabList.add(new GuiCraneTab(modules[i].getDisplayName(), i, 12+ 24 * (i % TABS_PER_PAGE), -21, tabSizeXY, tabSizeXY, modules[i]));
+        	tabList.add(new GuiCraneTab(modules[i].getDisplayName(), i, 12 + 24 * (i % TABS_PER_PAGE), -21, tabSizeXY, tabSizeXY, modules[i]));
         }
         
         for(int i = 1; i < tabList.size()+1; i++){
@@ -60,8 +59,9 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         		pages.add(pages.size());
         	}
         }
-        System.out.println(pages.size());
+        System.out.println(unit.activeTabIndex);
         activeTab = tabList.get(unit.activeTabIndex);
+        currentPage = getPageForTab(activeTab);
     }
     
 	@Override
@@ -138,7 +138,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
         int i = 0;
         for (GuiCraneTab tab : tabList) {
             if (activeTab != tab) {
-                if (tab.inRect(this, x, y)) {
+                if (tab.inRect(this, x, y) && isTabOnPage(tab)) {
                     unit.activeTabIndex = i;
                     PacketHandler.sendInterfacePacket((byte) 0, new byte[] { (byte) i });
                     activeTab = tab;
@@ -172,9 +172,20 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
 		return activeTab;
 	}
     
+	private int getPageForTab(GuiCraneTab tab) {
+		int id = tab.getId();
+		if(id < TABS_PER_PAGE) return 1;
+		
+		for(int i = 1; i <= pages.size(); i++){
+			if(i*TABS_PER_PAGE-1 > id) return i;
+		}
+		
+		return 1;
+	}
+	
 	private boolean isTabOnPage(GuiCraneTab tab){
 		int id = tab.getId();
-		if(id >= (TABS_PER_PAGE * currentPage - TABS_PER_PAGE < 0 ? 0 : TABS_PER_PAGE * currentPage - TABS_PER_PAGE) && id <= TABS_PER_PAGE * currentPage - 1) return true;
+		if(id >= TABS_PER_PAGE * currentPage - TABS_PER_PAGE && id <= TABS_PER_PAGE * currentPage - 1) return true;
 		return false;
 	}
 	
