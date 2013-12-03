@@ -83,8 +83,8 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     @Override
     public void initGui() {
     	super.initGui();
-    	buttons[0] = new GuiArrowButton(0, guiLeft + xSize-7, guiTop-15, 12, 12, GuiArrowButton.GuiDirection.RIGHT);
-    	buttons[1] = new GuiArrowButton(1, guiLeft-5, guiTop-15, 12, 12, GuiArrowButton.GuiDirection.LEFT);
+    	buttons[0] = new GuiArrowButton(0, xSize-7, -15, GuiArrowButton.GuiDirection.RIGHT);
+    	buttons[1] = new GuiArrowButton(1, -5, -15, GuiArrowButton.GuiDirection.LEFT);
     }
     
     @Override

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.GuiColor;
+import dgrxf.watercraft.util.Rectangle;
 import dgrxf.watercraft.util.Vector2;
 
 /**
@@ -87,7 +88,7 @@ public abstract class GuiScrollList extends GuiRectangle {
     }
     
     private void doScroll(int y) {
-        scrollPos = ((y  )- (getScrollBar()[1]) - (int) (getScrollBarSize().y / 2));
+        scrollPos = (y - (getScrollBar()[1]) - (int) (getScrollBarSize().y / 2));
         int maxScroll = getScrollBar()[3] - (int) getScrollBarSize().y;
         if (scrollPos < 0) {
             scrollPos = 0;
@@ -241,9 +242,9 @@ public abstract class GuiScrollList extends GuiRectangle {
     }
     
     private int[] getScrollBar() {
-        GuiRectangle scroll = getScrollBarArea();
-        return new int[] { scroll.getX(), scroll.getY(), scroll.getWidth(),
-                scroll.getHeight() };
+        Rectangle scroll = getScrollBarArea();
+        return new int[] { (int)scroll.x, (int)scroll.y, (int)scroll.w,
+        		(int)scroll.h };
     }
     
     public void setTextColor(GuiColor color) {
@@ -256,7 +257,7 @@ public abstract class GuiScrollList extends GuiRectangle {
     
     public abstract Vector2 getScrollItemSelectedBackgroundPos();
     
-    public abstract GuiRectangle getScrollBarArea();
+    public abstract Rectangle getScrollBarArea();
     
     public abstract Vector2 getScrollBarSize();
     

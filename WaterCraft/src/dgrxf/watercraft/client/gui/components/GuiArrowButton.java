@@ -18,6 +18,13 @@ public class GuiArrowButton extends GuiRectangle{
 		RIGHT,
 		UP,
 		DOWN;
+		
+		private int[] opposites = {1, 0, 3, 2};
+		
+		public GuiDirection getOpposite(){
+			return values()[opposites[ordinal()]];
+		}
+		
 	}
 	
 	/**
@@ -29,8 +36,8 @@ public class GuiArrowButton extends GuiRectangle{
 	GuiDirection dir;
 	public int id;
 	public boolean enabled=true;
-	public GuiArrowButton(int id, int x, int y, int w, int h, GuiDirection dir) {
-		super(x, y, w, h);
+	public GuiArrowButton(int id, int x, int y, GuiDirection dir) {
+		super(x, y, 12, 12);
 		this.dir = dir;
 		this.id = id;
 	}
@@ -38,7 +45,7 @@ public class GuiArrowButton extends GuiRectangle{
 	private static final ResourceLocation sheet = new ResourceLocation(ModInfo.MODID, "textures/gui/guiComponents.png");
 
 	public boolean mouseClick(GuiBase gui, int x, int y) {
-		return inRect(gui, x+gui.getLeft(), y+gui.getTop());
+		return inRect(gui, x, y);
 	}
 	
 	@Override
@@ -62,14 +69,14 @@ public class GuiArrowButton extends GuiRectangle{
 		}
 		
 		if(this.enabled){
-			if(inRect(gui, x+gui.getLeft(), y+gui.getTop())){
+			if(inRect(gui, x, y)){
 				srcY = 24;
 			}else{
 				srcY = 12;
 			}
 		}
 		Minecraft.getMinecraft().renderEngine.bindTexture(this.sheet);
-		gui.drawTexturedModalRect(getX(), getY(), srcX, srcY, 12, 12);
+		gui.drawTexturedModalRect(getX()+gui.getLeft(), getY()+gui.getTop(), srcX, srcY, 12, 12);
 	}
 
 	
@@ -79,4 +86,8 @@ public class GuiArrowButton extends GuiRectangle{
 		
 	}
 
+	public void setArrowDirection(GuiDirection dir) {
+		this.dir = dir;
+	}
+	
 }

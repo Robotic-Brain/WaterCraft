@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiBase;
+import dgrxf.watercraft.client.gui.components.GuiDropdown;
 import dgrxf.watercraft.client.gui.components.GuiGraphicalTab;
 
 /**
@@ -27,6 +28,8 @@ public class GuiCraneTab extends GuiGraphicalTab{
 
 	private ItemStack module;
 	
+	private GuiDropdown menu;
+	
 	/**
 	 * @param name
 	 * @param id
@@ -34,6 +37,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public GuiCraneTab(String name, int id, int x, int y, int w, int h, ItemStack module) {
 		super(name, id, x, y, w, h);
 		this.module = module;
+		menu = new GuiDropdown(0, 0, null);
 	}
 	
 	@Override
@@ -48,11 +52,13 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	@Override
 	public void drawBackground(GuiBase gui, int x, int y) {
 		Minecraft.getMinecraft().renderEngine.bindTexture(getGuiTabResource());
+		int srcX = 0;
 		int srcY = 0;
 		if(this != ((CraneGUI)gui).getActiveTab()){
 			srcY = 24;
 		}
-		gui.drawTexturedModalRect(getX()+gui.getLeft(), getY()+gui.getTop(), 0, srcY, getWidth(), getHeight());
+		gui.drawTexturedModalRect(getX()+gui.getLeft(), getY()+gui.getTop(), srcX, srcY, getWidth(), getHeight());
+		menu.drawBackground(gui, x, y);
 	}
 
 	@Override
@@ -68,6 +74,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 		if(button == 0 && inRect(gui, x, y)){
 			this.setTabActive(true);
 		}
+		menu.mouseClick(gui, x, y, button);
 	}
 
 	@Override
