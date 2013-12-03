@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiBase;
-import dgrxf.watercraft.client.gui.components.GuiDropdown;
+import dgrxf.watercraft.client.gui.components.GuiDropDownScrollList;
 import dgrxf.watercraft.client.gui.components.GuiGraphicalTab;
 
 /**
@@ -28,7 +28,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 
 	private ItemStack module;
 	
-	private GuiDropdown menu;
+	private GuiDropDownScrollList menu;
 	
 	/**
 	 * @param name
@@ -37,7 +37,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public GuiCraneTab(String name, int id, int x, int y, int w, int h, ItemStack module) {
 		super(name, id, x, y, w, h);
 		this.module = module;
-		menu = new GuiDropdown(0, 0, new ArrayList(){{add("temp1"); add("temp2"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3");}});
+		menu = new GuiDropDownScrollList(24, 10, new ArrayList(){{add("temp1"); add("temp2"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3");}});
 	}
 	
 	@Override

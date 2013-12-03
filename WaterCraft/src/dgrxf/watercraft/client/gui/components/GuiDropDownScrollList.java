@@ -17,7 +17,7 @@ import dgrxf.watercraft.util.Vector2;
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
  *
  */
-public class GuiDropdown extends GuiComponent {
+public class GuiDropDownScrollList extends GuiComponent {
     private static final int BUTTON_SIZE = 12;
     private static final Vector2 MENU_SIZE = new Vector2(48, 12);
     
@@ -29,10 +29,10 @@ public class GuiDropdown extends GuiComponent {
     
     boolean drawList = false;
     
-    public GuiDropdown(int x, int y, List options) {
+    public GuiDropDownScrollList(int x, int y, ArrayList<String> options) {
         super(x, y, (int)MENU_SIZE.x + BUTTON_SIZE, BUTTON_SIZE);
         click = new GuiArrowButton(0, x+(int)MENU_SIZE.x, y, GuiDirection.DOWN);
-        list = new GuiScrollList(0, 12, 48, 48, 12, (ArrayList<String>) options) {
+        list = new GuiScrollList(x, y+(int)MENU_SIZE.y, 48, 48, 12, options) {
 
 			@Override
 			public Vector2 getScrollItemBackgroundPos() {
@@ -51,7 +51,7 @@ public class GuiDropdown extends GuiComponent {
 
 			@Override
 			public Rectangle getScrollBarArea() {
-				return new Rectangle(50, 13, 8, 46);
+				return new Rectangle(getX()+(int)MENU_SIZE.x + 2, getY()+1, 8, 46);
 			}
 
 			@Override
@@ -70,7 +70,7 @@ public class GuiDropdown extends GuiComponent {
 			}
         	
         };
-        scrollBar = new GuiRectangle(48, 12, 12, 48) {
+        scrollBar = new GuiRectangle(x+(int)MENU_SIZE.x, y + (int)MENU_SIZE.y, (int)MENU_SIZE.y, (int)MENU_SIZE.x) {
 			
 			@Override
 			public void drawForeground(GuiBase gui, int x, int y) {
