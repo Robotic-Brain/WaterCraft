@@ -37,7 +37,7 @@ public class CraneGUI extends GuiBase implements IGuiTabContainer{
     private ItemStack[]						modules = ModuleRegistry.getRegisteredItemStacks();
     private ArrayList<Integer>				pages = new ArrayList();
     private int 							currentPage;
-    private GuiCraneTab                     activeTab;
+    public GuiCraneTab                     activeTab;
     private GuiArrowButton[]				buttons = new GuiArrowButton[2];
     
     public CraneGUI(InventoryPlayer inventory, WCTileEntityCrane te) {

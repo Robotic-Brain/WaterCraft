@@ -1,6 +1,9 @@
 package dgrxf.watercraft.client.gui.components;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.components.GuiArrowButton.GuiDirection;
@@ -22,12 +25,14 @@ public class GuiDropdown extends GuiComponent {
     
     private GuiScrollList list;
     
+    private GuiRectangle scrollBar;
+    
     boolean drawList = false;
     
     public GuiDropdown(int x, int y, List options) {
         super(x, y, (int)MENU_SIZE.x + BUTTON_SIZE, BUTTON_SIZE);
         click = new GuiArrowButton(0, x+(int)MENU_SIZE.x, y, GuiDirection.DOWN);
-        list = new GuiScrollList(19, 65, 84, 55, 11) {
+        list = new GuiScrollList(0, 12, 48, 48, 12, (ArrayList<String>) options) {
 
 			@Override
 			public Vector2 getScrollItemBackgroundPos() {
@@ -46,7 +51,7 @@ public class GuiDropdown extends GuiComponent {
 
 			@Override
 			public Rectangle getScrollBarArea() {
-				return new Rectangle(click.getX(), click.getY() + click.getHeight(), 8, 44);
+				return new Rectangle(50, 13, 8, 46);
 			}
 
 			@Override
@@ -65,6 +70,18 @@ public class GuiDropdown extends GuiComponent {
 			}
         	
         };
+        scrollBar = new GuiRectangle(48, 12, 12, 48) {
+			
+			@Override
+			public void drawForeground(GuiBase gui, int x, int y) {
+				
+			}
+			
+			@Override
+			public void drawBackground(GuiBase gui, int x, int y) {
+				gui.drawTexturedModalRect(gui.getLeft() + getX(),gui.getTop() + getY(), 72, 0, getWidth(), getHeight());
+			}
+		};
     }
     
     @Override
@@ -76,12 +93,26 @@ public class GuiDropdown extends GuiComponent {
         gui.drawTexturedModalRect(gui.getLeft() + getX(), gui.getTop() + getY(), 24, 36, (int)MENU_SIZE.x, (int)MENU_SIZE.y);
         click.drawBackground(gui, x, y);
         if(drawList){
+        	scrollBar.drawBackground(gui, x, y);
         	list.drawBackground(gui, x, y);
         }
     }
     
     @Override
     public void drawForeground(GuiBase gui, int x, int y) {
+    	if(drawList){
+    		list.drawForeground(gui, x, y);
+    	}
+    }
+    @Override
+    public void mouseMoveClick(GuiBase gui, int x, int y, int button,
+    		long timeSinceClicked) {
+    	list.mouseMoveClick(gui, x, y, button, timeSinceClicked);
+    }
+    
+    @Override
+    public void mouseReleased(GuiBase gui, int x, int y, int button) {
+    	list.mouseReleased(gui, x, y, button);
     }
     
     @Override
@@ -90,6 +121,9 @@ public class GuiDropdown extends GuiComponent {
         	drawList = !drawList;
         	click.setArrowDirection(click.dir.getOpposite());
         }
+        
+        list.mouseClick(gui, x, y, button);
+        
         if (inRect(gui, x, y)) {
         	
         } else {

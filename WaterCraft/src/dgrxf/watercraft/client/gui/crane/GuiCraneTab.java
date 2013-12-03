@@ -37,7 +37,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public GuiCraneTab(String name, int id, int x, int y, int w, int h, ItemStack module) {
 		super(name, id, x, y, w, h);
 		this.module = module;
-		menu = new GuiDropdown(0, 0, null);
+		menu = new GuiDropdown(0, 0, new ArrayList(){{add("temp1"); add("temp2"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3");}});
 	}
 	
 	@Override
@@ -58,12 +58,15 @@ public class GuiCraneTab extends GuiGraphicalTab{
 			srcY = 24;
 		}
 		gui.drawTexturedModalRect(getX()+gui.getLeft(), getY()+gui.getTop(), srcX, srcY, getWidth(), getHeight());
+		if(((CraneGUI)gui).activeTab != this) return;
 		menu.drawBackground(gui, x, y);
 	}
 
 	@Override
 	public void drawForeground(GuiBase gui, int x, int y) {
 		renderingHandler(getX(), getY(), module, 0, 1.0F, gui);
+		if(((CraneGUI)gui).activeTab != this) return;
+		menu.drawForeground(gui, x, y);
 	}
 
 	@Override
@@ -71,6 +74,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 
 	@Override
 	public void mouseClick(GuiBase gui, int x, int y, int button) {
+		if(((CraneGUI)gui).activeTab != this) return;
 		if(button == 0 && inRect(gui, x, y)){
 			this.setTabActive(true);
 		}
@@ -78,10 +82,16 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	}
 
 	@Override
-	public void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked) {}
+	public void mouseMoveClick(GuiBase gui, int x, int y, int button, long timeSinceClicked) {
+		if(((CraneGUI)gui).activeTab != this) return;
+		menu.mouseMoveClick(gui, x, y, button, timeSinceClicked);
+	}
 
 	@Override
-	public void mouseReleased(GuiBase gui, int x, int y, int button) {}
+	public void mouseReleased(GuiBase gui, int x, int y, int button) {
+		if(((CraneGUI)gui).activeTab != this) return;
+		menu.mouseReleased(gui, x, y, button);
+	}
 
 	public void renderingHandler(int x, int y, ItemStack stack, float rotation, float scale, GuiBase gui) {
 		GL11.glPushMatrix();
