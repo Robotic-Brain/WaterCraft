@@ -129,4 +129,11 @@ public class BoatAITaskList extends BoatAIBase {
         	task.readEntityFromNBT(par1nbtTagCompound);
     	}
     }
+    
+    @Override
+    public void onSignalReceived(String signal, ISignalSender sender, Object... args) {
+        for(BoatAITaskBase task : tasks){
+            task.onSignalReceived(signal, sender, args);
+        }
+    }
 }

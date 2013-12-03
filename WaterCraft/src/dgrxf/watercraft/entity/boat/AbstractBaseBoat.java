@@ -17,10 +17,9 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import dgrxf.watercraft.Watercraft;
-import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
+import dgrxf.watercraft.entity.boat.ai.ISignalSender;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -814,7 +813,16 @@ public abstract class AbstractBaseBoat extends Entity {
         return temp;
     }
     
-    // TDOD: Not sure if this belongs here
+    /**
+     * Use this to send signals to the ai system
+     * @param sender Signal sender object
+     * @param args  random args to track state
+     */
+    public void sendSignal(String signal, ISignalSender sender, Object... args) {
+        this.ai.onSignalReceived(signal, sender, args);
+    }
+    
+    // TODO: Not sure if this belongs here
     public double getBoatSpeed() {
         return BOAT_SPEED;
     }

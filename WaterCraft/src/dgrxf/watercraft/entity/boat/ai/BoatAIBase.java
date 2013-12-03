@@ -77,6 +77,16 @@ public abstract class BoatAIBase {
         return true;
     }
     
+    /**
+     * This gets called if a signal was sent to a boat
+     * 
+     * @param signal send signal
+     * @param sender Object which send the signal
+     * @param args  arguments the sender needs to track state
+     */
+    public void onSignalReceived(String signal, ISignalSender sender, Object... args) {
+    }
+    
     public void writeEntityToNBT(NBTTagCompound par1nbtTagCompound) {
     }
     
