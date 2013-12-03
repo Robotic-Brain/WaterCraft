@@ -8,15 +8,15 @@ import dgrxf.watercraft.util.Vector2;
 /**
  * 
  * DumbTask
- *
+ * 
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
- *
+ * 
  */
 public class DumbTask extends BoatAITaskBase {
     
-    private Vector2 target, lastLocation;
+    private Vector2          target, lastLocation;
     private AbstractBaseBoat boat;
-    private ForgeDirection direction;
+    private ForgeDirection   direction;
     
     public DumbTask(AbstractBaseBoat boat, Float priority, Object... args) {
         super(boat, priority);
@@ -25,14 +25,14 @@ public class DumbTask extends BoatAITaskBase {
     
     @Override
     public void updateMotion() {
-    	moveToTarget();
-    	
-    	if(target != null && boat.worldObj.isAirBlock((int)target.x, (int)boat.posY, (int)target.y)){
-    		setTargetLocation(lastLocation);
-    		lastLocation = null;
-    	}
-    }
+        moveToTarget();
         
+        if (target != null && boat.worldObj.isAirBlock((int) target.x, (int) boat.posY, (int) target.y)) {
+            setTargetLocation(lastLocation);
+            lastLocation = null;
+        }
+    }
+    
     @Override
     public void buoyFound(WCBouyLogic buoy) {
         if (buoy.hasNextBuoy(buoy.getBlockDirection())) {
@@ -41,8 +41,6 @@ public class DumbTask extends BoatAITaskBase {
             lastLocation = buoy.getBuoyCoords().xz();
         }
     }
-    
-    
     
     private void moveToTarget() {
         if (target == null || boat.worldObj.isRemote) {
@@ -53,7 +51,7 @@ public class DumbTask extends BoatAITaskBase {
         Vector2 distance = target.sub(boatPos);
         Vector2 newMotion = new Vector2();
         
-        newMotion = distance.normalize().scalarMult(boat.getBoatSpeed());
+        newMotion = distance.normalize().scalarMult(0.3);
         
         boat.motionX = newMotion.x;
         boat.motionZ = newMotion.y;
