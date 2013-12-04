@@ -17,6 +17,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import dgrxf.watercraft.Watercraft;
+import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.ISignalSender;
@@ -679,6 +681,10 @@ public abstract class AbstractBaseBoat extends Entity {
      */
     @Override
     public boolean interactFirst(EntityPlayer player) {
+    	if(player.isSneaking() && worldObj.isRemote){
+    		player.openGui(Watercraft.instance, GuiHandler.BOAT_GUI_ID, worldObj, (int)posX, (int)posY, (int)posZ);
+    		return true;
+    	}
         this.ai.onInteractFirst(player);
         return true;
     }
