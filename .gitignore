@@ -1,6 +1,6 @@
 .DS_Store
 /eclipse
 /bin
-.classpath
+antPath.txt
 environment.properties
 /release
