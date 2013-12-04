@@ -1,6 +1,6 @@
 .DS_Store
 /eclipse
-.classpath
 /bin
+.classpath
 environment.properties
 /release
