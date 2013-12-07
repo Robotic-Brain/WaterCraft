@@ -56,8 +56,14 @@ public class ModuleHelper extends ModuleRegistry{
 		if(s == null || !s.contains(":")) return null;
 		
 		String[] temp = s.split(":");
-		int id = Integer.parseInt(temp[0]);
-		int meta = Integer.parseInt(temp[1]);
+		int id;
+		int meta;
+		try{
+			id = Integer.parseInt(temp[0]);
+			meta = Integer.parseInt(temp[1]);
+		}catch(NumberFormatException e){
+			return null;
+		}
 		return new ItemStack(id, 0, meta);
 	}
 	

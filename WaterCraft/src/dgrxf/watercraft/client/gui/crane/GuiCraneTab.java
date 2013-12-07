@@ -37,7 +37,7 @@ public class GuiCraneTab extends GuiGraphicalTab{
 	public GuiCraneTab(String name, int id, int x, int y, int w, int h, ItemStack module) {
 		super(name, id, x, y, w, h);
 		this.module = module;
-		menu = new GuiDropDownScrollList(24, 10, new ArrayList(){{add("temp1"); add("temp2"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3"); add("temp3");}});
+		menu = new GuiDropDownScrollList(24, 10, new ArrayList(){{add("temp1"); add("temp2"); add("temp3"); add("temp4"); add("temp5"); add("temp6"); add("temp7"); add("temp8"); add("temp9");}});
 	}
 	
 	@Override

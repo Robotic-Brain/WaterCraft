@@ -34,5 +34,7 @@ public interface IBoatModule {
 	 */
 	public void addBoatAI(BoatAITaskList list, AbstractBaseBoat boat, float f);
 
+	public ICraneAction[] getCraneActions();
+	
 	public String getModuleInfo();
 }

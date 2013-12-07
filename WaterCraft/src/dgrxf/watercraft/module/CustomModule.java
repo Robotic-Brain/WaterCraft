@@ -9,6 +9,7 @@ import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.enumeration.ModuleType;
 import dgrxf.watercraft.interfaces.IBoatModule;
+import dgrxf.watercraft.interfaces.ICraneAction;
 
 /**
  * 
@@ -25,6 +26,7 @@ public class CustomModule implements IBoatModule {
 	Class task;
 	String info = "";
 	Object[] args;
+	ICraneAction[] actions;
 	
 	/**
 	 * @param moduleTypes An array of ModuleTypes (if any) you wish your module to be of. Can be null.
@@ -33,7 +35,7 @@ public class CustomModule implements IBoatModule {
 	 * @param task The BoatAITaskBase class you wish for your module to have. Can be null.
 	 * @param args The extra arguments for the AI Task you wish to have, everything after the priority. Can be empty or null.
 	 */
-	public CustomModule(ModuleType[] moduleTypes, ModuleType[] confModuleTypes, Block block, String info, Class<? extends BoatAITaskBase> task, Object... args){
+	public CustomModule(ModuleType[] moduleTypes, ModuleType[] confModuleTypes, Block block, String info, Class<? extends BoatAITaskBase> task, ICraneAction[] actions, Object... args){
 		boolean declaresBlock = false;
 		this.moduleTypes.addAll(Arrays.asList(moduleTypes));
 		this.confModuleTypes.addAll(Arrays.asList(confModuleTypes));
@@ -41,6 +43,7 @@ public class CustomModule implements IBoatModule {
 		this.task = task;
 		this.args = args;
 		this.info = info;
+		this.actions = actions;
 		if(block != null){
 			for(ModuleType m : this.moduleTypes){
 				if(m == ModuleType.BLOCK){
@@ -85,6 +88,11 @@ public class CustomModule implements IBoatModule {
 	@Override
 	public String getModuleInfo() {
 		return info;
+	}
+
+	@Override
+	public ICraneAction[] getCraneActions() {
+		return actions;
 	}
 
 }
