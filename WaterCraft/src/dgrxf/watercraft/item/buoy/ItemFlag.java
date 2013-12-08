@@ -30,7 +30,7 @@ public class ItemFlag extends Item {
     
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-    	return super.getUnlocalizedName() + "." + TranslationHelper.FLAGS[stack.getItemDamage()];
+    	return super.getUnlocalizedName() + "." + TH.FLAGS[stack.getItemDamage()];
     }
     
     @SideOnly(Side.CLIENT)
@@ -55,7 +55,7 @@ public class ItemFlag extends Item {
     public void getSubItems(int val, CreativeTabs tab, List subItems) {
         for (int i = 0; i < 16; i++) {
         	ItemStack stack = new ItemStack(this, 1, i);
-        	stack.setItemName(TranslationHelper.translate(stack.getUnlocalizedName(), 0));
+        	stack.setItemName(TH.translate(stack.getUnlocalizedName(), 0));
             subItems.add(stack);
         }
     }

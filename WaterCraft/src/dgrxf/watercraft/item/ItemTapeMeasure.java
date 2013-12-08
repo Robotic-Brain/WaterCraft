@@ -46,7 +46,7 @@ public class ItemTapeMeasure extends Item {
     	
     	if(player.isSneaking()){
         	setFirstFlag(stack, false);
-        	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_RESTART)));
+        	player.sendChatToPlayer(ChatMessageComponent.createFromText(TH.translate(TH.TAPE_MEASURE_RESTART)));
         }
     	return stack;
     }
@@ -60,10 +60,10 @@ public class ItemTapeMeasure extends Item {
 	            if (!getFirstFlag(stack)) {
 	                setPos(stack, new Vector3(x, y, z));
 	                setFirstFlag(stack, true);
-	                player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_START, x, y, z)));
+	                player.sendChatToPlayer(ChatMessageComponent.createFromText(TH.translate(TH.TAPE_MEASURE_START, x, y, z)));
 	            } else {
-	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_END, x, y, z)));
-	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TranslationHelper.translate(TranslationHelper.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length() + 1)));
+	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TH.translate(TH.TAPE_MEASURE_END, x, y, z)));
+	            	player.sendChatToPlayer(ChatMessageComponent.createFromText(TH.translate(TH.TAPE_MEASURE_DISTANCE, getPos(stack).sub(new Vector3(x, y, z)).length() + 1)));
 	                setFirstFlag(stack, false);
 	            }
         }

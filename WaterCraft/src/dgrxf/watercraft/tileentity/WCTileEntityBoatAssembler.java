@@ -117,7 +117,7 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory,
 
 	@Override
 	public String getInvName() {
-		return TranslationHelper.buildKey("container", "boat_assembler");
+		return TH.buildKey("container", "boat_assembler");
 	}
 
 	@Override

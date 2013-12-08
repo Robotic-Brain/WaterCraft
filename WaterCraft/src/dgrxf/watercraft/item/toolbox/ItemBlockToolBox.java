@@ -129,7 +129,7 @@ public class ItemBlockToolBox extends ItemBlock {
                     }
                 }
                 if (inv != null) {
-                    list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_CONTAINS));
+                    list.add(TH.translate(TH.TOOLBOX_CONTAINS));
                     int index = 0;
                     for (int i = 0; i < inv.length; i++) {
                         if (inv[i] != null) {
@@ -138,17 +138,17 @@ public class ItemBlockToolBox extends ItemBlock {
                         }
                     }
                     if (index == 0) {
-                        list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_CONTAINS_NOTING));
+                        list.add(TH.translate(TH.TOOLBOX_CONTAINS_NOTING));
                     }
                 }
             } else {
-                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_EMPTY));
+                list.add(TH.translate(TH.TOOLBOX_EMPTY));
             }
         } else {
             if (stack.getTagCompound() != null && stack.getTagCompound().hasKey("playerName")) {
-                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_OWNER, stack.getTagCompound().getString("playerName")));
+                list.add(TH.translate(TH.TOOLBOX_OWNER, stack.getTagCompound().getString("playerName")));
             } else {
-                list.add(TranslationHelper.translate(TranslationHelper.TOOLBOX_NO_OWNER));
+                list.add(TH.translate(TH.TOOLBOX_NO_OWNER));
             }
         }
     }

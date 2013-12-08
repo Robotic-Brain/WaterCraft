@@ -48,7 +48,7 @@ public class GuiToolBox extends GuiContainer {
             // TODO: This should be a constant!
             playerName = stack.getTagCompound().getString("playerName");
         }
-        fontRenderer.drawString(TranslationHelper.translate(TranslationHelper.buildKey("toolbox_owner_text"), playerName), guiLeft + 7, guiTop + 5, 0x404040);
+        fontRenderer.drawString(TH.translate(TH.buildKey("toolbox_owner_text"), playerName), guiLeft + 7, guiTop + 5, 0x404040);
         
     }
 }

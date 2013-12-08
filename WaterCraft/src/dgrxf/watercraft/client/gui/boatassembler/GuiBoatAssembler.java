@@ -52,7 +52,7 @@ public class GuiBoatAssembler extends GuiBase {
 		super.initGui();
 		buttonList.clear();
 		// TODO: Translation might be longer?
-		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, TranslationHelper.translate(TranslationHelper.buildKey("assemble_button")));
+		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, TH.translate(TH.buildKey("assemble_button")));
 		buttonList.add(assemble);
 		drawRects[0] = new GuiBoatAssemblerRectangle(7, 28, 90, 90, playerInv, new Rectangle(43, 96, 17, 17));
 		drawRects[1] = new GuiBoatAssemblerRectangle(99, 28, 90, 90, playerInv, new Rectangle(135, 96, 17, 17));
@@ -101,8 +101,8 @@ public class GuiBoatAssembler extends GuiBase {
 	    ItemStack stack = inventory.getStackInSlot(slot);
 		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
 			return stack.getDisplayName();
-		else if(stack == null) return TranslationHelper.translate(TranslationHelper.BOAT_ASSEMBLER_EMPTY_FIELD);
-		else return TranslationHelper.translate(TranslationHelper.BOAT_ASSEMBLER_NO_MODULE);
+		else if(stack == null) return TH.translate(TH.BOAT_ASSEMBLER_EMPTY_FIELD);
+		else return TH.translate(TH.BOAT_ASSEMBLER_NO_MODULE);
 	}
 	
 	public int returnItemColour(int slot){

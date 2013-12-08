@@ -35,7 +35,7 @@ public class ModuleRegistry {
 		if(m != null){
 			if(temp != -1){
 				try {
-					throw new RuntimeException(TranslationHelper.translate(TranslationHelper.MODULE_DUPLICATE_EXCEPTION, m.getName(), itemStack.getDisplayName(), getModulesMod(temp).getName()));
+					throw new RuntimeException(TH.translate(TH.MODULE_DUPLICATE_EXCEPTION, m.getName(), itemStack.getDisplayName(), getModulesMod(temp).getName()));
 				} catch (RuntimeException e) {
 					e.printStackTrace();
 				}
@@ -49,7 +49,7 @@ public class ModuleRegistry {
 			return false;
 		}else{
 			try{
-				throw new RuntimeException(TranslationHelper.translate(TranslationHelper.MODULE_INVALID_MOD_EXCEPTION, modID.getClass().getSimpleName(), itemStack.getDisplayName()));
+				throw new RuntimeException(TH.translate(TH.MODULE_INVALID_MOD_EXCEPTION, modID.getClass().getSimpleName(), itemStack.getDisplayName()));
 			} catch(RuntimeException e){
 				e.printStackTrace();
 				return false;
