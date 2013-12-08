@@ -12,7 +12,6 @@ import org.lwjgl.opengl.GL11;
 import dgrxf.watercraft.client.gui.GuiBase;
 import dgrxf.watercraft.client.gui.GuiColor;
 import dgrxf.watercraft.client.gui.components.GuiGraphicsRectangle;
-import dgrxf.watercraft.client.gui.components.GuiRectangle;
 import dgrxf.watercraft.common.container.BoatAssemblerContainer;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.item.boat.ItemModularBoat;
@@ -21,7 +20,7 @@ import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.util.Rectangle;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 
 /**
  * 

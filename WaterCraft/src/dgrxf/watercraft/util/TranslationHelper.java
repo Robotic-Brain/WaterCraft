@@ -15,6 +15,8 @@ import dgrxf.watercraft.lib.ModInfo;
 @SideOnly(Side.CLIENT)
 public class TranslationHelper {
     
+    public class TH extends TranslationHelper {}
+    
     /**
      * Base Prefix
      */

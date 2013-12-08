@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
 import dgrxf.watercraft.interfaces.IBoatModule;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 
 /**
  * 

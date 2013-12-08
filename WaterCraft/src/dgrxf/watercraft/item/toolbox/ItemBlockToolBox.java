@@ -17,7 +17,7 @@ import dgrxf.watercraft.block.ModBlocks;
 import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
 import dgrxf.watercraft.util.RotationHelper;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 
 /**
  * 

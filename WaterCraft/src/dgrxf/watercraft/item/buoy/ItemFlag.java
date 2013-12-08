@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.lib.ModInfo;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 
 /**
  * 

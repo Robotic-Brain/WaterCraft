@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import dgrxf.watercraft.Watercraft;
 import dgrxf.watercraft.client.gui.GuiColor;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 import dgrxf.watercraft.util.Vector3;
 
 /**

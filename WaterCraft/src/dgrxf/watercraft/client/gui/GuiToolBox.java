@@ -10,7 +10,7 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.common.container.ToolboxContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
-import dgrxf.watercraft.util.TranslationHelper;
+import dgrxf.watercraft.util.TranslationHelper.TH;
 
 /**
  * 
