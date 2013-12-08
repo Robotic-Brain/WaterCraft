@@ -1,0 +1,4 @@
+This Mod (WaterCraft) is distributed unless otherwise specified under the GNU Public License v3.
+Whenever code from other sources is used, it is noted explicitly in the JavaDoc accompanying the class.
+
+Artwork and other assets may contain copyright notes from their respective owners.
