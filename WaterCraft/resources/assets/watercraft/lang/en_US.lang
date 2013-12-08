@@ -63,6 +63,6 @@ strings.watercraft:module_invalid_mod_exception=The class %s is not a registered
 strings.watercraft:boat_assembler_empty_field=Empty
 strings.watercraft:boat_assembler_no_module=Not a Module
 strings.watercraft:assemble_button=Assemble
-strings.watercraft:toolbox_owner_text=%s's Toolbox EN
+strings.watercraft:toolbox_owner_text=%s's Toolbox
 
 death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox.
