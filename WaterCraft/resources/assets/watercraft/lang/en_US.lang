@@ -44,6 +44,8 @@ item.watercraft:flag.green=Green Flag
 item.watercraft:flag.red=Red Flag
 item.watercraft:flag.black=Black Flag
 
+container.watercraft:boat_assembler=Boat Assembler
+
 strings.watercraft:tape_measure_start=Start Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_end=End Measurement: [%s, %s, %s]
 strings.watercraft:tape_measure_distance=Distance: %s
@@ -57,5 +59,10 @@ strings.watercraft:toolbox_no_owner=An unowned Toolbox
 
 strings.watercraft:module_exception=The mod %s is attempting to register a module to the item name %s, however, this item is already registered by %s and cannot be overwritten.
 strings.watercraft:module_invalid_mod_exception=The class %s is not a registered Forge Modloader mod container, the module with the item %s will not be registered.
+
+strings.watercraft:boat_assembler_empty_field=Empty
+strings.watercraft:boat_assembler_no_module=Not a Module
+strings.watercraft:assemble_button=Assemble
+strings.watercraft:toolbox_owner_text=%s's Toolbox EN
 
 death.attack.inception=%s got stuck in Limbo while trying to put a Toolbox in a Toolbox.

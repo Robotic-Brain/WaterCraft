@@ -26,7 +26,7 @@ import dgrxf.watercraft.module.ModuleRegistry;
  */
 public class ModuleInfo {
 	public static void init(){
-	    // TODO Translation
+	    // TODO Translation -xandayn you have to do this!
 		ModuleRegistry.registerModule(new ItemStack(ModItems.BOAT_MODULES.getItem(), 0, 0), new CustomModule(new ModuleType[]{ModuleType.BOAT}, new ModuleType[]{ModuleType.BOAT}, null, "Adds basic Bouy AI to the boat", DumbTask.class, null), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModItems.BOAT_MODULES.getItem(), 0, 1), new CustomModule(new ModuleType[]{ModuleType.BOAT, ModuleType.ACTIVATABLE}, new ModuleType[]{ModuleType.BOAT, ModuleType.BLOCK}, null, "Adds vanilla AI to the boat", VanillaTask.class, null), Watercraft.instance);
 		ModuleRegistry.registerModule(new ItemStack(ModItems.BOAT_MODULES.getItem(), 0, 2), new CustomModule(new ModuleType[]{ModuleType.AI}, new ModuleType[0], null, "Allows boat to break though Ice", IceTask.class, null), Watercraft.instance);

@@ -74,6 +74,7 @@ public class ItemTapeMeasure extends Item {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean val) {
     	if (GuiScreen.isShiftKeyDown()){
     	 // TODO Translation
+    	    // TODO: This whole "Manual" is a mess, this should display what to do based on internal state
     		list.add("To use this item do this:");
     		list.add(" 1: Right Click on the first block");
     		list.add(" 2: Right Click on the secound block");

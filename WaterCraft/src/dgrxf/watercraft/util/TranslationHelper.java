@@ -41,6 +41,12 @@ public class TranslationHelper {
     public static final String TAB_BOAT                = "creativeTab.boat";
     public static final String TAB_BOUY                = "creativeTab.bouy";
     
+    /**
+     * Boat Assembler GUI
+     */
+    public static final String BOAT_ASSEMBLER_EMPTY_FIELD = BASE_KEY + "boat_assembler_empty_field";
+    public static final String BOAT_ASSEMBLER_NO_MODULE = BASE_KEY + "boat_assembler_no_module";
+    
     public static final String[] FLAGS = {"white", "orange", "magenta", "light_blue", "yellow", "lime_green", "pink", "grey", "light_grey", "cyan", "purple", "blue", "brown", "green", "red", "black"};
     
     /**
@@ -54,5 +60,19 @@ public class TranslationHelper {
      */
     public static String translate(String key, Object... params) {
         return StatCollector.translateToLocalFormatted(key, params);
+    }
+    
+    /**
+     * Builds the localization key
+     * @param category  Category to put it in
+     * @param key       Actuall key
+     * @return <category>.watercraft:<key>
+     */
+    public static String buildKey(String category, String key) {
+        return category + "." + ModInfo.MODID + ":" + key;
+    }
+    
+    public static String buildKey(String key) {
+        return buildKey("strings", key);
     }
 }

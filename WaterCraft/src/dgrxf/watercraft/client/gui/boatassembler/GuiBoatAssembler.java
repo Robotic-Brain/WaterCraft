@@ -2,6 +2,7 @@ package dgrxf.watercraft.client.gui.boatassembler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -20,6 +21,7 @@ import dgrxf.watercraft.module.ModuleRegistry;
 import dgrxf.watercraft.network.PacketHandler;
 import dgrxf.watercraft.tileentity.WCTileEntityBoatAssembler;
 import dgrxf.watercraft.util.Rectangle;
+import dgrxf.watercraft.util.TranslationHelper;
 
 /**
  * 
@@ -49,7 +51,8 @@ public class GuiBoatAssembler extends GuiBase {
 	public void initGui() {
 		super.initGui();
 		buttonList.clear();
-		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, "Assemble");   // TODO Translation
+		// TODO: Translation might be longer?
+		assemble = new GuiButton(0, guiLeft + 110, guiTop + 6, 60, 20, TranslationHelper.translate(TranslationHelper.buildKey("assemble_button")));
 		buttonList.add(assemble);
 		drawRects[0] = new GuiBoatAssemblerRectangle(7, 28, 90, 90, playerInv, new Rectangle(43, 96, 17, 17));
 		drawRects[1] = new GuiBoatAssemblerRectangle(99, 28, 90, 90, playerInv, new Rectangle(135, 96, 17, 17));
@@ -76,9 +79,8 @@ public class GuiBoatAssembler extends GuiBase {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		GL11.glColor4f(1, 1, 1, 1);
-		// TODO Translation
-		fontRenderer.drawString("Boat Assembler", 8, 6, GuiColor.GRAY.toRGB());
-		fontRenderer.drawString("Inventory", 8, 122, GuiColor.GRAY.toRGB());
+		fontRenderer.drawString(I18n.getString(inventory.getInvName()), 8, 6, GuiColor.GRAY.toRGB());
+		fontRenderer.drawString(I18n.getString("container.inventory"), 8, 122, GuiColor.GRAY.toRGB());
 		fontRenderer.drawSplitString(returnItemName(0), 10, 31, 85, returnItemColour(0));
 		fontRenderer.drawSplitString(returnItemName(1), 102, 31, 85, returnItemColour(1));
 
@@ -94,11 +96,13 @@ public class GuiBoatAssembler extends GuiBase {
 	}
 	
 	public String returnItemName(int slot){
-		ItemStack stack = inventory.getStackInSlot(slot);
+		// TODO: seems messy
+	    
+	    ItemStack stack = inventory.getStackInSlot(slot);
 		if(stack != null && (ModuleRegistry.isItemRegistered(stack) || stack.getItem() instanceof ItemModularBoat))
 			return stack.getDisplayName();
-		else if(stack == null) return "Empty";  // TODO Translation
-		else return "Not a Module";   // TODO Translation
+		else if(stack == null) return TranslationHelper.translate(TranslationHelper.BOAT_ASSEMBLER_EMPTY_FIELD);
+		else return TranslationHelper.translate(TranslationHelper.BOAT_ASSEMBLER_NO_MODULE);
 	}
 	
 	public int returnItemColour(int slot){

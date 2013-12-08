@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import dgrxf.watercraft.interfaces.IModularBoat;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.module.ModuleRegistry;
+import dgrxf.watercraft.util.TranslationHelper;
 
 /**
  * 
@@ -116,12 +117,12 @@ public class WCTileEntityBoatAssembler extends TileEntity implements IInventory,
 
 	@Override
 	public String getInvName() {
-		return "";
+		return TranslationHelper.buildKey("container", "boat_assembler");
 	}
 
 	@Override
 	public boolean isInvNameLocalized() {
-		return false;
+		return true;
 	}
 
 	@Override

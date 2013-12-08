@@ -10,13 +10,14 @@ import org.lwjgl.opengl.GL11;
 
 import dgrxf.watercraft.common.container.ToolboxContainer;
 import dgrxf.watercraft.tileentity.WCTileEntityToolBox;
+import dgrxf.watercraft.util.TranslationHelper;
 
 /**
  * 
  * GuiToolBox
- *
+ * 
  * @license GNU Public License v3 (http://www.gnu.org/licenses/gpl.html)
- *
+ * 
  */
 public class GuiToolBox extends GuiContainer {
     
@@ -40,9 +41,14 @@ public class GuiToolBox extends GuiContainer {
         Minecraft.getMinecraft().renderEngine.bindTexture(texture);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
         
-        // TODO: Translate
-        fontRenderer.drawString(tile != null ? tile.getPlayerName() + "'s ToolBox"
-                : stack.getTagCompound().getString("playerName") + "'s ToolBox", guiLeft + 7, guiTop + 5, 0x404040);
+        String playerName;
+        if (tile != null) {
+            playerName = tile.getPlayerName();
+        } else {
+            // TODO: This should be a constant!
+            playerName = stack.getTagCompound().getString("playerName");
+        }
+        fontRenderer.drawString(TranslationHelper.translate(TranslationHelper.buildKey("toolbox_owner_text"), playerName), guiLeft + 7, guiTop + 5, 0x404040);
         
     }
 }
