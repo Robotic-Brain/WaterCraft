@@ -22,6 +22,7 @@ import dgrxf.watercraft.client.gui.GuiHandler;
 import dgrxf.watercraft.entity.boat.ai.BoatAIBase;
 import dgrxf.watercraft.entity.boat.ai.BoatAITaskList;
 import dgrxf.watercraft.entity.boat.ai.ISignalSender;
+import dgrxf.watercraft.entity.boat.ai.tasks.BoatAITaskBase;
 import dgrxf.watercraft.lib.EntityInfo;
 import dgrxf.watercraft.module.ModuleHelper;
 import dgrxf.watercraft.tileentity.buoy.WCBouyLogic;
@@ -181,6 +182,15 @@ public abstract class AbstractBaseBoat extends Entity {
             return true;
         }
     }
+    
+    @Override
+	public void applyEntityCollision(Entity entity) {
+    	super.applyEntityCollision(entity);
+    	if (!this.worldObj.isRemote && !this.isDead) {
+    		this.ai.applyEntityCollision(entity);
+    	}
+    }
+    
     
     @Override
     @SideOnly(Side.CLIENT)

@@ -3,6 +3,7 @@ package dgrxf.watercraft.entity.boat.ai;
 import java.util.Set;
 import java.util.TreeSet;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -113,6 +114,13 @@ public class BoatAITaskList extends BoatAIBase {
         }
         
         return result;
+    }
+    
+    @Override
+	public void applyEntityCollision(Entity entity) {
+    	for (BoatAITaskBase task : tasks) {
+    		task.applyEntityCollision(entity);
+    	}
     }
     
     @Override

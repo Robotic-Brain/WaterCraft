@@ -40,5 +40,6 @@ public class ItemModule extends Item{
 		list.add(new ItemStack(this, 1, 1));
 		list.add(new ItemStack(this, 1, 2));
 		list.add(new ItemStack(this, 1, 3));
+		list.add(new ItemStack(this, 1, 4));
 	}
 }

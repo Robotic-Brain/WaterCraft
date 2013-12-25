@@ -17,6 +17,7 @@ item.watercraft:boatModules0.name=Module: Follow Buoys
 item.watercraft:boatModules1.name=Module: Seat
 item.watercraft:boatModules2.name=Hull Upgrade: Ice Breaking
 item.watercraft:boatModules3.name=Hull Upgrade: Lava Resistance
+item.watercraft:boatModules4.name=Module: Ferry
 item.watercraft:TelescopeName.name=Telescope
 item.watercraft:TapeItemName.name=Tape Measure
 item.watercraft:wcboat.name=Boat

@@ -1,5 +1,6 @@
 package dgrxf.watercraft.entity.boat.ai;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -69,6 +70,11 @@ public abstract class BoatAIBase {
      */
     public void onInteractFirst(EntityPlayer player){
     }
+    
+    /**
+     * Gets called when the boat collides with another entity
+     */
+    public void applyEntityCollision(Entity par1Entity) {}
     
     /**
      * Return false to prevent boat breaking from collisions
