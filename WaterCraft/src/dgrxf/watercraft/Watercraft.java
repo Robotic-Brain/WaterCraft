@@ -64,6 +64,7 @@ import dgrxf.watercraft.util.LogHelper;
  * @author xandayn
  * @author FrodCube
  * @author GoryMoon
+ * @author Hunter-K13
  * 
  */
 

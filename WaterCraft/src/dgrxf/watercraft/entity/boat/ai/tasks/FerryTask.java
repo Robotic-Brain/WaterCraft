@@ -15,16 +15,12 @@ public class FerryTask extends BoatAITaskBase {
 	@Override
 	public void applyEntityCollision(Entity par1Entity) {
 		super.applyEntityCollision(par1Entity);
-		System.out.println("1");
 		if (!boat.worldObj.isRemote)
         {
-			System.out.println("2");
             if (par1Entity != boat.riddenByEntity)
             {
-            	System.out.println("3");
                 if (par1Entity instanceof EntityLivingBase && !(par1Entity instanceof EntityPlayer) && boat.riddenByEntity == null && par1Entity.ridingEntity == null)
                 {
-                	System.out.println("4");
                     par1Entity.mountEntity(boat);
                 }
             }
